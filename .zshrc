@@ -1,185 +1,138 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="/home/scott/.oh-my-zsh"
+POWERLEVEL9K_MODE="awesome-fontconfig"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+export FZF_BASE=/home/linuxbrew/.linuxbrew/opt/fzf
+
+# Linuxbrew
+test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git tmux python ansible brew docker fzf)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+export EDITOR=nvim
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
 #
-# .zshrc is sourced in interactive shells.
-# It should contain commands to set up aliases,
-# functions, options, key bindings, etc.
-
-autoload -U compinit
-compinit
-
-#allow tab completion in the middle of a word
-setopt COMPLETE_IN_WORD
-
-## keep background processes at full speed
-#setopt NOBGNICE
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-## restart running processes on exit
-#setopt HUP
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+eval "$(pyenv init -)"
 
-## Enable AutoCD
-setopt autocd
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.aliases.zsh ] && source ~/.aliases.zsh
 
-## history
-setopt APPEND_HISTORY
-setopt INC_APPEND_HISTORY
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_SAVE_NO_DUPS
+SSH_ENV="$HOME/.ssh/environment"
 
-## never ever beep ever
-setopt NO_BEEP
-
-##
-setopt prompt_subst
-setopt AUTOCD INTERACTIVE_COMMENTS
-setopt EXTENDED_GLOB
-setopt HIST_IGNORE_SPACE
-
-## automatically decide when to page a list of completions
-#LISTMAX=0
-
-REPORTTIME=60       # Report time statistics for progs that take more than a minute to run
-WATCH=notme         # Report any login/logout of other users
-WATCHFMT='%n %a %l from %m at %T.'
-
-## disable mail checking
-MAILCHECK=0
-
-autoload -U compinit
-compinit
-
-export PATH=$PATH:$HOME/bin:/usr/local/bin
-
-# Variables used for dotfiles
-host=$(hostname -s)
-
-## P4
-export P4CONFIG=.p4config
-export P4USER=sbenjamin
-export P4PORT=scm.nimone.com:1666
-export P4CLIENT="sbenjamin_$host"
-
-if [[ $(uname) == 'Darwin' ]]; then
-	export P4PORT=localhost:1666
-	export P4CLIENT="sbenjamin_mac"
-fi
-
-export REPLYTO=sbenjamin@networksinmotion.com
-
-### Colors ---
-#source ~/bin/colors.sh
-
-## Oracle
-if [ -d /usr/lib/oracle/11.2/client/ ]; then
-    export ORACLE_HOME=/usr/lib/oracle/11.2/client/
-elif [ -d /usr/lib/oracle/xe/app/oracle/product/10.2.0/client ]
-then
-    export ORACLE_HOME=/usr/lib/oracle/xe/app/oracle/product/10.2.0/client
-elif [ -d /usr/local/nb/oracle/product/10.2.0.3/client_1/ ]
-then
-    export ORACLE_HOME=/usr/local/nb/oracle/product/10.2.0.3/client_1/
-fi
-
-export NLS_LANG='.AL32UTF8'
-export PATH=$PATH:$ORACLE_HOME/bin
-
-alias sqlplus='rlwrap $ORACLE_HOME/bin/sqlplus'
-
-if [ -d ~/.oracle ]; then
-    export ORACLE_PATH="~/.oracle:$ORACLE_PATH"
-    export TNS_ADMIN="~/.oracle"
-fi
-
-#NB Related variables
-export PYTHON_INCLUDE=/usr/include/python2.4
-export LD_LIBRARY_PATH=/lib:/usr/lib:$ORACLE_HOME/lib
-
-## History
-export HISTFILE="$HOME/.history"
-export SAVEHIST=10000
-export HISTSIZE=10000
-export HISTCONTROL=ignoreboth
-
-## My trusty sidekick
-export EDITOR=emacs
-
-## Prompt
-autoload -U colors zsh/terminfo
-colors
-
-## Allow completion of SSH host names
-local _myhosts
-if [[ -f $HOME/.ssh/known_hosts ]]; then
-  _myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
-  zstyle ':completion:*' hosts $_myhosts
-fi
-
-hostname=$(hostname)
-
-#export LS_COLORS="no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:"
-
-## Prompt ------
-#export PS1="%{$fg[white]%}( %@ )\n%{$fg[green]%}%n%{$fg_bold[white]%}:%{$fg[blue]%} %1d %{$fg[white]%}>%{$reset_color%} "
-#export PS1="%m %{${fg_bold[red]}%}:: %{${fg[green]}%}%3~%(0?. . ${fg[red]}%? )%{${fg[blue]}%}»%{${reset_color}%} "
-
-#export PROMPT='[ %{$fg[white]%}%* %{$fg[green]%}%n@%M%{$fg[white]%} ]
-#(%{$fg[blue]%}%B%20~%b%{$reset_color%}%}) $ '
-#
-PROMPT="[%{$fg[green]%}%n@%m %{$reset_color%} %{$fg_bold[grey]%}%{$reset_color%}%~ ]
-%* %{$reset_color%}>> "
-
-export PS2="--> "
-
-function title() {
-  # escape '%' chars in $1, make nonprintables visible
-#  a=${(V)1//\%/\%\%}
-  a=$host
-
-  # Truncate command, and join lines.
-  a=$(print -Pn "%40>...>$a" | tr -d "\n")
-
-  case $TERM in
-  screen)
-    print -Pn "\e]2;$a @ $2\a" # plain xterm title
-    print -Pn "\ek$a\e\\"      # screen title (in ^A")
-    print -Pn "\e_$2   \e\\"   # screen location
-    ;;
-  xterm*|rxvt)
-    print -Pn "\e]2;$a @ $2\a" # plain xterm title
-    ;;
-  esac
+function start_agent {
+    echo "Initialising new SSH agent..."
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    echo succeeded
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add;
 }
 
-# precmd is called just before the prompt is printed
-function precmd() {
-  title "zsh" "%m(%55<...<%~)"
-}
+# Source SSH settings, if applicable
 
-# preexec is called just before any command line is executed
-function preexec() {
-  title "$1" "%m(%35<...<%~)"
-}
-
-# Get rid of the BELL!!!
-set bell-style visible
-
-# set fast keyboard repeat rate
-#xset r rate 250 70 > /dev/null 2>&1
-
-# Key Bindings
-bindkey -e
-
-NB='/usr/local/nb'
-
-# User specific aliases and functions
-if [[ "$host" == "map1" ]]
-then
-    alias mdr='cd /data1/Map_Data/NIM_Map_Data_Released'
-    alias crepo='createrepo --update /data3/yum/navbuilder/noarch/;chmod -R g+w /data3/yum/navbuilder/noarch/ >/dev/null 2>&1'
-    umask 002
+if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    #ps ${SSH_AGENT_PID} doesn't work under cywgin
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
+else
+    start_agent;
 fi
-
-
-## Aliases
-source ~/.aliases
-
-## Functions
-source ~/.functions
