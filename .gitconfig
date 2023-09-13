@@ -1,0 +1,26 @@
+[user]
+	email =
+	name =
+[pull]
+	rebase = true
+[color]
+	ui = auto
+[fetch]
+	prune = true
+[diff]
+	context = 4
+	colorMoved = zebra
+[core]
+	editor = nvim
+	pager = delta --line-numbers
+	excludesfile = ~/.gitignore
+
+[alias]
+  	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	squash = "!f() { git reset $(git merge-base ${1-main} $(git rev-parse --abbrev-ref HEAD)); }; f"
+	br = branch
+	grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
+	branchdate = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(authordate:short)%09%(objectname:short)%09%1B[0;33m%(refname:short)%1B[m%09"
+	trim = "!f() { git checkout ${1-main} && git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D; }; f"
+[delta]
+	navigate = true
