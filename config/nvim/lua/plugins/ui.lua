@@ -53,5 +53,4 @@ return {
   -- },
 
   { "mbbill/undotree" },
-  { "mrjones2014/smart-splits.nvim" },
 }
