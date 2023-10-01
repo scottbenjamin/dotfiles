@@ -1,7 +1,5 @@
-local vsize = 160
-local hsize = 42
-
 return {
+  -- Telescope FZF
   {
     "telescope.nvim",
     dependencies = {
@@ -12,45 +10,33 @@ return {
       end,
     },
   },
+  -- Telescope Undo extension
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "debugloop/telescope-undo.nvim",
+    },
+    config = function()
+      require("telescope").setup({
+        extensions = {
+          undo = {
+            side_by_side = true,
+            layout_strategy = "vertical",
+            layout_config = {
+              preview_height = 0.8,
+            },
+          },
+        },
+      })
 
-  -- toggleterm
-  -- {
-  --   "akinsho/toggleterm.nvim",
-  --   config = true,
-  --
-  --   cmd = "ToggleTerm",
-  --
-  --   keys = {
-  --     { "<leader>fT", false },
-  --     { "<leader>ft", desc = "Terminal" },
-  --     {
-  --       "<leader>ftt",
-  --       "<cmd>ToggleTerm size=" .. hsize .. 'dir="git_dir"<cr>',
-  --       desc = "Toggle terminal horizontially [git root dir]",
-  --     },
-  --     { "<leader>ftT", "<cmd>ToggleTerm size=" .. hsize .. "<cr>", desc = "Toggle terminal horizontally in cwd" },
-  --     {
-  --       "<leader>fts",
-  --       "<cmd>ToggleTerm size=" .. vsize .. ' direction=vertical dir="git_dir" <cr>',
-  --       desc = "Toggle terminal vertically [git root dir]",
-  --     },
-  --
-  --     {
-  --       "<leader>ftS",
-  --       "<cmd>ToggleTerm size=" .. vsize .. " direction=vertical<cr>",
-  --       desc = "Toggle terminal vertically in cwd",
-  --     },
-  --   },
-  --
-  --   opts = {
-  --     hide_numbers = true,
-  --     open_mapping = [[<c-\>]],
-  --     insert_mappings = true,
-  --     terminal_mappings = true,
-  --     start_in_insert = true,
-  --     close_on_exit = true,
-  --   },
-  -- },
-
-  { "mbbill/undotree" },
+      require("telescope").load_extension("undo")
+      vim.keymap.set("n", "<leader>su", "<cmd>Telescope undo<cr>", { desc = "Search Undo History" })
+    end,
+  },
+  -- Highlight undo
+  {
+    "tzachar/highlight-undo.nvim",
+    opts = {},
+  },
 }

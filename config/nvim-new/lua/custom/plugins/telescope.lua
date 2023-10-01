@@ -1,18 +1,6 @@
 return {
 
-  -- Dressing
-  {
-    'stevearc/dressing.nvim',
-    opts = {},
-  },
-
-  -- Harpoon for file navigation
-  {
-    'ThePrimeagen/harpoon',
-    opts = {},
-  },
-
-  -- Telescope Undo extension
+  -- Telesope Undo Tree
   {
     'nvim-telescope/telescope.nvim',
     dependencies = {
@@ -23,6 +11,7 @@ return {
       require('telescope').setup {
         extensions = {
           undo = {
+            use_delta = true,
             side_by_side = true,
             layout_strategy = 'vertical',
             layout_config = {
@@ -31,15 +20,8 @@ return {
           },
         },
       }
-
       require('telescope').load_extension 'undo'
-      vim.keymap.set('n', '<leader>su', '<cmd>Telescope undo<cr>', { desc = '[S]earch [U]ndo History' })
+      vim.keymap.set('n', '<leader>u', '<cmd>Telescope undo<cr>')
     end,
-  },
-
-  -- Highlight undo
-  {
-    'tzachar/highlight-undo.nvim',
-    opts = {},
   },
 }
