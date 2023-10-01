@@ -15,7 +15,7 @@ return {
       desc = 'Explorer Neotree (nvim config dir)',
     },
     {
-      '<leader>fE',
+      '<leader>fe',
       function()
         require('neo-tree.command').execute { toggle = true, dir = vim.loop.cwd() }
       end,
