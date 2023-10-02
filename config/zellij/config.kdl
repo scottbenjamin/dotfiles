@@ -193,7 +193,7 @@ plugins {
 //    - true
 //    - false (Default)
 //
-// simplified_ui true
+simplified_ui true
 
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
@@ -242,12 +242,12 @@ plugins {
 // The name of the default layout to load on startup
 // Default: "default"
 //
-default_layout "compact"
+//default_layout "compact"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
 //
-// default_mode "locked"
+default_mode "locked"
 
 // Toggle enabling the mouse mode.
 // On certain configurations, or terminals this could
@@ -264,7 +264,7 @@ default_layout "compact"
 // Valid values: positive integers
 // Default value: 10000
 //
-// scroll_buffer_size 10000
+scroll_buffer_size 100000
 
 // Provide a command to execute when copying text. The text will be piped to
 // the stdin of the program to perform the copy. This can be used with
