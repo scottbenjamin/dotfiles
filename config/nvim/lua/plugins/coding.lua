@@ -37,9 +37,4 @@ return {
       })
     end,
   },
-
-  {
-    url = "https://gitlab.com/gitlab-org/editor-extensions/gitlab.vim.git",
-    lazy = false,
-  },
 }

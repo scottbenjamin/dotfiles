@@ -42,4 +42,10 @@ return {
     'tzachar/highlight-undo.nvim',
     opts = {},
   },
+
+  --- mini Surround
+  { 'echasnovski/mini.surround', version = false },
+
+  ---   NeoScroll
+  { 'karb94/neoscroll.nvim' },
 }
