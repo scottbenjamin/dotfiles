@@ -39,4 +39,8 @@ return {
     "tzachar/highlight-undo.nvim",
     opts = {},
   },
+  {
+    "folke/twilight.nvim",
+    opts = {},
+  },
 }
