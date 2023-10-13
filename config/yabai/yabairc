@@ -8,11 +8,11 @@ yabai -m config layout bsp
 yabai -m config window_placement second_child
 
 # padding set to 12px
-yabai -m config top_padding 6
-yabai -m config bottom_padding 6
-yabai -m config left_padding 6
-yabai -m config right_padding 6
-yabai -m config window_gap 6
+yabai -m config top_padding 4 
+yabai -m config bottom_padding 24
+yabai -m config left_padding 4
+yabai -m config right_padding 
+yabai -m config window_gap 4
 
 # center mouse on window with focus
 yabai -m config mouse_follows_focus on
@@ -32,3 +32,5 @@ yabai -m mouse_drop_action swap
 # Specific app rules
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add label="Software Update" title="Software Update" manage=off
+yabai -m rule --add label="Activity Monitor" app="^Activity Monitor$" manage=off
