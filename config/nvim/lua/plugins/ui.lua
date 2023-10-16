@@ -7,6 +7,7 @@ return {
       build = "make",
       config = function()
         require("telescope").load_extension("fzf")
+        require("telescope").load_extension("git_worktree")
       end,
     },
   },
@@ -39,6 +40,7 @@ return {
     "tzachar/highlight-undo.nvim",
     opts = {},
   },
+  -- twilight
   {
     "folke/twilight.nvim",
     opts = {},
