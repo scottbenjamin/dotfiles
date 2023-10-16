@@ -37,8 +37,11 @@ config.bold_brightens_ansi_colors = true
 config.enable_tab_bar = false
 
 -- For example, changing the color scheme:
+config.color_scheme_dirs = { "$HOME/.config/wezterm/colors" }
+
 -- config.color_scheme = "Tokyo Night Storm (Gogh)"
-config.color_scheme = "Kanagawa (Gogh)"
+-- config.color_scheme = "Kanagawa (Gogh)"
+config.color_scheme = "Melange Dark"
 
 -- KEY
 -- Show which key table is active in the status area
