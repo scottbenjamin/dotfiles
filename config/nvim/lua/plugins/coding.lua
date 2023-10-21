@@ -23,18 +23,19 @@ return {
       },
     },
   },
-
   {
-    -- https://github.com/esensar/nvim-dev-container
-    "https://codeberg.org/esensar/nvim-dev-container",
-    dependencies = {
-      { "nvim-treesitter/nvim-treesitter" },
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+        markdown = { "markdownlint" },
+        python = { "ruff_fix", "isort", "darker" },
+        shell = { "shfmt", "shellharden" },
+        sql = { "sql_formatter" },
+        terraform = { "terraform_fmt" },
+        yaml = { "yamlfmt" },
+        ["*"] = { "trim_whitespace", "trim_lines" }, -- Run on all files
+      },
     },
-    config = function()
-      require("devcontainer").setup({
-        container_runtime = "docker",
-        backup_runtime = "docker-compose",
-      })
-    end,
   },
 }

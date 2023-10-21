@@ -19,6 +19,7 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
+config.use_ime = false
 config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Regular", stretch = "Normal", style = "Normal" })
 -- Font Size
 config.font_size = 12.0

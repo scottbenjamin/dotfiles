@@ -35,7 +35,6 @@ return {
           },
         },
         terraformls = {},
-        ruff_lsp = {},
       },
     },
   },
