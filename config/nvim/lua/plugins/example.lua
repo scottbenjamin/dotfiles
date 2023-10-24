@@ -13,7 +13,6 @@ return {
   { "ellisonleao/gruvbox.nvim" },
 
   -- Configure LazyVim to load gruvbox
-  -- w
   {
     "LazyVim/LazyVim",
     opts = {

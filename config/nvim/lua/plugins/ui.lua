@@ -43,6 +43,13 @@ return {
   -- twilight
   {
     "folke/twilight.nvim",
-    opts = {},
+    opts = {
+      context = 20,
+    },
+    keys = {
+      { "<leader>ct", "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
+    },
   },
+  -- Smart Splits
+  { "mrjones2014/smart-splits.nvim" },
 }
