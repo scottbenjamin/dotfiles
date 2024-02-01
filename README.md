@@ -1,7 +1,7 @@
 # Scott's dotfiles
 
+My collection of dotfiles
 
+# Getting started
 
-## Getting started
-
-TODO
+The expectation is that you clone this directory and then symlink the files to the correct locations
