@@ -15,14 +15,14 @@ return {
     end,
   },
 
-  {
-    "zbirenbaum/copilot.lua",
-    opts = {
-      filetypes = {
-        yaml = true,
-      },
-    },
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   opts = {
+  --     filetypes = {
+  --       yaml = true,
+  --     },
+  --   },
+  -- },
   {
     "stevearc/conform.nvim",
     opts = {

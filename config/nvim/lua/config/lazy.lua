@@ -12,7 +12,7 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
     -- Coding
-    { import = "lazyvim.plugins.extras.coding.copilot" },
+    -- { import = "lazyvim.plugins.extras.coding.copilot" },
 
     -- import/override with your plugins
     { import = "plugins" },
