@@ -15,7 +15,7 @@ disabled=false
 [kubernetes]
 style = "bold #8be9fd"
 format = '$cluster '
-disabled = false
+disabled = true
 
 [conda]
 symbol = " "
@@ -36,6 +36,7 @@ symbol = " "
 symbol = " "
 
 [git_branch]
+disabled = false
 symbol = " "
 
 [golang]
@@ -51,6 +52,7 @@ symbol = " "
 symbol = " "
 
 [memory_usage]
+disabled = true
 symbol = " "
 
 [nim]
@@ -91,6 +93,6 @@ symbol = " "
 symbol = "ﯣ "
 
 [terraform]
-disabled =false
+disabled = false
 format = "via [$symbol$version]($style) "
 symbol = "💠 "
