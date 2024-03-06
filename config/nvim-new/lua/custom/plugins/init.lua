@@ -19,4 +19,7 @@ return {
       vim.cmd.hi 'Comment gui=none'
     end,
   },
+
+  -- Schema store
+  { 'b0o/SchemaStore.nvim' },
 }

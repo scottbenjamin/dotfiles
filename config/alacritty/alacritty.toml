@@ -1,14 +1,12 @@
 #  Config spec: https://alacritty.org/config-alacritty.html
-import = [
-  "~/.config/alacritty/themes/gruvbox_dark.toml"
-]
+import = ["~/.config/alacritty/themes/kanagawa_wave.toml"]
 
 [window]
-opacity = 0.9
-blur =  true
+opacity = 0.8
+blur = true
 
-padding = { x= 10, y=10}
-dynamic_padding = true
+padding = { x = 5, y = 5 }
+dynamic_padding = false
 
 decorations = "Buttonless"
 decorations_theme_variant = "Dark"
@@ -16,18 +14,16 @@ decorations_theme_variant = "Dark"
 # startup_mode = "SimpleFullscreen"
 startup_mode = "Windowed"
 
-
 [font]
-normal = {family = "JetBrainsMono Nerd Font", style = "Regular"}
-bold = {family = "JetBrainsMono Nerd Font", style = "Bold"}
-italic = {family = "JetBrainsMono Nerd Font", style = "Italic"}
-bold_italic = {family = "JetBrainsMono Nerd Font", style = "Bold Italic"}
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
 
 size = 12.5
 
-
 [cursor]
-style ={ shape ="Block", blinking = "On"}
+style = { shape = "Block", blinking = "On" }
 blink_interval = 350
 
 [selection]
