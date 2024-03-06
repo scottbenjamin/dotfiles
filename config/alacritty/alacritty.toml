@@ -1,0 +1,34 @@
+#  Config spec: https://alacritty.org/config-alacritty.html
+import = [
+  "~/.config/alacritty/themes/gruvbox_dark.toml"
+]
+
+[window]
+opacity = 0.9
+blur =  true
+
+padding = { x= 10, y=10}
+dynamic_padding = true
+
+decorations = "Buttonless"
+decorations_theme_variant = "Dark"
+
+# startup_mode = "SimpleFullscreen"
+startup_mode = "Windowed"
+
+
+[font]
+normal = {family = "JetBrainsMono Nerd Font", style = "Regular"}
+bold = {family = "JetBrainsMono Nerd Font", style = "Bold"}
+italic = {family = "JetBrainsMono Nerd Font", style = "Italic"}
+bold_italic = {family = "JetBrainsMono Nerd Font", style = "Bold Italic"}
+
+size = 12.5
+
+
+[cursor]
+style ={ shape ="Block", blinking = "On"}
+blink_interval = 350
+
+[selection]
+save_to_clipboard = true
