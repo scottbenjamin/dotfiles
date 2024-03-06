@@ -22,4 +22,14 @@ return {
 
   -- Schema store
   { 'b0o/SchemaStore.nvim' },
+
+  -- copilot
+  -- https://github.com/github/copilot.vim
+  {
+    'github/copilot.vim',
+    cmd = 'Copilot',
+    build = ':Copilot auth',
+    config = true,
+    opts = {},
+  },
 }
