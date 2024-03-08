@@ -13,6 +13,12 @@ wezterm.on("update-right-status", function(window, pane)
 	window:set_right_status(name or "")
 end)
 
+-- Use the gpu
+local gpus = wezterm.gui.enumerate_gpus()
+
+config.webgpu_preferred_adapter = gpus[1]
+config.front_end = "WebGpu"
+
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
 if wezterm.config_builder then
@@ -22,16 +28,29 @@ end
 config.use_ime = false
 
 -- Font
-config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Regular", stretch = "Normal", style = "Normal" })
+config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Regular" })
 
 -- Font Size
 config.font_size = 12
 
+-- Window Size
 config.initial_cols = 110
 config.initial_rows = 50
+config.window_padding = {
+	left = 3,
+	right = 3,
+	top = 3,
+	bottom = 0,
+}
+
+-- Window decorations
+config.window_decorations = "RESIZE"
 
 -- No Audible bell please
 config.audible_bell = "Disabled"
+
+config.scrollback_lines = 3500
+config.enable_scroll_bar = false
 
 config.window_background_opacity = 0.9
 -- config.text_background_opacity = 0.3
