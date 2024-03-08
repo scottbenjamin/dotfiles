@@ -287,6 +287,8 @@ require('lazy').setup {
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>cs', builtin.git_status, { desc = '[C]ode git [S]tatus' })
+      vim.keymap.set('n', '<leader>cc', builtin.git_commits, { desc = '[C]ode git [C]ommits' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -675,7 +677,7 @@ require('lazy').setup {
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
       local statusline = require 'mini.statusline'
-      -- statusline.setup()
+      statusline.setup()
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
@@ -684,6 +686,9 @@ require('lazy').setup {
       statusline.section_location = function()
         return '%2l:%-2v'
       end
+
+      -- Move selected text
+      require('mini.move').setup()
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
