@@ -11,3 +11,12 @@ My collection of dotfiles
 
 The expectation is that you clone this directory and then symlink the files
 to the correct locations that the tools expect
+
+
+## Use these
+
+From the cloned repo issue:
+
+```shell
+stow --target ~/.config .
+```
