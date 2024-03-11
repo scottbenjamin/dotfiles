@@ -278,7 +278,7 @@ require('lazy').setup {
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>sf', builtin.fd, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sG', builtin.live_grep, { desc = '[S]earch by [G]rep' })
@@ -327,6 +327,11 @@ require('lazy').setup {
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
     },
+
+    opts = {
+      inlay_hints = { enabled = true },
+    },
+
     config = function()
       -- Brief Aside: **What is LSP?**
       --
@@ -450,7 +455,6 @@ require('lazy').setup {
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -468,6 +472,7 @@ require('lazy').setup {
           settings = {
             Lua = {
               runtime = { version = 'LuaJIT' },
+              hint = { enable = true },
               workspace = {
                 checkThirdParty = false,
                 -- Tells lua_ls where to find all the Lua files that you have loaded
@@ -487,10 +492,20 @@ require('lazy').setup {
             },
           },
         },
+        pyright = {
+          settings = {
+            hint = { enable = true },
+          },
+        },
+        terraformls = {
+          settings = {
+            hint = { enable = true },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
-      --  To check the current status of installed tools and/or manually install
+      --  To check the current installed tools and/or manually install
       --  other tools, you can run
       --    :Mason
       --

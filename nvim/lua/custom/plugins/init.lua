@@ -25,11 +25,11 @@ return {
 
   -- copilot
   -- https://github.com/github/copilot.vim
-  {
-    'github/copilot.vim',
-    cmd = 'Copilot',
-    build = ':Copilot auth',
-    config = true,
-    opts = {},
-  },
+  -- {
+  --   'github/copilot.vim',
+  --   cmd = 'Copilot',
+  --   build = ':Copilot auth',
+  --   config = true,
+  --   opts = {},
+  -- },
 }

@@ -5,6 +5,12 @@ local k = require("keys")
 -- This table will hold the configuration.
 local config = {}
 
+-- In newer versions of wezterm, use the config_builder which will
+-- help provide clearer error messages
+if wezterm.config_builder then
+	config = wezterm.config_builder()
+end
+
 wezterm.on("update-right-status", function(window, pane)
 	local name = window:active_key_table()
 	if name then
@@ -19,23 +25,18 @@ local gpus = wezterm.gui.enumerate_gpus()
 config.webgpu_preferred_adapter = gpus[1]
 config.front_end = "WebGpu"
 
--- In newer versions of wezterm, use the config_builder which will
--- help provide clearer error messages
-if wezterm.config_builder then
-	config = wezterm.config_builder()
-end
-
 config.use_ime = false
 
 -- Font
-config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Regular" })
+config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" })
+-- config.font = wezterm.font("Hack Nerd Font", { weight = "Medium" })
 
 -- Font Size
-config.font_size = 12
+config.font_size = 13
 
 -- Window Size
 config.initial_cols = 110
-config.initial_rows = 50
+config.initial_rows = 70
 config.window_padding = {
 	left = 3,
 	right = 3,
@@ -71,6 +72,9 @@ config.color_scheme = "Melange Dark"
 config.leader = { key = "Space", mods = "CTRL|ALT" }
 config.keys = k.keys
 config.key_tables = k.key_tables
+
+-- Behavior
+config.exit_behavior = "Close"
 
 -- and finally, return the configuration to wezterm
 return config

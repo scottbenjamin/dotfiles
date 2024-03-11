@@ -1,34 +1,34 @@
 return {
   -- Neotree for when we need file manipulation
   -- https://github.com/nvim-tree/nvim-tree.lua
-  {
-    'nvim-tree/nvim-tree.lua',
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
-    opts = {},
-
-    config = function()
-      require('nvim-tree').setup {
-        sort = {
-          sorter = 'case_sensitive',
-        },
-        view = {
-          width = 30,
-        },
-        renderer = {
-          group_empty = true,
-        },
-        filters = {
-          dotfiles = true,
-        },
-
-        -- FIX: Figure out how to detect root dir
-        -- vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<cr>', { desc = 'NVimTree cwd' }),
-        vim.keymap.set('n', '<leader>E', ':NvimTreeToggle<cr>', { desc = 'Toggle NVimTree' }),
-      }
-    end,
-  },
+  -- {
+  --   'nvim-tree/nvim-tree.lua',
+  --   dependencies = {
+  --     'nvim-tree/nvim-web-devicons',
+  --   },
+  --   opts = {},
+  --
+  --   config = function()
+  --     require('nvim-tree').setup {
+  --       sort = {
+  --         sorter = 'case_sensitive',
+  --       },
+  --       view = {
+  --         width = 30,
+  --       },
+  --       renderer = {
+  --         group_empty = true,
+  --       },
+  --       filters = {
+  --         dotfiles = true,
+  --       },
+  --
+  --       -- FIX: Figure out how to detect root dir
+  --       -- vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<cr>', { desc = 'NVimTree cwd' }),
+  --       vim.keymap.set('n', '<leader>E', ':NvimTreeToggle<cr>', { desc = 'Toggle NVimTree' }),
+  --     }
+  --   end,
+  -- },
 
   -- Zenmode  - distraction free coding
   -- https://github.com/folke/zen-mode.nvim
@@ -92,7 +92,12 @@ return {
 
   {
     'stevearc/oil.nvim',
-    opts = {},
     dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {},
+    config = function()
+      local oil = require 'oil'
+      require('oil').setup()
+      vim.keymap.set('n', '<leader>e', oil.toggle_float, { desc = 'Toggle file [E]xplorer' })
+    end,
   },
 }
