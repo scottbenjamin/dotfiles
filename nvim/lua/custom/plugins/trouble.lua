@@ -23,11 +23,11 @@ return {
 
       vim.keymap.set('n', '<leader>q', function()
         require('trouble').toggle 'quickfix'
-      end, { desc = 'Open diagnostic to [Q]uickfix list' }),
+      end, { desc = 'Open diagnostic to [q]uickfix list' }),
 
       vim.keymap.set('n', '<leader>wd', function()
         require('trouble').toggle 'workspace_diagnostics'
-      end, { desc = 'Go to next [W]orkspace diagnostics' }),
+      end, { desc = 'Go to next [w]orkspace [d]iagnostics' }),
     }
     -- FIXME add more keybinds
   end,

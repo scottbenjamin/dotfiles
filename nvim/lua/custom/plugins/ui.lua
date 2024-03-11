@@ -23,8 +23,6 @@ return {
   --         dotfiles = true,
   --       },
   --
-  --       -- FIX: Figure out how to detect root dir
-  --       -- vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<cr>', { desc = 'NVimTree cwd' }),
   --       vim.keymap.set('n', '<leader>E', ':NvimTreeToggle<cr>', { desc = 'Toggle NVimTree' }),
   --     }
   --   end,
@@ -44,7 +42,7 @@ return {
     dependencies = 'nvim-lua/plenary.nvim',
     config = true,
     keys = { -- load the plugin only when using it's keybinding:
-      { '<leader>u', "<cmd>lua require('undotree').toggle()<cr>", desc = 'Undotree Toggle' },
+      { '<leader>u', "<cmd>lua require('undotree').toggle()<cr>", desc = '[u]ndotree Toggle' },
     },
   },
 
@@ -62,33 +60,18 @@ return {
     opts = {},
   },
 
-  -- heirline - statusline
-  -- https://github.com/rebelot/heirline.nvim
-  -- Check out the cookboook: https://github.com/rebelot/heirline.nvim/blob/master/cookbook.md
-  -- https://github.com/Zeioth/heirline-components.nvim
-  -- {
-  --   'rebelot/heirline.nvim',
-  --   dependencies = { 'Zeioth/heirline-components.nvim' },
-  --   opts = {},
-  --   config = function(_, opts)
-  --     local heirline = require 'heirline'
-  --     local heirline_components = require 'heirline-components.all'
-  --
-  --     -- Setup
-  --     heirline_components.init.subscribe_to_events()
-  --     heirline.load_colors(heirline_components.hl.get_colors())
-  --     heirline.setup(opts)
-  --   end,
-  -- },
-
   -- Lualine
-  --
+  -- yet another status line
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     enabled = false,
     opts = {},
   },
+
+  -- Oil.nvim
+  -- https://github.com/stevearc/oil.nvim
+  -- buffer based file explorer
 
   {
     'stevearc/oil.nvim',
@@ -97,7 +80,16 @@ return {
     config = function()
       local oil = require 'oil'
       require('oil').setup()
-      vim.keymap.set('n', '<leader>e', oil.toggle_float, { desc = 'Toggle file [E]xplorer' })
+      vim.keymap.set('n', '<leader>e', oil.toggle_float, { desc = 'Toggle file [e]xplorer' })
     end,
+  },
+
+  -- Harpoon
+  -- https://github.com/ThePrimeagen/harpoon
+  -- Managing buffers you want to  see
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' },
   },
 }

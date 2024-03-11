@@ -1,3 +1,6 @@
+require 'custom.util'
+local Util = require 'custom.util'
+
 local function NewTerminal(path, cmd, direction)
   local Terminal = require('toggleterm.terminal').Terminal
   local term = Terminal:new {
@@ -9,18 +12,9 @@ local function NewTerminal(path, cmd, direction)
 
   return term
 end
-
-local function getPath(str, sep)
-  sep = sep or '/'
-  return str:match('(.*' .. sep .. ')')
-end
-
-local function get_buf_cwd()
-  return getPath(vim.api.nvim_buf_get_name(0))
-end
-
+-- Toggle  Lazygit on and off based on current buffers cwd
 function Lazygit_toggle()
-  local lazygit = NewTerminal(get_buf_cwd(), 'lazygit', 'float')
+  local lazygit = NewTerminal(Util.get_buf_cwd(), 'lazygit', 'float')
   lazygit:toggle()
 end
 
@@ -30,10 +24,12 @@ vim.keymap.set('n', '<leader>ch', function()
 end, { desc = 'Toggle Inlay [H]ints' })
 
 -- Lazygit
-vim.api.nvim_set_keymap('n', '<leader>cg', '<cmd>lua Lazygit_toggle()<CR>', { noremap = true, silent = true, desc = 'Open Lazygit' })
+vim.keymap.set('n', '<leader>cg', function()
+  Lazygit_toggle()
+end, { noremap = true, silent = true, desc = 'Open Lazy[g]it' })
 
 --  Glab CLI
-vim.api.nvim_set_keymap('n', '<leader>cM', '<cmd>glab mr create -w<CR>', { desc = 'Create new MR in browser', silent = true })
-vim.api.nvim_set_keymap('n', '<leader>cm', '<cmd>glab mr view -w<CR>', { desc = 'Open MR in browser', silent = true })
+vim.keymap.set('n', '<leader>cM', '<cmd>glab mr create -w<CR>', { desc = 'Create new [M]R in browser', silent = true })
+vim.keymap.set('n', '<leader>cm', '<cmd>glab mr view -w<CR>', { desc = 'Open [m]R in browser', silent = true })
 
 return {}
