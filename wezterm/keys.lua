@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
+local window = wezterm.window
 
 local stuff = {}
 

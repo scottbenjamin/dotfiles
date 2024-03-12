@@ -1,6 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 local k = require("keys")
+local mux = wezterm.mux
 
 -- This table will hold the configuration.
 local config = {}
@@ -17,6 +18,13 @@ wezterm.on("update-right-status", function(window, pane)
 		name = "TABLE: " .. name
 	end
 	window:set_right_status(name or "")
+end)
+
+-- maximize on startup
+-- https://wezfurlong.org/wezterm/config/lua/gui-events/gui-startup.html
+wezterm.on("gui-startup", function(cmd)
+	local tab, pane, window = mux.spawn_window(cmd or {})
+	window:gui_window():maximize()
 end)
 
 -- Use the gpu
@@ -75,6 +83,10 @@ config.key_tables = k.key_tables
 
 -- Behavior
 config.exit_behavior = "Close"
+
+-- Check for updates
+config.check_for_updates = true
+config.check_for_updates_interval_seconds = 86400
 
 -- and finally, return the configuration to wezterm
 return config

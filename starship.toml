@@ -67,15 +67,9 @@ symbol = " "
 [package]
 symbol = " "
 
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
-
-# [python]
-# symbol = "🐍 "
-# pyenv_version_name = true
+[python]
+symbol = "🐍 "
+pyenv_version_name = true
 
 [ruby]
 symbol = " "
@@ -97,11 +91,8 @@ disabled = false
 format = "via [$symbol$version]($style) "
 symbol = "💠 "
 
-
-# [character]
-# success_symbol = '[ #](bold green)'
-# error_symbol = "[ x](bold red)"
-# vicmd_symbol = "[ V](bold green)"
+[status]
+disabled = false
 
 [git_status]
 disabled = false
@@ -112,12 +103,6 @@ tag_disabled = false
 only_detached = false
 
 [battery]
-disabled = true
-
-[python]
-disabled = true
-
-[cmake]
 disabled = true
 
 [directory]
