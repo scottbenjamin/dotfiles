@@ -10,7 +10,7 @@ symbol = 'ﴃ '
 style = 'blue bold'
 
 [jobs]
-disabled=false
+disabled = false
 
 [kubernetes]
 style = "bold #8be9fd"
@@ -23,8 +23,8 @@ symbol = " "
 [dart]
 symbol = " "
 
-[directory]
-read_only = " "
+# [directory]
+# read_only = " "
 
 [docker_context]
 symbol = " "
@@ -73,9 +73,9 @@ symbol = " "
 [php]
 symbol = " "
 
-[python]
-symbol = "🐍 "
-pyenv_version_name = true
+# [python]
+# symbol = "🐍 "
+# pyenv_version_name = true
 
 [ruby]
 symbol = " "
@@ -96,3 +96,33 @@ symbol = "ﯣ "
 disabled = false
 format = "via [$symbol$version]($style) "
 symbol = "💠 "
+
+
+# [character]
+# success_symbol = '[ #](bold green)'
+# error_symbol = "[ x](bold red)"
+# vicmd_symbol = "[ V](bold green)"
+
+[git_status]
+disabled = false
+
+[git_commit]
+commit_hash_length = 7
+tag_disabled = false
+only_detached = false
+
+[battery]
+disabled = true
+
+[python]
+disabled = true
+
+[cmake]
+disabled = true
+
+[directory]
+read_only = "(read only)"
+
+[git_metrics]
+disabled = false
+format = '([+$added]($added_style)) ([-$deleted]($deleted_style)) '

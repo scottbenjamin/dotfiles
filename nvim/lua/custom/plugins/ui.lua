@@ -62,12 +62,12 @@ return {
 
   -- Lualine
   -- yet another status line
-  {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    enabled = false,
-    opts = {},
-  },
+  -- {
+  --   'nvim-lualine/lualine.nvim',
+  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  --   enabled = false,
+  --   opts = {},
+  -- },
 
   -- Oil.nvim
   -- https://github.com/stevearc/oil.nvim
