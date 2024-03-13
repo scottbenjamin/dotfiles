@@ -74,8 +74,9 @@ config.show_new_tab_button_in_tab_bar = false
 config.color_scheme_dirs = { "$HOME/.config/wezterm/colors" }
 
 -- Set the color theme
-config.color_scheme = "melange_dark"
--- config.color_scheme = "Catppuccin Macchiato"
+-- config.color_scheme = "melange_dark"
+config.color_scheme = "Catppuccin Macchiato"
+config.color_scheme = "Catppuccin Macchiato (Gogh)"
 
 -- LEADER KEY
 -- Show which key table is active in the status area
