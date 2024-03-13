@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 local mux = wezterm.mux
 
 local k = require("keys")
-local helpers = require("helpers")
+local ui = require("ui")
 
 local state = {
 	debug_mode = false,
@@ -50,6 +50,7 @@ config.window_padding = {
 
 -- Window decorations
 config.window_decorations = "RESIZE"
+config.default_cursor_style = "BlinkingBar"
 
 -- No Audible bell please
 config.audible_bell = "Disabled"
@@ -66,17 +67,21 @@ config.bold_brightens_ansi_colors = true
 -- config.enable_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = false
 config.use_fancy_tab_bar = true
+config.show_tabs_in_tab_bar = false
+config.show_new_tab_button_in_tab_bar = false
 
 -- For example, changing the color scheme:
 config.color_scheme_dirs = { "$HOME/.config/wezterm/colors" }
 
--- config.color_scheme = "Tokyo Night Storm (Gogh)"
--- config.color_scheme = "Kanagawa (Gogh)"
+-- Set the color theme
 config.color_scheme = "melange_dark"
+-- config.color_scheme = "Catppuccin Macchiato"
 
 -- LEADER KEY
 -- Show which key table is active in the status area
-config.leader = { key = "s", mods = "CTRL", timeout_milliseconds = 1000 }
+config.leader = { key = "s", mods = "CTRL|ALT", timeout_milliseconds = 1000 }
+
+-- Key binds
 config.keys = k.keys
 config.key_tables = k.key_tables
 
@@ -93,26 +98,26 @@ config.unix_domains = {
 }
 
 -- Status bar
-helpers.update_right_status_bar()
+-- ui.append(config)
 
--- and finally, return the configuration to wezterm
--- Integrate with neovim smart-splits plugin
-local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
-
--- you can put the rest of your Wezterm config here
-smart_splits.apply_to_config(config, {
-	-- the default config is here, if you'd like to use the default keys,
-	-- you can omit this configuration table parameter and just use
-	-- smart_splits.apply_to_config(config)
-
-	-- directional keys to use in order of: left, down, up, right
-	direction_keys = { "h", "j", "k", "l" },
-	-- modifier keys to combine with direction_keys
-	modifiers = {
-		move = "CTRL", -- modifier to use for pane movement, e.g. CTRL+h to move left
-		resize = "CTRL|META", -- modifier to use for pane resize, e.g. META+h to resize to the left
-	},
-})
+-- -- and finally, return the configuration to wezterm
+-- -- Integrate with neovim smart-splits plugin
+-- local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
+--
+-- -- you can put the rest of your Wezterm config here
+-- smart_splits.apply_to_config(config, {
+-- 	-- the default config is here, if you'd like to use the default keys,
+-- 	-- you can omit this configuration table parameter and just use
+-- 	-- smart_splits.apply_to_config(config)
+--
+-- 	-- directional keys to use in order of: left, down, up, right
+-- 	direction_keys = { "h", "j", "k", "l" },
+-- 	-- modifier keys to combine with direction_keys
+-- 	modifiers = {
+-- 		move = "CTRL", -- modifier to use for pane movement, e.g. CTRL+h to move left
+-- 		resize = "CTRL|META", -- modifier to use for pane resize, e.g. META+h to resize to the left
+-- 	},
+-- })
 
 return config
 

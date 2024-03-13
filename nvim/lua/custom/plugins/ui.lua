@@ -1,33 +1,21 @@
 return {
-  -- Neotree for when we need file manipulation
-  -- https://github.com/nvim-tree/nvim-tree.lua
-  -- {
-  --   'nvim-tree/nvim-tree.lua',
-  --   dependencies = {
-  --     'nvim-tree/nvim-web-devicons',
-  --   },
-  --   opts = {},
-  --
-  --   config = function()
-  --     require('nvim-tree').setup {
-  --       sort = {
-  --         sorter = 'case_sensitive',
-  --       },
-  --       view = {
-  --         width = 30,
-  --       },
-  --       renderer = {
-  --         group_empty = true,
-  --       },
-  --       filters = {
-  --         dotfiles = true,
-  --       },
-  --
-  --       vim.keymap.set('n', '<leader>E', ':NvimTreeToggle<cr>', { desc = 'Toggle NVimTree' }),
-  --     }
-  --   end,
-  -- },
 
+  -- melange colorscheme
+  { 'savq/melange-nvim' },
+
+  -- kanagawa colorscheme
+  {
+    'rebelot/kanagawa.nvim',
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 999, -- make sure to load this before all the other start plugins
+    config = function()
+      -- Load the colorscheme here.
+      vim.cmd.colorscheme 'kanagawa'
+
+      -- You can configure highlights by doing something like
+      vim.cmd.hi 'Comment gui=none'
+    end,
+  },
   -- Zenmode  - distraction free coding
   -- https://github.com/folke/zen-mode.nvim
   {
