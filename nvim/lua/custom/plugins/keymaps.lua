@@ -29,7 +29,7 @@ vim.keymap.set('n', '<leader>cg', function()
 end, { noremap = true, silent = true, desc = 'Open Lazy[g]it' })
 
 --  Glab CLI
-vim.keymap.set('n', '<leader>cM', '<cmd>glab mr create -w<CR>', { desc = 'Create new [M]R in browser', silent = true })
-vim.keymap.set('n', '<leader>cm', '<cmd>glab mr view -w<CR>', { desc = 'Open [m]R in browser', silent = true })
+vim.keymap.set('n', '<leader>cM', '<cmd>!glab mr create -fw<CR>', { desc = 'Create new [M]R in browser', silent = true })
+vim.keymap.set('n', '<leader>cm', '<cmd>!glab mr view -w<CR>', { desc = 'Open [m]R in browser', silent = true })
 
 return {}
