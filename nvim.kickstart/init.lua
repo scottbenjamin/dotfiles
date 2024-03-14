@@ -62,7 +62,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 9999
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -178,7 +178,7 @@ require('lazy').setup {
         ['<leader>s'] = { name = '[s]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[w]orkspace', _ = 'which_key_ignore' },
         ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
-        ['<leader>t'] = { name = '[t]oggle', _ = 'which_key_ignore' },
+        ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
       }
       -- visual mode
       require('which-key').register({
@@ -322,13 +322,10 @@ require('lazy').setup {
 
     opts = {
       inlay_hints = { enabled = true },
+      codelens = { enabled = true },
     },
 
     config = function()
-      -- Brief Aside: **What is LSP?**
-      --
-      -- LSP is an acronym you've probably heard, but might not understand what it is.
-      --
       -- LSP stands for Language Server Protocol. It's a protocol that helps editors
       -- and language tooling communicate in a standardized fashion.
       --
@@ -357,10 +354,6 @@ require('lazy').setup {
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
-          -- NOTE: Remember that lua is a real programming language, and as such it is possible
-          -- to define small helper and utility functions so you don't have to repeat yourself
-          -- many times.
-          --
           -- In this case, we create a function that lets us more easily define mappings specific
           -- for LSP related items. It sets the mode, buffer and description for us each time.
           local map = function(keys, func, desc)
@@ -444,71 +437,66 @@ require('lazy').setup {
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-      local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- rust_analyzer = {},
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
-        --
+      local servers =
+        {
+          -- clangd = {},
+          -- gopls = {},
+          -- rust_analyzer = {},
+          -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
+          --
+          -- Some languages (like typescript) have entire language plugins that can be useful:
+          --    https://github.com/pmizio/typescript-tools.nvim
+          --
+          -- But for many setups, the LSP (`tsserver`) will work just fine
+          -- tsserver = {},
+          --
 
-        lua_ls = {
-          -- cmd = {...},
-          -- filetypes { ...},
-          -- capabilities = {},
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = 'Replace',
+          lua_ls = {
+            -- cmd = {...},
+            -- filetypes { ...},
+            -- capabilities = {},
+            settings = {
+              Lua = {
+                workspace = { checkThirdParty = false },
+                codeLens = { enable = true },
+                completion = { callSnippet = 'Replace' },
+                -- diagnostics = { disable = { 'missing-fields' } },
               },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
+            },
+          },
+
+          ruff_lsp = {},
+          terraformls = {},
+          tflint = {},
+
+          yamlls = {
+            settings = {
+              YAML = {
+                validate = true,
+                codeLens = { enable = true },
+                completion = { callSnippet = 'Replace' },
+                -- schemaStore = {
+                --   enable = false,
+                --   url = '',
+                -- },
+                -- schemas = require('schemastore').yaml.schemas {
+                --   select = {
+                --     'kustomization.yaml',
+                --     'docker-compose.yml',
+                --     'gitlab-ci',
+                --   },
+                -- },
+              },
             },
           },
         },
-        pyright = {
-          settings = {
-            hint = { enable = true },
-          },
-        },
-        terraformls = {
-          settings = {
-            hint = { enable = true },
-          },
-        },
-
-        yamlls = {
-          settings = {
-            yaml = {
-              validate = true,
-              -- schemaStore = {
-              --   enable = false,
-              --   url = '',
-              -- },
-              -- schemas = require('schemastore').yaml.schemas {
-              --   select = {
-              --     'kustomization.yaml',
-              --     'docker-compose.yml',
-              --     'gitlab-ci',
-              --   },
-              -- },
-            },
-          },
-        },
-      }
-
-      -- Ensure the servers and tools above are installed
-      --  To check the current installed tools and/or manually install
-      --  other tools, you can run
-      --    :Mason
-      --
-      --  You can press `g?` for help in this menu
-      require('mason').setup()
+        -- Ensure the servers and tools above are installed
+        --  To check the current installed tools and/or manually install
+        --  other tools, you can run
+        --    :Mason
+        --
+        --  You can press `g?` for help in this menu
+        require('mason').setup()
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
@@ -539,7 +527,7 @@ require('lazy').setup {
       notify_on_error = false,
       format_on_save = function(bufnr)
         -- Enable format on save for specified filetypes
-        local enable_filetypes = { 'lua' }
+        local enable_filetypes = { 'lua', 'python', 'terraform', 'yaml' }
         if vim.tbl_contains(enable_filetypes, vim.bo[bufnr].filetype) then
           return {
             timeout_ms = 500,
@@ -651,18 +639,21 @@ require('lazy').setup {
           -- { name = 'nvim_lua' },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
-          { name = 'path' },
           { name = 'codeium' },
+          { name = 'buffer' },
+          { name = 'path' },
         },
       }
     end,
   },
 
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  -- https://github.com/folke/todo-comments.nvim
+  { 'folke/todo-comments.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = true } },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
     config = function()
       -- Better Around/Inside textobjects
       --
@@ -670,7 +661,19 @@ require('lazy').setup {
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [']quote
       --  - ci'  - [C]hange [I]nside [']quote
-      require('mini.ai').setup { n_lines = 500 }
+      -- local spec_ts = require('mini.ai').gen_spec.treesitter
+      require('mini.ai').setup {
+        n_lines = 500,
+        -- custom_textobjects = {
+        --   F = spec_ts { a = '@function.outer', i = '@function.inner' },
+        --   f = spec_ts { a = '@call.outter', i = '@call.inner' },
+        --   C = spec_ts { a = '@class.outter', i = '@class.inner' },
+        --   o = spec_ts {
+        --     a = { '@conditional.outer', '@loop.outer' },
+        --     i = { '@conditional.inner', '@loop.inner' },
+        --   },
+        -- },
+      }
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
@@ -696,6 +699,8 @@ require('lazy').setup {
       -- Move selected text
       require('mini.move').setup()
 
+      -- Operators
+      require('mini.operators').setup()
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
@@ -715,8 +720,49 @@ require('lazy').setup {
         auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
-      }
+        textobjects = {
+          select = {
+            enable = true,
 
+            -- Automatically jump forward to textobj, similar to targets.vim
+            lookahead = true,
+
+            keymaps = {
+              -- You can use the capture groups defined in textobjects.scm
+              ['af'] = '@function.outer',
+              ['if'] = '@function.inner',
+              ['ac'] = '@class.outer',
+              -- You can optionally set descriptions to the mappings (used in the desc parameter of
+              -- nvim_buf_set_keymap) which plugins like which-key display
+              ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class region' },
+              -- You can also use captures from other query groups like `locals.scm`
+              ['as'] = { query = '@scope', query_group = 'locals', desc = 'Select language scope' },
+            },
+            -- You can choose the select mode (default is charwise 'v')
+            --
+            -- Can also be a function which gets passed a table with the keys
+            -- * query_string: eg '@function.inner'
+            -- * method: eg 'v' or 'o'
+            -- and should return the mode ('v', 'V', or '<c-v>') or a table
+            -- mapping query_strings to modes.
+            selection_modes = {
+              ['@parameter.outer'] = 'v', -- charwise
+              ['@function.outer'] = 'V', -- linewise
+              ['@class.outer'] = 'V',
+            },
+            -- If you set this to `true` (default is `false`) then any textobject is
+            -- extended to include preceding or succeeding whitespace. Succeeding
+            -- whitespace has priority in order to act similarly to eg the built-in
+            -- `ap`.
+            --
+            -- Can also be a function which gets passed a table with the keys
+            -- * query_string: eg '@function.inner'
+            -- * selection_mode: eg 'v'
+            -- and should return true or false
+            include_surrounding_whitespace = true,
+          },
+        },
+      }
       -- There are additional nvim-treesitter modules that you can use to interact
       -- with nvim-treesitter. You should go explore a few and see what interests you:
       --
@@ -730,5 +776,4 @@ require('lazy').setup {
   { import = 'custom.plugins' },
 }
 
--- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
