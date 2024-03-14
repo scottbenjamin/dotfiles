@@ -1,12 +1,49 @@
 return {
 
   -- melange colorscheme
-  { 'savq/melange-nvim' },
+  { 'savq/melange-nvim', enabled = false },
+
+  --  https://github.com/catppuccin/nvim
+  { 'catppuccin/nvim', name = 'catppuccin', enabled = false, priority = 1000, lazy = false },
+
+  {
+    'folke/tokyonight.nvim',
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    init = function()
+      -- Load the colorscheme here.
+      -- Like many other themes, this one has different styles, and you could load
+      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+      vim.cmd.colorscheme 'tokyonight-night'
+
+      -- You can configure highlights by doing something like
+      vim.cmd.hi 'Comment gui=none'
+    end,
+  },
+
+  -- OneDark
+  {
+    'navarasu/onedark.nvim',
+    enabled = false,
+    priority = 1000,
+    lazy = false,
+    config = function()
+      require('onedark').setup {
+        style = 'darker',
+      }
+      -- Load the colorscheme here.
+      vim.cmd.colorscheme 'onedark'
+
+      -- You can configure highlights by doing something like
+      vim.cmd.hi 'Comment gui=none'
+    end,
+  },
 
   -- kanagawa colorscheme
   {
     'rebelot/kanagawa.nvim',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    enabled = false,
     priority = 999, -- make sure to load this before all the other start plugins
     config = function()
       -- Load the colorscheme here.
@@ -16,6 +53,7 @@ return {
       vim.cmd.hi 'Comment gui=none'
     end,
   },
+
   -- Zenmode  - distraction free coding
   -- https://github.com/folke/zen-mode.nvim
   {
@@ -50,12 +88,12 @@ return {
 
   -- Lualine
   -- yet another status line
-  -- {
-  --   'nvim-lualine/lualine.nvim',
-  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
-  --   enabled = false,
-  --   opts = {},
-  -- },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    enabled = true,
+    opts = {},
+  },
 
   -- Oil.nvim
   -- https://github.com/stevearc/oil.nvim

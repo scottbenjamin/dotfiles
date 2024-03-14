@@ -32,4 +32,7 @@ end, { noremap = true, silent = true, desc = 'Open Lazy[g]it' })
 vim.keymap.set('n', '<leader>cM', '<cmd>!glab mr create -fw<CR>', { desc = 'Create new [M]R in browser', silent = true })
 vim.keymap.set('n', '<leader>cm', '<cmd>!glab mr view -w<CR>', { desc = 'Open [m]R in browser', silent = true })
 
+-- LSP Info
+vim.keymap.set('n', '<leader>li', '<cmd>:LspInfo<CR>', { desc = '[l]sp [i]nfo' })
+
 return {}
