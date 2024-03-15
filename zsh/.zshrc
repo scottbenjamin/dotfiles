@@ -19,7 +19,7 @@ setopt HIST_IGNORE_ALL_DUPS
 #
 
 # Set editor default keymap to emacs (`-e`) or vi (`-v`)
-bindkey -e
+bindkey -v
 
 # Prompt for spelling correction of commands.
 #setopt CORRECT
@@ -151,3 +151,5 @@ if [ -f $(which pyenv) ]; then
   eval "$(nodenv init -)"
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 fi
+
+[ -f $(which mise) ] && eval "$(mise activate zsh)"

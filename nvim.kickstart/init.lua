@@ -263,8 +263,6 @@ require('lazy').setup {
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[s]earch [r]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[s]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-      vim.keymap.set('n', '<leader>cs', builtin.git_status, { desc = '[c]ode git [s]tatus' })
-      vim.keymap.set('n', '<leader>cc', builtin.git_commits, { desc = '[c]ode git [c]ommits' })
       vim.keymap.set('n', '<leader>sS', '<cmd>:Telescope yaml_schema<cr>', { desc = '[s]elect [S]chema' })
 
       -- Slightly advanced example of overriding default behavior and theme

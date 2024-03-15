@@ -913,7 +913,6 @@ _comps=(
 'kak' '_kak'
 'kdeconnect-cli' '_kdeconnect'
 'kdump' '_kdump'
-'keyring' '_keyring'
 'keystone' '_openstack'
 'keytool' '_java'
 'kfmclient' '_kfmclient'
@@ -1061,6 +1060,7 @@ _comps=(
 'middleman' '_middleman'
 'mii-tool' '_mii-tool'
 'mina' '_mina'
+'mise' '_mise'
 'mistral' '_openstack'
 'mix' '_mix'
 'mixerctl' '_mixerctl'
@@ -2097,8 +2097,8 @@ autoload -Uz _git-branch-delete-interactive _afew _android _archlinux-java _arti
             _ctlptl _cz _docker _docker-buildx _eza \
             _fd _gh _git _glab _helm \
             _highlight _hub _hx _infracost _just \
-            _k3d _keyring _kind _kubectl _kustomize \
-            _lf _luarocks _pipenv _rg _starship \
+            _k3d _kind _kubectl _kustomize _lf \
+            _luarocks _mise _pipenv _rg _starship \
             _stern _terraform-docs _tig _tilt _wezterm \
             _xh _yq _zellij _zoxide _SUSEconfig \
             __arguments _a2ps _a2utils _aap _abcde \

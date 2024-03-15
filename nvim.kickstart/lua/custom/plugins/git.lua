@@ -87,4 +87,27 @@ return {
       end,
     },
   },
+
+  {
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim', -- required
+      'sindrets/diffview.nvim', -- optional - Diff integration
+
+      -- Only one of these is needed, not both.
+      'nvim-telescope/telescope.nvim', -- optional
+      'ibhagwan/fzf-lua', -- optional
+    },
+    config = function()
+      local ng = require 'neogit'
+      ng.setup {
+        vim.keymap.set('n', '<leader>cs', ng.open, { silent = true, desc = 'Open Neogit' }),
+        vim.keymap.set('n', '<leader>cc', ':Neogit commit<cr>', { silent = true, desc = 'Neogit open commits' }),
+        vim.keymap.set('n', '<leader>cp', ':Neogit pull<cr>', { silent = true, desc = 'Neogit pull' }),
+        vim.keymap.set('n', '<leader>cP', ':Neogit push<cr>', { silent = true, desc = 'Neogit push' }),
+        vim.keymap.set('n', '<leader>cb', ':Telescope git_branches<cr>', { silent = true, desc = 'Git branches' }),
+        -- TODO: Add binding for git blame
+      }
+    end,
+  },
 }

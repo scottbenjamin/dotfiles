@@ -4,7 +4,7 @@ alias 'cat'='bat'
 #alias 'glapi'='op read op://scott.benjamin/registry_token/credential --account mantium |  pbcopy'
 
 alias 'tf'='terraform'
-alias 'gltfinit'='tofu init -backend-config="username=sbenjamin55" -backend-config="password=$(_gitlab_api)"'
+alias 'gltfinit'='tf init -backend-config="username=sbenjamin55" -backend-config="password=$(_gitlab_api)"'
 
 alias 'k'='kubectl'
 
