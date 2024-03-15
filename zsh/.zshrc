@@ -6,20 +6,20 @@
 #
 
 # Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+#   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+# fi
 
 # Customize to your needs...
 export PATH=$HOME/.local/share/bob/nvim-bin:$HOME/bin:$HOME/.cargo/bin:/opt/homebrew/bin:$PATH
 
 # 1password completion
-eval "$(op completion zsh)"; compdef _op op
+# eval "$(op completion zsh)"; compdef _op op
 
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
-autoload bashcompinit && bashcompinit
-autoload -U compinit && compinit
+# autoload bashcompinit && bashcompinit
+# autoload -U compinit && compinit
 
 # AWS CLI command completion
 complete -C $(which aws_completer) aws
