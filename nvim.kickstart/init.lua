@@ -79,21 +79,6 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
--- vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
--- vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
--- vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
--- vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -179,6 +164,7 @@ require('lazy').setup {
         ['<leader>w'] = { name = '[w]orkspace', _ = 'which_key_ignore' },
         ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
         ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
+        ['<leader>S'] = { name = '[S]wap split', _ = 'which_key_ignore' },
       }
       -- visual mode
       require('which-key').register({
@@ -321,8 +307,29 @@ require('lazy').setup {
     },
 
     opts = {
-      inlay_hints = { enabled = true },
-      codelens = { enabled = true },
+      diagnostics = {
+        underline = true,
+        update_in_insert = false,
+        virtual_text = {
+          spacing = 4,
+          source = 'if_many',
+          prefix = '●',
+          -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
+          -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
+          -- prefix = "icons",
+        },
+        severity_sort = true,
+        -- TODO: add signs stuff here
+      },
+
+      inlay_hints = { enabled = false },
+      codelens = { enabled = false },
+      capabilities = {},
+    },
+
+    format = {
+      formatting_options = nil,
+      timeout_ms = nil,
     },
 
     config = function()
@@ -567,7 +574,7 @@ require('lazy').setup {
           return 'make install_jsregexp'
         end)(),
       },
-      'saadparwaiz1/cmp_luasnip',
+      -- 'saadparwaiz1/cmp_luasnip',
 
       -- Adds other completion capabilities.
       --  nvim-cmp does not ship with all sources by default. They are split
@@ -585,13 +592,11 @@ require('lazy').setup {
     config = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
-      local luasnip = require 'luasnip'
-      luasnip.config.setup {}
 
       cmp.setup {
         snippet = {
           expand = function(args)
-            luasnip.lsp_expand(args.body)
+            vim.snippet.expand(args.body)
           end,
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
@@ -625,23 +630,23 @@ require('lazy').setup {
           -- <c-l> will move you to the right of each of the expansion locations.
           -- <c-h> is similar, except moving you backwards.
           ['<C-l>'] = cmp.mapping(function()
-            if luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
+            if vim.snippet.jumpable(1) then
+              vim.snippet.jump(1)
             end
           end, { 'i', 's' }),
+
           ['<C-h>'] = cmp.mapping(function()
-            if luasnip.locally_jumpable(-1) then
-              luasnip.jump(-1)
+            if vim.snippet.jumpable(-1) then
+              vim.snippet.jump(-1)
             end
           end, { 'i', 's' }),
         },
         sources = {
           -- { name = 'nvim_lua' },
           { name = 'nvim_lsp' },
-          { name = 'luasnip' },
           { name = 'codeium' },
-          { name = 'buffer' },
           { name = 'path' },
+          { name = 'buffer' },
         },
       }
     end,
@@ -709,17 +714,53 @@ require('lazy').setup {
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    init = function(plugin)
+      require 'nvim-treesitter.query_predicates'
+    end,
     config = function()
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'terraform', 'python', 'json', 'yaml' },
+        ensure_installed = {
+          'bash',
+          'c',
+          'diff',
+          'html',
+          'javascript',
+          'jsdoc',
+          'json',
+          'jsonc',
+          'lua',
+          'luadoc',
+          'luap',
+          'markdown',
+          'markdown_inline',
+          'python',
+          'query',
+          'regex',
+          'toml',
+          'tsx',
+          'typescript',
+          'vim',
+          'vimdoc',
+          'xml',
+          'yaml',
+        },
 
         -- Autoinstall languages that are not installed
         auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = '<C-space>',
+            node_incremental = '<C-space>',
+            scope_incremental = false,
+            node_decremental = '<bs>',
+          },
+        },
         textobjects = {
           select = {
             enable = true,
@@ -769,6 +810,15 @@ require('lazy').setup {
       --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
       --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+    end,
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    enabled = true,
+    opts = { mode = 'cursor', max_lines = 3 },
+    config = function()
+      local tsc = require 'treesitter-context'
+      vim.keymap.set('n', '<leader>tc', tsc.toggle, { noremap = true, silent = true, desc = 'Toggle Treesitter [c]ontext' })
     end,
   },
 
