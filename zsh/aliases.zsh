@@ -21,14 +21,6 @@ alias 'otf'="op run --env-file=.env -- terraform"
 alias 'gls'='glab ci status'
 alias 'ggg'='gfm;gfa'
 
-if [ -f $(which exa) ]; then
-	alias 'ls'='exa'
-	alias 'll'='exa -l'
-	alias 'la'='exa -al'
-	alias 'lt'='exa -l -t=accessed'
-	alias 'tree'='exa -T'
-fi
-
 if [ -f $(which fd) ]; then
 	alias 'c'='fd --type d --exclude .git | fzf-tmux -p --reverse | cd <'
 	alias 'v'='fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim'

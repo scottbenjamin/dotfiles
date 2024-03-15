@@ -1,57 +1,148 @@
+# Start configuration added by Zim install {{{
 #
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
+# User configuration sourced by interactive shells
 #
 
-# Source Prezto.
-# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-#   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-# fi
+# -----------------
+# Zsh configuration
+# -----------------
 
-# Customize to your needs...
-export PATH=$HOME/.local/share/bob/nvim-bin:$HOME/bin:$HOME/.cargo/bin:/opt/homebrew/bin:$PATH
+#
+# History
+#
 
-# 1password completion
-# eval "$(op completion zsh)"; compdef _op op
+# Remove older command from the history if a duplicate is to be added.
+setopt HIST_IGNORE_ALL_DUPS
+
+#
+# Input/output
+#
+
+# Set editor default keymap to emacs (`-e`) or vi (`-v`)
+bindkey -e
+
+# Prompt for spelling correction of commands.
+#setopt CORRECT
+
+# Customize spelling correction prompt.
+#SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
+
+# Remove path separator from WORDCHARS.
+WORDCHARS=${WORDCHARS//[\/]}
+
+# -----------------
+# Zim configuration
+# -----------------
+
+# Use degit instead of git as the default tool to install and update modules.
+#zstyle ':zim:zmodule' use 'degit'
+
+# --------------------
+# Module configuration
+# --------------------
+
+#
+# git
+#
+
+# Set a custom prefix for the generated aliases. The default prefix is 'G'.
+zstyle ':zim:git' aliases-prefix 'g'
+
+#
+# input
+#
+
+# Append `../` to your input for each `.` you type after an initial `..`
+#zstyle ':zim:input' double-dot-expand yes
+
+#
+# termtitle
+#
+
+# Set a custom terminal title format using prompt expansion escape sequences.
+# See http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Simple-Prompt-Escapes
+# If none is provided, the default '%n@%m: %~' is used.
+#zstyle ':zim:termtitle' format '%1~'
+
+#
+# zsh-autosuggestions
+#
+
+# Disable automatic widget re-binding on each precmd. This can be set when
+# zsh-users/zsh-autosuggestions is the last module in your ~/.zimrc.
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+
+# Customize the style that the suggestions are shown with.
+# See https://github.com/zsh-users/zsh-autosuggestions/blob/master/README.md#suggestion-highlight-style
+#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
+
+#
+# zsh-syntax-highlighting
+#
+
+# Set what highlighters will be used.
+# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+
+# Customize the main highlighter styles.
+# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md#how-to-tweak-it
+#typeset -A ZSH_HIGHLIGHT_STYLES
+#ZSH_HIGHLIGHT_STYLES[comment]='fg=242'
+
+# ------------------
+# Initialize modules
+# ------------------
 
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+ZIM_HOME=/Users/scottbenjamin/.config/zim
+# Download zimfw plugin manager if missing.
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  if (( ${+commands[curl]} )); then
+    curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+  else
+    mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh \
+        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+  fi
+fi
+# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init -q
+fi
+# Initialize modules.
+source ${ZIM_HOME}/init.zsh
 
-# autoload bashcompinit && bashcompinit
-# autoload -U compinit && compinit
+# ------------------------------
+# Post-init module configuration
+# ------------------------------
 
-# AWS CLI command completion
-complete -C $(which aws_completer) aws
+#
+# zsh-history-substring-search
+#
 
-# AZ CLI command completion
-# AZ_COMPLETION=/opt/homebrew/etc/bash_completion.d/az
-# [ -f $AZ_COMPLETION ] && source $AZ_COMPLETION
+zmodload -F zsh/terminfo +p:terminfo
+# Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
+for key ('^[[A' '^P' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
+for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
+for key ('k') bindkey -M vicmd ${key} history-substring-search-up
+for key ('j') bindkey -M vicmd ${key} history-substring-search-down
+unset key
+# }}} End configuration added by Zim install
 
-# Zellij completions
-ZELLIJ_COMPLETION=/opt/homebrew/etc/bash_completion.d/zellij
-[ -f $ZELLIJ_COMPLETION ] && source /opt/homebrew/etc/bash_completion.d/zellij
 
-# ENV Variables
-export EDITOR=nvim
-export VISUAL=nvim
-export SUDO_EDITOR=${EDITOR}
+# 1password completion
+eval "$(op completion zsh)"
+
 
 # My own aliases and functions
-MY_ALIASES=$HOME/.aliases.zsh
+MY_ALIASES=${ZDOTDIR:-$HOME}/aliases.zsh
 [ -f $MY_ALIASES ] && source $MY_ALIASES
 
-MY_FUNCTIONS=$HOME/.functions.zsh
+MY_FUNCTIONS=${ZDOTDIR:-$HOME}/functions.zsh
 [ -f $MY_FUNCTIONS ] && source $MY_FUNCTIONS
 
 export TERM=xterm-256color
 [[ -n $TMUX ]] && export TERM="xterm-256color"
-
-# Starship prompt
-[ -f $(which starship) ] && eval "$(starship init zsh)"
-
-# FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # pyenv
 if [ -f $(which pyenv) ]; then
@@ -60,6 +151,3 @@ if [ -f $(which pyenv) ]; then
   eval "$(nodenv init -)"
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 fi
-
-# https://github.com/ajeetdsouza/zoxide
-[ -f $(which zoxide) ] && eval "$(zoxide init zsh)"
