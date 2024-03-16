@@ -109,8 +109,34 @@ return {
   -- Managing buffers you want to  see
   {
     'ThePrimeagen/harpoon',
+    enabled = false,
     branch = 'harpoon2',
     dependencies = { 'nvim-lua/plenary.nvim' },
+  },
+
+  -- Grapple
+  -- https://github.com/cbochs/grapple.nvim
+  {
+    'cbochs/grapple.nvim',
+    dependencies = {
+      { 'nvim-tree/nvim-web-devicons', lazy = true },
+    },
+    event = { 'BufRead', 'BufNewFile' },
+    cmd = 'Grapple',
+    opts = {
+      scope = 'git', -- also try out "git_branch"
+    },
+    config = function()
+      vim.keymap.set('n', '<leader>m', '<cmd>Grapple toggle<cr>', { desc = 'Grapple toggle tag' })
+      vim.keymap.set('n', '<leader>k', '<cmd>Grapple toggle_tags<cr>', { desc = 'Grapple toggle tags' })
+      vim.keymap.set('n', '<leader>K', '<cmd>Grapple toggle_scopes<cr>', { desc = 'Grapple toggle scopes' })
+      vim.keymap.set('n', '<leader>j', '<cmd>Grapple cycle forward<cr>', { desc = 'Grapple cycle forward' })
+      vim.keymap.set('n', '<leader>J', '<cmd>Grapple cycle backward<cr>', { desc = 'Grapple cycle backward' })
+      vim.keymap.set('n', '<leader>1', '<cmd>Grapple select index=1<cr>', { desc = 'Grapple select 1' })
+      vim.keymap.set('n', '<leader>2', '<cmd>Grapple select index=2<cr>', { desc = 'Grapple select 2' })
+      vim.keymap.set('n', '<leader>3', '<cmd>Grapple select index=3<cr>', { desc = 'Grapple select 3' })
+      vim.keymap.set('n', '<leader>4', '<cmd>Grapple select index=3<cr>', { desc = 'Grapple select 4' })
+    end,
   },
 
   -- Smart Splits
