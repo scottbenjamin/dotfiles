@@ -8,6 +8,7 @@ return {
 
   {
     'folke/tokyonight.nvim',
+    enabled = true,
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     init = function()
@@ -15,42 +16,35 @@ return {
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.cmd.colorscheme 'tokyonight-night'
-
-      -- You can configure highlights by doing something like
-      vim.cmd.hi 'Comment gui=none'
     end,
   },
 
-  -- OneDark
+  -- Onedark colorscheme
   {
     'navarasu/onedark.nvim',
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
     enabled = false,
-    priority = 1000,
-    lazy = false,
+    priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      require('onedark').setup {
-        style = 'darker',
-      }
       -- Load the colorscheme here.
-      vim.cmd.colorscheme 'onedark'
-
-      -- You can configure highlights by doing something like
-      vim.cmd.hi 'Comment gui=none'
+      local theme = require 'onedark'
+      theme.load()
+      theme.setup {
+        style = 'deep',
+      }
     end,
   },
 
-  -- kanagawa colorscheme
+  -- Material colorscheme
+  -- https://github.com/marko-cerovac/material.nvim
   {
-    'rebelot/kanagawa.nvim',
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    'marko-cerovac/material.nvim',
+    lazy = false,
     enabled = false,
-    priority = 999, -- make sure to load this before all the other start plugins
+    priority = 1000,
     config = function()
-      -- Load the colorscheme here.
-      vim.cmd.colorscheme 'kanagawa'
-
-      -- You can configure highlights by doing something like
-      vim.cmd.hi 'Comment gui=none'
+      vim.g.material_style = 'darker'
+      vim.cmd.colorscheme 'material'
     end,
   },
 
@@ -92,7 +86,7 @@ return {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     enabled = true,
-    opts = {},
+    opts = { theme = 'tokyonight' },
   },
 
   -- Oil.nvim
