@@ -148,4 +148,12 @@ return {
       vim.keymap.set('n', '<leader>Sl', require('smart-splits').swap_buf_right, { desc = 'Swap split right' })
     end,
   },
+
+  -- Indent blankline
+  -- https://github.com/lukas-reineke/indent-blankline.nvim
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
+    opts = {},
+  },
 }
