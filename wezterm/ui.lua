@@ -53,132 +53,113 @@ wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
 	}
 end)
 
-function M.update_right_status_bar()
-	wezterm.on("update-right-status", function(window, pane)
-		-- Each element holds the text for a cell in a "powerline" style << fade
-		local cells = {}
+wezterm.on("update-status", function(window, pane)
+	-- Workspace name
+	local stat = window:active_workspace()
+	local stat_color = "#f7768e"
+	-- It's a little silly to have workspace name all the time
+	-- Utilize this to display LDR or current key table name
+	if window:active_key_table() then
+		stat = window:active_key_table()
+		stat_color = "#7dcfff"
+	end
+	if window:leader_is_active() then
+		stat = "LDR"
+		stat_color = "#bb9af7"
+	end
 
-		-- Figure out the cwd and host of the current pane.
-		-- This will pick up the hostname for the remote host if your
-		-- shell is using OSC 7 on the remote host.
-		-- local cwd_uri = pane:get_current_working_dir()
-		-- if cwd_uri then
-		-- 	local cwd = ""
-		-- 	local hostname = ""
-		--
-		-- 	if type(cwd_uri) == "userdata" then
-		-- 		-- Running on a newer version of wezterm and we have
-		-- 		-- a URL object here, making this simple!
-		--
-		-- 		cwd = cwd_uri.file_path
-		-- 		hostname = cwd_uri.host or wezterm.hostname()
-		-- 	else
-		-- 		-- an older version of wezterm, 20230712-072601-f4abf8fd or earlier,
-		-- 		-- which doesn't have the Url object
-		-- 		cwd_uri = cwd_uri:sub(8)
-		-- 		local slash = cwd_uri:find("/")
-		-- 		if slash then
-		-- 			hostname = cwd_uri:sub(1, slash - 1)
-		-- 			-- and extract the cwd from the uri, decoding %-encoding
-		-- 			cwd = cwd_uri:sub(slash):gsub("%%(%x%x)", function(hex)
-		-- 				return string.char(tonumber(hex, 16))
-		-- 			end)
-		-- 		end
-		-- 	end
-		--
-		-- 	-- Remove the domain name portion of the hostname
-		-- 	local dot = hostname:find("[.]")
-		-- 	if dot then
-		-- 		hostname = hostname:sub(1, dot - 1)
-		-- 	end
-		-- 	if hostname == "" then
-		-- 		hostname = wezterm.hostname()
-		-- 	end
-		--
-		-- 	table.insert(cells, cwd)
-		-- 	table.insert(cells, hostname)
-		-- end
+	local basename = function(s)
+		-- Nothing a little regex can't fix
+		return string.gsub(s, "(.*[/\\])(.*)", "%2")
+	end
 
-		-- I like my date/time in this style: "Wed Mar 3 08:14"
-		local date = wezterm.strftime("%a %b %-d %H:%M:%S")
-		table.insert(cells, date)
-
-		-- An entry for each battery (typically 0 or 1 battery)
-		for _, b in ipairs(wezterm.battery_info()) do
-			table.insert(cells, string.format("%.0f%%", b.state_of_charge * 100))
+	-- Current working directory
+	local cwd = pane:get_current_working_dir()
+	if cwd then
+		if type(cwd) == "userdata" then
+			-- Wezterm introduced the URL object in 20240127-113634-bbcac864
+			cwd = basename(cwd.file_path)
+		else
+			-- 20230712-072601-f4abf8fd or earlier version
+			cwd = basename(cwd)
 		end
+	else
+		cwd = ""
+	end
 
-		-- The powerline < symbol
-		local LEFT_ARROW = utf8.char(0xe0b3)
-		-- The filled in variant of the < symbol
-		local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+	-- Current command
+	local cmd = pane:get_foreground_process_name()
+	-- CWD and CMD could be nil (e.g. viewing log using Ctrl-Alt-l)
+	cmd = cmd and basename(cmd) or ""
 
-		-- Color palette for the backgrounds of each cell
-		local colors = {
-			"#3c1361",
-			"#52307c",
-			"#663a82",
-			"#7c5295",
-			"#b491c8",
-		}
+	-- Time
+	local time = wezterm.strftime("%H:%M")
 
-		-- Foreground color for the text across the fade
-		local text_fg = "#ECE1D7"
+	-- Left status (left of the tab line)
+	window:set_left_status(wezterm.format({
+		{ Foreground = { Color = stat_color } },
+		{ Text = "  " },
+		{ Text = wezterm.nerdfonts.oct_table .. "  " .. stat },
+		{ Text = " |" },
+	}))
 
-		-- The elements to be formatted
-		local elements = {}
-		-- How many cells have been formatted
-		local num_cells = 0
+	-- Right status
+	window:set_right_status(wezterm.format({
+		-- Wezterm has a built-in nerd fonts
+		-- https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html
+		{ Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
+		{ Text = " | " },
+		{ Foreground = { Color = "#e0af68" } },
+		{ Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
+		"ResetAttributes",
+		{ Text = " | " },
+		{ Text = wezterm.nerdfonts.md_clock .. "  " .. time },
+		{ Text = "  " },
+	}))
+end)
 
-		-- Translate a cell into elements
-		function push(text, is_last)
-			local cell_no = num_cells + 1
-			table.insert(elements, { Foreground = { Color = text_fg } })
-			table.insert(elements, { Background = { Color = colors[cell_no] } })
-			table.insert(elements, { Text = " " .. text .. " " })
-			if not is_last then
-				table.insert(elements, { Foreground = { Color = colors[cell_no + 1] } })
-				table.insert(elements, { Text = SOLID_LEFT_ARROW })
-			end
-			num_cells = num_cells + 1
-		end
-
-		while #cells > 0 do
-			local cell = table.remove(cells, 1)
-			push(cell, #cells == 0)
-		end
-
-		window:set_right_status(wezterm.format(elements))
-	end)
-end
-
+-- UI Config
 function M.append(config)
 	local options = {
 		default_cursor_style = "BlinkingBar", -- default: 'SteadyBlock'
-		-- font_size = 22, -- default: 12.0
-		-- font = wezterm.font_with_fallback({ "JetBrainsMono Nerd Font", "Noto Color Emoji" }),
-		--
-		-- color_scheme = "catppuccin_mocha",
+		font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" }), -- Font
+		font_size = 12.3, -- Font Size
+
+		-- Set the color theme
+		color_scheme_dirs = { "$HOME/.config/wezterm/colors" },
+		-- color_scheme = "melange_dark"
+		-- color_scheme = "Catppuccin Macchiato"
+		color_scheme = "Tokyo Night Storm",
 
 		scrollback_lines = 10000, --defauls: 3500
 
 		-- Padding
 		-- Tab bar can't have padding https://github.com/wez/wezterm/issues/3077
-		window_padding = { left = 3, right = 3, top = 3, bottom = 3 },
-
-		-- Tab Bar Options
-		-- GTK tab-bar is looking awful.
-		use_fancy_tab_bar = false, -- default: true
+		window_padding = { left = 2, right = 2, top = 2, bottom = 2 },
 
 		-- Hiding the tab-bar also means hiding the right status
 		-- Means you lose viseal feedback of sticky keys.
 		-- It is better to set it to `false`
+		use_fancy_tab_bar = false, -- default: true
 		hide_tab_bar_if_only_one_tab = false, -- default: false
 
 		inactive_pane_hsb = {
 			saturation = 0.70,
 			brightness = 0.70,
 		},
+
+		-- Window Size
+		initial_cols = 110,
+		initial_rows = 70,
+
+		-- Window decorations
+		window_decorations = "RESIZE",
+		window_close_confirmation = "AlwaysPrompt",
+		audible_bell = "Disabled",
+
+		window_background_opacity = 0.9,
+		macos_window_background_blur = 30,
+		bold_brightens_ansi_colors = true,
 	}
 
 	for key, value in pairs(options) do
@@ -187,3 +168,4 @@ function M.append(config)
 end
 
 return M
+-- vim: ts=4 sts=2 sw=2 et
