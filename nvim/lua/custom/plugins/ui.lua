@@ -176,4 +176,14 @@ return {
     main = 'ibl',
     opts = {},
   },
+
+  -- Colorizer
+  -- https://github.com/norcalli/nvim-colorizer.lua
+  {
+    'norcalli/nvim-colorizer.lua',
+    event = { 'BufRead', 'BufNewFile' },
+    config = function()
+      require('colorizer').setup()
+    end,
+  },
 }

@@ -5,63 +5,39 @@ local M = {}
 -- It prefers the title that was set via `tab:set_title()`
 -- or `wezterm cli set-tab-title`, but falls back to the
 -- default title.
-function M.tab_title(tab)
+local function tab_title(tab)
 	local title = tab.tab_title
+	local tab_index = tostring(tab.tab_index + 1)
 	-- if the tab title is explicitly set, take that
 	if title and #title > 0 then
-		return title
+		return tab_index .. ":" .. title
 	end
 	-- Otherwise, use the default title.
 	return " " .. tostring(tab.tab_index + 1) .. " "
 end
 
-wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
-	local solid_left_arrow = wezterm.nerdfonts.ple_lower_right_triangle
-	local solid_right_arrow = wezterm.nerdfonts.ple_upper_left_triangle
-	-- local solid_right_arrow = wezterm.nerdfonts.pl_left_hard_divider
-	local bg_color = "#222436"
-	local bg_active_color = "#2f334d"
-	local fg_color = "#c8d3f5"
-	local fg_active_color = "#82aaff"
-
-	-- Edge icon color
-	local edge_icon_bg = bg_color
-	local edge_icon_fg = bg_color
-
-	-- Inactive tab
-	local tab_bg_color = bg_active_color
-	local tab_fg_color = fg_color
-
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+	local title = tab_title(tab)
 	if tab.is_active then
-		tab_bg_color = fg_active_color
-		tab_fg_color = bg_color
+		return {
+			{ Foreground = { Color = "#c0caf5" } },
+			{ Text = " " .. title .. " " },
+		}
 	end
-
-	edge_icon_fg = tab_bg_color
-	local title = M.tab_title(tab)
-
-	return {
-		{ Background = { Color = edge_icon_bg } },
-		{ Foreground = { Color = edge_icon_fg } },
-		{ Text = solid_left_arrow },
-		{ Background = { Color = tab_bg_color } },
-		{ Foreground = { Color = tab_fg_color } },
-		{ Text = title },
-		{ Background = { Color = edge_icon_bg } },
-		{ Foreground = { Color = edge_icon_fg } },
-		{ Text = solid_right_arrow },
-	}
+	return title
 end)
 
 wezterm.on("update-status", function(window, pane)
 	-- Workspace name
 	local stat = window:active_workspace()
-	local stat_color = "#f7768e"
-	-- It's a little silly to have workspace name all the time
+	-- local stat_color = "#f7768e"
+	local stat_color = "#ff9e64"
+
 	-- Utilize this to display LDR or current key table name
 	if window:active_key_table() then
 		stat = window:active_key_table()
-		stat_color = "#7dcfff"
+		-- stat_color = "#7dcfff"
+		stat_color = "#c0caf5"
 	end
 	if window:leader_is_active() then
 		stat = "LDR"
@@ -93,7 +69,7 @@ wezterm.on("update-status", function(window, pane)
 	cmd = cmd and basename(cmd) or ""
 
 	-- Time
-	local time = wezterm.strftime("%H:%M")
+	local time = wezterm.strftime(" %Y.%m.%d %H:%M:%S")
 
 	-- Left status (left of the tab line)
 	window:set_left_status(wezterm.format({
