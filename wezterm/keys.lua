@@ -4,7 +4,7 @@ local M = {}
 
 M.keys = {
 	-- Pane selection
-	{ key = "o", mods = "LEADER", action = act.PaneSelect({ alphabet = "asdfjkl;" }) },
+	{ key = "o", mods = "LEADER", action = act.PaneSelect({ alphabet = "asdfghjkl;" }) },
 	--
 	-- -- Splits
 	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },

@@ -30,8 +30,7 @@ end)
 wezterm.on("update-status", function(window, pane)
 	-- Workspace name
 	local stat = window:active_workspace()
-	-- local stat_color = "#f7768e"
-	local stat_color = "#ff9e64"
+	local stat_color = "#c0caf5"
 
 	-- Utilize this to display LDR or current key table name
 	if window:active_key_table() then
@@ -99,7 +98,7 @@ function M.append(config)
 	local options = {
 		default_cursor_style = "BlinkingBar", -- default: 'SteadyBlock'
 		font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" }), -- Font
-		font_size = 12.3, -- Font Size
+		font_size = 13, -- Font Size
 
 		-- Set the color theme
 		color_scheme_dirs = { "$HOME/.config/wezterm/colors" },
