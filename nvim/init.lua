@@ -321,7 +321,6 @@ require('lazy').setup {
       },
 
       inlay_hints = { enabled = false },
-      codelens = { enabled = false },
     },
 
     format = {
@@ -461,6 +460,7 @@ require('lazy').setup {
             -- capabilities = {},
             settings = {
               Lua = {
+                hint = { enable = true },
                 workspace = { checkThirdParty = false },
                 codeLens = { enable = true },
                 completion = { callSnippet = 'Replace' },

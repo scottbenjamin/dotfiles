@@ -6,7 +6,8 @@ local function getPath(str, sep)
 end
 
 function M.get_buf_cwd()
-  return getPath(vim.api.nvim_buf_get_name(0))
+  x = getPath(vim.api.nvim_buf_get_name(0))
+  return x
 end
 
 return M
