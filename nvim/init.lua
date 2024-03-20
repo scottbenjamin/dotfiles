@@ -530,14 +530,12 @@ require('lazy').setup {
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
-        -- Enable format on save for specified filetypes
-        local enable_filetypes = { 'lua', 'python', 'terraform', 'yaml' }
-        if vim.tbl_contains(enable_filetypes, vim.bo[bufnr].filetype) then
-          return {
-            timeout_ms = 500,
-            lsp_fallback = true,
-          }
-        end
+        -- Disable format on save for specified filetypes
+        local disable_filetypes = { c = true, cpp = true }
+        return {
+          timeout_ms = 500,
+          lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+        }
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
@@ -571,7 +569,7 @@ require('lazy').setup {
           return 'make install_jsregexp'
         end)(),
       },
-      -- 'saadparwaiz1/cmp_luasnip',
+      'saadparwaiz1/cmp_luasnip',
 
       -- Adds other completion capabilities.
       --  nvim-cmp does not ship with all sources by default. They are split
@@ -589,11 +587,13 @@ require('lazy').setup {
     config = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
+      local luasnip = require 'luasnip'
+      luasnip.config.setup {}
 
       cmp.setup {
         snippet = {
           expand = function(args)
-            vim.snippet.expand(args.body)
+            luasnip.lsp_expand(args.body)
           end,
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
@@ -627,22 +627,22 @@ require('lazy').setup {
           -- <c-l> will move you to the right of each of the expansion locations.
           -- <c-h> is similar, except moving you backwards.
           ['<C-l>'] = cmp.mapping(function()
-            if vim.snippet.jumpable(1) then
-              vim.snippet.jump(1)
+            if luasnip.expand_or_locally_jumpable() then
+              luasnip.expand_or_jump()
             end
           end, { 'i', 's' }),
-
           ['<C-h>'] = cmp.mapping(function()
-            if vim.snippet.jumpable(-1) then
-              vim.snippet.jump(-1)
+            if luasnip.locally_jumpable() then
+              luasnip.jump()
             end
           end, { 'i', 's' }),
         },
         sources = {
           -- { name = 'nvim_lua' },
           { name = 'nvim_lsp' },
-          { name = 'codeium' },
+          { name = 'luasnip' },
           { name = 'path' },
+          { name = 'codeium' },
           { name = 'buffer' },
         },
       }
