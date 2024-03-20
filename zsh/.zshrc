@@ -94,7 +94,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 # ------------------
 
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-ZIM_HOME=/Users/scottbenjamin/.config/zim
+ZIM_HOME=${HOME}/.config/zim
 # Download zimfw plugin manager if missing.
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
   if (( ${+commands[curl]} )); then
@@ -133,7 +133,6 @@ unset key
 # 1password completion
 eval "$(op completion zsh)"
 
-
 # My own aliases and functions
 MY_ALIASES=${ZDOTDIR:-$HOME}/aliases.zsh
 [ -f $MY_ALIASES ] && source $MY_ALIASES
@@ -145,11 +144,11 @@ export TERM=xterm-256color
 [[ -n $TMUX ]] && export TERM="xterm-256color"
 
 # pyenv
-if [ -f $(which pyenv) ]; then
+if [[ -f $(which pyenv) ]]; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
   eval "$(nodenv init -)"
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 fi
 
-[ -f $(which mise) ] && eval "$(mise activate zsh)"
+[[ -f $(which mise) ]] && eval "$(mise activate zsh)"

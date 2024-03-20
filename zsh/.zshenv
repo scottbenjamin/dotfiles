@@ -16,4 +16,5 @@ export SUDO_EDITOR="${EDITOR}"
 
 # Tmux
 export TERM=xterm-256color
+git config --global core.editor emacs
 
