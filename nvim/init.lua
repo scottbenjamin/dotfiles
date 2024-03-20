@@ -322,7 +322,6 @@ require('lazy').setup {
 
       inlay_hints = { enabled = false },
       codelens = { enabled = false },
-      capabilities = {},
     },
 
     format = {
@@ -476,7 +475,7 @@ require('lazy').setup {
 
           yamlls = {
             settings = {
-              YAML = {
+              yaml = {
                 validate = true,
                 codeLens = { enable = true },
                 completion = { callSnippet = 'Replace' },
