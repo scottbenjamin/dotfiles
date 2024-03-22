@@ -98,7 +98,7 @@ function M.append(config)
 	local options = {
 		default_cursor_style = "BlinkingBar", -- default: 'SteadyBlock'
 		font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" }), -- Font
-		font_size = 13, -- Font Size
+		font_size = 12, -- Font Size
 
 		-- Set the color theme
 		color_scheme_dirs = { "$HOME/.config/wezterm/colors" },
@@ -106,7 +106,7 @@ function M.append(config)
 		-- color_scheme = "Catppuccin Macchiato"
 		color_scheme = "Tokyo Night Storm",
 
-		scrollback_lines = 10000, --defauls: 3500
+		scrollback_lines = 3000, --defauls: 3500
 
 		-- Padding
 		-- Tab bar can't have padding https://github.com/wez/wezterm/issues/3077
