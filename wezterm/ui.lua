@@ -55,7 +55,6 @@ wezterm.on("update-status", function(window, pane)
 			-- Wezterm introduced the URL object in 20240127-113634-bbcac864
 			cwd = basename(cwd.file_path)
 		else
-			-- 20230712-072601-f4abf8fd or earlier version
 			cwd = basename(cwd)
 		end
 	else
@@ -96,21 +95,23 @@ end)
 -- UI Config
 function M.append(config)
 	local options = {
+
 		default_cursor_style = "BlinkingBar", -- default: 'SteadyBlock'
 		font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" }), -- Font
 		font_size = 12, -- Font Size
 
 		-- Set the color theme
 		color_scheme_dirs = { "$HOME/.config/wezterm/colors" },
+
 		-- color_scheme = "melange_dark"
 		-- color_scheme = "Catppuccin Macchiato"
 		color_scheme = "Tokyo Night Storm",
 
-		scrollback_lines = 3000, --defauls: 3500
+		scrollback_lines = 5000, --defauls: 3500
 
 		-- Padding
 		-- Tab bar can't have padding https://github.com/wez/wezterm/issues/3077
-		window_padding = { left = 2, right = 2, top = 2, bottom = 2 },
+		window_padding = { left = 3, right = 3, top = 3, bottom = 2 },
 
 		-- Hiding the tab-bar also means hiding the right status
 		-- Means you lose viseal feedback of sticky keys.

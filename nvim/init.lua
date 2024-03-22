@@ -457,7 +457,7 @@ require('lazy').setup {
           lua_ls = {
             -- cmd = {...},
             -- filetypes { ...},
-            -- capabilities = {},
+            capabilities = {},
             settings = {
               Lua = {
                 hint = { enable = true },
@@ -469,27 +469,23 @@ require('lazy').setup {
             },
           },
 
-          ruff_lsp = {},
-          terraformls = {},
-          tflint = {},
-
           yamlls = {
             settings = {
               yaml = {
                 validate = true,
                 codeLens = { enable = true },
                 completion = { callSnippet = 'Replace' },
-                -- schemaStore = {
-                --   enable = false,
-                --   url = '',
-                -- },
-                -- schemas = require('schemastore').yaml.schemas {
-                --   select = {
-                --     'kustomization.yaml',
-                --     'docker-compose.yml',
-                --     'gitlab-ci',
-                --   },
-                -- },
+                schemaStore = {
+                  enable = false,
+                  url = '',
+                },
+                schemas = require('schemastore').yaml.schemas {
+                  select = {
+                    'kustomization.yaml',
+                    'docker-compose.yml',
+                    'gitlab-ci',
+                  },
+                },
               },
             },
           },
