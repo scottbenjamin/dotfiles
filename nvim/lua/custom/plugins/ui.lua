@@ -155,10 +155,10 @@ return {
       vim.keymap.set('n', '<C-A-l>', require('smart-splits').resize_right, { desc = 'Resize Split Right' })
 
       -- moving between splits
-      vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left, { desc = 'Move Split Left' })
-      vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down, { desc = 'Move Split Down' })
-      vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up, { desc = 'Move Split Up' })
-      vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right, { desc = 'Move Split Right' })
+      vim.keymap.set('n', '<C-S-h>', require('smart-splits').move_cursor_left, { desc = 'Move Split Left' })
+      vim.keymap.set('n', '<C-S-j>', require('smart-splits').move_cursor_down, { desc = 'Move Split Down' })
+      vim.keymap.set('n', '<C-S-k>', require('smart-splits').move_cursor_up, { desc = 'Move Split Up' })
+      vim.keymap.set('n', '<C-S-l>', require('smart-splits').move_cursor_right, { desc = 'Move Split Right' })
       vim.keymap.set('n', '<C-\\>', require('smart-splits').move_cursor_previous, { desc = 'Move Previous Split' })
 
       -- swapping buffers between windows
