@@ -14,6 +14,8 @@ if wezterm.config_builder then
 end
 
 config.default_workspace = "main"
+config.default_domain = "unix"
+
 -- https://wezfurlong.org/wezterm/config/lua/gui-events/gui-startup.html
 wezterm.on("gui-startup", function(cmd)
 	local tab, pane, window = mux.spawn_window(cmd or {})
@@ -45,6 +47,8 @@ config.check_for_updates_interval_seconds = 86400
 config.unix_domains = {
 	{ name = "unix" },
 }
+
+config.default_gui_startup_args = { "connect", "unix" }
 
 -- Add UI specific changes
 ui.append(config)

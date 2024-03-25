@@ -154,3 +154,9 @@ if [[ -f $(which pyenv) ]]; then
 fi
 
 [[ -f $(which mise) ]] && eval "$(mise activate zsh)"
+
+if [[ -f $(which goenv) ]];then
+  eval "$(goenv init -)"
+  export PATH="$GOROOT/bin:$PATH"
+  export PATH="$PATH:$GOPATH/bin"
+fi

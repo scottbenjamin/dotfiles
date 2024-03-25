@@ -15,8 +15,8 @@ disabled = false
 
 [kubernetes]
 style = "bold #8be9fd"
-format = '$cluster '
-disabled = true
+format = '[$symbol$context( \($namespace\))]($style) in '
+disabled = false
 
 [conda]
 symbol = " "
