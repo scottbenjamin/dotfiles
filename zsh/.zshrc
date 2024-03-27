@@ -62,7 +62,7 @@ zstyle ':zim:git' aliases-prefix 'g'
 # Set a custom terminal title format using prompt expansion escape sequences.
 # See http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Simple-Prompt-Escapes
 # If none is provided, the default '%n@%m: %~' is used.
-#zstyle ':zim:termtitle' format '%1~'
+zstyle ':zim:termtitle' format '%1~'
 
 #
 # zsh-autosuggestions
@@ -130,6 +130,7 @@ unset key
 # }}} End configuration added by Zim install
 
 export HISTFILE=~/.zsh_history
+[ -d /opt/homebrew ] && export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
 
 
 # 1password completion
@@ -160,3 +161,7 @@ if [[ -f $(which goenv) ]];then
   export PATH="$GOROOT/bin:$PATH"
   export PATH="$PATH:$GOPATH/bin"
 fi
+
+
+# [[ -f "$(brew --prefix)/opt/spaceship/spaceship.zsh" ]] && source $(brew --prefix)/opt/spaceship/spaceship.zsh
+
