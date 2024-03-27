@@ -20,43 +20,30 @@ zmodule termtitle
 # Utility aliases and functions. Adds colour to ls, grep and less.
 zmodule utility
 
-#
-# Prompt
-#
-
-# Exposes to prompts how long the last command took to execute, used by asciiship.
-# zmodule duration-info
-# Exposes git repository status information to prompts, used by asciiship.
-# zmodule git-info
-# A heavily reduced, ASCII-only version of the Spaceship and Starship prompts.
-# zmodule asciiship
-
-#
-# Completion
-#
 
 # Additional completion definitions for Zsh.
 zmodule zsh-users/zsh-completions --fpath src
 
-# Enables and configures smart and extensive tab completion.
-# completion must be sourced after all modules that add completion definitions.
-# zmodule /opt/homebrew/bin/aws_completer
 
-zmodule completion
-
+zmodule ssh
+zmodule homebrew
 zmodule kiesman99/zim-zoxide
 zmodule exa
 zmodule fzf
 zmodule k
 zmodule pvenv
-zmodule ssh
-zmodule homebrew
 zmodule joke/zim-k9s
-
 
 #
 # Modules that must be initialized last
 #
+
+#
+# Completion
+#
+# Enables and configures smart and extensive tab completion.
+# completion must be sourced after all modules that add completion definitions.
+zmodule completion
 
 # Fish-like syntax highlighting for Zsh.
 # zsh-users/zsh-syntax-highlighting must be sourced after completion

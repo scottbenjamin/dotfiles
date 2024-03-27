@@ -19,7 +19,11 @@ fi
 #
 
 # Remove older command from the history if a duplicate is to be added.
+# see man zshoptions
 setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
 
 #
 # Input/output
@@ -138,8 +142,11 @@ unset key
 
 export HISTFILE=~/.zsh_history
 
+export TERM=xterm-256color
+[[ -n $TMUX ]] && export TERM="xterm-256color"
+
 # Homebrew
-[ -d /opt/homebrew ] && export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
+[[ -d /opt/homebrew ]] && export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
 
 # 1password completion
 eval "$(op completion zsh)"
@@ -150,9 +157,6 @@ MY_ALIASES=${ZDOTDIR:-$HOME}/aliases.zsh
 
 MY_FUNCTIONS=${ZDOTDIR:-$HOME}/functions.zsh
 [ -f $MY_FUNCTIONS ] && source $MY_FUNCTIONS
-
-export TERM=xterm-256color
-[[ -n $TMUX ]] && export TERM="xterm-256color"
 
 # pyenv
 if [[ -f $(which pyenv) ]]; then
@@ -171,8 +175,6 @@ if [[ -f $(which goenv) ]];then
 fi
 
 eval "$(fzf --zsh)"
-
-# eval "$(starship init zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ -f ~/.config/zsh/.p10k.zsh ]] && source ~/.config/zsh/.p10k.zsh

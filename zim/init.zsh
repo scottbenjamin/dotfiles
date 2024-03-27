@@ -8,14 +8,14 @@ source /Users/sbenjamin/.config/zim/modules/git/init.zsh
 source /Users/sbenjamin/.config/zim/modules/input/init.zsh
 source /Users/sbenjamin/.config/zim/modules/termtitle/init.zsh
 source /Users/sbenjamin/.config/zim/modules/utility/init.zsh
-source /Users/sbenjamin/.config/zim/modules/completion/init.zsh
+source /Users/sbenjamin/.config/zim/modules/ssh/init.zsh
+source /Users/sbenjamin/.config/zim/modules/homebrew/init.zsh
 source /Users/sbenjamin/.config/zim/modules/zim-zoxide/init.zsh
 source /Users/sbenjamin/.config/zim/modules/exa/init.zsh
 source /Users/sbenjamin/.config/zim/modules/fzf/init.zsh
 source /Users/sbenjamin/.config/zim/modules/k/init.zsh
-source /Users/sbenjamin/.config/zim/modules/ssh/init.zsh
-source /Users/sbenjamin/.config/zim/modules/homebrew/init.zsh
 source /Users/sbenjamin/.config/zim/modules/zim-k9s/init.zsh
+source /Users/sbenjamin/.config/zim/modules/completion/init.zsh
 source /Users/sbenjamin/.config/zim/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /Users/sbenjamin/.config/zim/modules/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /Users/sbenjamin/.config/zim/modules/zsh-autosuggestions/zsh-autosuggestions.zsh
