@@ -7,6 +7,7 @@
 #
 # Modules
 #
+zmodule romkatv/powerlevel10k --use degit
 
 # Sets sane Zsh built-in environment options.
 zmodule environment
@@ -24,11 +25,11 @@ zmodule utility
 #
 
 # Exposes to prompts how long the last command took to execute, used by asciiship.
-zmodule duration-info
+# zmodule duration-info
 # Exposes git repository status information to prompts, used by asciiship.
-zmodule git-info
+# zmodule git-info
 # A heavily reduced, ASCII-only version of the Spaceship and Starship prompts.
-zmodule asciiship
+# zmodule asciiship
 
 #
 # Completion
@@ -39,10 +40,11 @@ zmodule zsh-users/zsh-completions --fpath src
 
 # Enables and configures smart and extensive tab completion.
 # completion must be sourced after all modules that add completion definitions.
-zmodule /opt/homebrew/bin/aws_completer
+# zmodule /opt/homebrew/bin/aws_completer
 
 zmodule completion
 
+zmodule kiesman99/zim-zoxide
 zmodule exa
 zmodule fzf
 zmodule k
@@ -50,8 +52,6 @@ zmodule pvenv
 zmodule ssh
 zmodule homebrew
 zmodule joke/zim-k9s
-# zmodule joke/zim-starship
-zmodule kiesman99/zim-zoxide
 
 
 #
@@ -65,6 +65,6 @@ zmodule zsh-users/zsh-syntax-highlighting
 # zsh-users/zsh-history-substring-search must be sourced after zsh-users/zsh-syntax-highlighting
 zmodule zsh-users/zsh-history-substring-search
 # Fish-like autosuggestions for Zsh.
-# zmodule zsh-users/zsh-autosuggestions
+zmodule zsh-users/zsh-autosuggestions
 # }}} End configuration added by Zim install
 

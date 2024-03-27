@@ -24,9 +24,6 @@ symbol = " "
 [dart]
 symbol = " "
 
-# [directory]
-# read_only = " "
-
 [docker_context]
 symbol = " "
 
@@ -41,6 +38,7 @@ disabled = false
 symbol = " "
 
 [golang]
+disabled = true
 symbol = " "
 
 [hg_branch]

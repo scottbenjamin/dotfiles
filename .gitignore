@@ -4,3 +4,6 @@ zsh/.zcompcache
 zsh/.zsh_history
 zim/init.sh
 zim/init.sh.old
+
+.DS_Store
+
