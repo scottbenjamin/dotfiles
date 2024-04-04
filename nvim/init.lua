@@ -584,7 +584,8 @@ require('lazy').setup {
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
-      -- 'hrsh7th/cmp-nvim-lua',
+      'hrsh7th/cmp-nvim-lua',
+      'hrsh7th/cmp-nvim-lsp-document-symbol',
 
       -- If you want to add a bunch of pre-configured snippets,
       --    you can use this plugin to help you. It even has snippets
@@ -648,6 +649,7 @@ require('lazy').setup {
         sources = {
           -- { name = 'nvim_lua' },
           { name = 'nvim_lsp' },
+          { name = 'nvim_lsp_document_symbol' },
           { name = 'luasnip' },
           { name = 'path' },
           { name = 'codeium' },

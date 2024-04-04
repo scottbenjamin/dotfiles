@@ -30,10 +30,11 @@ config.use_ime = false
 
 -- LEADER KEY
 -- Show which key table is active in the status area
-config.leader = { key = "s", mods = "CTRL", timeout_milliseconds = 1000 }
+-- config.leader = { key = "s", mods = "CTRL", timeout_milliseconds = 1000 }
 
 -- Key binds
-config.keys = k.keys
+-- config.keys = k.keys
+config.keys = {}
 config.key_tables = k.key_tables
 
 -- Behavior
@@ -43,11 +44,8 @@ config.exit_behavior = "Close"
 config.check_for_updates = true
 config.check_for_updates_interval_seconds = 86400
 
--- Domain
--- config.unix_domains = {
--- 	{ name = "unix" },
--- }
-
+-- Domain - disabled due to https://github.com/wez/wezterm/issues/4102
+-- config.unix_domains = { { name = "unix", local_echo_threshold_ms = 10 }, }
 -- config.default_gui_startup_args = { "connect", "unix" }
 
 -- Add UI specific changes
