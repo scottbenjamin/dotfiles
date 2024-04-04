@@ -17,11 +17,11 @@ return {
         require('trouble').toggle 'document_diagnostics'
       end, { desc = 'Open [D]ocument diagnostic [E]rror list' }),
 
-      vim.keymap.set('n', '<leader>q', function()
+      vim.keymap.set('n', '<leader>Q', function()
         require('trouble').toggle 'quickfix'
       end, { desc = 'Open diagnostic to [q]uickfix list' }),
 
-      vim.keymap.set('n', '<leader>wd', function()
+      vim.keymap.set('n', '<leader>Wd', function()
         require('trouble').toggle 'workspace_diagnostics'
       end, { desc = 'Go to next [w]orkspace [d]iagnostics' }),
     }

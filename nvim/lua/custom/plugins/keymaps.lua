@@ -35,4 +35,7 @@ vim.keymap.set('n', '<leader>cm', '<cmd>!glab mr view -w<CR>', { desc = 'Open [m
 -- LSP Info
 vim.keymap.set('n', '<leader>li', '<cmd>:LspInfo<CR>', { desc = '[l]sp [i]nfo' })
 
+vim.keymap.set('n', '<leader>w', '<cmd>:w<CR>', { desc = 'write file' })
+vim.keymap.set('n', '<leader>q', '<cmd>:q<CR>', { desc = 'Quit nvim' })
+
 return {}
