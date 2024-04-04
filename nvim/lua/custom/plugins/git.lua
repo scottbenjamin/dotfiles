@@ -20,7 +20,7 @@ return {
 
   {
     'SuperBo/fugit2.nvim',
-    enabled = true,
+    enabled = false,
     opts = {},
     dependencies = {
       'MunifTanjim/nui.nvim',
