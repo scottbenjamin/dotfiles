@@ -44,11 +44,11 @@ config.check_for_updates = true
 config.check_for_updates_interval_seconds = 86400
 
 -- Domain
-config.unix_domains = {
-	{ name = "unix" },
-}
+-- config.unix_domains = {
+-- 	{ name = "unix" },
+-- }
 
-config.default_gui_startup_args = { "connect", "unix" }
+-- config.default_gui_startup_args = { "connect", "unix" }
 
 -- Add UI specific changes
 ui.append(config)
