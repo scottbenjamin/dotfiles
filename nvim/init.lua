@@ -456,8 +456,8 @@ require('lazy').setup {
 
           lua_ls = {
             -- cmd = {...},
-            -- filetypes { ...},
-            capabilities = {},
+            -- filetypes = { ...},
+            -- capabilities = {},
             settings = {
               Lua = {
                 hint = { enable = true },
