@@ -5,11 +5,14 @@ import = ["~/.config/alacritty/themes/kanagawa_wave.toml"]
 opacity = 0.8
 blur = true
 
-padding = { x = 5, y = 5 }
+dimensions = { columns = 140, lines = 70}
+
+padding = { x = 1, y = 1 }
 dynamic_padding = false
 
 decorations = "Buttonless"
 decorations_theme_variant = "Dark"
+option_as_alt = "Both"
 
 # startup_mode = "SimpleFullscreen"
 startup_mode = "Windowed"

@@ -540,6 +540,9 @@ require('lazy').setup {
       format_on_save = function(bufnr)
         -- Disable format on save for specified filetypes
         local disable_filetypes = { c = true, cpp = true }
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+          return
+        end
         return {
           timeout_ms = 500,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
@@ -548,9 +551,8 @@ require('lazy').setup {
       formatters_by_ft = {
         lua = { 'stylua' },
         terraform = { 'terraform_fmt' },
-        python = { 'ruff_format' },
         -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { 'isort', 'black' },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.

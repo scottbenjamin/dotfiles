@@ -118,6 +118,7 @@ return {
   -- https://github.com/cbochs/grapple.nvim
   {
     'cbochs/grapple.nvim',
+    enabled = false,
     dependencies = {
       { 'nvim-tree/nvim-web-devicons', lazy = true },
     },
@@ -148,7 +149,7 @@ return {
       --
       -- resizing splits
       -- these keymaps will also accept a range,
-      -- for example `10<A-h>` will `resize_left` by `(10 * config.default_amount)`
+      -- for example `10<C-A-h>` will `resize_left` by `(10 * config.default_amount)`
       vim.keymap.set('n', '<C-A-h>', require('smart-splits').resize_left, { desc = 'Resize Split Left' })
       vim.keymap.set('n', '<C-A-j>', require('smart-splits').resize_down, { desc = 'Resize Split Down' })
       vim.keymap.set('n', '<C-A-k>', require('smart-splits').resize_up, { desc = 'Resize Split Up' })
@@ -186,4 +187,7 @@ return {
       require('colorizer').setup()
     end,
   },
+
+  -- Spectre
+  { 'nvim-pack/nvim-spectre', dependencies = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons' } },
 }

@@ -17,10 +17,10 @@ config.default_workspace = "main"
 config.default_domain = "unix"
 
 -- https://wezfurlong.org/wezterm/config/lua/gui-events/gui-startup.html
-wezterm.on("gui-startup", function(cmd)
-	local tab, pane, window = mux.spawn_window(cmd or {})
-	window:gui_window():maximize()
-end)
+-- wezterm.on("gui-startup", function(cmd)
+-- 	local tab, pane, window = mux.spawn_window(cmd or {})
+-- 	window:gui_window():maximize()
+-- end)
 
 -- Use the gpu
 local gpus = wezterm.gui.enumerate_gpus()
@@ -53,22 +53,33 @@ ui.append(config)
 
 -- and finally, return the configuration to wezterm
 -- Integrate with neovim smart-splits plugin
-local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
+-- local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
+--
+-- -- you can put the rest of your Wezterm config here
+-- smart_splits.apply_to_config(config, {
+-- 	-- the default config is here, if you'd like to use the default keys,
+-- 	-- you can omit this configuration table parameter and just use
+-- 	-- smart_splits.apply_to_config(config),
+--
+-- 	-- directional keys to use in order of: left, down, up, right
+-- 	direction_keys = { "h", "j", "k", "l" },
+-- 	-- modifier keys to combine with direction_keys
+-- 	modifiers = {
+-- 		move = "CTRL|SHIFT", -- modifier to use for pane movement, e.g. CTRL+h to move left
+-- 		resize = "CTRL|META", -- modifier to use for pane resize, e.g. META+h to resize to the left
+-- 	},
+-- })
 
--- you can put the rest of your Wezterm config here
-smart_splits.apply_to_config(config, {
-	-- the default config is here, if you'd like to use the default keys,
-	-- you can omit this configuration table parameter and just use
-	-- smart_splits.apply_to_config(config),
+-- don't bind ctrl+shift+[h,j,k,l]
+for _, tk in ipairs({ "H", "J", "K", "L" }) do
+	local key = {
+		key = tk,
+		mods = "CTRL",
+		action = wezterm.action.DisableDefaultAssignment,
+	}
 
-	-- directional keys to use in order of: left, down, up, right
-	direction_keys = { "h", "j", "k", "l" },
-	-- modifier keys to combine with direction_keys
-	modifiers = {
-		move = "CTRL|SHIFT", -- modifier to use for pane movement, e.g. CTRL+h to move left
-		resize = "CTRL|META", -- modifier to use for pane resize, e.g. META+h to resize to the left
-	},
-})
+	table.insert(config.keys, key)
+end
 
 return config
 
