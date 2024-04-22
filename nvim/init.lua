@@ -536,7 +536,7 @@ require('lazy').setup {
     },
 
     opts = {
-      notify_on_error = false,
+        notify_on_error = false,
       format_on_save = function(bufnr)
         -- Disable format on save for specified filetypes
         local disable_filetypes = { c = true, cpp = true }
@@ -550,7 +550,7 @@ require('lazy').setup {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        terraform = { 'terraform_fmt' },
+        terraform = { 'terraform_fmt', 'terragrunt_hcl' },
         -- Conform can also run multiple formatters sequentially
         python = { 'isort', 'black' },
         --
