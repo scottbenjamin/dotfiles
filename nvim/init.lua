@@ -536,7 +536,7 @@ require('lazy').setup {
     },
 
     opts = {
-        notify_on_error = false,
+      notify_on_error = false,
       format_on_save = function(bufnr)
         -- Disable format on save for specified filetypes
         local disable_filetypes = { c = true, cpp = true }
@@ -650,12 +650,13 @@ require('lazy').setup {
         },
         sources = {
           -- { name = 'nvim_lua' },
-          { name = 'nvim_lsp' },
+          { name = 'copilot', group_index = 2 },
+          { name = 'nvim_lsp', group_index = 2 },
           { name = 'nvim_lsp_document_symbol' },
-          { name = 'luasnip' },
-          { name = 'path' },
-          { name = 'codeium' },
-          { name = 'buffer' },
+          { name = 'luasnip', group_index = 2 },
+          { name = 'path', group_index = 2 },
+          -- { name = 'codeium' },
+          { name = 'buffer', group_index = 2 },
         },
       }
     end,
