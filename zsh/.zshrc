@@ -158,6 +158,9 @@ MY_ALIASES=${ZDOTDIR:-$HOME}/aliases.zsh
 MY_FUNCTIONS=${ZDOTDIR:-$HOME}/functions.zsh
 [ -f $MY_FUNCTIONS ] && source $MY_FUNCTIONS
 
+# local config for things like AWS credentials
+[ -f ~/.local.zsh ] && source ~/.local.zsh
+
 # pyenv
 if [[ -f $(which pyenv) ]]; then
   eval "$(pyenv init -)"
