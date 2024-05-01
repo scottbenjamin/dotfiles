@@ -1,6 +1,6 @@
 local function copilot_enabled()
-  -- check hostname to see if we're on my personal machine
-  if vim.fn.system('hostname'):match 'M-WQ43L-ASB' then
+  -- check hostname to see if we're on my work machine
+  if vim.fn.hostname() == 'M-WQ43L-ASB' then
     return true
   else
     return false
