@@ -651,11 +651,11 @@ require('lazy').setup {
         sources = {
           -- { name = 'nvim_lua' },
           { name = 'copilot', group_index = 2 },
+          { name = 'codeium', group_index = 2 },
           { name = 'nvim_lsp', group_index = 2 },
           { name = 'nvim_lsp_document_symbol' },
           { name = 'luasnip', group_index = 2 },
           { name = 'path', group_index = 2 },
-          -- { name = 'codeium' },
           { name = 'buffer', group_index = 2 },
         },
       }
