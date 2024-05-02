@@ -7,7 +7,7 @@ export ZIM_HOME="${XDG_CONFIG_HOME}/zim"
 export HISTFILE=~/.zsh_history
 
 # Customize to your needs...
-export PATH=$HOME/.local/share/bob/nvim-bin:$HOME/bin:$HOME/.cargo/bin:/opt/homebrew/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:/opt/homebrew/bin:$PATH
 
 # My fav
 export EDITOR=nvim
