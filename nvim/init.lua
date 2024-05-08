@@ -454,6 +454,17 @@ require('lazy').setup {
           -- tsserver = {},
           --
 
+          terraformls = {
+            settings = {
+              terraform = {
+                validate = true,
+                codeLens = { enable = true },
+                completion = { callSnippet = 'Replace' },
+                hover = { documentation = true },
+              },
+            },
+          },
+
           lua_ls = {
             -- cmd = {...},
             -- filetypes = { ...},
@@ -588,6 +599,7 @@ require('lazy').setup {
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-nvim-lsp-document-symbol',
+      'lukas-reineke/cmp-rg',
 
       -- If you want to add a bunch of pre-configured snippets,
       --    you can use this plugin to help you. It even has snippets
@@ -655,8 +667,9 @@ require('lazy').setup {
           { name = 'nvim_lsp', group_index = 2 },
           { name = 'nvim_lsp_document_symbol' },
           { name = 'luasnip', group_index = 2 },
-          { name = 'path', group_index = 2 },
           { name = 'buffer', group_index = 2 },
+          { name = 'rg', group_index = 2 },
+          { name = 'path', group_index = 2 },
         },
       }
     end,
@@ -718,6 +731,11 @@ require('lazy').setup {
       require('mini.operators').setup()
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
+      --
+      -- Files
+      require('mini.files').setup()
+      local mf = require 'mini.files'
+      vim.keymap.set('n', '<leader>e', mf.open, { noremap = true, silent = true, desc = 'Toggle File [e]xplorer' })
     end,
   },
 

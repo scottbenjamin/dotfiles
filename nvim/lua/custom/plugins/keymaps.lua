@@ -37,7 +37,8 @@ end, { desc = 'Toggle [F]ormat on save' })
 
 -- Inlay hints toggle
 vim.keymap.set('n', '<leader>ch', function()
-  vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+  print('Inlay hints: ' .. (vim.lsp.inlay_hint.is_enabled() and 'Enabled' or 'Disabled'))
 end, { desc = 'Toggle Inlay [H]ints' })
 
 -- Lazygit
