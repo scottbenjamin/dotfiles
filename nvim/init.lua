@@ -562,6 +562,7 @@ require('lazy').setup {
       formatters_by_ft = {
         lua = { 'stylua' },
         terraform = { 'terraform_fmt', 'terragrunt_hcl' },
+        hcl = { 'terragrunt_hclfmt' },
         -- Conform can also run multiple formatters sequentially
         python = { 'isort', 'black' },
         --
