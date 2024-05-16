@@ -16,5 +16,8 @@ export SUDO_EDITOR="${EDITOR}"
 
 # Tmux
 export TERM=xterm-256color
-git config --global core.editor emacs
+git config --global core.editor ${EDITOR}
 
+
+# Nvim 
+export NVIM_APPNAME=nvim-lazy
