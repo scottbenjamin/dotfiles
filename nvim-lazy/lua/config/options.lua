@@ -3,5 +3,5 @@
 -- Add any additional options here
 
 local opt = vim.opt
-opt.clipboard = "unnamed"
+opt.clipboard = ""
 opt.inccommand = "split"
