@@ -4,6 +4,9 @@
 --
 local map = LazyVim.safe_keymap_set
 
+-- Yank
+map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to clipboard" })
+
 --  Glab CLI
 map("n", "<leader>gM", "<cmd>!glab mr create -fw<CR>", { desc = "Create new [M]R in browser", silent = true })
 map("n", "<leader>gm", "<cmd>!glab mr view -w<CR>", { desc = "Open [m]R in browser", silent = true })

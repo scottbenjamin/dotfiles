@@ -15,4 +15,6 @@ return {
     "mbbill/undotree",
     cmd = "UndotreeToggle",
   },
+
+  { "AckslD/swenv.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
 }
