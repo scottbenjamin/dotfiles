@@ -14,7 +14,7 @@ if wezterm.config_builder then
 end
 
 config.default_workspace = "main"
-config.default_domain = "unix"
+-- config.default_domain = "unix"
 
 -- https://wezfurlong.org/wezterm/config/lua/gui-events/gui-startup.html
 -- wezterm.on("gui-startup", function(cmd)
@@ -71,15 +71,15 @@ ui.append(config)
 -- })
 
 -- don't bind ctrl+shift+[h,j,k,l]
-for _, tk in ipairs({ "H", "J", "K", "L" }) do
-	local key = {
-		key = tk,
-		mods = "CTRL",
-		action = wezterm.action.DisableDefaultAssignment,
-	}
-
-	table.insert(config.keys, key)
-end
+-- for _, tk in ipairs({ "H", "J", "K", "L" }) do
+-- 	local key = {
+-- 		key = tk,
+-- 		mods = "CTRL",
+-- 		action = wezterm.action.DisableDefaultAssignment,
+-- 	}
+--
+-- 	table.insert(config.keys, key)
+-- end
 
 return config
 
