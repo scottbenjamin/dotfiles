@@ -1,17 +1,19 @@
 return {
+  -- tokyonight
   {
     "folke/tokyonight.nvim",
     lazy = true,
     opts = { style = "night" },
   },
+  -- oil
   {
     "stevearc/oil.nvim",
     opts = {},
-    -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
+
+  -- undotree
   {
-    -- undotree
     "mbbill/undotree",
     cmd = "UndotreeToggle",
   },
@@ -27,5 +29,14 @@ return {
         tofu = { "tofu_fmt" },
       },
     },
+  },
+
+  -- Quicker.nvim
+  -- https://github.com/stevearc/quicker.nvim
+  {
+    "stevearc/quicker.nvim",
+    ---@module "quicker"
+    ---@type quicker.SetupOptions
+    opts = {},
   },
 }
