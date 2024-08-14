@@ -20,7 +20,7 @@ alias 'otf'="op run --env-file=.env -- terraform"
 # alias 'poetry'='pipx run poetry==1.3.2'
 
 alias 'gls'='glab ci status'
-alias 'ggg'='gfm;gfa'
+alias 'ggg'='gfm;gfa -p'
 
 if [ -f $(which fd) ]; then
 	alias 'c'='fd --type d --exclude .git | fzf-tmux -p --reverse | cd <'
