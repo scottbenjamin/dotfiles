@@ -22,9 +22,15 @@ alias 'otf'="op run --env-file=.env -- terraform"
 alias 'gls'='glab ci status'
 alias 'ggg'='gfm;gfa -p'
 
-if [ -f $(which fd) ]; then
-	alias 'c'='fd --type d --exclude .git | fzf-tmux -p --reverse | cd <'
-	alias 'v'='fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim'
+if  [ -f "$(which fdfind)" ]; then 
+  FD=fdfind
+elif [ -f'$(which fd)']; then
+  FD=fd
+fi
+
+if [ -n "${FD}" ]; then
+	alias 'c'='${FD} --type d --exclude .git | fzf-tmux -p --reverse | cd <'
+	alias 'v'='${FD} --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim'
 fi
 
 alias 'vks'='NVIM_APPNAME=nvim-new nvim'

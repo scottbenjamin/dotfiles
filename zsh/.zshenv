@@ -21,3 +21,4 @@ git config --global core.editor ${EDITOR}
 
 # Nvim 
 # export NVIM_APPNAME=nvim-lazy
+. "$HOME/.cargo/env"

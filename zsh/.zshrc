@@ -104,8 +104,14 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 # Initialize modules
 # ------------------
 
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+if [ -f "$(which brew)" ]; then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+else
+  FPATH="${FPATH}"
+fi
+
 ZIM_HOME=${HOME}/.config/zim
+
 # Download zimfw plugin manager if missing.
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
   if (( ${+commands[curl]} )); then
@@ -149,7 +155,7 @@ export TERM=xterm-256color
 [[ -d /opt/homebrew ]] && export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
 
 # 1password completion
-eval "$(op completion zsh)"
+[ -f "$(which op)" ] && eval $(op completion zsh)
 
 # My own aliases and functions
 MY_ALIASES=${ZDOTDIR:-$HOME}/aliases.zsh
