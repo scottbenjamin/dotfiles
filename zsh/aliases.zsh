@@ -24,7 +24,7 @@ alias 'ggg'='gfm;gfa -p'
 
 if  [ -f "$(which fdfind)" ]; then 
   FD=fdfind
-elif [ -f'$(which fd)']; then
+elif [ -f "$(which fd)" ]; then
   FD=fd
 fi
 
