@@ -5,3 +5,11 @@
 local opt = vim.opt
 opt.clipboard = ""
 opt.inccommand = "split"
+
+vim.filetype.add({
+  extension = {
+    hcl = "hcl",
+    tofu = "terraform",
+    sls = "sls.yaml",
+  },
+})
