@@ -9,3 +9,4 @@ nvim/lazy-lock.json
 
 .DS_Store
 
+nushell/history**

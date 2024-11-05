@@ -18,7 +18,3 @@ export SUDO_EDITOR="${EDITOR}"
 export TERM=xterm-256color
 git config --global core.editor ${EDITOR}
 
-
-# Nvim 
-# export NVIM_APPNAME=nvim-lazy
-[ -d ~/.cargo/env ] && source "$HOME/.cargo/env"
