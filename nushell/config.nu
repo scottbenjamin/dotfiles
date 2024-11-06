@@ -897,16 +897,4 @@ $env.config = {
     ]
 }
 
-
-const nu_config_dir = ($nu.home-path | path join '.config/nushell')
-
-# Carapace completions
-source ($nu.home-path | path join .cache carapace init.nu)
-
-source ($nu_config_dir | path join 'zoxide.nu')
-source ($nu_config_dir | path join 'custom.nu') # Custom commands and functions
-
-# Local machine specific codes
-source ($nu.home-path | path join '.local.nu')
-
-
+source ~/.config/nushell/env.nu

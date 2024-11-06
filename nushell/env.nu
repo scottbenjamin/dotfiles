@@ -74,19 +74,21 @@ $env.ENV_CONVERSIONS = {
 }
 
 
+# XDG_CONFIG_HOM is set in default mac nushell dir
 $env.XDG_CACHE_HOME = ($nu.home-path | path join '.cache')
-$env.XDG_CONFIG_HOME = ($nu.home-path | path join '.config')
 $env.XDG_DATA_HOME = ($nu.home-path | path join '.local' 'share')
 $env.XDG_STATE_HOME = ($nu.home-path | path join '.local' 'state')
 
 $env.NUPM_HOME = ($env.XDG_DATA_HOME | path join 'nupm')
 
+
 # Directories to search for scripts when calling source or use
 # The default for this is $nu.default-config-dir/scripts
 $env.NU_LIB_DIRS = [
-    ($nu.default-config-dir | path join 'scripts') # add <nushell-config-dir>/scripts
-    ($nu.data-dir | path join 'completions') # default home for nushell completions
-    ($env.NUPM_HOME | path join modules)
+    ($env.XDG_CONFIG_HOME | path join nushell scripts) 
+    ($env.XDG_CONFIG_HOME | path join nushell completions) 
+    ($env.XDG_STATE_HOME | path join nushell modules) # Nushell modules dir
+    ($env.NUPM_HOME | path join modules) # nupm modules
 ]
 
 # Directories to search for plugin binaries when calling register
@@ -98,7 +100,6 @@ $env.NU_PLUGIN_DIRS = [
 # To allow for 'shells'
 use std/dirs shells-aliases *
 
-
 # Set XDG Config Home
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' 
 $env.VISUAL = "nvim"
@@ -108,7 +109,7 @@ $env.EDITOR = $env.VISUAL
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 # An alternate way to add entries to $env.PATH is to use the custom command `path add`
 # which is built into the nushell stdlib:
-# use std "path add"
+use std "path add"
 # $env.PATH = ($env.PATH | split row (char esep))
 # path add /some/path
 # path add ($env.CARGO_HOME | path join "bin")
@@ -117,15 +118,14 @@ $env.EDITOR = $env.VISUAL
 
 # write nushell for loop over a list of paths to append to the path
 let paths = [
-  ($nu.home-path | path join ".cargo" "bin"),
+  "/opt/homebrew/bin",
   "/usr/local/bin",
   ($nu.home-path | path join ".local" "bin"),
-  "/opt/homebrew/bin",
+  ($nu.home-path | path join ".cargo" "bin"),
   ($env.NUPM_HOME| path join scripts),
 ]
 
-for path in $paths {
-  $env.PATH = ($env.PATH | split row (char esep) | prepend $path)
+for path in $paths { $env.PATH = ($env.PATH | split row (char esep) | prepend $path)
 }
 
 # Linux
@@ -134,6 +134,16 @@ for path in $paths {
 # Pyenv add to PATH
 $env.PATH = ($env.PATH | split row (char esep) | prepend $"(pyenv root)/shims")
 
+const nu_config_dir = ($nu.home-path | path join '.config/nushell')
+
+# Carapace completions
+source ($nu.home-path | path join .cache carapace init.nu)
+
+source ($nu_config_dir | path join zoxide.nu) # Zoxide
+source ($nu_config_dir | path join custom.nu) # Custom commands and functions
+
+# Local machine specific codes
+source ($nu.home-path | path join '.local.nu')
 
 # Starship
 use ~/.cache/starship/init.nu
