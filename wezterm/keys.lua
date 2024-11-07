@@ -2,23 +2,31 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local M = {}
 
+local shell = "/opt/homebrew/bin/nu"
+local last_pane = nil
+
 M.keys = {
 	-- Pane selection
 	{ key = "o", mods = "LEADER", action = act.PaneSelect({ alphabet = "asdfghjkl;" }) },
+
+	{ key = "LeftArrow", mods = "", action = act.ActivatePaneDirection("Left") },
+	{ key = "RightArrow", mods = "", action = act.ActivatePaneDirection("Right") },
+	{ key = "UpArrow", mods = "", action = act.ActivatePaneDirection("Up") },
+	{ key = "DownArrow", mods = "", action = act.ActivatePaneDirection("Down") },
 	--
 	-- -- Splits
 	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{
 		key = "V",
 		mods = "LEADER",
-		command = { arg = "/bin/zsh" },
+		command = { arg = shell },
 		action = act.SplitPane({ direction = "Right", size = { Percent = 30 } }),
 	},
 	{ key = "h", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{
 		key = "H",
 		mods = "LEADER",
-		command = { arg = "/bin/zsh" },
+		command = { arg = shell },
 		action = act.SplitPane({ direction = "Down", size = { Percent = 30 } }),
 	},
 

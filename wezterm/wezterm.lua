@@ -14,13 +14,13 @@ if wezterm.config_builder then
 end
 
 config.default_workspace = "main"
--- config.default_domain = "unix"
+config.default_domain = "unix"
 
 -- https://wezfurlong.org/wezterm/config/lua/gui-events/gui-startup.html
--- wezterm.on("gui-startup", function(cmd)
--- 	local tab, pane, window = mux.spawn_window(cmd or {})
--- 	window:gui_window():maximize()
--- end)
+wezterm.on("gui-startup", function(cmd)
+	local tab, pane, window = mux.spawn_window(cmd or {})
+	window:gui_window():maximize()
+end)
 
 -- Use the gpu
 local gpus = wezterm.gui.enumerate_gpus()
@@ -30,11 +30,10 @@ config.use_ime = false
 
 -- LEADER KEY
 -- Show which key table is active in the status area
--- config.leader = { key = "s", mods = "CTRL", timeout_milliseconds = 1000 }
+config.leader = { key = "s", mods = "CTRL", timeout_milliseconds = 1000 }
 
 -- Key binds
--- config.keys = k.keys
-config.keys = {}
+config.keys = k.keys
 config.key_tables = k.key_tables
 
 -- Behavior
@@ -45,8 +44,8 @@ config.check_for_updates = true
 config.check_for_updates_interval_seconds = 86400
 
 -- Domain - disabled due to https://github.com/wez/wezterm/issues/4102
--- config.unix_domains = { { name = "unix", local_echo_threshold_ms = 10 }, }
--- config.default_gui_startup_args = { "connect", "unix" }
+config.unix_domains = { { name = "unix", local_echo_threshold_ms = 10 } }
+config.default_gui_startup_args = { "connect", "unix" }
 
 -- Add UI specific changes
 ui.append(config)

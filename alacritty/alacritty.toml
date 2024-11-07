@@ -1,11 +1,11 @@
 #  Config spec: https://alacritty.org/config-alacritty.html
-import = ["~/.config/alacritty/themes/kanagawa_wave.toml"]
+general.import = ["~/.config/alacritty/themes/kanagawa_wave.toml"]
 
 [window]
 opacity = 0.8
 blur = true
 
-dimensions = { columns = 140, lines = 70}
+dimensions = { columns = 140, lines = 70 }
 
 padding = { x = 1, y = 1 }
 dynamic_padding = false
