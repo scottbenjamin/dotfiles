@@ -121,6 +121,8 @@ $env.NIX_PATH = [
     "/nix/var/nix/profiles/per-user/root/channels"
 ]
 
+$env.NIX_CONF_DIR= ($env.XDG_CONFIG_HOME | path join 'nix')
+
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 # An alternate way to add entries to $env.PATH is to use the custom command `path add`
