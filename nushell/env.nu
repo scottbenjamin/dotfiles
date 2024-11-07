@@ -104,6 +104,22 @@ use std/dirs shells-aliases *
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' 
 $env.VISUAL = "nvim"
 $env.EDITOR = $env.VISUAL
+$env.PAGER = "bat"
+
+
+# Terminfo
+$env.TERMINFO_DIRS = [
+    $"($env.HOME)/.nix-profile/share/terminfo"
+    $"/etc/profiles/per-user/($env.USER)/share/terminfo"
+    "/run/current-system/sw/share/terminfo"
+    "/nix/var/nix/profiles/default/share/terminfo"
+    "/usr/share/terminfo"
+]
+# Nix
+$env.NIX_PATH = [
+    $"darwin-config=($env.HOME)/.nixpkgs/darwin-configuration.nix"
+    "/nix/var/nix/profiles/per-user/root/channels"
+]
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
@@ -118,15 +134,17 @@ use std "path add"
 
 # write nushell for loop over a list of paths to append to the path
 let paths = [
-  "/opt/homebrew/bin",
   "/usr/local/bin",
   ($nu.home-path | path join ".local" "bin"),
   ($nu.home-path | path join ".cargo" "bin"),
   ($env.NUPM_HOME| path join scripts),
+  $"($env.HOME)/.nix-profile/bin",
+  $"/etc/profiles/per-user/($env.USER)/bin",
+  "/run/current-system/sw/bin",
+  "/nix/var/nix/profiles/default/bin",
 ]
 
-for path in $paths { $env.PATH = ($env.PATH | split row (char esep) | prepend $path)
-}
+for path in $paths { $env.PATH = ($env.PATH | split row (char esep) | prepend $path) }
 
 # Linux
 #$env.PATH = ($env.PATH | split row (char esep) | prepend '/home/linuxbrew/.linuxbrew/bin')
