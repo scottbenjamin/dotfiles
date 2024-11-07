@@ -15,12 +15,12 @@
       nixpkgs.config.allowUnfree = true;
 
       environment.systemPackages = [ 
-          # pkgs._1password-gui
           pkgs._1password-cli
           pkgs.alacritty
           pkgs.awscli2
           pkgs.bat
           pkgs.carapace
+          pkgs.glab
           pkgs.jq
           pkgs.k9s
           pkgs.kind
@@ -34,6 +34,7 @@
           pkgs.starship
           pkgs.tenv
           pkgs.zoxide
+          pkgs.atuin
         ];
 
       # Auto upgrade nix package and the daemon service.
@@ -64,8 +65,8 @@
 
       # Homebrew casks
       homebrew.casks = [
-        "keymapp" # Keyboard remapping tool
-        "wezterm@nightly"
+        "keymapp"         # Keyboard remapping tool
+        "wezterm@nightly" # terminal
         "1password"
         "brave-browser"
       ];

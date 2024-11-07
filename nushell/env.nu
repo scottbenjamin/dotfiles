@@ -101,7 +101,6 @@ $env.NU_PLUGIN_DIRS = [
 use std/dirs shells-aliases *
 
 # Set XDG Config Home
-$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' 
 $env.VISUAL = "nvim"
 $env.EDITOR = $env.VISUAL
 $env.PAGER = "bat"
@@ -121,7 +120,6 @@ $env.NIX_PATH = [
     "/nix/var/nix/profiles/per-user/root/channels"
 ]
 
-$env.NIX_CONF_DIR = ($nu.home-path | path join '.config' 'nix')
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
@@ -135,18 +133,13 @@ use std "path add"
 # $env.PATH = ($env.PATH | uniq)
 
 # write nushell for loop over a list of paths to append to the path
-let paths = [
-  "/usr/local/bin",
-  ($nu.home-path | path join ".local" "bin"),
-  ($nu.home-path | path join ".cargo" "bin"),
-  ($env.NUPM_HOME| path join scripts),
-  $"($env.HOME)/.nix-profile/bin",
-  $"/etc/profiles/per-user/($env.USER)/bin",
-  "/run/current-system/sw/bin",
-  "/nix/var/nix/profiles/default/bin",
-]
-
-for path in $paths { $env.PATH = ($env.PATH | split row (char esep) | prepend $path) }
+path add  ($nu.home-path | path join ".local" "bin")
+path add  ($nu.home-path | path join ".cargo" "bin")
+path add  ($env.NUPM_HOME| path join scripts)
+path add  $"($env.HOME)/.nix-profile/bin"
+path add  $"/etc/profiles/per-user/($env.USER)/bin"
+path add  /nix/var/nix/profiles/default/bin
+path add  /run/current-system/sw/bin
 
 # Linux
 #$env.PATH = ($env.PATH | split row (char esep) | prepend '/home/linuxbrew/.linuxbrew/bin')
@@ -156,14 +149,19 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend $"(pyenv root)/shims")
 
 const nu_config_dir = ($nu.home-path | path join '.config/nushell')
 
-# Carapace completions
-source ($nu.home-path | path join .cache carapace init.nu)
-
-source ($nu_config_dir | path join zoxide.nu) # Zoxide
-source ($nu_config_dir | path join custom.nu) # Custom commands and functions
-
-# Local machine specific codes
-source ($nu.home-path | path join '.local.nu')
-
 # Starship
-use ~/.cache/starship/init.nu
+mkdir ~/.cache/starship
+starship init nu | save -f ~/.cache/starship/init.nu
+zoxide init nushell | save -f ~/.zoxide.nu
+
+$env.STARSHIP_CONFIG = ($nu.home-path | path join .config starship starship.toml )
+$env.NIX_CONF_DIR = ($nu.home-path | path join '.config' 'nix')
+$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' 
+
+# Carapace completions
+mkdir ~/.cache/carapace
+carapace _carapace nushell | save -f ~/.cache/carapace/init.nu
+
+# Atuin
+mkdir ~/.local/share/atuin/
+atuin init nu | save -f ~/.local/share/atuin/init.nu
