@@ -15,17 +15,17 @@
   # Home Manager is pretty good at managing code/dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    ".zshenv".source = ~/code/dotfiles/zshrc/.zshenv;
-    ".config/wezterm".source = ~/code/dotfiles/wezterm;
-    ".config/starship".source = ~/code/dotfiles/starship;
-    ".config/zellij".source = ~/code/dotfiles/zellij;
-    ".config/nvim".source = ~/code/dotfiles/nvim;
-    ".config/nix".source = ~/code/dotfiles/nix;
-    ".config/nix-darwin".source = ~/code/dotfiles/nix-darwin;
-    ".config/tmux".source = ~/code/dotfiles/tmux;
-    ".config/nushell".source = ~/code/dotfiles/nushell;
-    ".config/carapace".source = ~/code/dotfiles/carapace;
-    ".config/atuin".source = ~/code/dotfiles/atuin;
+    ".zshenv".source = ../zsh/.zshenv;
+    ".config/wezterm".source = ../wezterm;
+    ".config/starship".source = ../starship;
+    ".config/zellij".source = ../zellij;
+    ".config/nvim".source = ../nvim;
+    ".config/nix".source = ../nix;
+    ".config/nix-darwin".source = ../nix-darwin;
+    ".config/tmux".source = ../tmux;
+    ".config/nushell".source = ../nushell;
+    ".config/carapace".source = ../carapace;
+    # ".config/atuin".source = ../atuin;
     # ".config/ghostty".source = ~/code/dotfiles/ghostty;
   };
 
