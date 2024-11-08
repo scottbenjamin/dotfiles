@@ -59,7 +59,9 @@
       nixpkgs.hostPlatform = "aarch64-darwin";
 
       # Home manager configuration
-      # users.users.${user}.home = "/Users/${user}";
+      users.users.sbenjamin.home = "/Users/sbenjamin";
+      users.users.scottbenjamin.home = "/Users/scottbenjamin";
+
       home-manager.backupFileExtension = "backup";
       nix.configureBuildUsers = true;
       nix.useDaemon = true;
@@ -125,9 +127,9 @@
   in
   {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#mbp
+    # $ darwin-rebuild build --flake .#work
     darwinConfigurations = {
-      "mbp" = nix-darwin.lib.darwinSystem {
+      "work" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [ 
           configuration 
@@ -141,12 +143,12 @@
           home-manager.darwinModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.sbenjamin = import ./home.nix;
+              home-manager.users.sbenjamin = import ./hosts/work.nix;
             }
         ];
       };
 
-      "Scotts-Macbook-Pro" = nix-darwin.lib.darwinSystem {
+      "Scotts-MacBook-Pro" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [ 
           configuration 
@@ -160,7 +162,7 @@
           home-manager.darwinModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.scottbenjamin = import ./home.nix;
+              home-manager.users.scottbenjamin = import ./hosts/Scotts-MacBook-Pro.nix;
             }
         ];
       };
@@ -168,7 +170,10 @@
     };
 
     # Expose the package set, including overlays, for convenience.
-    # darwinPackages = self.darwinConfigurations."mbp".pkgs;
-    darwinPackages = self.darwinConfigurations."Scotts-MacBook-Pro".pkgs;
+    # darwinPackages = self.darwinConfigurations."work".pkgs;
+    darwinPackages = {
+      "work" = self.darwinConfigurations."work".pkgs;
+      "Scotts-MacBook-Pro" = self.darwinConfigurations."Scotts-MacBook-Pro".pkgs;
+    };
   };
 }

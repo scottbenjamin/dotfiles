@@ -908,7 +908,7 @@ $env.config = {
 }
 
 # Custom functions, commands and aliases
-source ($nu_config_dir | path join custom.nu) # Custom commands and functions
+source ~/.config/nushell/custom.nu
 
 source ~/.zoxide.nu
 source ~/.local/share/atuin/init.nu

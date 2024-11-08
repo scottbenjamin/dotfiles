@@ -133,6 +133,7 @@ use std "path add"
 # $env.PATH = ($env.PATH | uniq)
 
 # write nushell for loop over a list of paths to append to the path
+path add  /opt/homebrew/bin
 path add  ($nu.home-path | path join ".local" "bin")
 path add  ($nu.home-path | path join ".cargo" "bin")
 path add  ($env.NUPM_HOME| path join scripts)
