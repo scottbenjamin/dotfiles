@@ -114,11 +114,6 @@ $env.TERMINFO_DIRS = [
     "/nix/var/nix/profiles/default/share/terminfo"
     "/usr/share/terminfo"
 ]
-# Nix
-$env.NIX_PATH = [
-    $"darwin-config=($env.HOME)/.nixpkgs/darwin-configuration.nix"
-    "/nix/var/nix/profiles/per-user/root/channels"
-]
 
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
@@ -158,7 +153,7 @@ starship init nu | save -f ~/.cache/starship/init.nu
 zoxide init nushell | save -f ~/.zoxide.nu
 
 $env.STARSHIP_CONFIG = ($nu.home-path | path join .config starship starship.toml )
-$env.NIX_CONF_DIR = ($nu.home-path | path join '.config' 'nix')
+#$env.NIX_CONF_DIR = ($nu.home-path | path join '.config' 'nix')
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' 
 
 # Carapace completions
