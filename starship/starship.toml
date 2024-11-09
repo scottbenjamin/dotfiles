@@ -1,3 +1,9 @@
+add_newline = false
+# A minimal left prompt
+format = """$directory$character"""
+# move the rest of the prompt to the right
+right_format = """$all"""
+command_timeout = 1000
 
 [aws]
 format = 'on [$symbol($profile )(\($region\) )]($style)'

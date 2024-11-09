@@ -19,10 +19,8 @@
       environment.systemPackages = [ 
           pkgs._1password-cli
           pkgs.alacritty
-          pkgs.awscli2
           pkgs.bat
           pkgs.carapace
-          pkgs.glab
           pkgs.jq
           pkgs.k9s
           pkgs.kind
@@ -74,14 +72,17 @@
 
       # Homebrew casks
       homebrew.casks = [
-        "keymapp"         # Keyboard remapping tool
-        "wezterm@nightly" # terminal
-        "1password"
-        "brave-browser"
+        "keymapp"                          # Keyboard remapping tool
+        "wezterm@nightly"                  # terminal
+        "1password"                        # Password manager
+        "brave-browser"                    # Browser
+        "okta-advanced-server-access"      # Okta ASA
       ];
 
       homebrew.brews = [
-        "tenv"
+        "tenv"                             # Terraform/Tofu/Terragrunt version manager
+        "coder"                            # Coder
+        "glab"                             # Gitlab CLI
       ];
 
       # Fonts
@@ -125,8 +126,8 @@
   in
   {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#mbp
-    darwinConfigurations."mbp" = nix-darwin.lib.darwinSystem {
+    # $ darwin-rebuild build --flake .#M-WQ43L-ASB
+    darwinConfigurations."M-WQ43L-ASB" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [ 
         configuration 
@@ -147,6 +148,6 @@
     };
 
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."mbp".pkgs;
+    darwinPackages = self.darwinConfigurations."M-WQ43L-ASB".pkgs;
   };
 }

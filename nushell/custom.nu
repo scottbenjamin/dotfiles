@@ -3,6 +3,7 @@ alias gfa = git fetch --all
 alias gco = git checkout
 alias gfm = git pull --no-rebase
 alias k = kubectl
+alias kg = kubectl get
 alias l = ls
 alias la = ls -al
 alias ll = ls -l
@@ -10,6 +11,8 @@ alias lg = lazygit
 alias e = nvim
 alias v = nvim
 alias vim = nvim
+
+alias switch = darwin-rebuild switch --flake ~/code/dotfiles/nix-darwin/
 
 # Custom functions
 # Git fetch all and pull without rebase
@@ -30,6 +33,12 @@ def gitlab_token [] {
   echo "GITLAB_TOKEN=$GITLAB_TOKEN"
 }
 
+# Update Nvim configs by setting XDG_CONFIG_HOME to dotfiles git repo
+def uv [] {
+  $env.XDG_CONFIG_HOME = ($nu.home-path | path join code dotfiles)
+  print $"Updating nvim configs... using ($env.XDG_CONFIG_HOME)"
+  nvim
+}
 # Nushell function to reload config by sourcing files
 # def rc [] {
 #   print "Reloading nushell config..."

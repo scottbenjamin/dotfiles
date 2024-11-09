@@ -6,10 +6,23 @@
 {
   home.username = "sbenjamin";
   home.homeDirectory = "/Users/sbenjamin";
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+  home.stateVersion = "24.11"; 
+  programs.git.enable = true;
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+  };
 
 # Makes sense for user specific applications that shouldn't be available system-wide
   home.packages = [
+    pkgs.nodejs_22
+    pkgs.gimme-aws-creds
+    pkgs.rustup
+    pkgs.lazygit
+    pkgs.awscli2
   ];
 
   # Home Manager is pretty good at managing code/dotfiles. The primary way to manage
@@ -19,14 +32,13 @@
     ".config/wezterm".source = ../wezterm;
     ".config/starship".source = ../starship;
     ".config/zellij".source = ../zellij;
-    ".config/nvim".source = ../nvim;
     ".config/nix".source = ../nix;
     ".config/nix-darwin".source = ../nix-darwin;
     ".config/tmux".source = ../tmux;
     ".config/nushell".source = ../nushell;
     ".config/carapace".source = ../carapace;
-    # ".config/atuin".source = ../atuin;
     # ".config/ghostty".source = ~/code/dotfiles/ghostty;
+    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/code/dotfiles/nvim";
   };
 
   home.sessionVariables = {
