@@ -5,7 +5,6 @@ zsh/.zsh_history
 zsh/.zsh_sessions/**
 zim/init.sh
 zim/init.sh.old
-nvim/lazy-lock.json
 
 .DS_Store
 
