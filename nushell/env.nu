@@ -141,6 +141,7 @@ path add  $"/etc/profiles/per-user/($env.USER)/bin"
 path add  /nix/var/nix/profiles/default/bin
 path add  /run/current-system/sw/bin
 path add  /usr/local/bin
+path add  /opt/homebrew/bin
 
 # Linux
 #$env.PATH = ($env.PATH | split row (char esep) | prepend '/home/linuxbrew/.linuxbrew/bin')
