@@ -1,8 +1,12 @@
 {outputs, ...}: {
   imports = [
     ../modules/atuin.nix
+    ../modules/darwin-aerospace.nix
+    ../modules/fzf.nix
+    ../modules/home.nix
     ../modules/nushell.nix
     ../modules/zoxide.nix
+    ../modules/neovim.nix
     # ../modules/alacritty.nix
     # ../modules/bat.nix
     # ../modules/bottom.nix
