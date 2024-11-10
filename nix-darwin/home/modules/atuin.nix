@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       inline_height = 25;
-      invert = true;
+      invert = false;
       records = true;
       search_mode = "skim";
       secrets_filter = true;

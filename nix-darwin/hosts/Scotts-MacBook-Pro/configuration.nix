@@ -46,6 +46,9 @@
       "raycast"
       # "discord"
     ];
+    brews = [
+      "nushell"
+    ];
     taps = [
       "nikitabobko/tap"
     ];
@@ -88,6 +91,7 @@
   ];
 
   services.nix-daemon.enable = true;
+  services.aerospace.enable = true;
 
   system.stateVersion = 5;
 }
