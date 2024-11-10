@@ -907,15 +907,9 @@ $env.config = {
     ]
 }
 
-# Custom functions, commands and aliases
-source ~/.config/nushell/custom.nu
-
 source ~/.zoxide.nu
 source ~/.local/share/atuin/init.nu
 source ~/.cache/carapace/init.nu
-
-# Local machine specific codes
-source ($nu.home-path | path join '.local.nu')
 
 # Starship
 use ~/.cache/starship/init.nu

@@ -78,6 +78,7 @@ $env.ENV_CONVERSIONS = {
 $env.XDG_CACHE_HOME = ($nu.home-path | path join '.cache')
 $env.XDG_DATA_HOME = ($nu.home-path | path join '.local' 'share')
 $env.XDG_STATE_HOME = ($nu.home-path | path join '.local' 'state')
+$env.XDG_CONFIG_HOME = ($nu.home-path | path join ".config")
 
 $env.NUPM_HOME = ($env.XDG_DATA_HOME | path join 'nupm')
 
@@ -155,13 +156,13 @@ $env.STARSHIP_CONFIG = ($nu.home-path | path join .config starship starship.toml
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' 
 
 # Carapace completions
-mkdir ~/.cache/carapace
-carapace _carapace nushell | save -f ~/.cache/carapace/init.nu
+#mkdir ~/.cache/carapace
+#carapace _carapace nushell | save -f ~/.cache/carapace/init.nu
 
 # Atuin
-mkdir ~/.local/share/atuin/
-atuin init nu | save -f ~/.local/share/atuin/init.nu
+#mkdir ~/.local/share/atuin/
+##atuin init nu | save -f ~/.local/share/atuin/init.nu
 
 # Starship
-mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
+#mkdir ~/.cache/starship
+#starship init nu | save -f ~/.cache/starship/init.nu

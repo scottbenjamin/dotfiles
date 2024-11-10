@@ -1,19 +1,21 @@
 # ALiases
-alias gfa = git fetch --all
-alias gco = git checkout
-alias gfm = git pull --no-rebase
-alias k = kubectl
-alias kg = kubectl get
-alias l = ls
-alias la = ls -al
-alias ll = ls -l
-alias lg = lazygit
-alias e = nvim
-alias v = nvim
-alias vim = nvim
-
-alias switch = darwin-rebuild switch --flake ~/code/dotfiles/nix-darwin/
-alias check = darwin-rebuild check --flake ~/code/dotfiles/nix-darwin/
+#alias e = nvim
+#alias ga  = git add 
+#alias gco = git checkout
+#alias gfa = git fetch --all
+#alias gfm = git pull --no-rebase
+#alias gs  = git status 
+#alias k = kubectl
+#alias kg = kubectl get
+#alias l = ls
+#alias la = ls -al
+#alias lg = lazygit
+#alias ll = ls -l
+#alias v = nvim
+#alias vim = nvim
+#
+#alias switch = darwin-rebuild switch --flake ~/code/dotfiles/nix-darwin/
+#alias check = darwin-rebuild check --flake ~/code/dotfiles/nix-darwin/
 
 # Custom functions
 # Git fetch all and pull without rebase
