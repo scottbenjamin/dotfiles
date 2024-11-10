@@ -137,19 +137,17 @@ path add  $"/etc/profiles/per-user/($env.USER)/bin"
 path add  /nix/var/nix/profiles/default/bin
 path add  /run/current-system/sw/bin
 path add  /usr/local/bin
-path add  /opt/homebrew/bin
 
 # Linux
 #$env.PATH = ($env.PATH | split row (char esep) | prepend '/home/linuxbrew/.linuxbrew/bin')
 
 # Pyenv add to PATH
-$env.PATH = ($env.PATH | split row (char esep) | prepend $"(pyenv root)/shims")
+if (which pyenv | length ) > 0 {
+  $env.PATH = ($env.PATH | split row (char esep) | prepend $"(pyenv root)/shims")
+}
 
 const nu_config_dir = ($nu.home-path | path join '.config/nushell')
 
-# Starship
-mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
 zoxide init nushell | save -f ~/.zoxide.nu
 
 $env.STARSHIP_CONFIG = ($nu.home-path | path join .config starship starship.toml )
@@ -163,3 +161,7 @@ carapace _carapace nushell | save -f ~/.cache/carapace/init.nu
 # Atuin
 mkdir ~/.local/share/atuin/
 atuin init nu | save -f ~/.local/share/atuin/init.nu
+
+# Starship
+mkdir ~/.cache/starship
+starship init nu | save -f ~/.cache/starship/init.nu

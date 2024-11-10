@@ -32,6 +32,7 @@ return {
       formatters_by_ft = {
         hcl = { "terragrunt_hclfmt" },
         tofu = { "tofu_fmt" },
+        nix = { "alejandra" },
       },
     },
   },
