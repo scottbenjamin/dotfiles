@@ -13,6 +13,7 @@ alias v = nvim
 alias vim = nvim
 
 alias switch = darwin-rebuild switch --flake ~/code/dotfiles/nix-darwin/
+alias check = darwin-rebuild check --flake ~/code/dotfiles/nix-darwin/
 
 # Custom functions
 # Git fetch all and pull without rebase

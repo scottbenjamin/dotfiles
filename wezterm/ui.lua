@@ -108,7 +108,7 @@ function M.append(config)
 		-- color_scheme = "Tokyo Night Storm",
 		color_scheme = "Kanagawa (Gogh)",
 
-		scrollback_lines = 5000, --defauls: 3500
+		scrollback_lines = 50000, --defauls: 3500
 
 		-- Padding
 		-- Tab bar can't have padding https://github.com/wez/wezterm/issues/3077
@@ -121,8 +121,8 @@ function M.append(config)
 		hide_tab_bar_if_only_one_tab = true, -- default: false
 
 		inactive_pane_hsb = {
-			saturation = 0.70,
-			brightness = 0.70,
+			saturation = 0.90,
+			brightness = 0.40,
 		},
 
 		-- Window Size
@@ -135,7 +135,7 @@ function M.append(config)
 		audible_bell = "Disabled",
 
 		window_background_opacity = 0.9,
-		macos_window_background_blur = 30,
+		macos_window_background_blur = 40,
 		bold_brightens_ansi_colors = true,
 	}
 
