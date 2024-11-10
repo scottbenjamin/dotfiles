@@ -40,9 +40,18 @@
     users = {
       scottbenjamin = {
         name = "scottbenjamin";
+        email = "scott.benjamin@gmail.com";
+        fullName = "Scott Benjamin";
+      };
+      scott = {
+        name = "scott";
+        email = "scott.benjamin@gmail.com";
+        fullName = "Scott Benjamin";
       };
       sbenjamin = {
         name = "sbenjamin";
+        email = "sbenjamin@absci.com";
+        fullName = "Scott Benjamin";
       };
     };
 

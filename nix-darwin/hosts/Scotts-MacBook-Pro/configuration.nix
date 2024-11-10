@@ -44,7 +44,7 @@
       "slack"
       "aerospace"
       "raycast"
-      # "discord"
+      "discord"
     ];
     brews = [
       "nushell"
@@ -55,6 +55,7 @@
   };
 
   programs.zsh.enable = true;
+
   # Add ability to use TouchID for sudo
   security.pam.enableSudoTouchIdAuth = true;
 
@@ -73,15 +74,10 @@
     delta
     direnv
     du-dust
-    fd
-    git
     jq
     k3d
-    k9s
     kubectl
     lazydocker
-    lazygit
-    neovim
     nushell
     pre-commit
     pyenv

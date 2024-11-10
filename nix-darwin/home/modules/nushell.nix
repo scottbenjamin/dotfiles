@@ -3,10 +3,11 @@
     nushell = {
       enable = true;
 
-      configFile.source = ./../../files/nushell/config.nu;
-      envFile.source = ./../../files/nushell/env.nu;
-      loginFile.source = ./../../files/nushell/login.nu;
+      environmentVariables = {
+        PAGER = "bat";
+      };
 
+      # Extra things to add to the config.nu file
       extraConfig = ''
         def hms [] {
             let h = ^hostname -s
@@ -36,6 +37,26 @@
           print $"Updating nvim configs... using ($env.XDG_CONFIG_HOME)"
           nvim
         }
+
+        $
+      '';
+
+      # Extra things to add to the env.nu file
+      extraEnv = ''
+        use std "path add"
+        # $env.PATH = ($env.PATH | split row (char esep))
+        # path add /some/path
+        # path add ($env.CARGO_HOME | path join "bin")
+        # path add ($env.HOME | path join ".local" "bin")
+        # $env.PATH = ($env.PATH | uniq)
+
+        # write nushell for loop over a list of paths to append to the path
+        path add  /opt/homebrew/bin
+        path add  $"($env.HOME)/.nix-profile/bin"
+        path add  $"/etc/profiles/per-user/($env.USER)/bin"
+        path add  /nix/var/nix/profiles/default/bin
+        path add  /run/current-system/sw/bin
+        path add  /usr/local/bin
       '';
 
       shellAliases = {

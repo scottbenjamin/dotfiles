@@ -12,10 +12,10 @@
     atuin
     awscli2
     bat
-    carapace
     delta
     direnv
     du-dust
+    mkalias
     fd
     git
     jq
@@ -23,9 +23,7 @@
     k9s
     kubectl
     lazydocker
-    lazygit
     mkalias
-    neovim
     nushell
     pre-commit
     pyenv
@@ -54,31 +52,31 @@ in {
     environment.systemPackages = systemPackages;
     # Fonts
     fonts.packages = [
-      (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
+      (pkgs.nerdfonts.override {fonts = ["Meslo" "JetBrainsMono"];})
     ];
 
     security.pam.enableSudoTouchIdAuth = true;
 
     # Alias configurations
-    system.activationScripts.applications.text = let
-      env = pkgs.buildEnv {
-        name = "system-applications";
-        paths = systemPackages;
-        pathsToLink = "/Applications";
-      };
-    in
-      pkgs.lib.mkForce ''
-        # Set up applications.
-        echo "setting up /Applications..." >&2
-        rm -rf /Applications/Nix\ Apps
-        mkdir -p /Applications/Nix\ Apps
-        find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-        while read -r src; do
-          app_name=$(basename "$src")
-          echo "copying $src" >&2
-          ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
-        done
-      '';
+    # system.activationScripts.applications.text = let
+    #   env = pkgs.buildEnv {
+    #     name = "system-applications";
+    #     paths = systemPackages;
+    #     pathsToLink = "/Applications";
+    #   };
+    # in
+    #   pkgs.lib.mkForce ''
+    #     # Set up applications.
+    #     echo "setting up /Applications..." >&2
+    #     rm -rf /Applications/Nix\ Apps
+    #     mkdir -p /Applications/Nix\ Apps
+    #     find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+    #     while read -r src; do
+    #       app_name=$(basename "$src")
+    #       echo "copying $src" >&2
+    #       ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
+    #     done
+    #   '';
 
     # Mac OS settings
     system.defaults = {
@@ -108,6 +106,7 @@ in {
           "keymapp"
           "brave-browser"
           "docker"
+          "alacritty"
         ]
         config.additionalHomebrewCasks
       ];
