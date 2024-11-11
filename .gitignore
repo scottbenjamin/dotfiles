@@ -9,3 +9,4 @@ zim/init.sh.old
 .DS_Store
 
 nushell/history**
+github-copilot/apps.json
