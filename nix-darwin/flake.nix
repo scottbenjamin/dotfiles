@@ -3,7 +3,8 @@
 
   inputs = {
     # NixPkg
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # NixDarwin
     darwin = {
@@ -19,32 +20,23 @@
 
     # Home Manager
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Flake utils
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs = {
     self,
     darwin,
-    flake-utils,
     home-manager,
     nix-homebrew,
     nixpkgs,
+    ...
   } @ inputs: let
     inherit (self) outputs;
-
     users = {
       scottbenjamin = {
         name = "scottbenjamin";
-        email = "scott.benjamin@gmail.com";
-        fullName = "Scott Benjamin";
-      };
-      scott = {
-        name = "scott";
         email = "scott.benjamin@gmail.com";
         fullName = "Scott Benjamin";
       };
@@ -65,36 +57,25 @@
         };
         modules = [
           ./hosts/${hostname}/configuration.nix
-          home-manager.darwinModules.home-manager
           nix-homebrew.darwinModules.nix-homebrew
-        ];
-      };
-
-    # Function for Home Manager configuration
-    mkHomeConfiguration = system: username: hostname:
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {inherit system;};
-        extraSpecialArgs = {
-          inherit inputs outputs;
-          userConfig = users.${username};
-        };
-        modules = [
-          ./home/${username}/${hostname}.nix
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${username} = import ./home/${username}/${hostname}.nix;
+            home-manager.extraSpecialArgs = {
+              inherit inputs outputs;
+              userConfig = users.${username};
+            };
+          }
         ];
       };
   in {
-    # Nixos configs
-    nixosConfigurations = {};
-
     darwinConfigurations = {
       "Scotts-MacBook-Pro" = mkDarwinConfiguration "Scotts-MacBook-Pro" "scottbenjamin";
-      "WORKHERE" = mkDarwinConfiguration "WORKHERE" "sbenjamin";
+      "M-WQ43L-ASB" = mkDarwinConfiguration "M-WQ43L-ASB" "sbenjamin";
     };
 
-    homeConfigurations = {
-      "scottbenjamin@Scotts-MacBook-Pro" = mkHomeConfiguration "aarch64-darwin" "scottbenjamin" "Scotts-MacBook-Pro";
-      "sbenjamin@WORKHERE" = mkHomeConfiguration "aarch64-darwin" "sbenjamin" "WORKHERE";
-    };
     overlays = import ./overlays {inherit inputs;};
   };
 }

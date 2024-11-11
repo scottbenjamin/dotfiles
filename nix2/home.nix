@@ -15,18 +15,10 @@
   # Home Manager is pretty good at managing code/dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    ".zshenv".source = ../zsh/.zshenv;
     ".config/wezterm".source = ../wezterm;
-    ".config/starship".source = ../starship;
-    ".config/zellij".source = ../zellij;
     ".config/nvim".source = ../nvim;
     ".config/nix".source = ../nix;
     ".config/nix-darwin".source = ../nix-darwin;
-    ".config/tmux".source = ../tmux;
-    ".config/nushell".source = ../nushell;
-    ".config/carapace".source = ../carapace;
-    # ".config/atuin".source = ../atuin;
-    # ".config/ghostty".source = ~/code/dotfiles/ghostty;
   };
 
   home.sessionVariables = {
@@ -47,4 +39,5 @@
       fi
     '';
   };
+
 }

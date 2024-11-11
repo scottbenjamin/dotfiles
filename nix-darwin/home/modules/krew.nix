@@ -10,7 +10,6 @@
     "ns"
     "rbac-lookup"
     "stern"
-    "janitor"
   ];
 
   # Convert the list of plugins into a space-separated string

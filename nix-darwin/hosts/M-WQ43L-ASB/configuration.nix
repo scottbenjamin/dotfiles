@@ -1,5 +1,6 @@
 {
   pkgs,
+  outputs,
   userConfig,
   ...
 }: {
@@ -12,7 +13,9 @@
     config = {
       allowUnfree = true;
     };
-    overlays = [];
+    overlays = [
+	    outputs.overlays.unstable-packages
+    ];
   };
 
   nix = {
@@ -37,14 +40,12 @@
     onActivation.upgrade = true;
     casks = [
       "1password"
-      "wezterm@nightly"
-      "keymapp"
+      "aerospace"
       "brave-browser"
       "docker"
-      "slack"
-      "aerospace"
+      "keymapp"
       "raycast"
-      "discord"
+      "wezterm@nightly"
     ];
     brews = [
       "nushell"
@@ -76,7 +77,7 @@
 
   # Fonts
   fonts.packages = [
-    (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
+    (pkgs.nerdfonts.override {fonts = ["Meslo" "JetBrainsMono"];})
   ];
 
   # Nix installed packages
@@ -102,7 +103,6 @@
   ];
 
   services.nix-daemon.enable = true;
-  services.aerospace.enable = true;
 
   system.stateVersion = 5;
 }

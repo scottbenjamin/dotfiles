@@ -1,4 +1,4 @@
-{outputs, ...}: {
+{userConfig, pkgs, ...}: {
   imports = [
     # ../modules/bat.nix
     # ../modules/bottom.nix
@@ -17,7 +17,7 @@
     ../modules/git.nix
     ../modules/home.nix
     ../modules/k9s.nix
-    ../modules/krew.nix
+ #   ../modules/krew.nix
     ../modules/lazygit.nix
     ../modules/neovim.nix
     ../modules/nushell.nix
@@ -26,10 +26,6 @@
 
   # Nixpkgs configuration
   nixpkgs = {
-    overlays = [
-      outputs.overlays.unstable-packages
-    ];
-
     config = {
       allowUnfree = true;
     };
