@@ -37,8 +37,6 @@
           print $"Updating nvim configs... using ($env.XDG_CONFIG_HOME)"
           nvim
         }
-
-        $
       '';
 
       # Extra things to add to the env.nu file
