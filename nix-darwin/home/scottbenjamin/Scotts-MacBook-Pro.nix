@@ -18,6 +18,7 @@
   home.file = {
     ".config/wezterm".source = ../../../wezterm;
     ".config/starship.toml".source = ../../files/starship.toml;
+    # ".aerospace.toml".source = ../../files/aerospace/aerospace.toml;
   };
 
   # Nicely reload system units when changing configs

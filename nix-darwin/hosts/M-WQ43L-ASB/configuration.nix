@@ -3,7 +3,9 @@
   outputs,
   userConfig,
   ...
-}: {
+}: let
+  common = import ../modules/common.nix {inherit pkgs;};
+in {
   nix-homebrew = {
     enable = true; # Install Homebrew under the default prefix
     user = "${userConfig.name}";
@@ -14,7 +16,7 @@
       allowUnfree = true;
     };
     overlays = [
-	    outputs.overlays.unstable-packages
+      outputs.overlays.unstable-packages
     ];
   };
 
@@ -81,26 +83,11 @@
   ];
 
   # Nix installed packages
-  environment.systemPackages = with pkgs; [
-    _1password-cli
-    alejandra
-    awscli2
-    bat
-    colima
-    delta
-    direnv
-    du-dust
-    jq
-    k3d
-    kubectl
-    lazydocker
-    nushell
-    pre-commit
-    pyenv
-    ripgrep
-    rustup
-    tenv
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      pyenv
+    ]
+    ++ common.commonPackages;
 
   services.nix-daemon.enable = true;
 

@@ -8,21 +8,29 @@ in {
     defaultEditor = true;
     withNodeJs = true;
     withPython3 = true;
-    withRuby = true;
+    withRuby = false;
 
     extraPackages = with pkgs; [
       alejandra
       black
+      docker-compose-language-service
+      docker-ls
+      gitlab-ci-ls
+      hclfmt
       isort
       lua-language-server
       markdownlint-cli
       nixd
+      nixpkgs-fmt
       nodePackages.bash-language-server
       nodePackages.prettier
+      prettierd
       pyright
       ruff
+      ruff-lsp
       shellcheck
       shfmt
+      sonarlint-ls
       stylua
       terraform-ls
       tflint

@@ -1,5 +1,0 @@
-{...}: {
-  programs.kubectl = {
-    enable = true;
-  };
-}
