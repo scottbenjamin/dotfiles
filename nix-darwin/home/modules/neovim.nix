@@ -10,7 +10,7 @@ in {
     withPython3 = true;
     withRuby = true;
 
-    extraPackages = with pkgs.unstable; [
+    extraPackages = with pkgs; [
       alejandra
       black
       isort
