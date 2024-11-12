@@ -19,9 +19,9 @@
     ../modules/fzf.nix
     ../modules/fd.nix
     ../modules/git.nix
+    ../modules/gitui.nix
     ../modules/home.nix
     ../modules/k9s.nix
-    #   ../modules/krew.nix
     ../modules/lazygit.nix
     ../modules/neovim.nix
     ../modules/nushell.nix
