@@ -63,6 +63,12 @@
         def hms [] {
           home-manager switch --flake $env.MY_NIX_CONFIGS;
         }
+
+        # Local nu aliases/commands we want kept out of git
+        let local_nu = $nu.home-path | path join .local.nu;
+        if ($local_nu | path exists) {
+          source $local_nu
+        }
       '';
 
       # Extra things to add to the env.nu file
