@@ -78,6 +78,7 @@
       '';
 
       shellAliases = {
+        g = "rg";
         ga = "git add";
         gco = "git checkout";
         gfa = "git fetch --all";
