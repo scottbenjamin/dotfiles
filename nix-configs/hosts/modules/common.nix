@@ -6,11 +6,12 @@
     delta
     direnv
     du-dust
+    glab
     jq
     k3d
-    nodejs
     kubectl
     lazydocker
+    nodejs
     nushell
     pre-commit
     pyenv
