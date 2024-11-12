@@ -23,11 +23,11 @@
   commonCasks = [
     "1password"
     "aerospace"
+    "alacritty"
     "brave-browser"
     "docker"
     "keymapp"
     "raycast"
     "wezterm@nightly"
-    ""
   ];
 }
