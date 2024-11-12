@@ -62,7 +62,7 @@
         };
       };
 
-      import = [
+      general.import = [
         "~/.config/alacritty/themes/themes/kangawa_wave.toml"
       ];
 
