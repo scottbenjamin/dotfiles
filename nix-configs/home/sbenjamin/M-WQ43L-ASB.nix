@@ -15,6 +15,7 @@
   home.file = {
     ".config/wezterm".source = ../../../wezterm;
     ".config/starship.toml".source = ../../files/starship.toml;
+    ".config/alacritty/themes/kangawa_wave.toml".source = ../../files/alacritty/kangawa_wave.toml;
   };
 
   home.sessionPath = [

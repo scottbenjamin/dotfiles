@@ -62,16 +62,17 @@
         };
       };
 
-      general.import = [
-        "~/.config/alacritty/themes/themes/kangawa_wave.toml"
-      ];
+      general = {
+        import = [
+          "~/.config/alacritty/themes/kangawa_wave.toml"
+        ];
+        live_config_reload = true;
+      };
 
       selection = {
         semantic_escape_chars = '',│`|:"' ()[]{}<>'';
         save_to_clipboard = true;
       };
-
-      live_config_reload = true;
     };
   };
 }
