@@ -15,6 +15,7 @@
   home.file = {
     ".config/wezterm".source = ../../../wezterm;
     ".config/starship.toml".source = ../../files/starship.toml;
+    ".config/nix".source = ../../../nix;
   };
 
   # Nicely reload system units when changing configs

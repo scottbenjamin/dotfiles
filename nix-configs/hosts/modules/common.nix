@@ -2,7 +2,6 @@
   commonPackages = with pkgs; [
     _1password-cli
     awscli2
-    bat
     colima
     delta
     direnv

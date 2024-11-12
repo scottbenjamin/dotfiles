@@ -57,7 +57,7 @@
             return "nix build"
           } else {
             return "Unknown OS"
-          }	
+          }
         }
 
         def hms [] {
@@ -74,7 +74,7 @@
         path add  /nix/var/nix/profiles/default/bin
         path add  /run/current-system/sw/bin
         path add  /usr/local/bin
-        $env.MY_NIX_CONFIGS = "~/code/dotfiles/nix-configs"
+        $env.MY_NIX_CONFIGS = $"($nu.home-path | path join code dotfiles nix-configs)"
       '';
 
       shellAliases = {
