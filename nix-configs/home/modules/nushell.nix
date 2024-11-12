@@ -36,6 +36,33 @@
           print $"Updating nvim configs... using ($env.XDG_CONFIG_HOME)"
           nvim
         }
+
+
+        # nix/darwin-build Tools
+        # Rebuild and switch
+        def drs [] {
+          darwin-build switch --flake $env.MY_NIX_CONFIGS;
+        }
+
+        # Check the flake
+        def drc [] {
+          let $cmd = _get_nix_rebuild_cmd()
+          darwin-build check --flake $env.MY_NIX_CONFIGS;
+        }
+
+        def _get_nix_rebuild_cmd [] {
+          if (uname | get operating-system) == 'Darwin' {
+            return "darwin-rebuild"
+          } else if (uname | get operating-system|str contains Linux) {
+            return "nix build"
+          } else {
+            return "Unknown OS"
+          }
+        }
+
+        def hms [] {
+          home-manager switch --flake $env.MY_NIX_CONFIGS;
+        }
       '';
 
       # Extra things to add to the env.nu file
@@ -47,6 +74,7 @@
         path add  /nix/var/nix/profiles/default/bin
         path add  /run/current-system/sw/bin
         path add  /usr/local/bin
+        $env.MY_NIX_CONFIGS = $"($nu.home-path | path join code dotfiles nix-configs)"
       '';
 
       shellAliases = {
@@ -70,9 +98,7 @@
         # Nix related
         nsn = "nix search nixpkgs";
 
-        # darwin-build
-        drs = "darwin-rebuild switch --flake ~/code/dotfiles/nix-darwin/";
-        drc = "darwin-rebuild check --flake ~/code/dotfiles/nix-darwin/";
+        drc = "darwin-rebuild check --flake ~/code/dotfiles/nix-configs/";
       };
     };
     # Completions

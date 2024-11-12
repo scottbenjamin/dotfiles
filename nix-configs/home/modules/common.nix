@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    # ../modules/bat.nix
+    ../modules/bat.nix
     # ../modules/bottom.nix
     # ../modules/go.nix
     # ../modules/gpg.nix
