@@ -47,7 +47,7 @@
         # Check the flake
         def drc [] {
           let $cmd = _get_nix_rebuild_cmd()
-          darwin-build check --flake $env.MY_NIX_CONFIGS;
+          darwin-rebuild check --flake $env.MY_NIX_CONFIGS;
         }
 
         def _get_nix_rebuild_cmd [] {
