@@ -4,7 +4,7 @@
     enable = true;
     # catppuccin.enable = true;
     settings = {
-      shell.program = "nu";
+      terminal.shell.program = "nu";
       # shell.args = [
       #   "-l"
       #   "-c"
@@ -42,7 +42,7 @@
       font = {
         size =
           if pkgs.stdenv.isDarwin
-          then 15
+          then 13
           else 12;
         normal = {
           family = "JetBrainsMono Nerd Font";
@@ -62,12 +62,17 @@
         };
       };
 
+      general = {
+        import = [
+          "~/.config/alacritty/themes/kangawa_wave.toml"
+        ];
+        live_config_reload = true;
+      };
+
       selection = {
         semantic_escape_chars = '',│`|:"' ()[]{}<>'';
         save_to_clipboard = true;
       };
-
-      live_config_reload = true;
     };
   };
 }

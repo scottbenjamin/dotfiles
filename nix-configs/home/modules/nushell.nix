@@ -41,7 +41,7 @@
         # nix/darwin-build Tools
         # Rebuild and switch
         def drs [] {
-          darwin-build switch --flake $env.MY_NIX_CONFIGS;
+          darwin-rebuild switch --flake $env.MY_NIX_CONFIGS;
         }
 
         # Check the flake
@@ -78,6 +78,7 @@
       '';
 
       shellAliases = {
+        g = "rg";
         ga = "git add";
         gco = "git checkout";
         gfa = "git fetch --all";
