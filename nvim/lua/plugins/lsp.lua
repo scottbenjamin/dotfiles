@@ -15,17 +15,6 @@ return {
           formatting = {
             command = { "alejandra" },
           },
-          options = {
-            nixos = {
-              expr = "let flake = builtins.getFlake(toString ./.); in flake.nixosConfigurations.nz.options",
-            },
-            home_manager = {
-              expr = 'let flake = builtins.getFlake(toString ./.); in flake.homeConfigurations."sab@mbp16".options',
-            },
-            darwin = {
-              expr = "let flake = builtins.getFlake(toString ./.); in flake.darwinConfigurations.mbp16.options",
-            },
-          },
         },
       },
     },
