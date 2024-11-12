@@ -42,7 +42,7 @@
       font = {
         size =
           if pkgs.stdenv.isDarwin
-          then 15
+          then 13
           else 12;
         normal = {
           family = "JetBrainsMono Nerd Font";
@@ -61,6 +61,10 @@
           style = "Italic";
         };
       };
+
+      import = [
+        "~/.config/alacritty/themes/themes/kangawa_wave.toml"
+      ];
 
       selection = {
         semantic_escape_chars = '',│`|:"' ()[]{}<>'';

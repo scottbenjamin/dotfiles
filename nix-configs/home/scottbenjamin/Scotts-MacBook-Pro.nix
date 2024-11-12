@@ -18,7 +18,7 @@
   home.file = {
     ".config/wezterm".source = ../../../wezterm;
     ".config/starship.toml".source = ../../files/starship.toml;
-    # ".aerospace.toml".source = ../../files/aerospace/aerospace.toml;
+    ".config/alacritty/themes/kangawa_wave.toml".source = ../../files/alacritty/themes/kangawa_wave.toml;
   };
 
   # Nicely reload system units when changing configs
