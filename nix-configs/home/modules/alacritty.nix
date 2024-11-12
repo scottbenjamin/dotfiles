@@ -4,7 +4,7 @@
     enable = true;
     # catppuccin.enable = true;
     settings = {
-      shell.program = "nu";
+      terminal.shell.program = "nu";
       # shell.args = [
       #   "-l"
       #   "-c"
