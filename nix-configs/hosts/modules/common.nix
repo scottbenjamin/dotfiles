@@ -2,6 +2,7 @@
   commonPackages = with pkgs; [
     _1password-cli
     awscli2
+    btop
     colima
     delta
     direnv
@@ -13,6 +14,7 @@
     lazydocker
     nodejs
     nushell
+    oci-cli
     pre-commit
     pyenv
     ripgrep
@@ -22,7 +24,7 @@
 
   commonCasks = [
     "1password"
-    "aerospace"
+    # "aerospace"
     "alacritty"
     "brave-browser"
     "docker"

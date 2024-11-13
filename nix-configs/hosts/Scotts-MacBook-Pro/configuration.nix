@@ -35,18 +35,11 @@ in {
     onActivation.cleanup = "zap";
     onActivation.autoUpdate = true;
     onActivation.upgrade = true;
-    casks = [
-      "1password"
-      "aerospace"
-      "alacritty"
-      "brave-browser"
-      "discord"
-      "docker"
-      "keymapp"
-      "raycast"
-      "slack"
-      "wezterm@nightly"
-    ];
+    casks =
+      [
+        "discord"
+      ]
+      ++ common.commonCasks;
     brews = [
       "nushell"
     ];
@@ -88,7 +81,7 @@ in {
     ++ common.commonPackages;
 
   services.nix-daemon.enable = true;
-  services.aerospace.enable = true;
+  # services.aerospace.enable = true;
 
   services.spacebar = {
     enable = true;

@@ -36,8 +36,8 @@ def drs [] {
 }
 
 # Run darwin-rebuild check
-def drc [] {
-  darwin-rebuild check --flake $env.MY_NIX_CONFIGS
+def drc [ ] {
+  darwin-rebuild check --flake $env.MY_NIX_CONFIGS 
 }
 
 

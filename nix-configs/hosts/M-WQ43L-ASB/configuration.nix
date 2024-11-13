@@ -40,16 +40,10 @@ in {
     onActivation.cleanup = "zap";
     onActivation.autoUpdate = true;
     onActivation.upgrade = true;
-    casks = [
-      "1password"
-      "aerospace"
-      "alacritty"
-      "brave-browser"
-      "docker"
-      "keymapp"
-      "raycast"
-      "wezterm@nightly"
-    ];
+    casks =
+      [
+      ]
+      ++ common.commonCasks;
     brews = [
       "nushell"
     ];
@@ -62,6 +56,31 @@ in {
 
   # Add ability to use TouchID for sudo
   security.pam.enableSudoTouchIdAuth = true;
+
+  # Stylix configuration
+  stylix = {
+    image = "/tmp/blah";
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+
+    fonts = {
+      monospace = {
+        package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
+        name = "JetBrainsMono Nerd Font Mono";
+      };
+
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
+    };
+  };
 
   # Mac OS settings
   system.defaults = {

@@ -98,15 +98,15 @@ function M.append(config)
 
 		default_cursor_style = "BlinkingBar", -- default: 'SteadyBlock'
 		font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" }), -- Font
-		font_size = 12, -- Font Size
+		font_size = 13, -- Font Size
 
 		-- Set the color theme
 		color_scheme_dirs = { "$HOME/.config/wezterm/colors" },
 
 		-- color_scheme = "melange_dark"
 		-- color_scheme = "Catppuccin Macchiato"
-		-- color_scheme = "Tokyo Night Storm",
-		color_scheme = "Kanagawa (Gogh)",
+		color_scheme = "Tokyo Night Storm",
+		-- color_scheme = "Kanagawa (Gogh)",
 
 		scrollback_lines = 50000, --defauls: 3500
 

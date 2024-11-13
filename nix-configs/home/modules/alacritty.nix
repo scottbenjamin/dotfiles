@@ -26,7 +26,6 @@
           columns = 140;
           lines = 70;
         };
-        opacity = 0.8;
         blur = true;
         padding = {
           x = 5;
@@ -39,33 +38,10 @@
         multiplier = 3;
       };
 
-      font = {
-        size =
-          if pkgs.stdenv.isDarwin
-          then 13
-          else 12;
-        normal = {
-          family = "JetBrainsMono Nerd Font";
-          style = "Regular";
-        };
-        bold = {
-          family = "JetBrainsMono Nerd Font";
-          style = "Bold";
-        };
-        italic = {
-          family = "JetBrainsMono Nerd Font";
-          style = "Italic";
-        };
-        bold_italic = {
-          family = "JetBrainsMono Nerd Font";
-          style = "Italic";
-        };
-      };
-
       general = {
-        import = [
-          "~/.config/alacritty/themes/kangawa_wave.toml"
-        ];
+        # import = [
+        # "~/.config/alacritty/themes/kangawa_wave.toml"
+        # ];
         live_config_reload = true;
       };
 

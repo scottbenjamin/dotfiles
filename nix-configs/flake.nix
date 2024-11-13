@@ -23,6 +23,11 @@
       url = "github:nix-community/home-manager/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Stylix -- https://stylix.danth.me/index.html
+    stylix = {
+      url = "github:danth/stylix";
+    };
   };
 
   outputs = {
@@ -31,6 +36,7 @@
     home-manager,
     nix-homebrew,
     nixpkgs,
+    stylix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -64,6 +70,7 @@
           ./hosts/${hostname}/configuration.nix
           nix-homebrew.darwinModules.nix-homebrew
           home-manager.darwinModules.home-manager
+          stylix.darwinModules.stylix
           {
             home-manager.backupFileExtension = "bak";
             home-manager.useGlobalPkgs = true;
@@ -87,6 +94,7 @@
           home-manager.backupFileExtension = "bak";
         };
         modules = [
+          stylix.homeManagerModules.stylix
           ./home/${username}/${hostname}.nix
         ];
       };
