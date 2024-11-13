@@ -906,6 +906,11 @@ $env.config = {
   }
     ]
 }
+const custom_nu = ($nu.home-path | path join .config nushell custom.nu)
+source ($custom_nu)
 
-source ~/.config/nushell/custom.nu
-
+# Load any commands/aliases unique to this host
+const local_nu = ($nu.home-path | path join .config nushell local.nu)
+if ($local_nu | path exists) {
+    source ($local_nu)
+}

@@ -77,7 +77,7 @@
             home-manager.useUserPackages = true;
             home-manager.users.${username} = import ./home/${username}/${hostname}.nix;
             home-manager.extraSpecialArgs = {
-              inherit inputs outputs;
+              inherit inputs outputs hostname;
               userConfig = users.${username};
             };
           }

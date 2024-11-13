@@ -42,11 +42,15 @@ in {
     onActivation.upgrade = true;
     casks =
       [
+        "utm"
       ]
       ++ common.commonCasks;
-    brews = [
-      "nushell"
-    ];
+
+    brews =
+      [
+      ]
+      ++ common.commonBrews;
+
     taps = [
       "nikitabobko/tap"
     ];
@@ -79,7 +83,23 @@ in {
         package = pkgs.dejavu_fonts;
         name = "DejaVu Serif";
       };
+
+      sizes = {
+        applications = 12;
+        terminal = 13;
+        desktop = 10;
+        popups = 10;
+      };
     };
+
+    opacity = {
+      applications = 0.8;
+      terminal = 0.8;
+      desktop = 1.0;
+      popups = 1.0;
+    };
+
+    polarity = "dark"; # "light" or "either"
   };
 
   # Mac OS settings
@@ -98,9 +118,9 @@ in {
   };
 
   # Fonts
-  fonts.packages = [
-    (pkgs.nerdfonts.override {fonts = ["Meslo" "JetBrainsMono"];})
-  ];
+  # fonts.packages = [
+  #   (pkgs.nerdfonts.override {fonts = ["Meslo" "JetBrainsMono"];})
+  # ];
 
   # Nix installed packages
   environment.systemPackages = with pkgs;

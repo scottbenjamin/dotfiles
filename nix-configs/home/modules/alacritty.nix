@@ -4,12 +4,8 @@
     enable = true;
     # catppuccin.enable = true;
     settings = {
-      terminal.shell.program = "nu";
-      # shell.args = [
-      #   "-l"
-      #   "-c"
-      #   "tmux attach || tmux "
-      # ];
+      terminal.shell.program = "/run/current-system/sw/bin/nu";
+      terminal.shell.args = ["-i"];
 
       env = {
         TERM = "xterm-256color";
@@ -23,7 +19,7 @@
         dynamic_title = false;
         dynamic_padding = true;
         dimensions = {
-          columns = 140;
+          columns = 200;
           lines = 70;
         };
         blur = true;
@@ -33,16 +29,16 @@
         };
       };
 
+      cursor = {
+        style = {
+          shape = "Block";
+          blinking = "On";
+        };
+      };
+
       scrolling = {
         history = 10000;
         multiplier = 3;
-      };
-
-      general = {
-        # import = [
-        # "~/.config/alacritty/themes/kangawa_wave.toml"
-        # ];
-        live_config_reload = true;
       };
 
       selection = {

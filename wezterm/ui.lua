@@ -98,7 +98,7 @@ function M.append(config)
 
 		default_cursor_style = "BlinkingBar", -- default: 'SteadyBlock'
 		font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" }), -- Font
-		font_size = 13, -- Font Size
+		font_size = 12.5, -- Font Size
 
 		-- Set the color theme
 		color_scheme_dirs = { "$HOME/.config/wezterm/colors" },

@@ -22,6 +22,10 @@
     tenv
   ];
 
+  commonBrews = [
+    "nushell"
+  ];
+
   commonCasks = [
     "1password"
     # "aerospace"
