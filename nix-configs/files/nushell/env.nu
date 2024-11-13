@@ -80,16 +80,12 @@ $env.XDG_DATA_HOME = ($nu.home-path | path join '.local' 'share')
 $env.XDG_STATE_HOME = ($nu.home-path | path join '.local' 'state')
 $env.XDG_CONFIG_HOME = ($nu.home-path | path join ".config")
 
-$env.NUPM_HOME = ($env.XDG_DATA_HOME | path join 'nupm')
-
-
 # Directories to search for scripts when calling source or use
 # The default for this is $nu.default-config-dir/scripts
 $env.NU_LIB_DIRS = [
     ($env.XDG_CONFIG_HOME | path join nushell scripts) 
     ($env.XDG_CONFIG_HOME | path join nushell completions) 
     ($env.XDG_STATE_HOME | path join nushell modules) # Nushell modules dir
-    ($env.NUPM_HOME | path join modules) # nupm modules
 ]
 
 # Directories to search for plugin binaries when calling register
@@ -100,12 +96,6 @@ $env.NU_PLUGIN_DIRS = [
 
 # To allow for 'shells'
 use std/dirs shells-aliases *
-
-# Set XDG Config Home
-$env.VISUAL = "nvim"
-$env.EDITOR = $env.VISUAL
-$env.PAGER = "bat"
-
 
 # Terminfo
 $env.TERMINFO_DIRS = [
@@ -130,9 +120,6 @@ use std "path add"
 
 # write nushell for loop over a list of paths to append to the path
 path add  /opt/homebrew/bin
-path add  ($nu.home-path | path join ".local" "bin")
-path add  ($nu.home-path | path join ".cargo" "bin")
-path add  ($env.NUPM_HOME| path join scripts)
 path add  $"($env.HOME)/.nix-profile/bin"
 path add  $"/etc/profiles/per-user/($env.USER)/bin"
 path add  /nix/var/nix/profiles/default/bin
@@ -142,27 +129,10 @@ path add  /usr/local/bin
 # Linux
 #$env.PATH = ($env.PATH | split row (char esep) | prepend '/home/linuxbrew/.linuxbrew/bin')
 
+$env.MY_NIX_CONFIGS = ($env.HOME | path join code dotfiles nix-configs)
+
 # Pyenv add to PATH
 if (which pyenv | length ) > 0 {
   $env.PATH = ($env.PATH | split row (char esep) | prepend $"(pyenv root)/shims")
 }
 
-const nu_config_dir = ($nu.home-path | path join '.config/nushell')
-
-zoxide init nushell | save -f ~/.zoxide.nu
-
-$env.STARSHIP_CONFIG = ($nu.home-path | path join .config starship starship.toml )
-#$env.NIX_CONF_DIR = ($nu.home-path | path join '.config' 'nix')
-$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' 
-
-# Carapace completions
-#mkdir ~/.cache/carapace
-#carapace _carapace nushell | save -f ~/.cache/carapace/init.nu
-
-# Atuin
-#mkdir ~/.local/share/atuin/
-##atuin init nu | save -f ~/.local/share/atuin/init.nu
-
-# Starship
-#mkdir ~/.cache/starship
-#starship init nu | save -f ~/.cache/starship/init.nu

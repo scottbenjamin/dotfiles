@@ -44,8 +44,7 @@
         name = "scott";
         email = "scott.benjamin@gmail.com";
         fullName = "Scott Benjamin";
-
-        };
+      };
       sbenjamin = {
         name = "sbenjamin";
         email = "sbenjamin@absci.com";
@@ -66,9 +65,9 @@
           nix-homebrew.darwinModules.nix-homebrew
           home-manager.darwinModules.home-manager
           {
+            home-manager.backupFileExtension = "bak";
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "bak";
             home-manager.users.${username} = import ./home/${username}/${hostname}.nix;
             home-manager.extraSpecialArgs = {
               inherit inputs outputs;
@@ -78,14 +77,14 @@
         ];
       };
 
-     # Function for Home Manager configuration
+    # Function for Home Manager configuration
     mkHomeConfiguration = system: username: hostname:
       home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {inherit system;};
         extraSpecialArgs = {
           inherit inputs outputs;
           userConfig = users.${username};
-            home-manager.backupFileExtension = "bak";
+          home-manager.backupFileExtension = "bak";
         };
         modules = [
           ./home/${username}/${hostname}.nix

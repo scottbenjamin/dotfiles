@@ -37,14 +37,15 @@ in {
     onActivation.upgrade = true;
     casks = [
       "1password"
-      "wezterm@nightly"
-      "keymapp"
-      "brave-browser"
-      "docker"
-      "slack"
       "aerospace"
-      "raycast"
+      "alacritty"
+      "brave-browser"
       "discord"
+      "docker"
+      "keymapp"
+      "raycast"
+      "slack"
+      "wezterm@nightly"
     ];
     brews = [
       "nushell"

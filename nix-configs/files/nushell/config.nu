@@ -907,9 +907,5 @@ $env.config = {
     ]
 }
 
-source ~/.zoxide.nu
-source ~/.local/share/atuin/init.nu
-source ~/.cache/carapace/init.nu
+source ~/.config/nushell/custom.nu
 
-# Starship
-use ~/.cache/starship/init.nu

@@ -43,6 +43,7 @@ in {
     casks = [
       "1password"
       "aerospace"
+      "alacritty"
       "brave-browser"
       "docker"
       "keymapp"
