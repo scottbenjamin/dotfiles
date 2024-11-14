@@ -35,6 +35,13 @@ def drc [ ] {
 }
 
 
+def ggg [] {
+  let default_branch = (git remote show origin | find HEAD | split row ":" |last)
+  git fetch -ap
+  git pull origin $default_branch
+} 
+
+# Enable updating lazyvim dotfiles since nix makes home-manager configs read-only
 def uv [] {
   $env.XDG_CONFIG_HOME = ($nu.home-path | path join code dotfiles )
   print "Updating nvim dotfiles"
