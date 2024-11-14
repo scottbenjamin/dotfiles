@@ -14,6 +14,8 @@
     ];
     extraConfig = ''
       set-option -g default-command "nu -i"
+      set-option -g status-position top
+      set-option -g focus-events on
       # Start windows and panes at 1, not 0
       set -g base-index 1
       set -g pane-base-index 1
