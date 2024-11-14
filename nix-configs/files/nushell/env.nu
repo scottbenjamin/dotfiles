@@ -75,17 +75,23 @@ $env.ENV_CONVERSIONS = {
 
 
 # XDG_CONFIG_HOM is set in default mac nushell dir
-$env.XDG_CACHE_HOME = ($nu.home-path | path join '.cache')
-$env.XDG_DATA_HOME = ($nu.home-path | path join '.local' 'share')
-$env.XDG_STATE_HOME = ($nu.home-path | path join '.local' 'state')
-$env.XDG_CONFIG_HOME = ($nu.home-path | path join ".config")
+#$env.XDG_CACHE_HOME = ($nu.home-path | path join '.cache')
+#$env.XDG_DATA_HOME = ($nu.home-path | path join '.local' 'share')
+#$env.XDG_STATE_HOME = ($nu.home-path | path join '.local' 'state')
+#$env.XDG_CONFIG_HOME = ($nu.home-path | path join ".config")
 
 # Directories to search for scripts when calling source or use
 # The default for this is $nu.default-config-dir/scripts
+#$env.NU_LIB_DIRS = [
+#    ($env.XDG_CONFIG_HOME | path join nushell scripts) 
+#    ($env.XDG_CONFIG_HOME | path join nushell completions) 
+#    ($env.XDG_STATE_HOME | path join nushell modules) # Nushell modules dir
+#]
+# Directories to search for scripts when calling source or use
+# The default for this is $nu.default-config-dir/scripts
 $env.NU_LIB_DIRS = [
-    ($env.XDG_CONFIG_HOME | path join nushell scripts) 
-    ($env.XDG_CONFIG_HOME | path join nushell completions) 
-    ($env.XDG_STATE_HOME | path join nushell modules) # Nushell modules dir
+    ($nu.default-config-dir | path join 'scripts') # add <nushell-config-dir>/scripts
+    ($nu.data-dir | path join 'completions') # default home for nushell completions
 ]
 
 # Directories to search for plugin binaries when calling register

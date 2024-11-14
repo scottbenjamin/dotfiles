@@ -17,6 +17,7 @@
     ../modules/lazygit.nix
     ../modules/neovim.nix
     ../modules/nushell.nix
+    ../modules/tmux.nix
     # ../modules/stylix.nix
     # ../modules/tmux.nix
     ../modules/zoxide.nix

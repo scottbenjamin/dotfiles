@@ -19,7 +19,6 @@
     ".config/nushell/custom.nu".source = ../../files/nushell/custom.nu;
     ".config/nushell/env.nu".source = ../../files/nushell/env.nu;
     ".config/nushell/local.nu".source = ../../files/nushell/${hostname}.nu;
-    # ".config/alacritty/alacritty.toml".source = ../../files/alacritty/alacrity.toml;
   };
 
   home.sessionPath = [
