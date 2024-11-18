@@ -20,6 +20,7 @@ disabled = false
 
 [conda]
 symbol = " "
+disabled = true
 
 [docker_context]
 symbol = " "
@@ -44,9 +45,11 @@ symbol = " "
 
 [nodejs]
 symbol = " "
+disabled = true
 
 [package]
 symbol = " "
+disabled = true
 
 [python]
 symbol = "🐍 "

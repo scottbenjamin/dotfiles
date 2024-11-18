@@ -3,7 +3,7 @@
     enable = true;
     shortcut = "s";
     terminal = "tmux-256color";
-    historyLimit = 10000;
+    historyLimit = 15000;
     shell = "${pkgs.nushell}/bin/nu";
     resizeAmount = 5;
 
@@ -14,6 +14,7 @@
       tmuxPlugins.better-mouse-mode
       tmuxPlugins.tmux-thumbs
       tmuxPlugins.tmux-fzf
+      tmuxPlugins.yank
     ];
     extraConfig = ''
       # Options
