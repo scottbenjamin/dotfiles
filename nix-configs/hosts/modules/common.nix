@@ -34,6 +34,7 @@
     "docker"
     "keymapp"
     "raycast"
+    "slack"
     "wezterm@nightly"
   ];
 }

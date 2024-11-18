@@ -73,10 +73,52 @@ in {
     (pkgs.nerdfonts.override {fonts = ["Meslo" "JetBrainsMono"];})
   ];
 
+  # Stylix configuration
+  stylix = {
+    image = "/tmp/blah";
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+
+    fonts = {
+      monospace = {
+        package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
+        name = "JetBrainsMono Nerd Font Mono";
+      };
+
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
+
+      sizes = {
+        applications = 12;
+        terminal = 13;
+        desktop = 10;
+        popups = 10;
+      };
+    };
+
+    opacity = {
+      applications = 0.8;
+      terminal = 0.8;
+      desktop = 1.0;
+      popups = 1.0;
+    };
+
+    polarity = "dark"; # "light" or "either"
+  };
+
   # Nix installed packages
   environment.systemPackages = with pkgs;
     [
       spacebar
+      utm
     ]
     ++ common.commonPackages;
 

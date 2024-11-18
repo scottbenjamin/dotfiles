@@ -6,6 +6,8 @@ local opt = vim.opt
 opt.clipboard = ""
 opt.inccommand = "split"
 
+vim.lsp.set_log_level("off")
+
 vim.filetype.add({
   extension = {
     hcl = "hcl",
