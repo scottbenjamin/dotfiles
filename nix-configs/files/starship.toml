@@ -68,7 +68,7 @@ symbol = " "
 symbol = "ﯣ "
 
 [terraform]
-disabled = false
+disabled = true
 format = "via [$symbol$version]($style) "
 symbol = "💠 "
 

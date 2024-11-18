@@ -126,6 +126,7 @@ in {
   environment.systemPackages = with pkgs;
     [
       pyenv
+      gimme-aws-creds
     ]
     ++ common.commonPackages;
 

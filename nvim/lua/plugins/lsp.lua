@@ -3,6 +3,10 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
+        nil_ls = {
+          mason = false,
+          enabled = false,
+        },
         nixd = {
           nixpkgs = {
             -- For flake.

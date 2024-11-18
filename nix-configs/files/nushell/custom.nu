@@ -35,11 +35,29 @@ def drc [ ] {
 }
 
 
+def check-connection-gitlab [] {
+  let connection = (nc -zvw2 gitlab.absci.cloud 22 out>/dev/null)
+  if $env.LAST_EXIT_CODE != 0 {
+    return false
+  } else {
+    return true
+  }
+}
+
 def ggg [] {
-  let default_branch = (git remote show origin | find HEAD | split row ":" |last)
-  git fetch -ap
-  git pull origin $default_branch
-} 
+
+  if (not ($env.PWD | path join .git | path exists)) {
+    print "Not a git repository"
+    return
+  } 
+
+    let default_branch = (git remote show origin | find HEAD | split row ":" |last | str trim |ansi strip)
+    print "Fetching and pruning"
+    git fetch --all -p
+
+    print "Pulling origin ($default_branch)"
+    git pull origin ($default_branch)
+  }
 
 # Enable updating lazyvim dotfiles since nix makes home-manager configs read-only
 def uv [] {
@@ -80,14 +98,18 @@ def check_aws_session [profile: string] {
 def eks_creds --env [cluster_name: string, account_name: string] {
     print $"Accessing EKS cluster [ ($cluster_name) ] credentials from AWS"
     check_aws_session $account_name
+
     let kubeconfig_path = ($kube_config_dir | path join kubeconfig_($account_name)_($cluster_name))
-    aws eks update-kubeconfig --name usw2-($account_name)-($cluster_name) --region us-west-2 --profile ($account_name) --kubeconfig ($kubeconfig_path)
-    $env.KUBECONFIG = $kubeconfig_path
-    let current_context = (kubectl config current-context)
-    let new_contxt = ($current_context | str replace -r ".*/" "")
-    kubectl config rename-context ($current_context) ($new_contxt)
 
-
+    if (not ( $kubeconfig_path | path exists)) {
+      aws eks update-kubeconfig --name usw2-($account_name)-($cluster_name) --region us-west-2 --profile ($account_name) --kubeconfig ($kubeconfig_path)
+      $env.KUBECONFIG = $kubeconfig_path
+      let current_context = (kubectl config current-context)
+      let new_contxt = ($current_context | str replace -r ".*/" "")
+      kubectl config rename-context ($current_context) ($new_contxt)
+    } else {
+      $env.KUBECONFIG = $kubeconfig_path
+    }
 }
 
 # Function to access AI cluster credentials

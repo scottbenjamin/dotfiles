@@ -5,6 +5,9 @@
     terminal = "tmux-256color";
     historyLimit = 10000;
     shell = "${pkgs.nushell}/bin/nu";
+    resizeAmount = 5;
+
+    keyMode = "vi";
 
     plugins = with pkgs; [
       tmuxPlugins.sensible
@@ -13,10 +16,14 @@
       tmuxPlugins.tmux-fzf
     ];
     extraConfig = ''
+      # Options
       set-option -g default-command "nu -i"
       set-option -g status-position top
       set-option -g focus-events on
-      setw -g mode-keys vi
+
+      # Reload config
+      unbind r
+      bind r source-file ~/.config/tmux/tmux.conf
 
       # Start windows and panes at 1, not 0
       set -g base-index 1
