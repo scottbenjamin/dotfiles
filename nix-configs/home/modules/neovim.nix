@@ -21,6 +21,7 @@ in {
       lua-language-server
       markdownlint-cli
       nixd
+      nixpkgs-fmt
       nodePackages.bash-language-server
       nodePackages.prettier
       prettierd

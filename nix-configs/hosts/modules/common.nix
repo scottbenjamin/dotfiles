@@ -29,7 +29,7 @@
 
   commonCasks = [
     "1password"
-    # "aerospace"
+    "aerospace"
     "alacritty"
     "brave-browser"
     "docker"
