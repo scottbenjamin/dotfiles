@@ -14,22 +14,6 @@ _gitlab_ld() {
   op read "op://$MYVAULT/GitlabLocalDev/credential" --account $ACCOUNT
 }
 
-_spotinst_api() {
-  op read 'op://scott.benjamin/kd2hajenvsvrjslrgo3tnymdgi/credential' --account $ACCOUNT
-}
-
-_ur_hb_url_stg() {
-  op read 'op://Infrastructure/3s4iyh3xi5pdra4upyjmr4gwaq/credential' --account $ACCOUNT
-}
-
-_ur_hb_url_prd() {
-  op read 'op://Infrastructure/ey2fifwzgm5hy6vvjxwibdjaba/credential' --account $ACCOUNT
-}
-
-_slack_webhook() {
-  op read 'op://Infrastructure/ymwtdwffycq6gxf327wab7adxa/credential' --account $ACCOUNT
-}
-
 _pd_api() {
   op read 'op://scott.benjamin/5jvjmruz24zaq6loh2qpwto2sq/credential' --account $ACCOUNT
 }

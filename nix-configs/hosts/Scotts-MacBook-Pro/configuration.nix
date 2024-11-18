@@ -40,9 +40,11 @@ in {
         "discord"
       ]
       ++ common.commonCasks;
-    brews = [
-      "nushell"
-    ];
+    brews =
+      [
+        "nushell"
+      ]
+      ++ common.commonBrews;
     taps = [
       "nikitabobko/tap"
     ];

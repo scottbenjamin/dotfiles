@@ -12,6 +12,7 @@
     k3d
     kubectl
     lazydocker
+    nh
     nodejs
     nushell
     oci-cli
