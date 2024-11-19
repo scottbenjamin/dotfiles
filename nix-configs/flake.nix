@@ -87,7 +87,9 @@
     # Function for Home Manager configuration
     mkHomeConfiguration = system: username: hostname:
       home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {inherit system;};
+        pkgs = import nixpkgs {
+          inherit system;
+        };
         extraSpecialArgs = {
           inherit inputs outputs;
           userConfig = users.${username};
@@ -108,7 +110,7 @@
     # AKA, only nix pkg manager is present
     homeConfigurations = {
       "scott@jericho" = mkHomeConfiguration "x86_64-linux" "scott" "jericho";
-      "sbenjamin@pod" = mkHomeConfiguration "x86_64-linux" "sbenjamin" "pod";
+      "pod" = mkHomeConfiguration "x86_64-linux" "sbenjamin" "pod";
     };
 
     overlays = import ./overlays {inherit inputs;};
