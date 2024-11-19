@@ -5,93 +5,29 @@ format = """$directory$character"""
 right_format = """$all"""
 command_timeout = 1000
 
-[aws]
-format = 'on [$symbol($profile )(\($region\) )]($style)'
-style = "bold blue"
-symbol = "  "
-
-[jobs]
-disabled = true
-
-[kubernetes]
-style = "bold #8be9fd"
-format = '[$symbol$context( \($namespace\))]($style) in '
-disabled = false
-
-[conda]
-symbol = " "
-disabled = true
-
-[docker_context]
-symbol = " "
+[directory.substitutions]
+'~/tests/starship-custom' = 'work-project'
 
 [git_branch]
-disabled = false
-symbol = " "
-
-[golang]
-disabled = true
-symbol = " "
-
-[memory_usage]
-disabled = true
-symbol = " "
-
-[nim]
-symbol = " "
-
-[nix_shell]
-symbol = " "
-
-[nodejs]
-symbol = " "
-disabled = true
-
-[package]
-symbol = " "
-disabled = true
-
-[python]
-symbol = "🐍 "
-pyenv_version_name = true
-
-[ruby]
-symbol = " "
-
-[rust]
-symbol = " "
-
-[scala]
-symbol = " "
-
-[shlvl]
-symbol = " "
-
-[swift]
-symbol = "ﯣ "
-
-[terraform]
-disabled = true
-format = "via [$symbol$version]($style) "
-symbol = "💠 "
-
-[status]
-disabled = false
+format = '[$symbol$branch(:$remote_branch)]($style)'
 
 [git_status]
 disabled = false
 
-[git_commit]
-commit_hash_length = 7
-tag_disabled = false
-only_detached = false
-
-[battery]
+[aws]
+format = '[$symbol(profile: "$profile" )(\(region: $region\) )]($style)'
 disabled = true
+style = 'bold blue'
+symbol = " "
 
-[directory]
-read_only = "(read only)"
-
-[git_metrics]
+[kubernetes]
+symbol = '☸ '
 disabled = false
-format = '([+$added]($added_style)) ([-$deleted]($deleted_style)) '
+detect_files = ['Dockerfile']
+format = '[$symbol$context( \($namespace\))]($style) '
+contexts = [
+  { context_pattern = "arn:aws:eks:us-west-2:577926974532:cluster/zd-pvc-omer", style = "green", context_alias = "omerxx", symbol = " " },
+]
+
+[docker_context]
+disabled = true
