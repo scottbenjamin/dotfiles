@@ -47,6 +47,7 @@ in {
   environment.systemPackages = with pkgs;
     [
       pyenv
+      coder
     ]
     ++ common.commonPackages;
 

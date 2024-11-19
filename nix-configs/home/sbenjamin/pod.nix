@@ -1,4 +1,6 @@
-{userConfig, ...}: {
+{userConfig, 
+pkgs,
+...}: {
   imports = [
     ../modules/common.nix
   ];
@@ -17,6 +19,12 @@
     ".config/starship.toml".source = ../../files/starship.toml;
     ".config/nix".source = ../../../nix;
   };
+
+  home.packages = with pkgs;
+    [
+      coder
+      pyenv
+    ] 
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

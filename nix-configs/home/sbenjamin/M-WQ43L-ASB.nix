@@ -1,6 +1,7 @@
 {
   userConfig,
   hostname,
+  pkgs,
   ...
 }: {
   imports = [
@@ -25,6 +26,11 @@
     "/opt/homebrew/bin"
     "/run/current-system/sw/bin"
     "$HOME/.nix-profile/bin"
+  ];
+
+  home.packages = with pkgs; [
+    coder
+    pyenv
   ];
 
   # Nicely reload system units when changing configs
