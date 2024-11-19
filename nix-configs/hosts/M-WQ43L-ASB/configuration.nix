@@ -1,6 +1,7 @@
 {
   pkgs,
   outputs,
+  inputs,
   userConfig,
   ...
 }: let
@@ -129,6 +130,8 @@ in {
       gimme-aws-creds
     ]
     ++ common.commonPackages;
+
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
   services.nix-daemon.enable = true;
 

@@ -3,7 +3,7 @@ add_newline = false
 format = """$directory$character"""
 # move the rest of the prompt to the right
 right_format = """$all"""
-command_timeout = 1000
+command_timeout = 500
 
 [directory.substitutions]
 '~/tests/starship-custom' = 'work-project'
@@ -23,11 +23,10 @@ symbol = " "
 [kubernetes]
 symbol = '☸ '
 disabled = false
-detect_files = ['Dockerfile']
 format = '[$symbol$context( \($namespace\))]($style) '
-contexts = [
-  { context_pattern = "arn:aws:eks:us-west-2:577926974532:cluster/zd-pvc-omer", style = "green", context_alias = "omerxx", symbol = " " },
-]
 
 [docker_context]
+disabled = true
+
+[python]
 disabled = true

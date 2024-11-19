@@ -2,7 +2,6 @@
   pkgs,
   outputs,
   userConfig,
-  inputs,
   ...
 }: let
   common = import ../modules/common.nix {inherit pkgs;};
@@ -42,6 +41,8 @@ in {
     (pkgs.nerdfonts.override {fonts = ["Meslo" "JetBrainsMono"];})
   ];
 
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+
   # Nix installed packages
   environment.systemPackages = with pkgs;
     [
@@ -49,7 +50,6 @@ in {
     ]
     ++ common.commonPackages;
 
-  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
   services.nix-daemon.enable = true;
 
   system.stateVersion = 5;

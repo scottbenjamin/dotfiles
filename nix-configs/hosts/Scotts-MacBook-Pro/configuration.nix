@@ -1,6 +1,7 @@
 {
   pkgs,
   userConfig,
+  inputs,
   ...
 }: let
   common = import ../modules/common.nix {inherit pkgs;};
@@ -123,6 +124,8 @@ in {
       utm
     ]
     ++ common.commonPackages;
+
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
   services.nix-daemon.enable = true;
   # services.aerospace.enable = true;

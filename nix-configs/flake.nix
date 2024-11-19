@@ -108,6 +108,7 @@
     # AKA, only nix pkg manager is present
     homeConfigurations = {
       "scott@jericho" = mkHomeConfiguration "x86_64-linux" "scott" "jericho";
+      "sbenjamin@pod" = mkHomeConfiguration "x86_64-linux" "sbenjamin" "pod";
     };
 
     overlays = import ./overlays {inherit inputs;};

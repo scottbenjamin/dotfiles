@@ -24,16 +24,16 @@ alias nsn = nix search nixpkgs
 # Custom Commands
 # ---------------------------------------------------
  
-# Run darwin-rebuild switch
-def drs [] {
-  darwin-rebuild switch --flake $env.MY_NIX_CONFIGS
+# Run darwin-rebuild with specified action
+def dr [action: string] {
+  let action_full = match $action {
+    "s" => "switch",
+    "b" => "build",
+    "c" => "check",
+    _ => { error "Invalid action" }
+  }
+  darwin-rebuild $action_full --flake $env.MY_NIX_CONFIGS
 }
-
-# Run darwin-rebuild check
-def drc [ ] {
-  darwin-rebuild check --flake $env.MY_NIX_CONFIGS 
-}
-
 
 def check-connection-gitlab [] {
   let connection = (nc -zvw2 gitlab.absci.cloud 22 out>/dev/null)
