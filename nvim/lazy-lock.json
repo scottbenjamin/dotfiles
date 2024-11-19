@@ -1,5 +1,5 @@
 {
-  "CopilotChat.nvim": { "branch": "canary", "commit": "ff17f9217e844a7ac7f771c70216020c703415ad" },
+  "CopilotChat.nvim": { "branch": "canary", "commit": "947ca3d906a98ffdf9928d2e2ef8c7d694d2116f" },
   "LazyVim": { "branch": "main", "commit": "2786fdb6e2eb0a8e640042fd1cfe8b2febdf7e40" },
   "SchemaStore.nvim": { "branch": "main", "commit": "a7ad1f6205500d1369382e2e43df4e60eeae7cb6" },
   "arrow.nvim": { "branch": "master", "commit": "5438c977e729a29d96bd54c8da3103154e80dbd1" },
@@ -53,7 +53,7 @@
   "refactoring.nvim": { "branch": "master", "commit": "53ed6854e0bba64d467c58e87084dcf8b1c22d36" },
   "render-markdown.nvim": { "branch": "main", "commit": "430a671655ac84a63f41cd3e940caebdd0a99434" },
   "rustaceanvim": { "branch": "master", "commit": "6e742b9fc6a37e46181879f6c32cecfa8cd2cebf" },
-  "snacks.nvim": { "branch": "main", "commit": "68fcc258023404a0a0341a7cc93db47cd17f85f4" },
+  "snacks.nvim": { "branch": "main", "commit": "be8feef4ab584f50aaa96b69d50b3f86a35aacff" },
   "swenv.nvim": { "branch": "main", "commit": "d760a8f956b0058ffef1434df7ba7a6e2dc3a782" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "cf48d4dfce44e0b9a2e19a008d6ec6ea6f01a83b" },
   "telescope-terraform-doc.nvim": { "branch": "main", "commit": "28efe1f3cb2ed4c83fa69000ae8afd2f85d62826" },
