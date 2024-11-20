@@ -5,7 +5,7 @@
     btop
     colima
     delta
-    direnv
+    devenv
     du-dust
     glab
     jq

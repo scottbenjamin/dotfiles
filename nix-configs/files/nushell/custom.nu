@@ -44,6 +44,17 @@ def check-connection-gitlab [] {
   }
 }
 
+
+def pythonify [] {
+
+  if (not ($env.PWD | path join .git | path exists)) {
+    print "Not a git repository"
+    return
+  } 
+
+
+}
+
 def ggg [] {
 
   if (not ($env.PWD | path join .git | path exists)) {
