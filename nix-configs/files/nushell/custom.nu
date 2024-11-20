@@ -66,7 +66,7 @@ def ggg [] {
     print "Fetching and pruning"
     git fetch --all -p
 
-    print "Pulling origin ($default_branch)"
+    print $"Pulling origin ($default_branch)"
     git pull origin ($default_branch)
   }
 
