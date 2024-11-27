@@ -3,7 +3,9 @@
 # ---------------------------------------------------
 alias g = rg;
 alias ga = git add
+alias gc = git commit
 alias gco = git checkout
+alias gd = git diff 
 alias gfa = git fetch --all
 alias gfm = git pull --no-rebase
 alias gs = git status
@@ -11,13 +13,15 @@ alias gss = git status --short
 alias k = kubectl
 alias kg = kubectl get
 alias kgp = kubectl get pods
+alias kgn = kubectl get nodes --wide
 alias l = ls
 alias la = ls -al
 alias lg = lazygit
 alias ll = ls -l
 alias tg = terragrunt
-alias v = vim
-alias vim = vim
+alias tf = terraform
+alias ot = tofu
+alias v = nvim
 alias nsn = nix search nixpkgs
 
 # ---------------------------------------------------
