@@ -12,6 +12,7 @@
       secrets_filter = true;
       style = "compact";
       auto_sync = false;
+      sync_cloud = false;
     };
     flags = ["--disable-up-arrow"];
   };
