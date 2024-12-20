@@ -21,6 +21,7 @@
     ripgrep
     rustup
     tenv
+    tree
   ];
 
   commonBrews = [

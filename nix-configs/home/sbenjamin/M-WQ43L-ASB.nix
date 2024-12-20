@@ -31,6 +31,7 @@
   home.packages = with pkgs; [
     coder
     pyenv
+    kubernetes-helm
   ];
 
   # Nicely reload system units when changing configs

@@ -91,14 +91,9 @@ load-env {
 
 const kube_config_dir = ($nu.home-path | path join .kube)
 
-# Grab the 1password token from DevOps vault
-def onetoken [] {
-    op item get --vault DevOPS "DevOps Vault Access Token: terraform" --fields credential --reveal
-}
-
 
 def gitlab_api [] {
-  op read op://($env.MYVAULT)/gitlab-sb-rw-api-repo/credential --account ($env.ACCOUNT)
+  op read op://($env.MYVAULT)/gitlab-api-token/credential --account ($env.ACCOUNT)
 }
 
 # Test if AWS STS token is valid, if not auth with AWS

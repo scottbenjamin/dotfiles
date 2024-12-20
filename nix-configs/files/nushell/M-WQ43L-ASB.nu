@@ -10,7 +10,7 @@ const kube_config_dir = ($nu.home-path | path join .kube)
 
 # Grab the 1password token from DevOps vault
 def onetoken [] {
-    op item get --vault DevOPS "DevOps Vault Access Token: terraform" --fields credential --reveal
+    op item get --vault DevOPS "DevOps Vault Access Token: terraform" --fields credential --reveal --account ($env.ACCOUNT)
 }
 
 
@@ -18,12 +18,47 @@ def gitlab_api [] {
   op read op://($env.MYVAULT)/gitlab-sb-rw-api-repo/credential --account ($env.ACCOUNT)
 }
 
+def check_retcode [code: int] {
+
+  if $code == 0 {
+    return  true
+  } else {
+    return false
+  }
+}
+
+## CLOUD AUTH
+
 # Test if AWS STS token is valid, if not auth with AWS
 def check_aws_session [profile: string] {
     if (aws sts get-caller-identity --profile ($profile) --output text out+err>| str contains 'ExpiredToken') {
         print "AWS session expired, authenticating with aws..."
         gimme-aws-creds --profile=aws
     }
+}
+
+# test if OCI session is valid or 
+def check_oci_session [profile: string] {
+
+  oci session validate --local --profile ($profile)
+  mut res = check_retcode $env.LAST_EXIT_CODE
+  
+  if not ($res) {
+    oci session refresh --profile $profile
+    $res = check_retcode $env.LAST_EXIT_CODE
+  }
+
+  return $res
+}
+
+def oci_auth [profile: string, region: string] {
+  check_oci_session $profile 
+
+  let res = check_retcode $env.LAST_EXIT_CODE
+
+  if $res {
+    oci session authenticate --auth security_token --profile-name ($profile) --region ($region) 
+  } 
 }
 
 # Access and use kubeconfig for EKS clusters
@@ -36,8 +71,6 @@ def eks_creds --env [cluster_name: string, account_name: string] {
     let current_context = (kubectl config current-context)
     let new_contxt = ($current_context | str replace -r ".*/" "")
     kubectl config rename-context ($current_context) ($new_contxt)
-
-
 }
 
 # Function to access AI cluster credentials
