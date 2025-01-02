@@ -12,6 +12,7 @@
     k3d
     kubectl
     lazydocker
+    neovim
     nh
     nodejs
     nushell

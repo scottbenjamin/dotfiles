@@ -3,7 +3,7 @@
 in {
   # Neovim text editor configuration
   programs.neovim = {
-    enable = true;
+    enable = false;
     defaultEditor = true;
     withNodeJs = true;
     withPython3 = true;
@@ -40,11 +40,10 @@ in {
   };
 
   xdg.configFile = {
-	"nvim" = {
-	  enable = false;
-	  };
+    "nvim" = {
+      enable = false;
+    };
   };
-
 
   # # source lua config from this repo
   # xdg.configFile = {
