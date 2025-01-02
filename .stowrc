@@ -1,3 +1,7 @@
 --target=~/.config
 --ignore=.stowrc
 --ignore=DS_Store
+--ignore=tmux
+--ignore=README.md
+--ignore=.gitconfig
+--ignore=.gitignore

@@ -75,11 +75,11 @@ def ggg [] {
   }
 
 # Enable updating lazyvim dotfiles since nix makes home-manager configs read-only
-def uv [] {
-  $env.XDG_CONFIG_HOME = ($nu.home-path | path join code dotfiles )
-  print "Updating nvim dotfiles"
-  nvim
-}
+#def uv [] {
+#  $env.XDG_CONFIG_HOME = ($nu.home-path | path join code dotfiles )
+#  print "Updating nvim dotfiles"
+#  nvim
+#}
 
 
 # Environment variables

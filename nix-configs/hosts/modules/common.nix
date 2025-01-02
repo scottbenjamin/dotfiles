@@ -15,17 +15,19 @@
     nh
     nodejs
     nushell
-    oci-cli
     pre-commit
     pyenv
     ripgrep
     rustup
-    tenv
+    stow
     tree
   ];
 
   commonBrews = [
     "nushell"
+    "oci-cli"
+    "cosign"
+    "tenv"
   ];
 
   commonCasks = [
@@ -34,6 +36,7 @@
     "alacritty"
     "brave-browser"
     "docker"
+    "ghostty"
     "keymapp"
     "raycast"
     "slack"

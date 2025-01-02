@@ -1,0 +1,14 @@
+font-family = "JetBrainsMono Nerd Font Mono"
+font-size = 13
+font-thicken = true
+theme = kanagawabones
+
+cursor-style = block
+cursor-style-blink = true
+
+background-opacity= 0.9
+
+window-height = 75
+window-width = 200
+
+shell-integration = detect

@@ -20,8 +20,6 @@
   ];
 
   home.file = {
-    ".config/wezterm".source = ../../../wezterm;
-    ".config/starship.toml".source = ../../files/starship.toml;
     ".config/nushell/config.nu".source = ../../files/nushell/config.nu;
     ".config/nushell/custom.nu".source = ../../files/nushell/custom.nu;
     ".config/nushell/env.nu".source = ../../files/nushell/env.nu;

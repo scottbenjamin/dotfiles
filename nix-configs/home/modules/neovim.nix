@@ -39,11 +39,11 @@ in {
     ];
   };
 
-  # source lua config from this repo
-  xdg.configFile = {
-    "nvim" = {
-      source = "${neovim_config}";
-      recursive = true;
-    };
-  };
+  # # source lua config from this repo
+  # xdg.configFile = {
+  #   "nvim" = {
+  #     source = "~/.nvim";
+  #     recursive = true;
+  #   };
+  # };
 }
