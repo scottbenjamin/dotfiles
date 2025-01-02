@@ -39,6 +39,13 @@ in {
     ];
   };
 
+  xdg.configFile = {
+	"nvim" = {
+	  enable = false;
+	  };
+  };
+
+
   # # source lua config from this repo
   # xdg.configFile = {
   #   "nvim" = {
