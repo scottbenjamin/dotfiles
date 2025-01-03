@@ -21,6 +21,8 @@ alias 'otf'="op run --env-file=.env -- terraform"
 
 alias 'gls'='glab ci status'
 alias 'ggg'='gfm;gfa -p'
+alias 'ga'='git add'
+alias 'gss'='git status --short'
 
 if  [ -f "$(which fdfind)" ]; then 
   FD=fdfind

@@ -148,12 +148,12 @@ unset key
 # }}} End configuration added by Zim install
 
 export HISTFILE=~/.zsh_history
-
 export TERM=xterm-256color
+
 [[ -n $TMUX ]] && export TERM="xterm-256color"
 
 # Homebrew
-[[ -d /opt/homebrew ]] && export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
+# [[ -d /opt/homebrew ]] && export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
 
 # 1password completion
 [ -f "$(which op)" ] && eval $(op completion zsh)
@@ -168,26 +168,35 @@ MY_FUNCTIONS=${ZDOTDIR:-$HOME}/functions.zsh
 # local config for things like AWS credentials
 [ -f ~/.local.zsh ] && source ~/.local.zsh
 
+# Carapace
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+
+# Atuin for history
+eval "$(atuin init zsh)"
+
 # pyenv
-if [[ -f $(which pyenv) ]]; then
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-  eval "$(nodenv init -)"
-  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-fi
+# if [[ -f $(which pyenv) ]]; then
+#   eval "$(pyenv init -)"
+#   eval "$(pyenv virtualenv-init -)"
+#   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+# fi
 
 [[ -f $(which mise) ]] && eval "$(mise activate zsh)"
 
-if [[ -f $(which goenv) ]];then
-  eval "$(goenv init -)"
-  export PATH="$GOROOT/bin:$PATH"
-  export PATH="$PATH:$GOPATH/bin"
-fi
+# if [[ -f $(which goenv) ]];then
+#   eval "$(goenv init -)"
+#   export PATH="$GOROOT/bin:$PATH"
+#   export PATH="$PATH:$GOPATH/bin"
+# fi
 
-eval "$(fzf --zsh)"
+# eval "$(fzf --zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [ -d ~/.cargo/env ] && source "$HOME/.cargo/env"
 
 # Created by `pipx` on 2024-03-27 21:25:20
 export PATH="$PATH:/Users/sbenjamin/.local/bin"
+
+# eval "$(starship init zsh)"
