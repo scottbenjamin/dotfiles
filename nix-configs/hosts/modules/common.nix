@@ -1,33 +1,59 @@
 {pkgs}: {
   commonPackages = with pkgs; [
     _1password-cli
+    alejandra
     awscli2
+    black
     btop
     colima
     delta
     devenv
+    docker-compose-language-service
+    docker-ls
     du-dust
+    gitlab-ci-ls
     glab
+    hclfmt
+    isort
     jq
     k3d
     kubectl
     lazydocker
+    lua-language-server
+    markdownlint-cli
     neovim
     nh
+    nixd
+    nixpkgs-fmt
+    nodePackages.bash-language-server
+    nodePackages.prettier
     nodejs
     nushell
     pre-commit
+    prettierd
     pyenv
+    pyright
     ripgrep
+    ruff
+    ruff-lsp
     rustup
+    shellcheck
+    shfmt
+    sonarlint-ls
     stow
+    stylua
+    terraform-ls
+    tflint
     tree
+    vscode-langservers-extracted
+    yaml-language-server
   ];
 
   commonBrews = [
+    "cosign"
+    "direnv"
     "nushell"
     "oci-cli"
-    "cosign"
     "tenv"
   ];
 

@@ -3,12 +3,27 @@ font-size = 13
 font-thicken = true
 theme = kanagawabones
 
-cursor-style = block
-cursor-style-blink = true
+shell-integration = detect
 
-background-opacity= 0.9
-
+# Window configuration
 window-height = 75
 window-width = 200
+window-padding-balance = true
+cursor-style = block
+cursor-style-blink = true
+background-opacity= 0.9
 
-shell-integration = detect
+# Splits
+keybind = ctrl+s>v=new_split:right
+keybind = ctrl+s>h=new_split:down
+keybind = ctrl+s>z=toggle_split_zoom
+keybind = super+left=goto_split:left
+keybind = super+right=goto_split:right
+keybind = super+up=goto_split:top
+keybind = super+down=goto_split:bottom
+keybind = ctrl+s>o=goto_split:previous
+
+# Quick Terminal
+quick-terminal-position = center
+quick-terminal-autohide = false
+keybind = global:ctrl+grave_accent=toggle_quick_terminal

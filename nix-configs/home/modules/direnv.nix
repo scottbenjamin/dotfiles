@@ -1,6 +1,6 @@
 {...}: {
   programs.direnv = {
-    enable = true;
+    enable = false;
     nix-direnv.enable = true;
     enableNushellIntegration = true;
     enableZshIntegration = true;
