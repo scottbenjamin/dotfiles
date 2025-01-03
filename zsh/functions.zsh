@@ -76,3 +76,28 @@ cvenv() {
 }
 
 
+# Function to run darwin-rebuild with specified action
+dr() {
+  MY_NIX_CONFIGS=~/code/dotfiles/nix-configs
+  local action=$1
+  local action_full
+
+  case $action in
+    "s")
+      action_full="switch"
+      ;;
+    "b")
+      action_full="build"
+      ;;
+    "c")
+      action_full="check"
+      ;;
+    *)
+      echo "Invalid action"
+      return 1
+      ;;
+  esac
+
+  darwin-rebuild $action_full --flake $MY_NIX_CONFIGS
+}
+

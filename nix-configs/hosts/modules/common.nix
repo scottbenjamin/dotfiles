@@ -13,6 +13,7 @@
     du-dust
     gitlab-ci-ls
     glab
+    eza
     hclfmt
     isort
     jq
