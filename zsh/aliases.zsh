@@ -23,6 +23,7 @@ alias 'gls'='glab ci status'
 alias 'ggg'='gfm;gfa -p'
 alias 'ga'='git add'
 alias 'gss'='git status --short'
+alias 'gd'='git diff'
 
 if  [ -f "$(which fdfind)" ]; then 
   FD=fdfind
