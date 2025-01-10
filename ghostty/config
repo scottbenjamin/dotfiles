@@ -1,9 +1,13 @@
+# Theme
 font-family = "JetBrainsMono Nerd Font Mono"
 font-size = 13
 font-thicken = true
 theme = kanagawabones
 
 shell-integration = detect
+scrollback-limit = 1000000
+focus-follows-mouse = true
+auto-update = download
 
 # Window configuration
 window-height = 75
@@ -12,6 +16,7 @@ window-padding-balance = true
 cursor-style = block
 cursor-style-blink = true
 background-opacity= 0.9
+resize-overlay = never
 
 # Splits
 keybind = ctrl+s>v=new_split:right
