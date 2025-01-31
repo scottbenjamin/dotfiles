@@ -12,6 +12,7 @@ return {
   -- file manager
   {
     "stevearc/oil.nvim",
+    enabled = false,
     opts = {},
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
@@ -44,15 +45,15 @@ return {
     "stevearc/quicker.nvim",
   },
 
-  -- Arrow
-  -- https://github.com/otavioschwanck/arrow.nvim
-  -- like harbpoon
-  {
-    "otavioschwanck/arrow.nvim",
-    opts = {
-      show_icons = true,
-      leader_key = ";", -- Recommended to be a single key
-      buffer_leader_key = "m", -- Per Buffer Mappings
-    },
-  },
+  -- -- Arrow
+  -- -- https://github.com/otavioschwanck/arrow.nvim
+  -- -- like harbpoon
+  -- {
+  --   "otavioschwanck/arrow.nvim",
+  --   opts = {
+  --     show_icons = true,
+  --     leader_key = ";", -- Recommended to be a single key
+  --     buffer_leader_key = "m", -- Per Buffer Mappings
+  --   },
+  -- },
 }

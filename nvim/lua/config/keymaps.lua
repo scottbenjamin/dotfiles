@@ -16,4 +16,4 @@ map("n", "<leader>gC", "<cmd>!glab ci view -w<CR>", { desc = "Open [C]I Jobs in 
 map("n", "<leader>bu", "<cmd>UndotreeToggle<CR>", { desc = "Toggle [U]ndo Tree" })
 
 -- Oil
-map("n", "<leader>e", "<cmd>Oil<CR>", { desc = "Toggle Oil" })
+-- map("n", "<leader>e", "<cmd>Oil<CR>", { desc = "Toggle Oil" })

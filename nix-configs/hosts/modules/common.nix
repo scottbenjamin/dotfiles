@@ -12,7 +12,6 @@
     docker-ls
     du-dust
     gitlab-ci-ls
-    glab
     eza
     hclfmt
     isort
@@ -46,6 +45,7 @@
     terraform-ls
     tflint
     tree
+    tmux
     vscode-langservers-extracted
     yaml-language-server
   ];
@@ -53,6 +53,7 @@
   commonBrews = [
     "cosign"
     "direnv"
+    "glab"
     "nushell"
     "oci-cli"
     "tenv"
@@ -68,6 +69,5 @@
     "keymapp"
     "raycast"
     "slack"
-    "wezterm@nightly"
   ];
 }

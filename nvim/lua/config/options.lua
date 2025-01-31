@@ -15,3 +15,6 @@ vim.filetype.add({
     sls = "sls.yaml",
   },
 })
+
+-- disable snacks thingies
+vim.g.snacks_animate = false
