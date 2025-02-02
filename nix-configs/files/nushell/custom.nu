@@ -48,6 +48,10 @@ def check-connection-gitlab [] {
   }
 }
 
+def vv [] {
+  $env.NVIM_APPNAME = "nvim-new"
+  nvim
+}
 
 def pythonify [] {
 
@@ -90,7 +94,6 @@ load-env {
 }
 
 const kube_config_dir = ($nu.home-path | path join .kube)
-
 
 def gitlab_api [] {
   op read op://($env.MYVAULT)/gitlab-api-token/credential --account ($env.ACCOUNT)

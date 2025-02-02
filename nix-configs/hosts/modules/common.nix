@@ -20,6 +20,8 @@
     kubectl
     lazydocker
     lua-language-server
+    lua5_1
+    luarocks
     markdownlint-cli
     neovim
     nh
