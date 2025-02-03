@@ -1,11 +1,11 @@
 alias 'vim'='nvim'
 alias 'vi'='nvim'
+alias 'v'='nvim'
+
 alias 'cat'='bat'
-#alias 'glapi'='op read op://scott.benjamin/registry_token/credential --account mantium |  pbcopy'
 
 alias 'tf'='terraform'
 alias 'tg'='terragrunt'
-alias 'gltfinit'='tf init -backend-config="username=sbenjamin55" -backend-config="password=$(_gitlab_api)"'
 
 alias 'k'='kubectl'
 
@@ -36,4 +36,4 @@ if [ -n "${FD}" ]; then
 	alias 'v'='${FD} --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim'
 fi
 
-alias 'vks'='NVIM_APPNAME=nvim-new nvim'
+alias 'vv'='NVIM_APPNAME=nvim-new nvim'
