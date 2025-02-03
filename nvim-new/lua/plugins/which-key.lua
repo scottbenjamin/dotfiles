@@ -20,6 +20,12 @@ return {
       },
     },
 
-    keys = {},
+    keys = {
+      {
+        "<leader>l",
+        "<cmd>Lazy<cr>",
+        desc = "Lazynvim",
+      },
+    },
   },
 }

@@ -20,6 +20,7 @@ return {
     toggle = { enabled = true },
   },
   keys = {
+    -- stylua: ignore start
     -- common
     { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers", },
     { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep", },
@@ -71,5 +72,6 @@ return {
     -- UI toggles
     { "<leader>tz", function() Snacks.toggle.zen() end, desc = "Toggle Zenmode", },
     { "<leader>td", function() Snacks.toggle.diagnostics() end, desc = "Toggle Diagnostics", },
+    -- stylua: ignore end
   },
 }

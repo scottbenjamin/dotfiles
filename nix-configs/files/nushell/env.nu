@@ -142,3 +142,4 @@ if (which pyenv | length ) > 0 {
   $env.PATH = ($env.PATH | split row (char esep) | prepend $"(pyenv root)/shims")
 }
 
+$env.TENV_DETACHED_PROXY = false

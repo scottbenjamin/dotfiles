@@ -6,6 +6,7 @@
     black
     btop
     colima
+    cargo
     delta
     devenv
     docker-compose-language-service
@@ -35,9 +36,8 @@
     prettierd
     pyenv
     pyright
+    python3
     ripgrep
-    ruff
-    ruff-lsp
     rustup
     shellcheck
     shfmt
