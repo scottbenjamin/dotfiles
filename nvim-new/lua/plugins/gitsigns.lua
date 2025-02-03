@@ -8,6 +8,7 @@ return {
       },
     })
   end,
+
   keys = {
     -- stylua: ignore start
     { "<leader>gD", function() require("gitsigns").diffthis("~") end, desc = "Git Diff ~", },

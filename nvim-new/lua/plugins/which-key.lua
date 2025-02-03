@@ -26,6 +26,11 @@ return {
         "<cmd>Lazy<cr>",
         desc = "Lazynvim",
       },
+      {
+        "<leader>fn",
+        "<cmd>new<cr>",
+        desc = "New File",
+      },
     },
   },
 }
