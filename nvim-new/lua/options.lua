@@ -3,8 +3,10 @@ local opt = vim.opt
 opt.clipboard = "unnamedplus"
 opt.inccommand = "split"
 opt.shiftwidth = 4
+opt.conceallevel = 2
 opt.breakindent = true -- Enable break indent
 opt.undofile = true -- Save undo history
+opt.undolevels = 1000
 opt.ignorecase = true
 opt.signcolumn = "yes" -- Keep signcolumn on by default
 opt.smartcase = true
@@ -18,6 +20,11 @@ opt.inccommand = "split"
 opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 opt.scrolloff = 10
+opt.number = true
+opt.relativenumber = true
+opt.grepformat = "%f:%l:%c:%m"
+opt.grepprg = "rg --vimgrep"
+opt.wrap = false
 
 vim.lsp.set_log_level("off")
 
@@ -27,6 +34,13 @@ vim.filetype.add({
     tofu = "terraform",
     sls = "sls.yaml",
   },
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.gitlab-ci*.{yml,yaml}",
+  callback = function()
+    vim.bo.filetype = "yaml.gitlab"
+  end,
 })
 
 -- disable snacks animation thingies

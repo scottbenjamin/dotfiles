@@ -44,6 +44,8 @@ return {
         javascript = { "prettierd", "prettier", stop_after_first = true },
         hcl = { "terragrunt_hclfmt" },
         tofu = { "tofu_fmt" },
+        tf = { "terraform_fmt" },
+        terraform = { "terraform_fmt" },
         nu = { "alejandra" },
       },
       -- Set default options

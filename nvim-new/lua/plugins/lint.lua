@@ -8,7 +8,8 @@ return {
       lint.linters_by_ft = {
         markdown = { "markdownlint" },
         hcl = { "tflint" },
-        terraform = { "tflint" },
+        terraform = { "terraform_validate" },
+        tf = { "terraform_validate" },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
