@@ -1,30 +1,33 @@
 local opt = vim.opt
 
-opt.clipboard = "unnamedplus"
-opt.inccommand = "split"
-opt.shiftwidth = 4
-opt.conceallevel = 2
+---- Options ------------------------------------
+
 opt.breakindent = true -- Enable break indent
-opt.undofile = true -- Save undo history
-opt.undolevels = 1000
-opt.ignorecase = true
-opt.signcolumn = "yes" -- Keep signcolumn on by default
-opt.smartcase = true
-opt.timeoutlen = 300 -- Decrease mapped sequence wait time
-opt.updatetime = 250 -- Decrease update time
--- Configure how new splits should be opened
-opt.splitright = true
-opt.splitbelow = true
--- Preview substitutions live, as you type!
-opt.inccommand = "split"
+opt.clipboard = "unnamedplus"
+opt.conceallevel = 2
 opt.cursorline = true
--- Minimal number of screen lines to keep above and below the cursor.
-opt.scrolloff = 10
-opt.number = true
-opt.relativenumber = true
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
+opt.ignorecase = true
+opt.inccommand = "split"
+opt.inccommand = "split"
+opt.number = true
+opt.relativenumber = true
+opt.scrolloff = 10
+opt.shiftwidth = 4
+opt.showmode = false
+opt.signcolumn = "yes" -- Keep signcolumn on by default
+opt.smartcase = true
+opt.splitbelow = true
+opt.splitright = true
+opt.timeoutlen = 300 -- Decrease mapped sequence wait time
+opt.undofile = true -- Save undo history
+opt.undolevels = 1000
+opt.updatetime = 250 -- Decrease update time
+opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.wrap = false
+-- disable snacks animation thingies
+-- vim.g.snacks_animate = false
 
 vim.lsp.set_log_level("off")
 
@@ -36,6 +39,9 @@ vim.filetype.add({
   },
 })
 
+---- Autocommands ------------------------------------
+
+-- Gitlab CI
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.gitlab-ci*.{yml,yaml}",
   callback = function()
@@ -43,5 +49,10 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
--- disable snacks animation thingies
-vim.g.snacks_animate = false
+-- HCL Files
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.hcl",
+  callback = function()
+    vim.bo.commentstring = "#%s"
+  end,
+})

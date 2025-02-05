@@ -14,12 +14,6 @@ kms("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 kms("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 kms("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 kms("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-kms("n", "<leader>bd", function()
-  Snacks.bufdelete()
-end, { desc = "Delete Buffer" })
-kms("n", "<leader>bo", function()
-  Snacks.bufdelete.other()
-end, { desc = "Delete Other Buffers" })
 kms("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
 -- new file

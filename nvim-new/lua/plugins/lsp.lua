@@ -2,6 +2,7 @@ return {
   {
     "folke/lazydev.nvim",
     ft = "lua", -- only load on lua files
+    event = "VeryLazy",
     opts = {
       library = {
         -- See the configuration section for more details
@@ -12,10 +13,12 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    event = "VeryLazy",
     dependencies = {
       { "williamboman/mason.nvim", opts = {} },
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
+      "saghen/blink.cmp",
 
       -- Useful status updates for LSP.
       { "j-hui/fidget.nvim", opts = {} },
@@ -78,8 +81,9 @@ return {
       --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      -- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
       -- TODO: Add Blink capabilities
+      capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities(capabilities))
 
       -- Setup Mason
       local ensure_installed = {
@@ -94,8 +98,6 @@ return {
               completion = {
                 callSnippet = "Replace",
               },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
         },

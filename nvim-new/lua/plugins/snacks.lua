@@ -3,24 +3,24 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
-    -- your configuration comes heres
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
     bigfile = { enabled = true },
     dashboard = { enabled = true },
+    git = { enabled = true },
+    gitbrowse = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
-    picker = { enabled = true },
+    lazygit = { enabled = true },
     notifier = { enabled = true },
+    picker = { enabled = true },
     quickfile = { enabled = true },
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
-    words = { enabled = true },
-    lazygit = { enabled = true },
     toggle = { enabled = true },
+    words = { enabled = true },
   },
   keys = {
     -- stylua: ignore start
+	--
     -- common
     { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers", },
     { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep", },
@@ -34,10 +34,11 @@ return {
     { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files", },
     { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent", },
 
-    -- git
+   -- git
     { "<leader>gg", function() Snacks.lazygit.open() end, desc = "Lazygit", },
     { "<leader>gc", function() Snacks.picker.git_log() end, desc = "Git Log", },
     { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status", },
+    {"<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame"},
 
     -- Grep
     { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines", },
@@ -71,6 +72,9 @@ return {
     -- UI toggles
     { "<leader>tz", function() Snacks.toggle.zen() end, desc = "Toggle Zenmode", },
     { "<leader>td", function() Snacks.toggle.diagnostics() end, desc = "Toggle Diagnostics", },
+    {"<leader>bd", function() Snacks.bufdelete() end,  desc = "Delete Buffer" },
+    {"<leader>bo", function() Snacks.bufdelete.other() end,  desc = "Delete Other Buffers" },
+
     -- stylua: ignore end
   },
 }

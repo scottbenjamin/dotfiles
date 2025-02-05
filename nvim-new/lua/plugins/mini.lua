@@ -2,6 +2,7 @@ return {
   {
     "echasnovski/mini.ai",
     version = false,
+    event = "VeryLazy",
     config = function()
       require("mini.ai").setup()
     end,
@@ -10,6 +11,7 @@ return {
   {
     "echasnovski/mini.bracketed",
     version = false,
+    event = "VeryLazy",
     config = function()
       require("mini.bracketed").setup()
     end,
@@ -18,6 +20,7 @@ return {
   {
     "echasnovski/mini.surround",
     version = false,
+    event = "VeryLazy",
     config = function()
       require("mini.surround").setup()
     end,
@@ -26,6 +29,7 @@ return {
   {
     "echasnovski/mini.files",
     version = false,
+    event = "VeryLazy",
     config = function()
       require("mini.files").setup()
     end,
@@ -42,6 +46,7 @@ return {
 
   {
     "echasnovski/mini.move",
+    event = "VeryLazy",
     version = false,
     config = function()
       require("mini.move").setup()
@@ -50,6 +55,7 @@ return {
 
   {
     "echasnovski/mini.pairs",
+    event = "VeryLazy",
     version = false,
     config = function()
       require("mini.pairs").setup()

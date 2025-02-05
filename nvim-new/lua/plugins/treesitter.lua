@@ -1,6 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    event = "VeryLazy",
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
@@ -25,5 +26,10 @@ return {
   -- textobjects
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
+  },
+  {
+    "folke/ts-comments.nvim",
+    opts = {},
+    event = "VeryLazy",
   },
 }
