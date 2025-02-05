@@ -1,6 +1,7 @@
 return {
   {
     "stevearc/oil.nvim",
+    enabled = false,
     event = "VeryLazy",
     ---@module 'oil'
     ---@type oil.SetupOpts
