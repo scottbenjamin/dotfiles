@@ -1,12 +1,16 @@
 alias 'vim'='nvim'
 alias 'vi'='nvim'
-alias 'v' = 'nvim'
+alias 'v'='nvim'
 alias 'lv'='NVIM_APPNAME=nvim-lazy nvim'
 
 alias 'cat'='bat'
 
 alias 'tf'='terraform'
 alias 'tg'='terragrunt'
+alias 'tga'='terragrunt apply'
+alias 'tgp'='terragrunt plan'
+alias 'tgra'='terragrunt run-all apply'
+alias 'tgrp'='terragrunt run-all plan'
 alias 'ot'='tofu'
 
 alias 'k'='kubectl'

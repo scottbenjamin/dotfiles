@@ -15,7 +15,7 @@ return {
           { "<leader>s", group = "search" },
           { "<leader>t", group = "toggle" },
           { "<leader>u", group = "ui" },
-          { "gs", group = "surround" },
+          -- { "gs", group = "surround" },
         },
       },
     },

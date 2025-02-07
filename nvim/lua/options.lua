@@ -4,17 +4,18 @@ local opt = vim.opt
 
 opt.breakindent = true -- Enable break indent
 opt.clipboard = "unnamedplus"
+opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 2
 opt.cursorline = true
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 opt.ignorecase = true
 opt.inccommand = "split"
-opt.inccommand = "split"
 opt.number = true
 opt.relativenumber = true
 opt.scrolloff = 10
-opt.shiftwidth = 4
+opt.shiftround = true
+opt.shiftwidth = 3
 opt.showmode = false
 opt.signcolumn = "yes" -- Keep signcolumn on by default
 opt.smartcase = true
@@ -26,8 +27,6 @@ opt.undolevels = 1000
 opt.updatetime = 250 -- Decrease update time
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.wrap = false
--- disable snacks animation thingies
--- vim.g.snacks_animate = false
 
 vim.lsp.set_log_level("off")
 

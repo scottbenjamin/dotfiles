@@ -14,6 +14,7 @@
     du-dust
     gitlab-ci-ls
     eza
+    go
     hclfmt
     isort
     jq

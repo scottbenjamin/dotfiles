@@ -20,7 +20,7 @@ return {
   },
   keys = {
     -- stylua: ignore start
-	--
+    --
     -- common
     { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers", },
     { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep", },
@@ -48,7 +48,6 @@ return {
     -- search
     { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers", },
     { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds", },
-    { "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History", },
     { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands", },
     { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics", },
     { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages", },
@@ -74,7 +73,26 @@ return {
     { "<leader>td", function() Snacks.toggle.diagnostics() end, desc = "Toggle Diagnostics", },
     {"<leader>bd", function() Snacks.bufdelete() end,  desc = "Delete Buffer" },
     {"<leader>bo", function() Snacks.bufdelete.other() end,  desc = "Delete Other Buffers" },
-
     -- stylua: ignore end
+
+    -- Notificiations
+    {
+      "<leader>n",
+      function()
+        if Snacks.config.picker and Snacks.config.picker.enabled then
+          Snacks.picker.notifications()
+        else
+          Snacks.notifier.show_history()
+        end
+      end,
+      desc = "Notification History",
+    },
+    {
+      "<leader>un",
+      function()
+        Snacks.notifier.hide()
+      end,
+      desc = "Dismiss All Notifications",
+    },
   },
 }

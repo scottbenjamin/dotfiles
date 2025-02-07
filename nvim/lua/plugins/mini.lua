@@ -1,37 +1,17 @@
 return {
   {
-    "echasnovski/mini.ai",
+    "echasnovski/mini.nvim",
     version = false,
     event = "VeryLazy",
     config = function()
       require("mini.ai").setup()
-    end,
-  },
-
-  {
-    "echasnovski/mini.bracketed",
-    version = false,
-    event = "VeryLazy",
-    config = function()
       require("mini.bracketed").setup()
-    end,
-  },
-
-  {
-    "echasnovski/mini.surround",
-    version = false,
-    event = "VeryLazy",
-    config = function()
       require("mini.surround").setup()
-    end,
-  },
-
-  {
-    "echasnovski/mini.files",
-    version = false,
-    event = "VeryLazy",
-    config = function()
       require("mini.files").setup()
+      require("mini.move").setup()
+      require("mini.pairs").setup()
+      require("mini.operators").setup()
+      require("mini.icons").setup()
     end,
     keys = {
       {
@@ -42,23 +22,5 @@ return {
         desc = "File Finder",
       },
     },
-  },
-
-  {
-    "echasnovski/mini.move",
-    event = "VeryLazy",
-    version = false,
-    config = function()
-      require("mini.move").setup()
-    end,
-  },
-
-  {
-    "echasnovski/mini.pairs",
-    event = "VeryLazy",
-    version = false,
-    config = function()
-      require("mini.pairs").setup()
-    end,
   },
 }
