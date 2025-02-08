@@ -2,18 +2,18 @@ return {
   {
     "folke/tokyonight.nvim",
     lazy = false,
-    enabled = false,
     priority = 1000,
     opts = { style = "night" },
     config = function()
       -- load the colorscheme here
-      vim.cmd([[colorscheme tokyonight]])
+      vim.cmd([[colorscheme tokyonight-night]])
     end,
   },
   {
     "rebelot/kanagawa.nvim",
     lazy = false,
     priority = 1000,
+    enabled = false,
     opts = {},
     config = function()
       -- load the colorscheme here

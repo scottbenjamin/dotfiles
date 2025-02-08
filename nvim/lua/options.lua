@@ -4,7 +4,7 @@ local opt = vim.opt
 
 opt.breakindent = true -- Enable break indent
 opt.clipboard = "unnamedplus"
-opt.completeopt = "menu,menuone,noselect"
+opt.completeopt = "menu,menuone,noselect,noinsert,popup" -- TODO: remove noinsert/popup when neovim 0.11 comes out
 opt.conceallevel = 2
 opt.cursorline = true
 opt.grepformat = "%f:%l:%c:%m"
