@@ -5,7 +5,7 @@ font-thicken = true
 theme = kanagawabones
 
 shell-integration = detect
-scrollback-limit = 10000000
+scrollback-limit = 100000000
 focus-follows-mouse = true
 auto-update = download
 
@@ -31,6 +31,5 @@ keybind = super+down=goto_split:bottom
 keybind = ctrl+s>o=goto_split:previous
 
 # Quick Terminal
-# quick-terminal-position = center
 quick-terminal-autohide = false
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
