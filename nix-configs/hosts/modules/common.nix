@@ -57,9 +57,11 @@
     "cosign"
     "direnv"
     "glab"
+    "neovim"
     "nushell"
     "oci-cli"
     "tenv"
+    "yq"
   ];
 
   commonCasks = [
@@ -72,5 +74,6 @@
     "keymapp"
     "raycast"
     "slack"
+    "zen-browser"
   ];
 }
