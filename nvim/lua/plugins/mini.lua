@@ -14,5 +14,5 @@ return {
     },
   },
 
-  { "echasnovski/mini.operators", version = "*" },
+  { "echasnovski/mini.operators", version = "*", opts = {} },
 }

@@ -1,27 +1,19 @@
 {pkgs}: {
   commonPackages = with pkgs; [
-    _1password-cli
     alejandra
-    awscli2
     black
     btop
-    colima
     cargo
+    colima
     delta
     devenv
-    docker-compose-language-service
-    docker-ls
     du-dust
-    gitlab-ci-ls
     eza
     go
     hclfmt
     isort
     jq
-    k3d
-    kubectl
     lazydocker
-    lua-language-server
     lua5_1
     luarocks
     markdownlint-cli
@@ -32,8 +24,6 @@
     nodePackages.bash-language-server
     nodePackages.prettier
     nodejs
-    nushell
-    pre-commit
     prettierd
     pyenv
     pyright
@@ -42,30 +32,32 @@
     rustup
     shellcheck
     shfmt
-    sonarlint-ls
     stow
     stylua
-    terraform-ls
     tflint
     tree
-    tmux
-    vscode-langservers-extracted
-    yaml-language-server
   ];
 
   commonBrews = [
+    "awscli2"
     "cosign"
     "direnv"
     "glab"
+    "k3d"
+    "k9s"
+    "kubectl"
     "neovim"
     "nushell"
     "oci-cli"
+    "pre-commit"
     "tenv"
+    "tmux"
     "yq"
   ];
 
   commonCasks = [
     "1password"
+    "1password-cli"
     "aerospace"
     "alacritty"
     "brave-browser"

@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.tmux = {
-    enable = true;
+    enable = false;
     shortcut = "s";
     terminal = "tmux-256color";
     historyLimit = 15000;
