@@ -39,7 +39,7 @@
   ];
 
   commonBrews = [
-    "awscli2"
+    "awscli"
     "cosign"
     "direnv"
     "glab"
