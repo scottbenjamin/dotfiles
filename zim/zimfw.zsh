@@ -4,7 +4,7 @@
 # MIT License
 #
 # Copyright (c) 2015-2016 Matt Hamilton and contributors
-# Copyright (c) 2016-2024 Eric Nielsen, Matt Hamilton and contributors
+# Copyright (c) 2016-2025 Eric Nielsen, Matt Hamilton and contributors
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -28,12 +28,7 @@ autoload -Uz is-at-least && if ! is-at-least 5.2; then
   print -u2 -R "${_zred}${0}: Error starting zimfw. You're using Zsh version ${_zbold}${ZSH_VERSION}${_znormalred} and versions < ${_zbold}5.2${_znormalred} are not supported. Update your Zsh.${_znormal}"
   return 1
 fi
-autoload -Uz zargs
 
-if (( ! ${+ZIM_HOME} )); then
-  print -u2 -R "${_zred}${0}: ${_zbold}ZIM_HOME${_znormalred} not defined${_znormal}"
-  return 1
-fi
 # Define zimfw location
 typeset -g __ZIMFW_FILE=${0}
 
@@ -139,8 +134,11 @@ Per-module options:
   ${_zbold}-t${_znormal}|${_zbold}--tag${_znormal} <tag_name>        Use specified tag when installing and updating the module. Over-
                              rides the branch option.
   ${_zbold}-u${_znormal}|${_zbold}--use${_znormal} <tool_name>       Install and update the module using the defined tool. Default is
-                             either defined by ${_zbold}zstyle ':zim:zmodule' use '${_znormal}<tool_name>${_zbold}'${_znormal}, or ${_zbold}git${_znormal}
-                             if none is provided. The tools available are:
+                             either defined by ${_zbold}zstyle ':zim:zmodule' use '${_znormal}<tool_name>${_zbold}'${_znormal}, or
+                             set to ${_zbold}auto${_znormal}. The tools available are:
+                             ${_zbold}auto${_znormal} tries to auto detect the tool to be used. When installing a
+                             new module, ${_zbold}git${_znormal} will be used if the git command is available,
+                             otherwise ${_zbold}degit${_znormal} will be used.
                              ${_zbold}git${_znormal} uses the git command. Local changes are preserved on updates.
                              ${_zbold}degit${_znormal} uses curl or wget, and currently only works with GitHub
                              URLs. Modules install faster and take less disk space. Local
@@ -241,7 +239,7 @@ Per-call initialization options:
   _zroot_dirs+=(${zroot_dir})
   # Set default values
   if (( ! ${+_ztools[${zname}]} )); then
-    zstyle -s ':zim:zmodule' use "_ztools[${zname}]" || _ztools[${zname}]=git
+    zstyle -s ':zim:zmodule' use "_ztools[${zname}]" || _ztools[${zname}]=auto
   fi
   if (( ! ${+_ztypes[${zname}]} )) _ztypes[${zname}]=branch
   if (( ! ${+_zsubmodules[${zname}]} )) _zsubmodules[${zname}]=1
@@ -325,10 +323,27 @@ Per-call initialization options:
     esac
     shift
   done
-  if (( _zflags & 1 )); then
-    _znames+=(${zname})
+  # Detect tool if auto and not external and not frozen module
+  if [[ ${_ztools[${zname}]} == auto && -n ${_zurls[${zname}]} && _zfrozens[${zname}] -eq 0 ]]; then
+    if [[ -e ${_zdirs[${zname}]} ]]; then
+      if [[ -r ${_zdirs[${zname}]}/.git ]]; then
+        _ztools[${zname}]=git
+      elif [[ -r ${_zdirs[${zname}]}/.zdegit ]]; then
+        _ztools[${zname}]=degit
+      else
+        _zimfw_print -u2 -lR "${_zwarn}${funcfiletrace[1]}:${_zbold}${zname}:${_znormalyellow} Could not auto detect tool, will default to ${_zbold}mkdir${_znormalyellow}. Use zmodule option ${_zbold}-u${_znormalyellow}|${_zbold}--use${_znormalyellow} to disable this warning.${_znormal}"
+        _ztools[${zname}]=mkdir
+      fi
+    else
+      if [[ ${+commands[git]} -ne 0 && -x ${commands[git]} ]]; then
+        _ztools[${zname}]=git
+      else
+        _ztools[${zname}]=degit
+      fi
+    fi
   fi
-  if (( _zflags & 2 )); then
+  _znames+=(${zname})
+  if (( _zeager )); then
     if [[ ! -e ${zroot_dir} ]]; then
       print -u2 -R "${_zerror}${funcfiletrace[1]}:${_zbold}${zname}: ${zroot_dir}${_znormalred} not found${_znormal}"
       _zfailed=1
@@ -362,13 +377,13 @@ Per-call initialization options:
 }
 
   {
-    local -r _zflags=${1}
+    local -ri _zeager=${1}
     local -i _zfailed=0
     if ! source ${_zconfig} || (( _zfailed )); then
       print -u2 -R "${_zred}Failed to source ${_zbold}${_zconfig}${_znormal}"
       return 1
     fi
-    if (( _zflags & 1 && ${#_znames} == 0 )); then
+    if (( ${#_znames} == 0 )); then
       print -u2 -R "${_zred}No modules defined in ${_zbold}${_zconfig}${_znormal}"
       return 1
     fi
@@ -470,7 +485,7 @@ _zimfw_info() {
   _zimfw_info_print_symlink ZIM_HOME ${ZIM_HOME}
   _zimfw_info_print_symlink 'zimfw config' ${_zconfig}
   _zimfw_info_print_symlink 'zimfw script' ${__ZIMFW_FILE}
-  print -R 'zimfw version:        '${_zversion}' (built at 2024-11-25 13:50:33 UTC, previous commit is 2d5718e)'
+  print -R 'zimfw version:        '${_zversion}' (built at 2025-01-16 14:45:26 UTC, previous commit is 184076e)'
   local zparam
   for zparam in LANG ${(Mk)parameters:#LC_*} OSTYPE TERM TERM_PROGRAM TERM_PROGRAM_VERSION ZSH_VERSION; do
     print -R ${(r.22....:.)zparam}${(P)zparam}
@@ -508,7 +523,7 @@ _zimfw_upgrade() {
     return 1
   fi
   {
-    if (( ${+commands[curl]} )); then
+    if [[ ${+commands[curl]} -ne 0 && -x ${commands[curl]} ]]; then
       command curl -fsSL -o ${ztarget}.new.gz ${zurl} || return 1
     else
       local zopt
@@ -534,6 +549,7 @@ _zimfw_run_list() {
   local -r zname=${1}
   local -r zdir=${_zdirs[${zname}]}
   print -nR "${_zbold}${zname}:${_znormal} ${zdir}"
+  if [[ ! -e ${zdir} ]] print -n ' (not installed)'
   if [[ -z ${_zurls[${zname}]} ]] print -n ' (external)'
   if (( ${_zfrozens[${zname}]} )) print -n ' (frozen)'
   if (( ${_zdisabled_root_dirs[(I)${zdir}]} )) print -n ' (disabled)'
@@ -619,19 +635,21 @@ _zimfw_download_tarball() {
   fi
   readonly HEADERS_TARGET=${DIR}/${TEMP}_headers
   {
-    readonly INFO=("${(@f)"$(<${INFO_TARGET})"}")
-    # Previous REV is in line 2, reserved for future use.
-    readonly INFO_HEADER=${INFO[3]}
+    if [[ ${ACTION} != install ]]; then
+      readonly INFO=("${(@f)"$(<${INFO_TARGET})"}")
+      # Previous REV is in line 2, reserved for future use.
+      readonly INFO_HEADER=${INFO[3]}
+    fi
     readonly TARBALL_URL=https://api.github.com/repos/${REPO}/tarball/${REV}
     if [[ ${ACTION} == check ]]; then
       if [[ -z ${INFO_HEADER} ]] return 0
-      if (( ${+commands[curl]} )); then
+      if [[ ${+commands[curl]} -ne 0 && -x ${commands[curl]} ]]; then
         command curl -IfsL -H ${INFO_HEADER} ${TARBALL_URL} >${HEADERS_TARGET}
       else
         command wget --spider -qS --header=${INFO_HEADER} ${TARBALL_URL} 2>${HEADERS_TARGET}
       fi
     else
-      if (( ${+commands[curl]} )); then
+      if [[ ${+commands[curl]} -ne 0 && -x ${commands[curl]} ]]; then
         if ! ERR=$(command curl -fsSL ${INFO_HEADER:+-H} ${INFO_HEADER} -o ${TARBALL_TARGET} -D ${HEADERS_TARGET} ${TARBALL_URL} 2>&1); then
           _zimfw_print_error "Error downloading ${TARBALL_URL} with curl" ${ERR}
           return 1
@@ -734,7 +752,7 @@ _zimfw_tool_degit() {
         else
           if [[ -e ${TARBALL_TARGET} ]]; then
             _zimfw_create_dir ${DIR_NEW} && _zimfw_untar_tarball ${DIR_NEW} || return 1
-            if (( ${+commands[diff]} )); then
+            if [[ ${+commands[diff]} -ne 0 && -x ${commands[diff]} ]]; then
               LOG=$(command diff -x '.zdegit*' -x '*.zwc' -x '*.zwc.old' -qr ${DIR} ${DIR_NEW} 2>/dev/null)
               LOG=${${LOG//${DIR_NEW}/new}//${DIR}/old}
             fi
@@ -952,7 +970,7 @@ _zimfw_run_tool() {
 _zimfw_run_tool_action() {
   local -i zmaxprocs=0
   if [[ ${1} == reinstall ]] zmaxprocs=1
-  _zimfw_source_zimrc 1 || return 1
+  _zimfw_source_zimrc 0 || return 1
   zargs -n 2 -P ${zmaxprocs} -- "${_znames[@]}" -- _zimfw_run_tool ${1}
   return 0
 }
@@ -965,7 +983,7 @@ zimfw() {
     local -r _znormal= _zbold= _zred= _znormalred= _zgreen= _zyellow= _znormalyellow=
   fi
   local -r _zerror="${_zred}x " _zokay="${_zgreen}) ${_znormal}" _zwarn="${_zyellow}! "
-  local -r _zconfig=${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} _zversion='1.16.0'
+  local -r _zconfig=${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} _zversion='1.17.0'
   local -r zusage="Usage: ${_zbold}${0}${_znormal} <action> [${_zbold}-q${_znormal}|${_zbold}-v${_znormal}]
 
 Actions:
@@ -997,9 +1015,6 @@ Actions:
 Options:
   ${_zbold}-q${_znormal}              Quiet (yes to prompts and only outputs errors)
   ${_zbold}-v${_znormal}              Verbose (outputs more details)"
-  local -Ua _znames _zroot_dirs _zdisabled_root_dirs
-  local -A _zfrozens _ztools _zdirs _zurls _ztypes _zrevs _zsubmodules _zonpulls _zifs
-  local -a _zfpaths _zfunctions _zcmds _zunused_dirs
   local -i _zprintlevel=1
   if (( # > 2 )); then
      print -u2 -lR "${_zred}${0}: Too many options${_znormal}" '' ${zusage}
@@ -1013,6 +1028,21 @@ Options:
         return 2
         ;;
     esac
+  fi
+  case ${1} in
+    help)
+      print -R ${zusage}
+      return
+      ;;
+    version)
+      print -R ${_zversion}
+      return
+      ;;
+  esac
+
+  if (( ! ${+ZIM_HOME} )); then
+    print -u2 -R "${_zred}${0}: ${_zbold}ZIM_HOME${_znormalred} not defined${_znormal}"
+    return 1
   fi
 
   local -r _zversion_target=${ZIM_HOME}/.latest_version
@@ -1028,10 +1058,14 @@ Options:
     print -u2 -R "${_zred}${0}: No write permission to ${_zbold}${ZIM_HOME}${_znormalred}. Will not try to ${1}.${_znormal}"
     return 1
   fi
+  local -Ua _znames _zroot_dirs _zdisabled_root_dirs
+  local -A _zfrozens _ztools _zdirs _zurls _ztypes _zrevs _zsubmodules _zonpulls _zifs
+  local -a _zfpaths _zfunctions _zcmds _zunused_dirs
   local _zrestartmsg=' Restart your terminal for changes to take effect.'
+  autoload -Uz zargs
   case ${1} in
     build)
-      _zimfw_source_zimrc 2 && _zimfw_build || return 1
+      _zimfw_source_zimrc 1 && _zimfw_build || return 1
       (( _zprintlevel-- ))
       _zimfw_compile
       ;;
@@ -1040,11 +1074,11 @@ Options:
     clean-compiled) _zimfw_source_zimrc 0 && _zimfw_clean_compiled ;;
     clean-dumpfile) _zimfw_clean_dumpfile ;;
     compile) _zimfw_source_zimrc 0 && _zimfw_compile ;;
-    help) print -R ${zusage} ;;
     info) _zimfw_info ;;
     list)
-      _zimfw_source_zimrc 3 && zargs -n 1 -- "${_znames[@]}" -- _zimfw_run_list && \
-          _zimfw_list_unuseds ' (unused)'
+      _zimfw_source_zimrc $(( _zprintlevel > 1 )) && \
+          zargs -n 1 -- "${_znames[@]}" -- _zimfw_run_list && \
+         _zimfw_list_unuseds ' (unused)'
       ;;
     check)
       _zrestartmsg=
@@ -1057,13 +1091,13 @@ Options:
       _zimfw_run_tool_action install || return 1
       (( _zprintlevel-- ))
       _zimfw_print 'Done with install.' # Only printed in verbose mode
-      _zimfw_source_zimrc 2 && _zimfw_build && _zimfw_compile
+      _zimfw_source_zimrc 1 && _zimfw_build && _zimfw_compile
       ;;
     install|update|reinstall)
       _zimfw_run_tool_action ${1} || return 1
       _zimfw_print -R "Done with ${1}.${_zrestartmsg}"
       (( _zprintlevel-- ))
-      _zimfw_source_zimrc 2 && _zimfw_build && _zimfw_compile
+      _zimfw_source_zimrc 1 && _zimfw_build && _zimfw_compile
       ;;
     uninstall) _zimfw_source_zimrc 0 && _zimfw_list_unuseds && _zimfw_uninstall ;;
     check-version) _zimfw_check_version 1 ;;
@@ -1072,7 +1106,6 @@ Options:
       (( _zprintlevel-- ))
       _zimfw_source_zimrc 0 && _zimfw_compile
       ;;
-    version) print -R ${_zversion} ;;
     *)
       print -u2 -lR "${_zred}${0}: Unknown action ${1}${_znormal}" '' ${zusage}
       return 2
