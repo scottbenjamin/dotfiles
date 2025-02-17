@@ -1,0 +1,3 @@
+{...}: {
+  programs.tenv.enable = true;
+}

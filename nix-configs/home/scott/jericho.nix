@@ -1,6 +1,7 @@
 {userConfig, ...}: {
   imports = [
     ../modules/common.nix
+    ../modules/tenv.nix
   ];
 
   # Enable Home Manager

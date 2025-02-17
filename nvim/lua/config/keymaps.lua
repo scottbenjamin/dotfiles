@@ -4,6 +4,10 @@
 
 local kms = vim.keymap.set
 
+-- Remaps keys to keep cursor in the middle of the screen
+kms("n", "<C-u>", "<C-u>zz", { desc = "Half page up" })
+kms("n", "<C-d>", "<C-d>zz", { desc = "Half page down" })
+
 --  Glab CLI
 kms("n", "<leader>gM", "<cmd>!glab mr create -fw<CR>", { desc = "Create new MR in browser", silent = true })
 kms("n", "<leader>gm", "<cmd>!glab mr view -w<CR>", { desc = "Open MR in browser", silent = true })
