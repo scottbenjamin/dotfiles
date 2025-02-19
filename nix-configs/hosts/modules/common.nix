@@ -12,7 +12,6 @@
     go
     hclfmt
     isort
-    jq
     lazydocker
     lua5_1
     luarocks
@@ -34,15 +33,16 @@
     shfmt
     stow
     stylua
-    tflint
     tree
-  ];
+    zig
+ ];
 
   commonBrews = [
     "awscli"
     "cosign"
     "direnv"
     "glab"
+    "jq"
     "k3d"
     "k9s"
     "kubectl"
@@ -51,8 +51,10 @@
     "oci-cli"
     "pre-commit"
     "tenv"
+    "tflint"
     "tmux"
     "yq"
+    "zig"
   ];
 
   commonCasks = [
