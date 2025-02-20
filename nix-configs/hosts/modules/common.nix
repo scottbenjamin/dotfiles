@@ -65,7 +65,6 @@
     "brave-browser"
     "docker"
     "font-commit-mono-nerd-font"
-    "font-jetbrains-mono-nerd-font"
     "ghostty"
     "keymapp"
     "raycast"
