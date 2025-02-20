@@ -485,7 +485,7 @@ _zimfw_info() {
   _zimfw_info_print_symlink ZIM_HOME ${ZIM_HOME}
   _zimfw_info_print_symlink 'zimfw config' ${_zconfig}
   _zimfw_info_print_symlink 'zimfw script' ${__ZIMFW_FILE}
-  print -R 'zimfw version:        '${_zversion}' (built at 2025-01-16 14:45:26 UTC, previous commit is 184076e)'
+  print -R 'zimfw version:        '${_zversion}' (built at 2025-02-12 18:27:35 UTC, previous commit is f722adf)'
   local zparam
   for zparam in LANG ${(Mk)parameters:#LC_*} OSTYPE TERM TERM_PROGRAM TERM_PROGRAM_VERSION ZSH_VERSION; do
     print -R ${(r.22....:.)zparam}${(P)zparam}
@@ -599,15 +599,15 @@ _zimfw_create_dir() {
 }
 
 _zimfw_print_error() {
-  print -u2 -lR $'\E[2K\r'"${_zerror}${_zbold}${_zname}:${_znormalred} ${1}${_znormal}" ${2:+${(F):-  ${(f)^2}}}
+  print -u2 -lR "${_zerror}${_zbold}${_zname}:${_znormalred} ${1}${_znormal}" ${2:+${(F):-  ${(f)^2}}}
 }
 
 _zimfw_print_okay() {
-  if (( _zprintlevel > ${2:-0} )) print -lR $'\E[2K\r'"${_zokay}${_zbold}${_zname}:${_znormal} ${1}" ${3:+${(F):-  ${(f)^3}}}
+  if (( _zprintlevel > ${2:-0} )) print -lR "${_zokay}${_zbold}${_zname}:${_znormal} ${1}" ${3:+${(F):-  ${(f)^3}}}
 }
 
 _zimfw_print_warn() {
-  _zimfw_print -u2 -R $'\E[2K\r'"${_zwarn}${_zbold}${_zname}:${_znormalyellow} ${1}${_znormal}"
+  _zimfw_print -u2 -R "${_zwarn}${_zbold}${_zname}:${_znormalyellow} ${1}${_znormal}"
 }
 
 _zimfw_pull_print_okay() {
@@ -926,11 +926,10 @@ _zimfw_run_tool() {
       fi
     fi
     local -r zdir_new=.${_zdirs[${_zname}]}_${sysparams[pid]}_${RANDOM}
-    _zimfw_print -nR 'Reinstalling '${_zname}' ...'
     {
       _zimfw_tool_${ztool} install ${zdir_new} "${@:2}" || return 1
       if ! ERR=$({ command rm -rf ${_zdirs[${_zname}]} && command mv -f ${zdir_new} ${_zdirs[${_zname}]} } 2>&1); then
-        _zimfw_print_error "Error updating ${_zdirs[${_zname}]}" ${ERR}
+        _zimfw_print_error "Error reinstalling ${_zdirs[${_zname}]}" ${ERR}
         return 1
       fi
     } always {
@@ -946,17 +945,11 @@ _zimfw_run_tool() {
         _zimfw_print_okay 'Skipping already installed module' 1
         return 0
       fi
-      _zimfw_print -nR $'\E[2K\rInstalling '${_zname}' ...'
       ;;
     check|update)
       if [[ ! -d ${_zdirs[${_zname}]} ]]; then
         _zimfw_print_error "Not installed. Run ${_zbold}zimfw install${_znormalred} to install."
         return 1
-      fi
-      if [[ ${zaction} == check ]]; then
-        if (( _zprintlevel > 1 )) print -nR $'\E[2K\rChecking '${_zname}' ...'
-      else
-        _zimfw_print -nR $'\E[2K\rUpdating '${_zname}' ...'
       fi
       ;;
     *)
@@ -983,7 +976,7 @@ zimfw() {
     local -r _znormal= _zbold= _zred= _znormalred= _zgreen= _zyellow= _znormalyellow=
   fi
   local -r _zerror="${_zred}x " _zokay="${_zgreen}) ${_znormal}" _zwarn="${_zyellow}! "
-  local -r _zconfig=${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} _zversion='1.17.0'
+  local -r _zconfig=${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} _zversion='1.17.1'
   local -r zusage="Usage: ${_zbold}${0}${_znormal} <action> [${_zbold}-q${_znormal}|${_zbold}-v${_znormal}]
 
 Actions:
@@ -1043,6 +1036,9 @@ Options:
   if (( ! ${+ZIM_HOME} )); then
     print -u2 -R "${_zred}${0}: ${_zbold}ZIM_HOME${_znormalred} not defined${_znormal}"
     return 1
+  fi
+  if [[ ! -e ${ZIM_HOME} ]]; then
+    command mkdir -p ${ZIM_HOME} || return 1
   fi
 
   local -r _zversion_target=${ZIM_HOME}/.latest_version

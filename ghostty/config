@@ -4,6 +4,8 @@ font-size = 13
 font-thicken = true
 theme = kanagawabones
 
+window-decoration = none
+
 shell-integration = detect
 scrollback-limit = 100000000
 focus-follows-mouse = true

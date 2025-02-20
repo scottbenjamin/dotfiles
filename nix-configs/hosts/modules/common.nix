@@ -3,7 +3,6 @@
     alejandra
     black
     btop
-    btm
     cargo
     colima
     delta
@@ -44,13 +43,13 @@
     "glab"
     "jq"
     "k3d"
-    "k3s"
     "k9s"
     "kubectl"
     "neovim"
     "nushell"
     "oci-cli"
     "pre-commit"
+    "starship"
     "tenv"
     "tflint"
     "tmux"
