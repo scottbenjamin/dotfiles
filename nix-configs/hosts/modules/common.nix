@@ -3,6 +3,7 @@
     alejandra
     black
     btop
+    nix-btm
     cargo
     colima
     delta

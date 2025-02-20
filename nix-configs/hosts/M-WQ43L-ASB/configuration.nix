@@ -50,11 +50,13 @@ in {
 
     brews =
       [
+        "jira-cli"
       ]
       ++ common.commonBrews;
 
     taps = [
       "nikitabobko/tap"
+      "ankitpokhrel/jira-cli"
     ];
   };
 
