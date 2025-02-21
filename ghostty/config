@@ -1,8 +1,10 @@
+#
 # Theme
-# font-family = "JetBrainsMono Nerd Font Mono"
-font-family = "CommitMono Nerd Font Mono"
+font-family = "JetBrainsMono Nerd Font Mono"
+#font-family = "CommitMono Nerd Font Mono"
 font-size = 13
 font-thicken = true
+font-thicken-strength = 175
 theme = kanagawabones
 
 window-decoration = none
@@ -48,3 +50,5 @@ keybind = alt+shift+ctrl+cmd+5=goto_tab:5
 # Quick Terminal
 quick-terminal-autohide = false
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
+
+# vim: ft=toml

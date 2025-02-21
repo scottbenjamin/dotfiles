@@ -108,8 +108,17 @@ in {
 
   # Mac OS settings
   system.defaults = {
-    dock.autohide = true;
-    dock.mru-spaces = false;
+    dock ={
+      autohide = true;
+      mru-spaces = false;
+      expose-group-apps = true;
+      wvous-bl-corner = 1; # Disable hot corners
+      wvous-br-corner = 1; # Disable hot corners
+      wvous-tl-corner = 1; # Disable hot corners
+      wvous-tr-corner = 1; # Disable hot corners
+    };
+    spaces.spans-displays = true;
+
     finder.AppleShowAllExtensions = true;
     finder.FXPreferredViewStyle = "clmv";
     loginwindow.LoginwindowText = "Login";
@@ -117,7 +126,10 @@ in {
     screensaver.askForPasswordDelay = 10;
     NSGlobalDomain = {
       AppleInterfaceStyle = "Dark";
-      KeyRepeat = 2;
+      KeyRepeat = 1;
+      InitialKeyRepeat = 10;
+      NSWindowShouldDragOnGesture = true;
+      NSAutomaticWindowAnimationsEnabled = false;
     };
   };
 

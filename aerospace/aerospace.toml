@@ -79,8 +79,10 @@ outer.right = 6
 # 'main' binding mode must be always presented
 # Fallback value (if you omit the key): mode.main.binding = {}
 [mode.main.binding]
+
 cmd-h = []     # Disable "hide application"
 cmd-alt-h = [] # Disable "hide others"
+
 
 # All possible keys:
 # - Letters.        a, b, c, ..., z
@@ -119,10 +121,10 @@ alt-k = 'focus --boundaries-action wrap-around-the-workspace up'
 alt-l = 'focus --boundaries-action wrap-around-the-workspace right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-alt-shift-h = 'move left'
-alt-shift-j = 'move down'
-alt-shift-k = 'move up'
-alt-shift-l = 'move right'
+alt-shift-cmd-ctrl-h = 'move left'
+alt-shift-cmd-ctrl-j = 'move down'
+alt-shift-cmd-ctrl-k = 'move up'
+alt-shift-cmd-ctrl-l = 'move right'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
@@ -138,19 +140,17 @@ alt-c = 'workspace C'
 
 alt-f = 'fullscreen'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#mode
-alt-shift-m = 'mode service'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-shift-1 = 'move-node-to-workspace 1'
-alt-shift-2 = 'move-node-to-workspace 2'
-alt-shift-3 = 'move-node-to-workspace 3'
-alt-shift-4 = 'move-node-to-workspace 4'
-alt-shift-5 = 'move-node-to-workspace 5'
-alt-shift-6 = 'move-node-to-workspace 6'
-alt-shift-a = 'move-node-to-workspace A'
-alt-shift-b = 'move-node-to-workspace B'
-alt-shift-c = 'move-node-to-workspace C'
+alt-shift-cmd-ctrl-1 = 'move-node-to-workspace 1'
+alt-shift-cmd-ctrl-2 = 'move-node-to-workspace 2'
+alt-shift-cmd-ctrl-3 = 'move-node-to-workspace 3'
+alt-shift-cmd-ctrl-4 = 'move-node-to-workspace 4'
+alt-shift-cmd-ctrl-5 = 'move-node-to-workspace 5'
+alt-shift-cmd-ctrl-6 = 'move-node-to-workspace 6'
+alt-shift-cmd-ctrl-a = 'move-node-to-workspace A'
+alt-shift-cmd-ctrl-b = 'move-node-to-workspace B'
+alt-shift-cmd-ctrl-c = 'move-node-to-workspace C'
 
 #
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
@@ -158,6 +158,8 @@ alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
+# See: https://nikitabobko.github.io/AeroSpace/commands#mode
+alt-shift-m = 'mode service'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -187,36 +189,56 @@ down = 'volume down'
 up = 'volume up'
 m = ['volume set 0', 'mode main']
 
+
 # Move apps to the correct workspaces
+
+# Slack
 [[on-window-detected]]
 if.app-id = 'org.tinyspeck.slackmacgap'
 run = 'move-node-to-workspace A'
 
+# Zen Browser
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
 run = 'move-node-to-workspace 1'
 
+# Brave Browser
 [[on-window-detected]]
 if.app-id = 'com.brave.Browser'
+run = 'move-node-to-workspace 1'
+
+# Chrome Browser
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace 2'
 
+# Spotify
 [[on-window-detected]]
 if.app-id = 'app.spotify.client'
 run = 'move-node-to-workspace B'
 
+# Messages
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
 run = 'move-node-to-workspace B'
 
+# Ghostty terminal
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 if.during-aerospace-startup = true
 run = 'move-node-to-workspace 3'
 
+# Zoom
 [[on-window-detected]]
 if.app-id = 'us.zoom.xos'
 run = 'layout floating'
 
+# Finder
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+# 1Password
 [[on-window-detected]]
 if.app-id = 'com.1password.1password'
 run = 'layout floating'
