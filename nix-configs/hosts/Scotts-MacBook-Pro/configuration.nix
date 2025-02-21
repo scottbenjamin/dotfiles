@@ -44,10 +44,12 @@ in {
     brews =
       [
         "nushell"
+        "sketchybar"
       ]
       ++ common.commonBrews;
     taps = [
       "nikitabobko/tap"
+      "FelixKratz/formulae"
     ];
   };
 

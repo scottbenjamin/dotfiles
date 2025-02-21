@@ -51,12 +51,14 @@ in {
     brews =
       [
         "jira-cli"
+        "sketchybar"
       ]
       ++ common.commonBrews;
 
     taps = [
       "nikitabobko/tap"
       "ankitpokhrel/jira-cli"
+      "FelixKratz/formulae"
     ];
   };
 
