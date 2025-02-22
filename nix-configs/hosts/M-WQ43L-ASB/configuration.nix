@@ -110,6 +110,10 @@ in {
 
   # Mac OS settings
   system.defaults = {
+    controlcenter = {
+      BatteryShowPercentage = true;
+    };
+
     dock ={
       autohide = true;
       mru-spaces = false;
@@ -119,7 +123,7 @@ in {
       wvous-tl-corner = 1; # Disable hot corners
       wvous-tr-corner = 1; # Disable hot corners
     };
-    spaces.spans-displays = true;
+    spaces.spans-displays = false;
 
     finder.AppleShowAllExtensions = true;
     finder.FXPreferredViewStyle = "clmv";

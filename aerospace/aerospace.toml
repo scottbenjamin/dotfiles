@@ -9,6 +9,7 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
+# after-startup-command = ['exec-and-forget sketchybar']
 after-startup-command = []
 
 # Start AeroSpace at login
@@ -43,6 +44,14 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
 automatically-unhide-macos-hidden-apps = false
 
+exec-on-workspace-change = []
+# Notify Sketchybar about workspace change
+# exec-on-workspace-change = [
+#   '/bin/bash',
+#   '-c',
+#   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE',
+# ]
+
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
@@ -58,6 +67,7 @@ A = "built-in"
 B = "built-in"
 C = "built-in"
 
+
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
 # - Constant:     gaps.outer.top = 8
@@ -67,22 +77,18 @@ C = "built-in"
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 6
-inner.vertical = 6
-outer.left = 6
-outer.bottom = 6
-outer.top = 6
-outer.right = 6
+inner.horizontal = 10
+inner.vertical = 10
+outer.left = 10
+outer.bottom = 10
+outer.top = 10
+outer.right = 10
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
 # Fallback value (if you omit the key): mode.main.binding = {}
 [mode.main.binding]
-
-cmd-h = []     # Disable "hide application"
-cmd-alt-h = [] # Disable "hide others"
-
 
 # All possible keys:
 # - Letters.        a, b, c, ..., z
@@ -133,7 +139,6 @@ alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
 alt-a = 'workspace A'
 alt-b = 'workspace B'
 alt-c = 'workspace C'
@@ -147,7 +152,6 @@ alt-shift-cmd-ctrl-2 = 'move-node-to-workspace 2'
 alt-shift-cmd-ctrl-3 = 'move-node-to-workspace 3'
 alt-shift-cmd-ctrl-4 = 'move-node-to-workspace 4'
 alt-shift-cmd-ctrl-5 = 'move-node-to-workspace 5'
-alt-shift-cmd-ctrl-6 = 'move-node-to-workspace 6'
 alt-shift-cmd-ctrl-a = 'move-node-to-workspace A'
 alt-shift-cmd-ctrl-b = 'move-node-to-workspace B'
 alt-shift-cmd-ctrl-c = 'move-node-to-workspace C'
