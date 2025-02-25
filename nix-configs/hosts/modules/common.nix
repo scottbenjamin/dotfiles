@@ -17,7 +17,6 @@
     lua5_1
     luarocks
     markdownlint-cli
-    neovim
     nh
     nixd
     nixpkgs-fmt
@@ -39,15 +38,19 @@
 
   commonBrews = [
     "awscli"
+    "cmake"
     "cosign"
+    "curl"
     "direnv"
     "fx"
+    "gettext"
     "glab"
     "jq"
     "k3d"
     "k9s"
     "kubectl"
-    "neovim"
+    # "neovim"
+    "ninja"
     "oci-cli"
     "pre-commit"
     "starship"
@@ -56,6 +59,7 @@
     "tmux"
     "yq"
     "zig"
+
   ];
 
   commonCasks = [
