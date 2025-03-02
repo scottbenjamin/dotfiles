@@ -38,6 +38,7 @@
 
   commonBrews = [
     "awscli"
+    "ccache"
     "cmake"
     "cosign"
     "curl"
@@ -49,7 +50,6 @@
     "k3d"
     "k9s"
     "kubectl"
-    # "neovim"
     "ninja"
     "oci-cli"
     "pre-commit"

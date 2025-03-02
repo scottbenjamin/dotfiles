@@ -66,10 +66,12 @@ in {
     finder.FXPreferredViewStyle = "clmv";
     loginwindow.LoginwindowText = "Login";
     screencapture.location = "~/Pictures/screenshots";
-    screensaver.askForPasswordDelay = 10;
+    screensaver.askForPasswordDelay = 20;
+    # spaces.spans-displays = false;
     NSGlobalDomain = {
       AppleInterfaceStyle = "Dark";
-      KeyRepeat = 2;
+      _HIHideMenuBar = false;
+      KeyRepeat = 1;
     };
   };
 
