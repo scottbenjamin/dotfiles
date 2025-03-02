@@ -116,6 +116,10 @@ alt-a = 'workspace A'
 alt-b = 'workspace B'
 alt-c = 'workspace C'
 
+alt-f = 'fullscreen'
+alt-o = 'focus-back-and-forth'
+
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-cmd-ctrl-1 = 'move-node-to-workspace 1'
 alt-shift-cmd-ctrl-2 = 'move-node-to-workspace 2'
