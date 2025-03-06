@@ -3,7 +3,6 @@
     alejandra
     black
     btop
-    nix-btm
     cargo
     colima
     delta
@@ -12,25 +11,25 @@
     eza
     go
     hclfmt
+    ipcalc
     isort
     lazydocker
     lua5_1
     luarocks
     markdownlint-cli
     nh
+    nix-btm
     nixd
     nixpkgs-fmt
-    nodePackages.bash-language-server
-    nodePackages.prettier
     nodejs
     prettierd
-    pyenv
     pyright
     python3
     ripgrep
     rustup
     shellcheck
     shfmt
+    sipcalc
     stow
     stylua
     tree
@@ -59,7 +58,6 @@
     "tmux"
     "yq"
     "zig"
-
   ];
 
   commonCasks = [

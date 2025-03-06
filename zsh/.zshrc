@@ -177,11 +177,11 @@ source <(carapace _carapace)
 eval "$(atuin init zsh)"
 
 # pyenv
-# if [[ -f $(which pyenv) ]]; then
-#   eval "$(pyenv init -)"
-#   eval "$(pyenv virtualenv-init -)"
-#   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-# fi
+if [[ -f $(which pyenv) ]]; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+fi
 
 [[ -f $(which mise) ]] && eval "$(mise activate zsh)"
 

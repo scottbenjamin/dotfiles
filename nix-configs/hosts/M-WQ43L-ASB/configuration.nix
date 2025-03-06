@@ -22,6 +22,7 @@ in {
   };
 
   nix = {
+    enable = true;
     package = pkgs.nix;
     optimise.automatic = true;
     settings = {
@@ -65,7 +66,7 @@ in {
   programs.zsh.enable = true;
 
   # Add ability to use TouchID for sudo
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   # Stylix configuration
   stylix = {
@@ -153,8 +154,6 @@ in {
     ++ common.commonPackages;
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
-
-  services.nix-daemon.enable = true;
 
   system.stateVersion = 5;
 }

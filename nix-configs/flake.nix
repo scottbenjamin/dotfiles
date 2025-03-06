@@ -35,7 +35,7 @@
     darwin,
     home-manager,
     nix-homebrew,
-    nixpkgs,
+    # nixpkgs,
     stylix,
     ...
   } @ inputs: let
@@ -73,7 +73,7 @@
           stylix.darwinModules.stylix
           {
             home-manager.backupFileExtension = "bak";
-            home-manager.useGlobalPkgs = true;
+            home-manager.useGlobalPkgs = false;
             home-manager.useUserPackages = true;
             home-manager.users.${username} = import ./home/${username}/${hostname}.nix;
             home-manager.extraSpecialArgs = {
@@ -87,9 +87,9 @@
     # Function for Home Manager configuration
     mkHomeConfiguration = system: username: hostname:
       home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          inherit system;
-        };
+        # pkgs = import nixpkgs {
+        #   inherit system;
+        # };
         extraSpecialArgs = {
           inherit inputs outputs;
           userConfig = users.${username};
