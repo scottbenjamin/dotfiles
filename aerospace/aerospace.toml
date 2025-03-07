@@ -50,7 +50,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
-automatically-unhide-macos-hidden-apps = false
+automatically-unhide-macos-hidden-apps = true
 
 
 # Possible values: (qwerty|dvorak)
@@ -64,9 +64,11 @@ preset = 'qwerty'
 3 = ["LG.*", "built-in"]
 4 = ["LG.*", "built-in"]
 5 = ["LG.*", "built-in"]
+6 = ["LG.*", "built-in"]
 A = "built-in"
 B = "built-in"
 C = "built-in"
+D = "built-in"
 
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
@@ -78,12 +80,12 @@ C = "built-in"
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 4
-inner.vertical = 4
+inner.horizontal = 1
+inner.vertical = 1
 outer.bottom = 2
 outer.left = 2
 outer.right = 2
-outer.top = 2
+outer.top = 1
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -115,9 +117,11 @@ alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
 alt-a = 'workspace A'
 alt-b = 'workspace B'
 alt-c = 'workspace C'
+alt-d = 'workspace D'
 
 alt-f = 'fullscreen'
 alt-o = 'focus-back-and-forth'
@@ -129,9 +133,11 @@ alt-shift-cmd-ctrl-2 = 'move-node-to-workspace 2'
 alt-shift-cmd-ctrl-3 = 'move-node-to-workspace 3'
 alt-shift-cmd-ctrl-4 = 'move-node-to-workspace 4'
 alt-shift-cmd-ctrl-5 = 'move-node-to-workspace 5'
+alt-shift-cmd-ctrl-6 = 'move-node-to-workspace 6'
 alt-shift-cmd-ctrl-a = 'move-node-to-workspace A'
 alt-shift-cmd-ctrl-b = 'move-node-to-workspace B'
 alt-shift-cmd-ctrl-c = 'move-node-to-workspace C'
+alt-shift-cmd-ctrl-d = 'move-node-to-workspace D'
 
 #
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
@@ -206,7 +212,7 @@ run = 'move-node-to-workspace 3'
 # Zoom
 [[on-window-detected]]
 if.app-id = 'us.zoom.xos'
-run = 'layout floating'
+run = ['layout floating', 'move-node-to-workspace D']
 
 # Finder
 [[on-window-detected]]

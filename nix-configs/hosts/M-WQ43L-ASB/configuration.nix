@@ -124,7 +124,7 @@ in {
       wvous-tl-corner = 1; # Disable hot corners
       wvous-tr-corner = 1; # Disable hot corners
     };
-    spaces.spans-displays = false;
+    spaces.spans-displays = true;
 
     finder.AppleShowAllExtensions = true;
     finder.FXPreferredViewStyle = "clmv";
@@ -132,6 +132,7 @@ in {
     screencapture.location = "~/Pictures/screenshots";
     screensaver.askForPasswordDelay = 10;
     NSGlobalDomain = {
+      _HIHideMenuBar = false;
       AppleInterfaceStyle = "Dark";
       KeyRepeat = 1;
       InitialKeyRepeat = 10;
