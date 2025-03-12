@@ -1,4 +1,5 @@
 local kms = vim.keymap.set
+
 -- Want something to yank to clipboard directly
 kms({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to clipboard" })
 
@@ -19,8 +20,38 @@ kms("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 -- new file
 kms("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
+-- save file
+kms({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+
+--keywordprg
+kms("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
+
+-- better indenting
+kms("v", "<", "<gv")
+kms("v", ">", ">gv")
+
+-- diagnostics
 kms("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
 kms("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
 
 kms("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 kms("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
+
+local diagnostic_goto = function(next, severity)
+  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    go({ severity = severity })
+  end
+end
+kms("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+kms("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
+kms("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
+kms("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+kms("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+kms("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+kms("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+
+-- commenting
+kms("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
+kms("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })

@@ -46,7 +46,7 @@ return {
         tofu = { "tofu_fmt" },
         tf = { "terraform_fmt" },
         terraform = { "terraform_fmt" },
-        nu = { "alejandra" },
+        nix = { "alejandra" },
       },
       -- Set default options
       default_format_opts = {

@@ -33,15 +33,18 @@
     stow
     stylua
     tree
- ];
+  ];
 
   commonBrews = [
+    "alesbrelih/gitlab-ci-ls/gitlab-ci-ls"
     "awscli"
+    "bash-language-server"
     "ccache"
     "cmake"
     "cosign"
     "curl"
     "direnv"
+    "docker-ls"
     "fx"
     "gettext"
     "glab"
@@ -49,6 +52,7 @@
     "k3d"
     "k9s"
     "kubectl"
+    "lua-language-server"
     "ninja"
     "oci-cli"
     "pre-commit"
@@ -56,8 +60,11 @@
     "pyenv-virtualenv"
     "starship"
     "tenv"
+    "terraform-ls"
     "tflint"
     "tmux"
+    "vscode-langservers-extracted"
+    "yaml-language-server"
     "yq"
     "zig"
   ];

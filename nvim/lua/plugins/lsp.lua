@@ -11,8 +11,14 @@ return {
       },
     },
   },
+
+  {
+    "williamboman/mason.nvim",
+  },
+
   {
     "neovim/nvim-lspconfig",
+    enabled = false,
     event = "VeryLazy",
     dependencies = {
       { "williamboman/mason.nvim", opts = {} },
@@ -23,7 +29,7 @@ return {
       -- Useful status updates for LSP.
       { "j-hui/fidget.nvim", opts = {} },
     },
-    config = function()
+    config = function(_, opts)
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
         callback = function(event)
