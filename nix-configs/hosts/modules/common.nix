@@ -52,6 +52,8 @@
     "ninja"
     "oci-cli"
     "pre-commit"
+    "pyenv"
+    "pyenv-virtualenv"
     "starship"
     "tenv"
     "tflint"

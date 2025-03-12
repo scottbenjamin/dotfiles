@@ -3,10 +3,7 @@ add_newline = false
 format = """$directory$character"""
 # move the rest of the prompt to the right
 right_format = """$all"""
-command_timeout = 500
-
-[directory.substitutions]
-'~/tests/starship-custom' = 'work-project'
+command_timeout = 300
 
 [git_branch]
 format = '[$symbol$branch(:$remote_branch)]($style)'

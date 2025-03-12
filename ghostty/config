@@ -6,6 +6,7 @@ font-size = 13
 font-thicken = true
 font-thicken-strength = 175
 theme = kanagawabones
+copy-on-select = clipboard
 
 window-decoration = none
 
