@@ -116,7 +116,7 @@ in {
       BatteryShowPercentage = true;
     };
 
-    dock ={
+    dock = {
       autohide = true;
       mru-spaces = false;
       expose-group-apps = true;
@@ -125,7 +125,7 @@ in {
       wvous-tl-corner = 1; # Disable hot corners
       wvous-tr-corner = 1; # Disable hot corners
     };
-    spaces.spans-displays = true;
+    spaces.spans-displays = false;
 
     finder.AppleShowAllExtensions = true;
     finder.FXPreferredViewStyle = "clmv";

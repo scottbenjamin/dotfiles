@@ -44,6 +44,7 @@ local diagnostic_goto = function(next, severity)
     go({ severity = severity })
   end
 end
+
 kms("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 kms("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
 kms("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })

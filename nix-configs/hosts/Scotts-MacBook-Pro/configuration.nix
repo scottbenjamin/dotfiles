@@ -49,8 +49,9 @@ in {
       ]
       ++ common.commonBrews;
     taps = [
-      "nikitabobko/tap"
       "FelixKratz/formulae"
+      "alesbrelih/gitlab-ci-ls"
+      "nikitabobko/tap"
     ];
   };
 
