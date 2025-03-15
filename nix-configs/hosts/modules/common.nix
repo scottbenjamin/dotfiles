@@ -58,6 +58,7 @@
     "pre-commit"
     "pyenv"
     "pyenv-virtualenv"
+    "rustup"
     "starship"
     "tenv"
     "terraform-ls"
@@ -67,6 +68,7 @@
     "yaml-language-server"
     "yq"
     "zig"
+    "zls"
   ];
 
   commonCasks = [

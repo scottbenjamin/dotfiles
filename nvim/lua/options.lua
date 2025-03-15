@@ -1,6 +1,8 @@
 local opt = vim.opt
 
 ---- Options ------------------------------------
+-- disable snacks thingies
+vim.g.snacks_animate = false
 
 opt.breakindent = true -- Enable break indent
 opt.clipboard = "unnamedplus"
@@ -26,7 +28,7 @@ opt.linebreak = true
 opt.list = true
 opt.number = true
 opt.relativenumber = true
-opt.scrolloff = 4
+opt.scrolloff = 999
 opt.shiftround = true
 opt.shiftwidth = 2
 opt.shortmess:append({ W = true, I = true, c = true, C = true })

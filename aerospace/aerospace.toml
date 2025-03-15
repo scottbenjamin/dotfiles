@@ -223,3 +223,8 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'com.1password.1password'
 run = 'layout floating'
+
+# Activity Monitor
+[[on-window-detected]]
+if.app-id = 'com.apple.ActivityMonitor'
+run = 'layout floating'

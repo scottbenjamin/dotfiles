@@ -1,9 +1,10 @@
 return {
   "saghen/blink.cmp",
-  event = "VeryLazy",
-
   -- optional: provides snippets for the snippet source
-  dependencies = "rafamadriz/friendly-snippets",
+  dependencies = {
+    "rafamadriz/friendly-snippets",
+  },
+  event = "InsertEnter",
 
   -- use a release tag to download pre-built binaries
   version = "*",
@@ -11,7 +12,14 @@ return {
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
-    keymap = { preset = "default" },
+    sources = {
+      default = { "lsp", "path", "snippets", "buffer" },
+    },
+    cmdline = { enabled = false },
+    keymap = {
+      preset = "enter",
+      ["<C-y>"] = { "select_and_accept" },
+    },
     completion = {
       menu = {
         auto_show = function(ctx)
