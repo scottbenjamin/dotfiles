@@ -26,28 +26,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
       -- Enable auto-completion
       vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
     end
-    -- Disabled as using conform.nvim for this
-    -- if client:supports_method("textDocument/formatting") then
-    --   -- Format the current buffer on save
-    --   vim.api.nvim_create_autocmd("BufWritePre", {
-    --     buffer = args.buf,
-    --     callback = function()
-    --       vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
-    --     end,
-    --   })
-    -- end
   end,
 })
 
--- Enable configured language servers
--- files are loaded from lsp directory
--- vim.lsp.enable("bashls")
--- vim.lsp.enable("gitlab_ci_ls")
-vim.lsp.enable("gitlab_ci_ls")
-vim.lsp.enable("lua_ls")
-vim.lsp.enable("nixd")
-vim.lsp.enable("terraformls")
-vim.lsp.enable("tflint")
-vim.lsp.enable("yamlls")
-vim.lsp.enable("jsonls")
-vim.lsp.enable("zls")
+-- Enable all language servers found in the lsp directory
+for _, server in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
+  local server_name = vim.fn.fnameescape(vim.fn.fnamemodify(server, ":t:r"))
+  vim.lsp.enable(server_name)
+end
