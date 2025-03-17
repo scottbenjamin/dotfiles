@@ -17,5 +17,5 @@ to the correct locations that the tools expect
 From the cloned repo issue:
 
 ```shell
-stow .
+stow -R .
 ```

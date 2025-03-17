@@ -26,6 +26,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
       -- Enable auto-completion
       vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
     end
+
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+      Snacks.toggle.inlay_hints():map("<leader>th")
+    end
   end,
 })
 
