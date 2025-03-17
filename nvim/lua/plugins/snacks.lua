@@ -32,7 +32,7 @@ return {
   keys = {
     -- stylua: ignore start
     -- common
-    { "<leader><space>", function() Snacks.picker.files() end, desc = "Find Files", },
+    { "<leader><space>", function() Snacks.picker.smart() end, desc = "Find Files", },
     { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers", },
     { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep", },
     { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History", },
@@ -69,6 +69,8 @@ return {
     { "<leader>sM", function() Snacks.picker.man() end, desc = "Man Pages", },
     { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks", },
     { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume", },
+    { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols", },
+    { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace aSymbols", },
     { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List", },
     { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes", },
 
@@ -77,13 +79,15 @@ return {
     { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References", },
     { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation", },
     { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition", },
-    { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols", },
 
     -- UI toggles
     { "<leader>tz", function() Snacks.toggle.zen() end, desc = "Toggle Zenmode", },
     { "<leader>td", function() Snacks.toggle.diagnostics() end, desc = "Toggle Diagnostics", },
     {"<leader>bd", function() Snacks.bufdelete() end,  desc = "Delete Buffer" },
     {"<leader>bo", function() Snacks.bufdelete.other() end,  desc = "Delete Other Buffers" },
+
+    { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+    { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
     -- stylua: ignore end
 
     -- Notificiations
