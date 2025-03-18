@@ -5,7 +5,9 @@ alias 'lv'='NVIM_APPNAME=nvim-lazy nvim'
 
 alias 'cat'='bat'
 
-alias 'tf'='terraform'
+if ! tenv list &> /dev/null; then
+  alias 'tf'='terraform'
+fi
 alias 'tg'='terragrunt'
 alias 'tga'='terragrunt apply'
 alias 'tgp'='terragrunt plan'

@@ -40,9 +40,9 @@ opt.splitbelow = true
 opt.splitkeep = "screen"
 opt.splitright = true
 opt.tabstop = 2
-opt.timeoutlen = 300 -- Decrease mapped sequence wait time
+opt.timeoutlen = 250 -- Decrease mapped sequence wait time
 opt.undofile = true -- Save undo history
-opt.undolevels = 10000
+opt.undolevels = 1000
 opt.updatetime = 200 -- Decrease update time
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.wrap = false
@@ -51,9 +51,10 @@ vim.lsp.set_log_level("off")
 
 vim.filetype.add({
   extension = {
-    hcl = "hcl",
+    -- hcl = "hcl",
     tofu = "terraform",
     sls = "sls.yaml",
+    packer = "*.pkr.hcl",
   },
 })
 

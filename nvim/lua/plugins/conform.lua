@@ -1,3 +1,14 @@
+local function select_hcl_formatter(bufnr, ...)
+  -- if end of file ends in .pkr.hcl, use packer_fmt otherwide use terragrunt_hclfmt
+  if vim.bo.filetype == "hcl" then
+    if vim.fn.expand("%:e") == "pkr.hcl" then
+      return { "packer_fmt" }
+    else
+      return { "terragrunt_hclfmt" }
+    end
+  end
+end
+
 return {
   {
     "stevearc/conform.nvim",
@@ -42,7 +53,9 @@ return {
         lua = { "stylua" },
         python = { "isort", "black" },
         javascript = { "prettierd", "prettier", stop_after_first = true },
-        hcl = { "terragrunt_hclfmt" },
+        hcl = function(bufnr)
+          return select_hcl_formatter(bufnr)
+        end,
         tofu = { "tofu_fmt" },
         tf = { "terraform_fmt" },
         terraform = { "terraform_fmt" },

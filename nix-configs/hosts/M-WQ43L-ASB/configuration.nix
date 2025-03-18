@@ -53,6 +53,7 @@ in {
       [
         "jira-cli"
         "sketchybar"
+        "hashicorp/tap/packer"
       ]
       ++ common.commonBrews;
 
@@ -61,6 +62,7 @@ in {
       "alesbrelih/gitlab-ci-ls"
       "ankitpokhrel/jira-cli"
       "nikitabobko/tap"
+      "hashicorp/tap"
     ];
   };
 

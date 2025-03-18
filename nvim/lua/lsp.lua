@@ -23,29 +23,40 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local client = vim.lsp.get_client_by_id(args.data.client_id)
 
     -- Keymaps for LSP
-    kms("n", "<leader>th", function()
-      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }))
-      -- Snacks.toggle.inlay_hints()
-    end, { desc = "Toggle Inlay Hints" })
+    -- kms("n", "<leader>th", function()
+    --   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }))
+    -- end, { desc = "Toggle Inlay Hints" })
 
     kms("n", "gK", function()
       return vim.lsp.buf.signature_help()
     end, { desc = "Show signature help" })
 
-    if client:supports_method("textDocument/implementation") then
-      -- Create a keymap for vim.lsp.buf.implementation
-    end
-    if client:supports_method("textDocument/inlayHint") then
-      vim.lsp.inlay_hint.enable(vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }))
-    end
+    kms({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+    kms({ "n", "v" }, "<leader>cc", vim.lsp.codelens.run, { desc = "Run Codelens" })
+    kms("n", "<leader>cC", vim.lsp.codelens.refresh, { desc = "Refresh & Display Codelens" })
+    kms("n", "<leader>cR", function()
+      Snacks.rename.rename_file()
+    end, { desc = "Rename File" })
+    kms("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
 
+    -- Auto Completion
     if client:supports_method("textDocument/completion") then
       -- Enable auto-completion
       vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
     end
 
-    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+    -- Inline Hints
+    if client:supports_method("textDocument/inlayHint") then
+      vim.lsp.inlay_hint.enable(vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }))
       Snacks.toggle.inlay_hints():map("<leader>th")
+    end
+
+    if client:supports_method("textDocument/codelens") then
+      vim.lsp.codelens.refresh({ bufnr = 0 })
+      vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+        buffer = buffer,
+        callback = vim.lsp.codelens.refresh,
+      })
     end
   end,
 })

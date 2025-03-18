@@ -13,7 +13,7 @@ return {
   ---@type blink.cmp.Config
   opts = {
     sources = {
-      default = { "lsp", "path", "snippets", "buffer" },
+      default = { "lsp", "omni", "path", "snippets", "buffer" },
     },
     cmdline = { enabled = false },
     keymap = {
