@@ -87,4 +87,10 @@
     "slack"
     "zen-browser"
   ];
+
+  commonTaps = [
+    "nikitabobko/tap"
+    "hashicorp/tap"
+    "homebrew/bundle"
+  ];
 }

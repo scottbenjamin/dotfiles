@@ -57,13 +57,13 @@ in {
       ]
       ++ common.commonBrews;
 
-    taps = [
-      "FelixKratz/formulae"
-      "alesbrelih/gitlab-ci-ls"
-      "ankitpokhrel/jira-cli"
-      "nikitabobko/tap"
-      "hashicorp/tap"
-    ];
+    taps =
+      [
+        "FelixKratz/formulae"
+        "alesbrelih/gitlab-ci-ls"
+        "ankitpokhrel/jira-cli"
+      ]
+      ++ common.commonTaps;
   };
 
   programs.zsh.enable = true;
