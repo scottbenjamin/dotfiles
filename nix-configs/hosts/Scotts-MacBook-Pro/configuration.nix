@@ -46,6 +46,7 @@ in {
       [
         "nushell"
         "sketchybar"
+        "mise"
       ]
       ++ common.commonBrews;
     taps = [
