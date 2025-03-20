@@ -3,6 +3,7 @@ return {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
+    enabled = false,
     opts = { style = "night" },
     config = function()
       -- load the colorscheme here
@@ -13,7 +14,6 @@ return {
     "rebelot/kanagawa.nvim",
     lazy = false,
     priority = 1000,
-    enabled = false,
     opts = {},
     config = function()
       -- load the colorscheme here

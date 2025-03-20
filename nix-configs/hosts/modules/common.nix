@@ -1,7 +1,5 @@
 {pkgs}: {
   commonPackages = with pkgs; [
-    alejandra
-    black
     btop
     cargo
     colima
@@ -10,28 +8,20 @@
     du-dust
     eza
     go
-    hclfmt
     ipcalc
     isort
     lazydocker
     lua5_1
     luarocks
-    markdownlint-cli
     nh
     nix-btm
     nixd
-    nixpkgs-fmt
     nodejs
-    prettierd
-    pyright
     python3
     ripgrep
     rustup
-    shellcheck
-    shfmt
     sipcalc
     stow
-    stylua
     tree
   ];
 
@@ -52,7 +42,6 @@
     "k3d"
     "k9s"
     "kubectl"
-    "lua-language-server"
     "ninja"
     "oci-cli"
     "pre-commit"
@@ -61,14 +50,9 @@
     "rustup"
     "starship"
     "tenv"
-    "terraform-ls"
-    "tflint"
     "tmux"
-    "vscode-langservers-extracted"
-    "yaml-language-server"
     "yq"
     "zig"
-    "zls"
   ];
 
   commonCasks = [
