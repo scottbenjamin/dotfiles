@@ -22,6 +22,7 @@ return {
       icons = {
         files = { enabled = false },
       },
+      matcher = { frecency = true },
     },
     quickfile = { enabled = true },
     scroll = { enabled = true },
