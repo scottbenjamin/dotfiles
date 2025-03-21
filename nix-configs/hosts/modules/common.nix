@@ -26,15 +26,13 @@
   ];
 
   commonBrews = [
-    "alesbrelih/gitlab-ci-ls/gitlab-ci-ls"
+    "ansible"
     "awscli"
-    "bash-language-server"
     "ccache"
     "cmake"
     "cosign"
     "curl"
     "direnv"
-    "docker-ls"
     "fx"
     "gettext"
     "glab"
@@ -51,6 +49,7 @@
     "starship"
     "tenv"
     "tmux"
+    "tree-sitter"
     "yq"
     "zig"
   ];
@@ -75,6 +74,5 @@
   commonTaps = [
     "nikitabobko/tap"
     "hashicorp/tap"
-    "homebrew/bundle"
   ];
 }

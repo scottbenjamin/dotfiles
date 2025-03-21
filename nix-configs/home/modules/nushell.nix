@@ -16,7 +16,7 @@
     carapace.enable = true;
     carapace.enableNushellIntegration = true;
     starship = {
-      enable = true;
+      enable = false;
       enableNushellIntegration = true;
     };
   };

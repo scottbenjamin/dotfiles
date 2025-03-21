@@ -14,8 +14,24 @@
 
     # Homebrew
     nix-homebrew = {
-      url = "github:zhaofengli-wip/nix-homebrew";
+      # url = "github:zhaofengli-wip/nix-homebrew";
+      url = "git+https://github.com/zhaofengli/nix-homebrew?ref=refs/pull/71/merge";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
     };
 
     # Home Manager

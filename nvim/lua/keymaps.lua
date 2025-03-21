@@ -25,7 +25,7 @@ kms("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 kms("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 -- save file
-kms({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+-- kms({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
 --keywordprg
 kms("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
@@ -60,3 +60,6 @@ kms("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 -- commenting
 kms("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
 kms("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
+
+-- Oil
+kms("n", "-", "<cmd>Oil<cr>", { desc = "Oil" })

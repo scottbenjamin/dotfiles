@@ -27,7 +27,7 @@ in {
     optimise.automatic = true;
     settings = {
       experimental-features = "nix-command flakes";
-      trusted-users = ["root" "@staff"];
+      # trusted-users = ["root" "@staff"];
     };
   };
 

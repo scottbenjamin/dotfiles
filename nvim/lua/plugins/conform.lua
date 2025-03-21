@@ -60,6 +60,7 @@ return {
         tf = { "terraform_fmt" },
         terraform = { "terraform_fmt" },
         nix = { "alejandra" },
+        yaml = { "prettier" },
       },
       -- Set default options
       default_format_opts = {

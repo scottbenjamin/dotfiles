@@ -12,30 +12,30 @@ return {
     },
   },
 
-  {
-    "williamboman/mason.nvim",
-    dependencies = {
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
-      "RubixDev/mason-update-all",
-    },
-    config = function()
-      local ensure_installed = {
-        "stylua",
-        "lua-language-server"
-      }
-      require("mason").setup()
-      require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-      require('mason-update-all').setup()
-    end,
-    keys = {
-      { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
-    },
-
-  },
+  -- used when using 0.11 native lcpconfig
+  -- {
+  --   "williamboman/mason.nvim",
+  --   dependencies = {
+  --     "WhoIsSethDaniel/mason-tool-installer.nvim",
+  --     "RubixDev/mason-update-all",
+  --   },
+  --   config = function()
+  --     local ensure_installed = {
+  --       "stylua",
+  --       "lua-language-server"
+  --     }
+  --     require("mason").setup()
+  --     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+  --     require('mason-update-all').setup()
+  --   end,
+  --   keys = {
+  --     { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
+  --   },
+  -- },
 
   {
     "neovim/nvim-lspconfig",
-    enabled = false,
+    enabled = true,
     event = "VeryLazy",
     dependencies = {
       { "williamboman/mason.nvim", opts = {} },
@@ -44,7 +44,7 @@ return {
       "saghen/blink.cmp",
 
       -- Useful status updates for LSP.
-      { "j-hui/fidget.nvim",       opts = {} },
+      { "j-hui/fidget.nvim", opts = {} },
     },
     config = function(_, opts)
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -112,6 +112,8 @@ return {
       local ensure_installed = {
         "stylua",
         "yamlls",
+        "pyright",
+        "terraform-ls",
       }
 
       local servers = {
