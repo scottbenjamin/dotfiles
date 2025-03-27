@@ -42,6 +42,7 @@
     "kubectl"
     "ninja"
     "oci-cli"
+    "pdsh"
     "pre-commit"
     "pyenv"
     "pyenv-virtualenv"

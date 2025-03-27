@@ -45,6 +45,7 @@ return {
     -- { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files", },
     { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files", },
     { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent", },
+    {"<leader>cR", function() Snacks.rename.rename_file() end,  desc = "Rename File" } ,
 
    -- git
     { "<leader>gg", function() Snacks.lazygit.open() end, desc = "Lazygit", },

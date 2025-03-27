@@ -6,7 +6,7 @@ vim.g.snacks_animate = false
 
 opt.breakindent = true -- Enable break indent
 opt.clipboard = "unnamedplus"
-opt.completeopt = "menu,menuone,noselect,noinsert,popup" -- TODO: remove noinsert/popup when neovim 0.11 comes out
+opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 2
 opt.cursorline = true
 opt.expandtab = true
@@ -54,7 +54,8 @@ vim.filetype.add({
     -- hcl = "hcl",
     tofu = "terraform",
     sls = "sls.yaml",
-    packer = "*.pkr.hcl",
+    packer = "pkr.hcl",
+    shell = "sh.tpl",
   },
 })
 
