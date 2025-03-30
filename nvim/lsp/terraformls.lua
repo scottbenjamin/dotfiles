@@ -1,8 +1,8 @@
 ---@type vim.lsp.Config
-local files = { ".git", ".terraform" }
+local files = { ".terraform" }
 
 return {
   cmd = { "terraform-ls", "serve" },
   filetypes = { "terraform", "terraform-vars" },
-  root_dirs = vim.fs.root(0, files),
+  root_markers = files,
 }
