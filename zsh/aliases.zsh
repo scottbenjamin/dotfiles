@@ -16,6 +16,7 @@ alias 'tgrp'='terragrunt run-all plan'
 alias 'ot'='tofu'
 
 alias 'k'='kubectl'
+alias 'kgn'='kubectl get nodes'
 
 alias 'grep'='rg'
 alias 'g'='grep'
