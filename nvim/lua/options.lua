@@ -64,8 +64,8 @@ vim.diagnostic.config({
   signs = true,
   underline = true,
   update_in_insert = true,
+  -- virtual_lines = true,
   virtual_text = {
-    prefix = "",
     spacing = 4,
   },
 })

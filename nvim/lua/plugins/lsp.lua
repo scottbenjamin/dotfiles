@@ -13,39 +13,40 @@ return {
   },
 
   { "j-hui/fidget.nvim", opts = {} },
+
   {
     "neovim/nvim-lspconfig",
     dependencies = { "saghen/blink.cmp" },
-
-    config = function(_, opts)
-      local lspconfig = require("lspconfig")
-      for server, config in pairs(opts.servers) do
-        -- passing config.capabilities to blink.cmp merges with the capabilities in your
-        -- `opts[server].capabilities, if you've defined it
-        config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-        lspconfig[server].setup(config)
-      end
-    end,
   },
 
   {
     "williamboman/mason.nvim",
     lazy = false,
     dependencies = {
+      "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       "RubixDev/mason-update-all",
+      "neovim/nvim-lspconfig",
     },
     config = function()
       local ensure_installed = {
-        "stylua",
         "basedpyright",
-        "lua-language-server",
-        "terraform-ls",
+        "bashls",
+        "lua_ls",
+        "terraformls",
         "tflint",
       }
       require("mason").setup()
-      require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-      require("mason-update-all").setup()
+
+      require("mason-lspconfig").setup({
+        ensure_installed = ensure_installed,
+      })
+      require("mason-lspconfig").setup_handlers({
+        function(server_name)
+          local capabilities = require("blink.cmp").get_lsp_capabilities()
+          require("lspconfig")[server_name].setup({ capabilities = capabilities })
+        end,
+      })
     end,
     keys = {
       { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },

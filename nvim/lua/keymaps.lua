@@ -1,5 +1,18 @@
 local kms = vim.keymap.set
 
+local diagnostic_goto = function(next, severity)
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    local dir = -1
+    if next then
+      dir = 1
+    end
+
+    vim.diagnostic.jump({ count = dir, float = true, severity = severity })
+  end
+end
+-- stylua: ignore start
+--
 -- Remaps keys to keep cursor in the middle of the screen
 kms("n", "<C-u>", "<C-u>zz", { desc = "Half page up" })
 kms("n", "<C-d>", "<C-d>zz", { desc = "Half page down" })
@@ -41,17 +54,10 @@ kms("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
 kms("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 kms("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
-local diagnostic_goto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-  severity = severity and vim.diagnostic.severity[severity] or nil
-  return function()
-    go({ severity = severity })
-  end
-end
-
 kms("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-kms("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
-kms("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
+
+-- kms("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
+-- kms("n", "]d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
 kms("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
 kms("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 kms("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
@@ -63,3 +69,5 @@ kms("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Commen
 
 -- Oil
 kms("n", "-", "<cmd>Oil<cr>", { desc = "Oil" })
+
+-- stylua: ignore end
