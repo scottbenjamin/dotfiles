@@ -1,6 +1,5 @@
 
 ACCOUNT="my.1password.com"
-MYVAULT="Couplify"
 
 _cloudflare_api () {
   op read "op://$MYVAULT/Cloudflare TF API Token/credential" --account $ACCOUNT
@@ -64,7 +63,7 @@ cvenv() {
 
   if [[ $update -eq 1 ]]; then
     echo -e "\nInstalling/updating pyenv."
-    brew install pyenv -q
+    brew install pyenv pyenv-virtualenv -q
   fi
 
   echo -e "\nInstalling Python ${VERSION} via pyenv (if needed) "
@@ -101,3 +100,19 @@ dr() {
   darwin-rebuild $action_full --flake $MY_NIX_CONFIGS
 }
 
+upnvim() {
+  NVIM_CODE_DIR=$HOME/code/neovim
+  if [ ! -d $NVIM_CODE_DIR ] ; then 
+    mkdir -p $HOME/code 
+    git clone https://github.com/neovim/neovim.git $NVIM_CODE_DIR
+  fi
+  cd $NVIM_CODE_DIR && git pull && make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=$HOME/.local install
+  cd -
+  nvim --version
+}
+
+upnvim-tar()
+{
+  curl -OL https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.tar.gz | tar zxf - --strip-components=1 -C $HOME/.local
+  nvim --version
+}

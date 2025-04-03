@@ -31,7 +31,7 @@ setopt HIST_SAVE_NO_DUPS
 #
 
 # Set editor default keymap to emacs (`-e`) or vi (`-v`)
-bindkey -e
+bindkey -v
 
 # Prompt for spelling correction of commands.
 #setopt CORRECT
@@ -177,12 +177,10 @@ source <(carapace _carapace)
 eval "$(atuin init zsh)"
 
 # pyenv
-if [[ -f $(which pyenv) ]]; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init - zsh)"
-  eval "$(pyenv virtualenv-init -)"
-fi
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+eval "$(pyenv virtualenv-init -)"
 
 [[ -f $(which mise) ]] && eval "$(mise activate zsh)"
 

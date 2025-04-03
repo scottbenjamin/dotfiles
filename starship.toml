@@ -27,3 +27,6 @@ disabled = true
 
 [python]
 disabled = true
+
+[hostname]
+ssh_only = true
