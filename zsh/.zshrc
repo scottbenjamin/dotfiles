@@ -177,10 +177,10 @@ source <(carapace _carapace zsh)
 eval "$(atuin init zsh)"
 
 # pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init - zsh)"
-# eval "$(pyenv virtualenv-init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+eval "$(pyenv virtualenv-init -)"
 
 [[ -f $(which mise) ]] && eval "$(mise activate zsh)"
 
@@ -189,4 +189,4 @@ eval "$(atuin init zsh)"
 # Created by `pipx` on 2024-03-27 21:25:20
 export PATH="$PATH:/Users/sbenjamin/.local/bin"
 
-# eval "$(starship init zsh)"
+eval "$(starship init zsh)"

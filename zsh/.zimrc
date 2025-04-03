@@ -36,8 +36,6 @@ zmodule joke/zim-k9s
 # Modules that must be initialized last
 #
 
-zmodule joke/zim-starship
-
 #
 # Completion
 #
