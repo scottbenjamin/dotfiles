@@ -1,4 +1,3 @@
-
 ACCOUNT="my.1password.com"
 
 _cloudflare_api () {
