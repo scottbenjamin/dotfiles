@@ -99,7 +99,7 @@ export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
 
-_evalcache atuin init zsh
+zinit load atuinsh/atuin
 
 # My own aliases and functions
 MY_ALIASES=${ZDOTDIR:-$HOME}/aliases.zsh
