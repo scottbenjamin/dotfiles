@@ -1,10 +1,10 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-[[ -f ~/.config/zsh/.p10k.zsh ]] && source ~/.config/zsh/.p10k.zsh
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# # Initialization code that may require console input (password prompts, [y/n]
+# # confirmations, etc.) must go above this block; everything else may go below.
+# [[ -f ~/.config/zsh/.p10k.zsh ]] && source ~/.config/zsh/.p10k.zsh
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # Start configuration added by Zim install {{{
 #
@@ -111,6 +111,7 @@ else
   FPATH="${FPATH}"
 fi
 
+
 ZIM_HOME=${HOME}/.config/zim
 
 # Download zimfw plugin manager if missing.
@@ -152,9 +153,6 @@ export TERM=xterm-256color
 
 [[ -n $TMUX ]] && export TERM="xterm-256color"
 
-# Homebrew
-# [[ -d /opt/homebrew ]] && export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
-
 # 1password completion
 [ -f "$(which op)" ] && eval $(op completion zsh)
 
@@ -165,34 +163,27 @@ MY_ALIASES=${ZDOTDIR:-$HOME}/aliases.zsh
 MY_FUNCTIONS=${ZDOTDIR:-$HOME}/functions.zsh
 [ -f $MY_FUNCTIONS ] && source $MY_FUNCTIONS
 
+
+
 # local config for things like AWS credentials
 [ -f ~/.local.zsh ] && source ~/.local.zsh
 
 # Carapace
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-source <(carapace _carapace)
+source <(carapace _carapace zsh)
 
 # Atuin for history
 eval "$(atuin init zsh)"
 
 # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
-eval "$(pyenv virtualenv-init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init - zsh)"
+# eval "$(pyenv virtualenv-init -)"
 
 [[ -f $(which mise) ]] && eval "$(mise activate zsh)"
 
-# if [[ -f $(which goenv) ]];then
-#   eval "$(goenv init -)"
-#   export PATH="$GOROOT/bin:$PATH"
-#   export PATH="$PATH:$GOPATH/bin"
-# fi
-
-# eval "$(fzf --zsh)"
-
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [ -d ~/.cargo/env ] && source "$HOME/.cargo/env"
 
 # Created by `pipx` on 2024-03-27 21:25:20

@@ -54,6 +54,7 @@ in {
         "jira-cli"
         "sketchybar"
         "hashicorp/tap/packer"
+        "pipekit/tap/cli"
       ]
       ++ common.commonBrews;
 

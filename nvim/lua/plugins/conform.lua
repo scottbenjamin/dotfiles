@@ -50,14 +50,15 @@ return {
     opts = {
       -- Define your formatters
       formatters_by_ft = {
-        lua = { "stylua" },
-        python = { "ruff", "isort" },
-        javascript = { "prettierd", "prettier", stop_after_first = true },
         hcl = { "hcl" },
-        tofu = { "tofu_fmt" },
-        tf = { "terraform_fmt" },
-        terraform = { "terraform_fmt" },
+        javascript = { "prettierd", "prettier", stop_after_first = true },
+        lua = { "stylua" },
+        markdown = { "markdownlint-cli2", "markdownfmt" },
         nix = { "alejandra" },
+        python = { "ruff", "isort" },
+        terraform = { "terraform_fmt" },
+        tf = { "terraform_fmt" },
+        tofu = { "tofu_fmt" },
         yaml = { "prettier" },
       },
       -- Set default options
