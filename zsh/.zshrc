@@ -1,152 +1,49 @@
-# # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# # Initialization code that may require console input (password prompts, [y/n]
-# # confirmations, etc.) must go above this block; everything else may go below.
-# [[ -f ~/.config/zsh/.p10k.zsh ]] && source ~/.config/zsh/.p10k.zsh
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
-# Start configuration added by Zim install {{{
-#
-# User configuration sourced by interactive shells
-#
-
-# -----------------
-# Zsh configuration
-# -----------------
-
-#
-# History
-#
-
-# Remove older command from the history if a duplicate is to be added.
-# see man zshoptions
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_SAVE_NO_DUPS
-
-#
-# Input/output
-#
-
-# Set editor default keymap to emacs (`-e`) or vi (`-v`)
-bindkey -v
-
-# Prompt for spelling correction of commands.
-#setopt CORRECT
-
-# Customize spelling correction prompt.
-#SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
-
-# Remove path separator from WORDCHARS.
-WORDCHARS=${WORDCHARS//[\/]}
-
-# -----------------
-# Zim configuration
-# -----------------
-
-# Use degit instead of git as the default tool to install and update modules.
-zstyle ':zim:zmodule' use 'degit'
-
-# --------------------
-# Module configuration
-# --------------------
-
-#
-# git
-#
-
-# Set a custom prefix for the generated aliases. The default prefix is 'G'.
-zstyle ':zim:git' aliases-prefix 'g'
-
-#
-# input
-#
-
-# Append `../` to your input for each `.` you type after an initial `..`
-#zstyle ':zim:input' double-dot-expand yes
-
-#
-# termtitle
-#
-
-# Set a custom terminal title format using prompt expansion escape sequences.
-# See http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Simple-Prompt-Escapes
-# If none is provided, the default '%n@%m: %~' is used.
-zstyle ':zim:termtitle' format '%1~'
-
-#
-# zsh-autosuggestions
-#
-
-# Disable automatic widget re-binding on each precmd. This can be set when
-# zsh-users/zsh-autosuggestions is the last module in your ~/.zimrc.
-ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-
-# Customize the style that the suggestions are shown with.
-# See https://github.com/zsh-users/zsh-autosuggestions/blob/master/README.md#suggestion-highlight-style
-#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
-
-#
-# zsh-syntax-highlighting
-#
-
-# Set what highlighters will be used.
-# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-
-# Customize the main highlighter styles.
-# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md#how-to-tweak-it
-#typeset -A ZSH_HIGHLIGHT_STYLES
-#ZSH_HIGHLIGHT_STYLES[comment]='fg=242'
-
-# ------------------
-# Initialize modules
-# ------------------
-
-if [ -f "$(which brew)" ]; then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-else
-  FPATH="${FPATH}"
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
 fi
 
 
-ZIM_HOME=${HOME}/.config/zim
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Download zimfw plugin manager if missing.
-if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
-  if (( ${+commands[curl]} )); then
-    curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
-        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-  else
-    mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh \
-        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-  fi
-fi
-# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
-if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
-  source ${ZIM_HOME}/zimfw.zsh init -q
-fi
-# Initialize modules.
-source ${ZIM_HOME}/init.zsh
+zinit light-mode for zdharma-continuum/zinit-annex-bin-gem-node
 
-# ------------------------------
-# Post-init module configuration
-# ------------------------------
+# Plugin history-search-multi-word loaded with investigating.
+zinit load zdharma-continuum/history-search-multi-word
 
-#
-# zsh-history-substring-search
-#
+# Two regular plugins loaded without investigating.
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma-continuum/fast-syntax-highlighting
 
-zmodload -F zsh/terminfo +p:terminfo
-# Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
-for key ('^[[A' '^P' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
-for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
-for key ('k') bindkey -M vicmd ${key} history-substring-search-up
-for key ('j') bindkey -M vicmd ${key} history-substring-search-down
-unset key
-# }}} End configuration added by Zim install
+# Git plugin from Oh My Zsh - loaded when entering a git repository
+zinit ice wait lucid
+zinit snippet OMZP::git
+
+# Cache evals
+zinit light mroth/evalcache
+
+zinit light b4b4r07/enhancd
+zinit light Peltoche/lsd
+zinit wait"1" lucid from"gh-r" as"null" for \
+  sbin"**/bat"  @sharkdp/bat \
+  sbin"**/exa"  ogham/exa
+
+# direnv
+zinit as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
+  atpull'%atclone' pick"direnv" src"zhook.zsh" for \
+  direnv/direnv
+
+# Lazygit
+zi for \
+    from'gh-r' \
+    sbin'**/lazygit' \
+  jesseduffield/lazygit
 
 export HISTFILE=~/.zsh_history
 export TERM=xterm-256color
@@ -154,7 +51,55 @@ export TERM=xterm-256color
 [[ -n $TMUX ]] && export TERM="xterm-256color"
 
 # 1password completion
-[ -f "$(which op)" ] && eval $(op completion zsh)
+# [ -f "$(which op)" ] && eval $(op completion zsh)
+#
+zi for \
+    from'gh-r'  \
+    sbin'**/fx* -> fx' \
+  @antonmedv/fx
+
+zi for \
+    from'gh-r' \
+    sbin'**/delta -> delta' \
+  dandavison/delta
+
+# pyenv
+zinit ice wait lucid depth'1' \
+    atclone'PYENV_ROOT="${HOME}/.pyenv" ./libexec/pyenv init - > zpyenv.zsh' \
+    atinit'export PYENV_ROOT="${HOME}/.pyenv"' atpull"%atclone" \
+    as'command' pick'bin/pyenv' src"zpyenv.zsh" compile'{zpyenv,completions/*}.zsh' nocompile'!' \
+    atload'
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+    # make zsh completion works no need source in zshrc. #1644
+    # https://github.com/pyenv/pyenv/pull/1644
+    _pyenv_new() {
+        local -a comples
+        if [ "${#words}" -eq 2 ]; then
+            comples=($(pyenv commands))
+        else
+            comples=($(pyenv completions ${words[2,-2]}))
+        fi
+        _describe -t comples 'comples' comples
+    }
+    compdef _pyenv_new pyenv' \
+    id-as'pyenv'
+
+zinit light pyenv/pyenv
+zinit ice wait lucid depth'1' \
+    atclone'PYENV_ROOT="${HOME}/.pyenv" ./bin/pyenv-virtualenv-init - > zpyenv-virtualenv.zsh' \
+    atinit'export PYENV_ROOT="${HOME}/.pyenv"' atpull"%atclone" \
+    as'command' pick'bin/*' src"zpyenv-virtualenv.zsh" compile'*.zsh' nocompile'!' \
+    atload'
+    eval "$(pyenv init -)"' \
+    id-as'pyenv-virtualenv'
+zinit light pyenv/pyenv-virtualenv
+
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+
+_evalcache atuin init zsh
 
 # My own aliases and functions
 MY_ALIASES=${ZDOTDIR:-$HOME}/aliases.zsh
@@ -163,30 +108,10 @@ MY_ALIASES=${ZDOTDIR:-$HOME}/aliases.zsh
 MY_FUNCTIONS=${ZDOTDIR:-$HOME}/functions.zsh
 [ -f $MY_FUNCTIONS ] && source $MY_FUNCTIONS
 
-
-
 # local config for things like AWS credentials
 [ -f ~/.local.zsh ] && source ~/.local.zsh
 
-# Carapace
-export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
-zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-source <(carapace _carapace zsh)
-
-# Atuin for history
-eval "$(atuin init zsh)"
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
-eval "$(pyenv virtualenv-init -)"
-
-[[ -f $(which mise) ]] && eval "$(mise activate zsh)"
-
-[ -d ~/.cargo/env ] && source "$HOME/.cargo/env"
-
-# Created by `pipx` on 2024-03-27 21:25:20
-export PATH="$PATH:/Users/sbenjamin/.local/bin"
-
-eval "$(starship init zsh)"
+zi for \
+    from'gh-r' \
+    sbin'**/starship -> starship' \
+  starship/starship

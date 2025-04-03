@@ -100,7 +100,7 @@ dr() {
   darwin-rebuild $action_full --flake $MY_NIX_CONFIGS
 }
 
-upnvim() {
+function upnvim() {
   NVIM_CODE_DIR=$HOME/code/neovim
   if [ ! -d $NVIM_CODE_DIR ] ; then 
     mkdir -p $HOME/code 
@@ -111,8 +111,16 @@ upnvim() {
   nvim --version
 }
 
-upnvim-tar()
+function upnvim-tar()
 {
   curl -OL https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.tar.gz | tar zxf - --strip-components=1 -C $HOME/.local
   nvim --version
 }
+
+function timezsh() {
+  shell=${1-$SHELL}
+  for i in $(seq 1 10); do
+    /usr/bin/time $shell -i -c exit
+  done
+}
+
