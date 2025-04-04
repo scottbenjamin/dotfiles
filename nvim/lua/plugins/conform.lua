@@ -1,13 +1,13 @@
-local function select_hcl_formatter(bufnr, ...)
-  -- if end of file ends in .pkr.hcl, use packer_fmt otherwide use terragrunt_hclfmt
-  if vim.bo.filetype == "hcl" then
-    if vim.fn.expand("%:e") == "pkr.hcl" then
-      return { "packer_fmt" }
-    else
-      return { "terragrunt_hclfmt" }
-    end
-  end
-end
+-- local function select_hcl_formatter(bufnr, ...)
+--   -- if end of file ends in .pkr.hcl, use packer_fmt otherwide use terragrunt_hclfmt
+--   if vim.bo.filetype == "hcl" then
+--     if vim.fn.expand("%:e") == "pkr.hcl" then
+--       return { "packer_fmt" }
+--     else
+--       return { "terragrunt_hclfmt" }
+--     end
+--   end
+-- end
 
 return {
   {
@@ -50,16 +50,15 @@ return {
     opts = {
       -- Define your formatters
       formatters_by_ft = {
-        lua = { "stylua" },
-        python = { "isort", "black" },
+        hcl = { "hcl" },
         javascript = { "prettierd", "prettier", stop_after_first = true },
-        hcl = function(bufnr)
-          return select_hcl_formatter(bufnr)
-        end,
-        tofu = { "tofu_fmt" },
-        tf = { "terraform_fmt" },
-        terraform = { "terraform_fmt" },
+        lua = { "stylua" },
+        markdown = { "markdownlint-cli2", "markdownfmt" },
         nix = { "alejandra" },
+        python = { "ruff", "isort" },
+        terraform = { "terraform_fmt" },
+        tf = { "terraform_fmt" },
+        tofu = { "tofu_fmt" },
         yaml = { "prettier" },
       },
       -- Set default options

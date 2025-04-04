@@ -54,6 +54,7 @@ in {
         "jira-cli"
         "sketchybar"
         "hashicorp/tap/packer"
+        "pipekit/tap/cli"
       ]
       ++ common.commonBrews;
 
@@ -152,7 +153,6 @@ in {
   # Nix installed packages
   environment.systemPackages = with pkgs;
     [
-      pyenv
       gimme-aws-creds
     ]
     ++ common.commonPackages;

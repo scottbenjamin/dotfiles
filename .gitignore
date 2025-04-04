@@ -4,7 +4,7 @@ zsh/.zcompcache
 zsh/.zsh_history
 zsh/.zsh_sessions/**
 zim/init.sh
-zim/init.sh.old
+zim/*.old
 
 .DS_Store
 

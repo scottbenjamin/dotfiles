@@ -28,16 +28,13 @@ zmodule ssh
 zmodule homebrew
 zmodule kiesman99/zim-zoxide
 zmodule exa
-zmodule fzf
+# zmodule fzf
 zmodule k
-zmodule pvenv
 zmodule joke/zim-k9s
 
 #
 # Modules that must be initialized last
 #
-
-zmodule joke/zim-starship
 
 #
 # Completion
@@ -48,7 +45,8 @@ zmodule joke/zim-starship
 
 # Fish-like syntax highlighting for Zsh.
 # zsh-users/zsh-syntax-highlighting must be sourced after completion
-zmodule zsh-users/zsh-syntax-highlighting
+# zmodule zsh-users/zsh-syntax-highlighting
+zmodule zdharma-continuum/fast-syntax-highlighting
 
 # Fish-like history search (up arrow) for Zsh.
 # zsh-users/zsh-history-substring-search must be sourced after zsh-users/zsh-syntax-highlighting

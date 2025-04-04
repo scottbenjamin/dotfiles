@@ -13,6 +13,7 @@
       style = "compact";
       auto_sync = false;
       sync_cloud = false;
+      keymap_mode = "auto";
     };
     flags = ["--disable-up-arrow"];
   };

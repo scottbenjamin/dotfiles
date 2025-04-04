@@ -17,7 +17,6 @@
     nix-btm
     nixd
     nodejs
-    python3
     ripgrep
     rustup
     sipcalc
