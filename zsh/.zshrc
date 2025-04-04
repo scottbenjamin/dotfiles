@@ -11,6 +11,9 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+autoload -Uz compinit
+compinit
+
 zinit ice depth=1 wait"1" lucid
 # Plugin history-search-multi-word loaded with investigating.
 zinit light zdharma-continuum/history-search-multi-word
@@ -43,6 +46,7 @@ export TERM=xterm-256color
 # 1password completion
 [ -f "$(which op)" ] && _evalcache op completion zsh
 #
+set -o emacs
 
 # pyenv
 zinit ice wait lucid depth'1' \

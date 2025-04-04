@@ -7,6 +7,17 @@
 // Make X11 apps work
 // https://github.com/YaLTeR/niri/wiki/Xwayland
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "waybar"
+spawn-at-startup "gammastep" "-P" "-l" "40.57:-122.24" "-t" "5600:3500"
+spawn-at-startup "mako"
+spawn-at-startup "swaybg" "-i" "/usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png" "-m" "fill" "-o" "*"
+spawn-at-startup "cachy-browser"
+spawn-at-startup "ghostty"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
 environment {
     DISPLAY ":1"
 }
@@ -61,7 +72,7 @@ input {
     }
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
-    // warp-mouse-to-focus
+    warp-mouse-to-focus
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
@@ -119,7 +130,7 @@ output "DP-2" {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 12
+    gaps 10
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -299,10 +310,33 @@ workspace "browser" {
   open-on-output "DP-2"
 }
 
-window-rule {
-  match at-startup=true app-id=r#"cachy-browser"#
+workspace "steam" {
+  open-on-output "DP-1"
 }
 
+window-rule {
+  match app-id=r#"cachy-browser"#
+  open-on-output "DP-2"
+  default-window-height {proportion 0.7;}
+}
+
+window-rule {
+  match app-id=r#"discord"#
+  open-on-output "DP-2"
+  default-window-height {proportion 0.3;}
+}
+
+window-rule {
+  match app-id=r#"steam"#
+  open-floating true
+  open-on-output "DP-1"
+  default-window-height {proportion 0.8;}
+}
+
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+}
 
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
@@ -502,8 +536,8 @@ binds {
     // The following binds move the focused window in and out of a column.
     // If the window is alone, they will consume it into the nearby column to the side.
     // If the window is already in a column, they will expel it out.
-    Mod+BracketLeft  { consume-or-expel-window-left; }
-    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+y  { consume-or-expel-window-left; }
+    Mod+o { consume-or-expel-window-right; }
 
     // Consume one window from the right to the bottom of the focused column.
     Mod+Comma  { consume-window-into-column; }
