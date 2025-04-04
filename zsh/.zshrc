@@ -1,4 +1,4 @@
-### Added by Zinit's installer
+
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
     command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
@@ -7,43 +7,33 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
         print -P "%F{160} The clone has failed.%f%b"
 fi
 
-
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-zinit light-mode for zdharma-continuum/zinit-annex-bin-gem-node
-
+zinit ice depth=1 wait"1" lucid
 # Plugin history-search-multi-word loaded with investigating.
-zinit load zdharma-continuum/history-search-multi-word
+zinit light zdharma-continuum/history-search-multi-word
 
 # Two regular plugins loaded without investigating.
+zinit ice depth=1 wait"1" lucid
 zinit light zsh-users/zsh-autosuggestions
+
+zinit ice depth=1 wait"1" lucid
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 # Git plugin from Oh My Zsh - loaded when entering a git repository
-zinit ice wait lucid
+zinit ice wait"2" lucid
 zinit snippet OMZP::git
 
 # Cache evals
+zinit ice depth=1
 zinit light mroth/evalcache
-
-zinit light b4b4r07/enhancd
-zinit light Peltoche/lsd
-zinit wait"1" lucid from"gh-r" as"null" for \
-  sbin"**/bat"  @sharkdp/bat \
-  sbin"**/exa"  ogham/exa
 
 # direnv
 zinit as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
   atpull'%atclone' pick"direnv" src"zhook.zsh" for \
   direnv/direnv
-
-# Lazygit
-zi for \
-    from'gh-r' \
-    sbin'**/lazygit' \
-  jesseduffield/lazygit
 
 export HISTFILE=~/.zsh_history
 export TERM=xterm-256color
@@ -51,17 +41,8 @@ export TERM=xterm-256color
 [[ -n $TMUX ]] && export TERM="xterm-256color"
 
 # 1password completion
-# [ -f "$(which op)" ] && eval $(op completion zsh)
+[ -f "$(which op)" ] && _evalcache op completion zsh
 #
-zi for \
-    from'gh-r'  \
-    sbin'**/fx* -> fx' \
-  @antonmedv/fx
-
-zi for \
-    from'gh-r' \
-    sbin'**/delta -> delta' \
-  dandavison/delta
 
 # pyenv
 zinit ice wait lucid depth'1' \
@@ -84,8 +65,8 @@ zinit ice wait lucid depth'1' \
     }
     compdef _pyenv_new pyenv' \
     id-as'pyenv'
-
 zinit light pyenv/pyenv
+
 zinit ice wait lucid depth'1' \
     atclone'PYENV_ROOT="${HOME}/.pyenv" ./bin/pyenv-virtualenv-init - > zpyenv-virtualenv.zsh' \
     atinit'export PYENV_ROOT="${HOME}/.pyenv"' atpull"%atclone" \
@@ -97,21 +78,13 @@ zinit light pyenv/pyenv-virtualenv
 
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-source <(carapace _carapace)
+_evalcache carapace _carapace
 
+zinit ice depth"1" multisrc="${ZDOTDIR:-$HOME}/{functions,aliases}.zsh ~/.local.zsh"
 zinit load atuinsh/atuin
-
-# My own aliases and functions
-MY_ALIASES=${ZDOTDIR:-$HOME}/aliases.zsh
-[ -f $MY_ALIASES ] && source $MY_ALIASES
-
-MY_FUNCTIONS=${ZDOTDIR:-$HOME}/functions.zsh
-[ -f $MY_FUNCTIONS ] && source $MY_FUNCTIONS
+_evalcache zoxide init zsh
 
 # local config for things like AWS credentials
-[ -f ~/.local.zsh ] && source ~/.local.zsh
 
-zi for \
-    from'gh-r' \
-    sbin'**/starship -> starship' \
-  starship/starship
+_evalcache starship init zsh
+

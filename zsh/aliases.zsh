@@ -8,6 +8,7 @@ alias 'cat'='bat'
 if ! tenv list &> /dev/null; then
   alias 'tf'='terraform'
 fi
+
 alias 'tg'='terragrunt'
 alias 'tga'='terragrunt apply'
 alias 'tgp'='terragrunt plan'
@@ -43,3 +44,4 @@ if [ -n "${FD}" ]; then
   alias 'v'='${FD} --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim'
 fi
 
+alias e='${EDITOR}'
