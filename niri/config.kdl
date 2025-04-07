@@ -13,7 +13,8 @@ spawn-at-startup "mako"
 spawn-at-startup "swaybg" "-i" "/usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png" "-m" "fill" "-o" "*"
 spawn-at-startup "cachy-browser"
 spawn-at-startup "ghostty"
-spawn-at-startup "gammastep" "-P" "-l" "40.57:-122.24" "-t" "5600:3500"
+// spawn-at-startup "gammastep" "-P" "-l" "40.54:-122.24" "-t" "5600:3500"
+spawn-at-startup ".local/bin/set-gammastep.sh"
 
 hotkey-overlay {
     skip-at-startup
@@ -146,9 +147,11 @@ layout {
         // Proportion sets the width as a fraction of the output width, taking gaps into account.
         // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
         // The default preset widths are 1/3, 1/2 and 2/3 of the output.
+        proportion 0.25
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
+        proportion 0.75
         proportion 1.0
 
         // Fixed sets the width in logical pixels exactly.
@@ -180,7 +183,7 @@ layout {
         // off
 
         // How many logical pixels the ring extends out from the windows.
-        width 4
+        width 1.5
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -188,10 +191,10 @@ layout {
         // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
         // Color of the ring on the active monitor.
-        active-color "#7fc8ff"
+        active-color "#C8C093"
 
         // Color of the ring on inactive monitors.
-        inactive-color "#505050"
+        inactive-color "#181820"
 
         // You can also use gradients. They take precedence over solid colors.
         // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
@@ -587,9 +590,7 @@ binds {
     Mod+Space       { switch-layout "next"; }
     Mod+Shift+Space { switch-layout "prev"; }
 
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
+    Ctrl+Alt+Shift+4 { screenshot; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here

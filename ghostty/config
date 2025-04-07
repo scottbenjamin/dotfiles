@@ -26,6 +26,9 @@ cursor-style-blink = true
 
 resize-overlay = never
 
+app-notifications = no-clipboard-copy
+
+
 # Splits
 keybind = alt+shift+ctrl+cmd+v=new_split:right
 keybind = alt+shift+ctrl+cmd+h=new_split:down
