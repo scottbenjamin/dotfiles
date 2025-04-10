@@ -46,7 +46,9 @@ export TERM=xterm-256color
 # 1password completion
 [ -f "$(which op)" ] && _evalcache op completion zsh
 #
+
 set -o emacs
+setopt autocd
 
 # pyenv
 zinit ice wait lucid depth'1' \
@@ -86,8 +88,10 @@ _evalcache carapace _carapace
 
 zinit ice depth"1" multisrc="${ZDOTDIR:-$HOME}/{functions,aliases}.zsh ~/.local.zsh"
 zinit load atuinsh/atuin
-
 _evalcache zoxide init zsh
+
+# local config for things like AWS credentials
+zinit snippet ~/.local.zsh
 
 _evalcache starship init zsh
 
