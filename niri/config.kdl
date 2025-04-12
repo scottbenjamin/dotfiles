@@ -7,14 +7,14 @@
 // Make X11 apps work
 // https://github.com/YaLTeR/niri/wiki/Xwayland
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "blueman-tray"
 spawn-at-startup "waybar"
-spawn-at-startup "mako"
+spawn-at-startup "blueman-tray"
 spawn-at-startup "swaybg" "-i" "/usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png" "-m" "fill" "-o" "*"
+spawn-at-startup ".local/bin/set-gammastep.sh"
+spawn-at-startup "mako"
+spawn-at-startup "plasma-polkit-agaent"
 spawn-at-startup "cachy-browser"
 spawn-at-startup "ghostty"
-// spawn-at-startup "gammastep" "-P" "-l" "40.54:-122.24" "-t" "5600:3500"
-spawn-at-startup ".local/bin/set-gammastep.sh"
 
 hotkey-overlay {
     skip-at-startup
@@ -78,7 +78,7 @@ input {
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    // focus-follows-mouse max-scroll-amount="0%"
+    focus-follows-mouse max-scroll-amount="0%"
 }
 
 // You can configure outputs by their name, which you can find
@@ -132,7 +132,7 @@ output "DP-2" {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 10
+    gaps 5
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -144,22 +144,18 @@ layout {
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
-        // Proportion sets the width as a fraction of the output width, taking gaps into account.
-        // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
-        // The default preset widths are 1/3, 1/2 and 2/3 of the output.
         proportion 0.25
-        proportion 0.33333
         proportion 0.5
-        proportion 0.66667
         proportion 0.75
         proportion 1.0
-
-        // Fixed sets the width in logical pixels exactly.
-        // fixed 1920
     }
 
     // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
-    // preset-window-heights { }
+    preset-window-heights { 
+        proportion 0.5
+        proportion 0.75
+        proportion 1.0
+  }
 
     // You can change the default width of the new windows.
     // default-column-width { proportion 0.5; }
@@ -183,7 +179,7 @@ layout {
         // off
 
         // How many logical pixels the ring extends out from the windows.
-        width 1.5
+        width 1
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -219,8 +215,8 @@ layout {
         off
 
         width 4
-        active-color "#ffc87f"
-        inactive-color "#505050"
+        active-color "#C8C093"
+        inactive-color "#181820"
 
         // active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
         // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
@@ -320,15 +316,8 @@ workspace "steam" {
 }
 
 window-rule {
-  match app-id=r#"cachy-browser"#
-  open-on-output "DP-2"
-  default-window-height {proportion 0.7;}
-}
-
-window-rule {
   match at-startup=true app-id=r#"cachy-browser"#
   open-on-output "DP-2"
-  default-window-height {proportion 0.7;}
 } 
 
 window-rule {
@@ -340,24 +329,22 @@ window-rule {
 window-rule {
   match app-id=r#"discord"#
   open-on-output "DP-2"
-  default-window-height {proportion 0.3;}
 }
 
 window-rule {
   match app-id=r#"steam"# title="Steam"
-  open-floating true
   open-on-output "DP-1"
-  default-window-height {proportion 0.8;}
   default-column-width {proportion 0.75;}
   default-floating-position x=100 y=100 relative-to="top-left"
 }
 
 window-rule {
   match app-id=r#"steam"# title="Friends List"
-  open-floating true
+  // open-floating true
   open-on-output "DP-1"
-  default-window-height {proportion 0.75;}
+  default-column-width {proportion 0.25;}
   default-floating-position x=100 y=100 relative-to="top-right"
+  open-focused false
 }
 
 window-rule {
@@ -386,6 +373,29 @@ window-rule {
 
     // Use this instead if you want them visible on third-party screenshot tools.
     // block-out-from "screencast"
+}
+
+// Indicate screencasted windows with red colors.
+window-rule {
+    match is-window-cast-target=true
+
+    focus-ring {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+
+    border {
+        inactive-color "#7d0d2d"
+    }
+
+    shadow {
+        color "#7d0d2d70"
+    }
+
+    tab-indicator {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
 }
 
 // Example: enable rounded corners for all windows.
@@ -590,7 +600,7 @@ binds {
     Mod+Space       { switch-layout "next"; }
     Mod+Shift+Space { switch-layout "prev"; }
 
-    Ctrl+Alt+Shift+4 { screenshot; }
+    Mod+F11 { screenshot; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
