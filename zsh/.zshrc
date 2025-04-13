@@ -88,7 +88,11 @@ _evalcache carapace _carapace
 
 zinit ice depth"1" multisrc="${ZDOTDIR:-$HOME}/{functions,aliases}.zsh ~/.local.zsh"
 zinit load atuinsh/atuin
+
 _evalcache zoxide init zsh
+
+zinit snippet ~/.config/zsh/functions.zsh
+zinit snippet ~/.config/zsh/aliases.zsh
 
 # local config for things like AWS credentials
 zinit snippet ~/.local.zsh

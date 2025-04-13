@@ -3,7 +3,7 @@
 -- Add any additional options here
 
 -- LSP
--- vim.lsp.set_log_level("off")
+vim.lsp.set_log_level("off")
 
 -- Filetype
 vim.filetype.add({

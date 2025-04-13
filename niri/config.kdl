@@ -78,7 +78,7 @@ input {
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    focus-follows-mouse max-scroll-amount="0%"
+    // focus-follows-mouse max-scroll-amount="0%"
 }
 
 // You can configure outputs by their name, which you can find
@@ -351,6 +351,13 @@ window-rule {
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
     default-floating-position x=10 y=10 relative-to="bottom-right"
 }
+
+window-rule {
+  match app-id=r#"steam_app_.*"#
+  open-on-output "DP-1"
+  open-maximized true
+}
+
 
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {

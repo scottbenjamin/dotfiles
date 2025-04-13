@@ -40,10 +40,10 @@ opt.splitbelow = true
 opt.splitkeep = "screen"
 opt.splitright = true
 opt.tabstop = 2
-opt.timeoutlen = 250 -- Decrease mapped sequence wait time
-opt.undofile = true -- Save undo history
+opt.timeoutlen = 250               -- Decrease mapped sequence wait time
+opt.undofile = true                -- Save undo history
 opt.undolevels = 1000
-opt.updatetime = 200 -- Decrease update time
+opt.updatetime = 200               -- Decrease update time
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.wrap = false
 

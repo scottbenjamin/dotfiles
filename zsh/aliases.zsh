@@ -18,8 +18,9 @@ alias 'gss'='git status --short'
 alias 'k'='kubectl'
 alias 'kgn'='kubectl get nodes'
 alias 'lg'='lazygit'
-alias 'll'='ls -l'
-alias 'lh'='ls -al'
+alias 'l'='exa'
+alias 'll'='eza -l'
+alias 'lh'='eza -al'
 alias 'lv'='NVIM_APPNAME=nvim-lazy nvim'
 alias 'ot'='tofu'
 alias 'otf'="op run --env-file=.env -- terraform"
@@ -28,7 +29,6 @@ alias 'tga'='terragrunt apply'
 alias 'tgp'='terragrunt plan'
 alias 'tgra'='terragrunt run-all apply'
 alias 'tgrp'='terragrunt run-all plan'
-alias 'v'='${EDITOR}'
 alias 'vi'='${EDITOR}'
 alias 'vim'='${EDITOR}'
 alias '_'='sudo'
@@ -38,6 +38,19 @@ if  [ -f "$(which fdfind)" ]; then
 elif [ -f "$(which fd)" ]; then
   FD=fd
 fi
+
+if eza &> /dev/null; then
+  list_cmd="eza"
+elif exa &> /dev/null ; then 
+  list_cmd="eza"
+else
+  list_cmd="ls"
+fi
+
+alias 'l'='$list_cmd'
+alias 'ls'='$list_cmd'
+alias 'll'='$list_cmd -l'
+alias 'la'='$list_cmd -al'
 
 if [ -n "${FD}" ]; then
   alias 'c'='${FD} --type d --exclude .git | fzf-tmux -p --reverse | cd <'
