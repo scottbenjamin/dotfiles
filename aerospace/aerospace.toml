@@ -59,12 +59,12 @@ automatically-unhide-macos-hidden-apps = true
 preset = 'qwerty'
 
 [workspace-to-monitor-force-assignment]
-1 = ["EB.*", "built-in"]
-2 = ["EB.*", "built-in"]
-3 = ["LG.*", "built-in"]
-4 = ["LG.*", "built-in"]
-5 = ["LG.*", "built-in"]
-6 = ["LG.*", "built-in"]
+1 = ["EB.*", 'DELL.* \(1\)$', "built-in"]
+2 = ["EB.*", 'DELL.* \(1\)$', "built-in"]
+3 = ["LG.*", 'DELL.* \(2\)$', "built-in"]
+4 = ["LG.*", 'DELL.* \(2\)$', "built-in"]
+5 = ["LG.*", 'DELL.* \(2\)$', "built-in"]
+6 = ["LG.*", 'DELL.* \(2\)$', "built-in"]
 A = "built-in"
 B = "built-in"
 C = "built-in"
@@ -128,16 +128,16 @@ alt-o = 'focus-back-and-forth'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-shift-cmd-ctrl-1 = 'move-node-to-workspace 1'
-alt-shift-cmd-ctrl-2 = 'move-node-to-workspace 2'
-alt-shift-cmd-ctrl-3 = 'move-node-to-workspace 3'
-alt-shift-cmd-ctrl-4 = 'move-node-to-workspace 4'
-alt-shift-cmd-ctrl-5 = 'move-node-to-workspace 5'
-alt-shift-cmd-ctrl-6 = 'move-node-to-workspace 6'
-alt-shift-cmd-ctrl-a = 'move-node-to-workspace A'
-alt-shift-cmd-ctrl-b = 'move-node-to-workspace B'
-alt-shift-cmd-ctrl-c = 'move-node-to-workspace C'
-alt-shift-cmd-ctrl-d = 'move-node-to-workspace D'
+alt-shift-cmd-ctrl-1 = 'move-node-to-workspace --focus-follows-window 1'
+alt-shift-cmd-ctrl-2 = 'move-node-to-workspace --focus-follows-window 2'
+alt-shift-cmd-ctrl-3 = 'move-node-to-workspace --focus-follows-window 3'
+alt-shift-cmd-ctrl-4 = 'move-node-to-workspace --focus-follows-window 4'
+alt-shift-cmd-ctrl-5 = 'move-node-to-workspace --focus-follows-window 5'
+alt-shift-cmd-ctrl-6 = 'move-node-to-workspace --focus-follows-window 6'
+alt-shift-cmd-ctrl-a = 'move-node-to-workspace --focus-follows-window A'
+alt-shift-cmd-ctrl-b = 'move-node-to-workspace --focus-follows-window B'
+alt-shift-cmd-ctrl-c = 'move-node-to-workspace --focus-follows-window C'
+alt-shift-cmd-ctrl-d = 'move-node-to-workspace --focus-follows-window D'
 
 #
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
