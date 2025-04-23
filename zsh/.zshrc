@@ -35,19 +35,12 @@ zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 
 _evalcache atuin init zsh
 _evalcache carapace _carapace
-# _evalcache zoxide init zsh
-
-zinit ice depth"1" multisrc="${ZDOTDIR:-$HOME}/{functions,aliases}.zsh ~/.local.zsh"
-zinit load atuinsh/atuin
-
 _evalcache zoxide init zsh
+_evalcache starship init zsh
 
-zinit snippet ~/.config/zsh/functions.zsh
-zinit snippet ~/.config/zsh/aliases.zsh
+source ${ZDOTDIR}/aliases.sh
+source ${ZDOTDIR}/functions.sh
 
-# local config for things like AWS credentials
-zinit snippet ~/.local.zsh
-
- _evalcache starship init zsh
+[ -e ~/.local.zsh ] && source ~/.local.zsh
 
 # zprof
