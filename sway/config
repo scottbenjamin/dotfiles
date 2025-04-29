@@ -18,25 +18,23 @@ set $right l
 set $term ghostty
 
 # Your preferred application launcher
-set $menu fuzzel
-set $browser cachy-browser
+set $menu fuzzel 
+
+set $browser brave
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png fill
+output * bg ~/Downloads/ign-0009.png fill
 # Left Display
 output 'Acer Technologies EB321HQU C 0x00001352' pos 0 0 res 2560x1440 transform 90
 # Main display
 output 'LG Electronics LG QHD 0x00060F67' pos 1440 450 res 2560x1440 
 
+set $out-left DP-2
+set $out-right DP-1
 
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
 #
@@ -55,6 +53,7 @@ exec swayidle -w \
 exec gammastep -P -l 40.57:-122.24 -t 5600:3500
 exec blueman-applet
 exec 1password --silent
+
 ### Autostart
 exec_always autotiling 
 
@@ -64,12 +63,14 @@ input * repeat_delay 200
 input * repeat_rate 75
 
 # Gaps 
-gaps inner 13
-gaps outer 2
+gaps inner 3
+gaps outer 3
 
 # Borders
 default_border pixel 3
 default_floating_border pixel 2
+
+seat seat0 xcursor_theme Adwaita 24
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -111,7 +112,7 @@ default_floating_border pixel 2
 #
 # Moving around:
 #
-    # Move your focus around
+   # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
@@ -124,6 +125,11 @@ default_floating_border pixel 2
     bindsym $mod+Shift+$right move right
 #
 # Workspaces:
+    workspace 1 output $out-left
+    workspace 2 output $out-left
+    workspace 3 output $out-right
+    workspace 4 output $out-right
+    workspace 5 output $out-right
 #
     # Switch to workspace
     bindsym $mod+1 workspace number 1
@@ -200,12 +206,6 @@ mode "resize" {
     bindsym $up resize shrink height 10px
     bindsym $right resize grow width 10px
 
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
-
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -223,31 +223,21 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
-    bindsym Print exec grim
+    # bindsym C-D-$ exec grim
 
 #
 # Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-# bar {
-#     position top
-#
-#     # When the status_command prints a new line to stdout, swaybar updates.
-#     # The default just shows the current date and time.
-#     status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-#
-#     colors {
-#         statusline #ffffff
-#         background #323232
-#         inactive_workspace #32323200 #32323200 #5c5c5c
-#     }
-# }
 bar {
   swaybar_command waybar
 }
 
 # App specific 
-for_window [class="1Password"] foating enable
+for_window [class="1Password"] floating enable
 for_window [class="steam"] floating enable
+for_window [app_id="blueman-manager"] floating enable
+for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
+for_window [app_id="net.lutris.Lutris"] floating enable
+for_window [class="battle.net.exe"] floating enable
+for_window [app_id="org.gnome.Calculator"] floating enable
 
 include /etc/sway/config.d/*
