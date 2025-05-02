@@ -58,7 +58,6 @@ exec 1password --silent
 exec_always autotiling 
 
 ### Input configuration
-
 input * repeat_delay 200 
 input * repeat_rate 75
 
@@ -67,7 +66,7 @@ gaps inner 3
 gaps outer 3
 
 # Borders
-default_border pixel 3
+default_border pixel 2
 default_floating_border pixel 2
 
 seat seat0 xcursor_theme Adwaita 24
@@ -234,6 +233,7 @@ bar {
 # App specific 
 for_window [class="1Password"] floating enable
 for_window [class="steam"] floating enable
+for_window [class="steam_app_\d+"] move container to $out-right
 for_window [app_id="blueman-manager"] floating enable
 for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
 for_window [app_id="net.lutris.Lutris"] floating enable
