@@ -194,7 +194,7 @@ seat seat0 xcursor_theme Adwaita 24
     bindsym $mod+minus scratchpad show
 #
 # Resizing containers:
-#
+
 mode "resize" {
     # left will shrink the containers width
     # right will grow the containers width
@@ -233,7 +233,7 @@ bar {
 # App specific 
 for_window [class="1Password"] floating enable
 for_window [class="steam"] floating enable
-for_window [class="steam_app_\d+"] move container to $out-right
+for_window [class="gamescope"] move container to workspace 5
 for_window [app_id="blueman-manager"] floating enable
 for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
 for_window [app_id="net.lutris.Lutris"] floating enable

@@ -5,13 +5,12 @@
   "ipc": true,
   "layer": "top",
   "position": "top",
-  "height": 10,
+  "height": 8,
   "width": 2560,
   "margin-left": 10,
   "margin-bottom": 0,
   "margin-top": 0,
   "margin-right": 10,
-  // "spacing": 5, // Gaps between modules (4px)
   "output": [
     "DP-1"
   ],
@@ -20,24 +19,13 @@
     "hyprland/workspaces",
     "niri/workspaces",
     "sway/workspaces",
-    //"hyprland/submap",
     "temperature",
-    //"idle_inhibitor",
-    //"mpd"
-    "custom/spotify"
   ],
-  // "modules-center": [
-    //"hyprland/window"
-    // "custom/weather"
-    //"custom/gammastep"
-  // ],
+  "modules-center": [
+    "custom/spotify",
+    "custom/weather"
+  ],
   "modules-right": [
-    // "backlight",
-    // "custom/storage",
-    // "memory",
-    // "cpu",
-    // "battery",
-    //"pulseaudio",
     "wireplumber",
     "custom/screenshot_t",
     "tray",
@@ -191,7 +179,7 @@
   },
   "custom/spotify": {
     "exec": "~/.config/waybar/mediaplayer.py --player spotify",
-    "format": "{}  ",
+    "format": " [ {} ]",
     "return-type": "json",
     "on-click": "playerctl play-pause",
     "on-scroll-up": "playerctl next",
