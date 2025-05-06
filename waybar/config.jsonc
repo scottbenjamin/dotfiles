@@ -162,7 +162,7 @@
     "format-alt": "{alt}: {}",
     "format-alt-click": "click-right",
     "interval": 3600,
-    "exec": "curl -s 'https://wttr.in/?format=1'",
+    "exec": "curl -s 'https://v3.wttr.in/?u&format=2'",
     //"return-type": "json",
     //"exec": "~/.config/waybar/modules/weather.sh",
     "exec-if": "ping wttr.in -c1"
@@ -179,7 +179,7 @@
   },
   "custom/spotify": {
     "exec": "~/.config/waybar/mediaplayer.py --player spotify",
-    "format": " [ {} ]",
+    "format": " [ {}  ]",
     "return-type": "json",
     "on-click": "playerctl play-pause",
     "on-scroll-up": "playerctl next",
