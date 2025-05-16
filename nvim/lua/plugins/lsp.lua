@@ -31,7 +31,6 @@ return {
     config = function()
       local ensure_installed = {
         "basedpyright",
-        "bashls",
         "lua_ls",
         "terraformls",
         "tflint",
@@ -40,13 +39,15 @@ return {
 
       require("mason-lspconfig").setup({
         ensure_installed = ensure_installed,
+        automatic_enable = true,
       })
-      require("mason-lspconfig").setup_handlers({
-        function(server_name)
-          local capabilities = require("blink.cmp").get_lsp_capabilities()
-          require("lspconfig")[server_name].setup({ capabilities = capabilities })
-        end,
-      })
+
+      -- require("mason-lspconfig").setup_handlers({
+      --   function(server_name)
+      --     local capabilities = require("blink.cmp").get_lsp_capabilities()
+      --     require("lspconfig")[server_name].setup({ capabilities = capabilities })
+      --   end,
+      -- })
     end,
     keys = {
       { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },

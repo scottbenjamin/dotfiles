@@ -13,6 +13,15 @@ if status is-interactive
       if test -d (brew --prefix)"/share/fish/vendor_completions.d"
           set -p fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
       end
+
+      if test -d (brew --prefix rustup )"/bin"
+        fish_add_path  (brew --prefix rustup )"/bin"
+      end
+
+    end
+
+    if type -q pyenv
+      pyenv init - fish | source
     end
 
     if type -q direnv
@@ -38,7 +47,7 @@ if status is-interactive
     if test -f ~/.local.fish
       source ~/.local.fish
     end
-  
+
     function bind_bang
         switch (commandline -t)[-1]
             case "!"
