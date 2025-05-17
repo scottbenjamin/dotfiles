@@ -26,6 +26,7 @@
     "custom/weather"
   ],
   "modules-right": [
+    "network",
     "wireplumber",
     "custom/screenshot_t",
     "tray",
@@ -115,20 +116,21 @@
       ""
     ]
   },
+
   "network": {
-    "format-wifi": " {essid} ({signalStrength}%)",
-    "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-    "format-linked": "{ifname} (No IP) ",
-    "format": "",
-    "format-disconnected": "",
-    "format-alt": "{ifname}: {ipaddr}/{cidr}",
-    "on-click": "wl-copy $(ip address show up scope global | grep inet | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c5-)",
-    "on-click-right": "wl-copy $(ip address show up scope global | grep inet6 | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c6-)",
-    "tooltip-format": " {bandwidthUpBits}  {bandwidthDownBits}\n{ifname}\n{ipaddr}/{cidr}\n",
-    "tooltip-format-wifi": " {essid} {frequency}MHz\nStrength: {signaldBm}dBm ({signalStrength}%)\nIP: {ipaddr}/{cidr}\n {bandwidthUpBits}  {bandwidthDownBits}",
-    "interval": 10
-  },
-  "custom/storage": {
+    "interface": "enp10s0",
+    "format": "{ifname}",
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "U:{bandwidthUpBytes} D:{bandwidthDownBytes} 󰊗",
+    "format-disconnected": "", //An empty format will hide the module.
+    "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50
+},
+
+ "custom/storage": {
     "format": " {}",
     "format-alt": "{percentage}% ",
     "format-alt-click": "click-right",

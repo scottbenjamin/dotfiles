@@ -42,7 +42,9 @@ if status is-interactive
       zoxide init fish | source
     end
 
-    starship init fish | source
+    if type -q starship
+      starship init fish | source
+    end
 
     if test -f ~/.local.fish
       source ~/.local.fish
