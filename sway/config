@@ -232,7 +232,7 @@ bar {
 
 # App specific 
 for_window [class="1Password"] floating enable
-for_window [class="steam"] floating enable
+# for_window [class="steam"] floating enable
 for_window [class="gamescope"] move container to workspace 5
 for_window [app_id="blueman-manager"] floating enable
 for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
