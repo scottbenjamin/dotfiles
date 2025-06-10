@@ -55,6 +55,7 @@ in {
         "sketchybar"
         "hashicorp/tap/packer"
         "pipekit/tap/cli"
+        "coder"
       ]
       ++ common.commonBrews;
 

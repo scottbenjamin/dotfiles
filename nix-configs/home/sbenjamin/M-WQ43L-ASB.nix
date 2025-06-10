@@ -27,7 +27,6 @@
   ];
 
   home.packages = with pkgs; [
-    coder
     pyenv
     kubernetes-helm
   ];
