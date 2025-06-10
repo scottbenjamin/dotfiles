@@ -19,7 +19,6 @@ set $term ghostty
 
 # Your preferred application launcher
 set $menu fuzzel 
-
 set $browser brave
 
 ### Output configuration
@@ -34,7 +33,6 @@ output 'LG Electronics LG QHD 0x00060F67' pos 1440 450 res 2560x1440
 
 set $out-left DP-2
 set $out-right DP-1
-
 
 ### Idle configuration
 #
@@ -58,7 +56,7 @@ exec 1password --silent
 exec_always autotiling 
 
 ### Input configuration
-input * repeat_delay 200 
+input * repeat_delay 175 
 input * repeat_rate 75
 
 # Gaps 

@@ -1,0 +1,2 @@
+set -xg PROTON_ENABLE_WAYLAND 1
+set -xg FSR4_UPGRADE 1

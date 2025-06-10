@@ -2,6 +2,7 @@ fish_add_path ~/.local/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path /etc/profiles/per-user/$USER/bin/
 
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 
