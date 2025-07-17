@@ -11,5 +11,5 @@ function gfm
     git fetch --all --prune
     echo "Updating local $default_branch with latest from origin..."
     git fetch origin $default_branch:$default_branch
-    echo "Done."
+    echo "Done. Don't forget to pull."
 end

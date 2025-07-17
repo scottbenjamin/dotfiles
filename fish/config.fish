@@ -82,3 +82,5 @@ if status is-interactive
     end
 end
 
+set -gx NVIM_APPNAME nvim-lazy
+
