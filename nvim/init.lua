@@ -1,6 +1,2 @@
+-- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
-
-require("options")
-require("neovide")
-require("lsp")
-require("keymaps")
