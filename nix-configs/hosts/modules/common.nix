@@ -42,6 +42,7 @@
     "k9s"
     "kubectl"
     "gator"
+    "neovide"
     "ninja"
     "npm"
     "oci-cli"
