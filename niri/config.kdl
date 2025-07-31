@@ -7,14 +7,14 @@
 // Make X11 apps work
 // https://github.com/YaLTeR/niri/wiki/Xwayland
 spawn-at-startup "waybar"
+spawn-at-startup "plasma-polkit-agaent"
 spawn-at-startup ".local/bin/set-gammastep.sh"
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "mako"
 spawn-at-startup "blueman-applet"
 spawn-at-startup "1password --silent"
 spawn-at-startup "udiskie --smart-tray"
-// spawn-at-startup "swaybg" "-i" "/usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png" "-m" "fill" "-o" "*"
-spawn-at-startup "mako"
-spawn-at-startup "plasma-polkit-agaent"
+spawn-at-startup "swaybg" "-i" "/home/scott/Downloads/ign-0009.png" "-m" "fill" "-o" "*"
 
 hotkey-overlay {
     skip-at-startup
