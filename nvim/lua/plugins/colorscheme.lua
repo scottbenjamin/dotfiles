@@ -11,7 +11,7 @@ return {
     priority = 1000,
   },
 
-  { "EdenEast/nightfox.nvim", lazy = true, priority = 1000 },
+  { "neanias/everforest-nvim" },
 
   {
     "catppuccin/nvim",
@@ -29,6 +29,8 @@ return {
       -- colorscheme = "nightfox",
       -- colorscheme = "tokyonight-moon",
       colorscheme = "kanagawa-wave",
+      -- colorscheme = "everforest",
+      -- background = "hard",
     },
   },
 }
