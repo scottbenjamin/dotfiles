@@ -81,12 +81,12 @@ D = "built-in"
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 1
-inner.vertical = 1
-outer.bottom = 2
-outer.left = 2
-outer.right = 2
-outer.top = 1
+inner.horizontal = 3
+inner.vertical = 3
+outer.bottom = 3
+outer.left = 3
+outer.right = 3
+outer.top = 2
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes

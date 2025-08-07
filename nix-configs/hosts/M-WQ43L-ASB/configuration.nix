@@ -56,6 +56,7 @@ in {
         "hashicorp/tap/packer"
         "pipekit/tap/cli"
         "coder"
+        "kyverno"
       ]
       ++ common.commonBrews;
 

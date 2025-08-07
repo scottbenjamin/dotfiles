@@ -3,7 +3,7 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        hcl = { "terragrunt_hclfmt" },
+        hcl = { "hcl" },
         tofu = { "tofu_fmt" },
         tf = { "terraform_fmt" },
         ["terraform-vars"] = { "terraform_fmt" },

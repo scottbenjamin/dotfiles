@@ -46,7 +46,7 @@ in {
       [
         "nushell"
         "sketchybar"
-        "mise"
+        "zen-browser"
       ]
       ++ common.commonBrews;
     taps = [
