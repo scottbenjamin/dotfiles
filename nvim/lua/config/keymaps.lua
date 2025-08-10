@@ -31,6 +31,7 @@ end
 -- Remaps keys to keep cursor in the middle of the screen
 kms("n", "<C-u>", "<C-u>zz", { desc = "Half page up" })
 kms("n", "<C-d>", "<C-d>zz", { desc = "Half page down" })
+kms("t", "<esc><esc>", "<C-\\><C-n>", { desc = "Esc from terminal", silent = true })
 
 --  Glab CLI
 kms("n", "<leader>gM", "<cmd>!glab mr create -fw<CR>", { desc = "Create new MR in browser", silent = true })
