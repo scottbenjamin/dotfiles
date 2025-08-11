@@ -1,4 +1,4 @@
-function tgs --wraps='tg show' --description 'alias tgs tg show'
-  tg show $argv
+function tgs --wraps='terragrunt show' --description 'alias tgs terragrunt show'
+  terragrunt show $argv
         
 end

@@ -34,8 +34,9 @@
     "direnv"
     "docker-buildx"
     "eza"
-    "fx"
     "fish"
+    "fx"
+    "gator"
     "gettext"
     "glab"
     "jj"
@@ -43,7 +44,6 @@
     "k3d"
     "k9s"
     "kubectl"
-    "gator"
     "mise"
     "neovide"
     "ninja"
@@ -68,7 +68,9 @@
     "1password-cli"
     "aerospace"
     "alacritty"
+    "borders"
     "brave-browser"
+    "cursor-cli"
     "font-commit-mono-nerd-font"
     "font-hack-nerd-font"
     "font-sf-pro"
@@ -79,6 +81,7 @@
   ];
 
   commonTaps = [
+   "FelixKratz/formulae"
     "nikitabobko/tap"
     "hashicorp/tap"
   ];

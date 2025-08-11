@@ -1,4 +1,4 @@
-function tgp --wraps='tg p' --wraps='tg plan' --description 'alias tgp tg plan'
-  tg plan $argv
+function tgp --wraps='terragrunt plan' --description 'alias tgp terragrunt plan'
+  terragrunt plan $argv
         
 end

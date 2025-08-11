@@ -1,4 +1,4 @@
-function tgv --wraps='tg validate' --description 'alias tgv tg validate'
-  tg validate $argv
+function tgv --wraps='terragrunt validate' --description 'alias tgv terragrunt validate'
+  terragrunt validate $argv
         
 end

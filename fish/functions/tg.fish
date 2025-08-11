@@ -1,4 +1,4 @@
-function tg --wraps=terragrunt --description 'alias tg=tg apply'
- command tg apply $argv
-        
+function tg --wraps=terragrunt --description 'alias tg=tg'
+    command terragrunt $argv
+
 end
