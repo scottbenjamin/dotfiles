@@ -11,10 +11,11 @@ spawn-at-startup "waybar"
 spawn-at-startup "plasma-polkit-agaent"
 spawn-at-startup ".local/bin/set-gammastep.sh"
 spawn-at-startup "mako"
-spawn-at-startup "blueman-applet"
-spawn-at-startup "udiskie --smart-tray"
-spawn-at-startup "swaybg" "-i" "/home/scott/Downloads/ign-0009.png" "-m" "fill" "-o" "*"
+spawn-at-startup "nm-applet --indicator"
+spawn-at-startup "swaybg" "-i" "/home/scott/.config/hypr/wallpapers/Abstract-Nord.png" "-m" "fit" "-o" "*"
+spawn-at-startup "walker --gapplication-service"
 spawn-at-startup "1password --silent"
+spawn-at-startup "udiskie --smart-tray"
 
 hotkey-overlay {
     skip-at-startup
@@ -99,7 +100,7 @@ output "DP-1" {
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
     mode "2560x1440@144.000"
-
+    variable-refresh-rate on-demand=true
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 1 
 
@@ -117,15 +118,26 @@ output "DP-1" {
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
     position x=1440 y=600
+    focus-at-startup
+    background-color "#2E3440"
+    backdrop-color "#001100"
 }
 
 output "DP-2" {
-    mode "2560x1440@144.000"
+    mode "2560x1440@60.000"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 1 
     transform "270"
     position x=0 y=0
+    background-color "#2E3440"
+    backdrop-color "#001100"
+}
+
+overview {
+  zoom 0.75
+  workspace-shadow {
+  }
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -325,7 +337,7 @@ window-rule {
 }
 
 window-rule {
-  match at-startup=true app-id=r#"Brave-browser"#
+  match at-startup=true app-id=r#"(Brave-browser|zen)"#
   open-on-output "DP-2"
 } 
 
@@ -354,6 +366,10 @@ window-rule {
 }
 
 window-rule {
+  match app-id=r#"steam"# title="Steam Settings"
+  open-on-output "DP-1"
+}
+window-rule {
   match app-id=r#"steam"# title="Friends List"
   // open-floating true
   open-on-output "DP-1"
@@ -374,12 +390,11 @@ window-rule {
 }
 
 
-// Open the Firefox picture-in-picture player as floating by default.
 window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r#"blueberry.py$"# 
+    match app-id=r#".*pavucontrol.*$"#
+
     open-floating true
 }
 
@@ -430,19 +445,15 @@ binds {
     // Most actions that you can bind here can also be invoked programmatically with
     // `niri msg action do-something`.
 
-    // Mod-Shift-/, which is usually the same as Mod-?,
-    // shows a list of important hotkeys.
-    Mod+Shift+Slash { show-hotkey-overlay; }
-    Mod+Shift+O { toggle-overview;}
+    Mod+Shift+Slash         { show-hotkey-overlay; }
+    Mod+Shift+O             { toggle-overview;}
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return repeat=false { spawn "ghostty"; }
-    Mod+D { spawn "fuzzel"; }
-    Super+Alt+L { spawn "swaylock"; }
-
-    // You can also use a shell. Do this if you need pipes, multiple commands, etc.
-    // Note: the entire command goes as a single argument in the end.
-    // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
+    Mod+D                   { spawn "walker"; }
+    Super+Alt+L             { spawn "swaylock"; }
+    Mod+M                   { spawn "ghostty" "-e" "spotify_player"; }
+    Mod+S                   {spawn "bash" "-c" "grim -g \"$(slurp)\" - | swappy -f -";}
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
@@ -453,51 +464,39 @@ binds {
 
     Mod+Q { close-window; }
 
-    Mod+H     { focus-column-left; }
-    Mod+J     { focus-window-down; }
-    Mod+K     { focus-window-up; }
-    Mod+L     { focus-column-right; }
-    Mod+Ctrl+H     { move-column-left; }
-    Mod+Ctrl+J     { move-window-down; }
-    Mod+Ctrl+K     { move-window-up; }
-    Mod+Ctrl+L     { move-column-right; }
+    Mod+H                 { focus-column-left; }
+    Mod+J                 { focus-window-down; }
+    Mod+K                 { focus-window-up; }
+    Mod+L                 { focus-column-right; }
+    Mod+Ctrl+H            { move-column-left; }
+    Mod+Ctrl+J            { move-window-down; }
+    Mod+Ctrl+K            { move-window-up; }
+    Mod+Ctrl+L            { move-column-right; }
 
-    Mod+Home { focus-column-first; }
-    Mod+End  { focus-column-last; }
-    Mod+Ctrl+Home { move-column-to-first; }
-    Mod+Ctrl+End  { move-column-to-last; }
+    Mod+A                 { focus-column-first; }
+    Mod+Z                 { focus-column-last; }
+    Mod+Ctrl+A            { move-column-to-first; }
+    Mod+Ctrl+Z            { move-column-to-last; }
 
-    Mod+Shift+H     { focus-monitor-left; }
-    Mod+Shift+J     { focus-monitor-down; }
-    Mod+Shift+K     { focus-monitor-up; }
-    Mod+Shift+L     { focus-monitor-right; }
+    Mod+Shift+H           { focus-monitor-left; }
+    Mod+Shift+J           { focus-monitor-down; }
+    Mod+Shift+K           { focus-monitor-up; }
+    Mod+Shift+L           { focus-monitor-right; }
 
-    Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-    Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
-    Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
-    Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+    Mod+Shift+Ctrl+H      { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+J      { move-column-to-monitor-down; }
+    Mod+Shift+Ctrl+K      { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+L      { move-column-to-monitor-right; }
 
-    // Alternatively, there are commands to move just a single window:
-    // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
-    // ...
 
-    // And you can also move a whole workspace to another monitor:
-    // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
-    // ...
+    Mod+U                 { focus-workspace-down; }
+    Mod+I                 { focus-workspace-up; }
+    Mod+Shift+Ctrl+U      { move-column-to-workspace-down; }
+    Mod+Shift+Ctrl+I      { move-column-to-workspace-up; }
 
-    Mod+U              { focus-workspace-down; }
-    Mod+I              { focus-workspace-up; }
-    Mod+Ctrl+U         { move-column-to-workspace-down; }
-    Mod+Ctrl+I         { move-column-to-workspace-up; }
+    Mod+Shift+U           { move-workspace-down; }
+    Mod+Shift+I           { move-workspace-up; }
 
-    // Alternatively, there are commands to move just a single window:
-    // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
-    // ...
-
-    Mod+Shift+Page_Down { move-workspace-down; }
-    Mod+Shift+Page_Up   { move-workspace-up; }
-    Mod+Shift+U         { move-workspace-down; }
-    Mod+Shift+I         { move-workspace-up; }
 
     // You can bind mouse wheel scroll ticks using the following syntax.
     // These binds will change direction based on the natural-scroll setting.
