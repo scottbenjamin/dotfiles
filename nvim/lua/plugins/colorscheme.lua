@@ -12,6 +12,7 @@ return {
   },
 
   { "neanias/everforest-nvim" },
+  { "EdenEast/nightfox.nvim" },
 
   {
     "catppuccin/nvim",
@@ -26,9 +27,9 @@ return {
     opts = {
       -- colorscheme = "catppuccin-mocha",
       -- colorscheme = "duskfox",
-      -- colorscheme = "nightfox",
+      colorscheme = "nordfox",
       -- colorscheme = "tokyonight-moon",
-      colorscheme = "kanagawa-wave",
+      -- colorscheme = "kanagawa-wave",
       -- colorscheme = "everforest",
       -- background = "hard",
     },

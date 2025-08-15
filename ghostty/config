@@ -1,11 +1,11 @@
 #
 # Theme
-font-family = "JetBrainsMono Nerd Font Mono"
-#font-family = "CommitMono Nerd Font Mono"
+# font-family = "JetBrainsMono Nerd Font Mono"
+font-family = "CommitMono Nerd Font Mono"
 font-size = 10
 font-thicken = true
 font-thicken-strength = 175
-theme = kanagawabones
+theme = nordfox
 copy-on-select = clipboard
 
 window-decoration = none

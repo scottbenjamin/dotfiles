@@ -8,14 +8,14 @@
 // https://github.com/YaLTeR/niri/wiki/Xwayland
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "waybar"
+spawn-at-startup "mako"
 spawn-at-startup "plasma-polkit-agaent"
 spawn-at-startup ".local/bin/set-gammastep.sh"
-spawn-at-startup "mako"
 spawn-at-startup "nm-applet --indicator"
 spawn-at-startup "swaybg" "-i" "/home/scott/.config/hypr/wallpapers/Abstract-Nord.png" "-m" "fit" "-o" "*"
-spawn-at-startup "walker --gapplication-service"
-spawn-at-startup "1password --silent"
-spawn-at-startup "udiskie --smart-tray"
+spawn-at-startup "usm app -- walker --gapplication-service"
+// spawn-at-startup "1password --silent"
+// spawn-at-startup "udiskie --smart-tray"
 
 hotkey-overlay {
     skip-at-startup
@@ -30,8 +30,8 @@ environment {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
 input {
     keyboard {
-        repeat-delay 250
-        repeat-rate 75
+        repeat-delay 300
+        repeat-rate 65
         xkb {
             // You can set rules, model, layout, variant and options.
             // For more information, see xkeyboard-config(7).
@@ -100,7 +100,7 @@ output "DP-1" {
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
     mode "2560x1440@144.000"
-    variable-refresh-rate on-demand=true
+    variable-refresh-rate 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 1 
 
@@ -120,7 +120,7 @@ output "DP-1" {
     position x=1440 y=600
     focus-at-startup
     background-color "#2E3440"
-    backdrop-color "#001100"
+    backdrop-color "#2E3440"
 }
 
 output "DP-2" {
@@ -131,7 +131,7 @@ output "DP-2" {
     transform "270"
     position x=0 y=0
     background-color "#2E3440"
-    backdrop-color "#001100"
+    backdrop-color "#2E3440"
 }
 
 overview {
@@ -145,7 +145,7 @@ overview {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 5
+    gaps 4 
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -157,10 +157,9 @@ layout {
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
-        proportion 0.25
+        proportion 0.33333333
         proportion 0.5
-        proportion 0.75
-        proportion 1.0
+        proportion 0.6666667
     }
 
     // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
@@ -173,7 +172,7 @@ layout {
     // You can change the default width of the new windows.
     // default-column-width { proportion 0.5; }
     // If you leave the brackets empty, the windows themselves will decide their initial width.
-    default-column-width {}
+    default-column-width { proportion 0.3333333; }
 
     // By default focus ring and border are rendered as a solid background rectangle
     // behind windows. That is, they will show up through semitransparent windows.
@@ -189,10 +188,10 @@ layout {
     // You can change how the focus ring looks.
     focus-ring {
         // Uncomment this line to disable the focus ring.
-        // off
+        off
 
         // How many logical pixels the ring extends out from the windows.
-        width 2
+        width 1
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -200,39 +199,20 @@ layout {
         // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
         // Color of the ring on the active monitor.
-        active-color "#C8C093"
-
+        active-color "#D8Dee9"
         // Color of the ring on inactive monitors.
-        inactive-color "#181820"
-
-        // You can also use gradients. They take precedence over solid colors.
-        // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
-        // The angle is the same as in linear-gradient, and is optional,
-        // defaulting to 180 (top-to-bottom gradient).
-        // You can use any CSS linear-gradient tool on the web to set these up.
-        // Changing the color space is also supported, check the wiki for more info.
-        //
-        // active-gradient from="#80c8ff" to="#bbddff" angle=45
-
-        // You can also color the gradient relative to the entire view
-        // of the workspace, rather than relative to just the window itself.
-        // To do that, set relative-to="workspace-view".
-        //
-        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        inactive-color "#4C566A"
     }
 
     // You can also add a border. It's similar to the focus ring, but always visible.
     border {
         // The settings are the same as for the focus ring.
         // If you enable the border, you probably want to disable the focus ring.
-        off
+        // off
 
-        width 4
-        active-color "#C8C093"
-        inactive-color "#181820"
-
-        active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
-        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        width 1
+        active-color "#81A1C1"
+        inactive-color "#3B4252"
     }
 
     // You can enable drop shadows for windows.
@@ -319,6 +299,13 @@ animations {
     workspace-switch {
         spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
     }
+
+    config-notification-open-close {
+        // off
+        // duration-ms 250
+        // curve "ease-out-cubic"
+        // spring damping-ratio=0.1 stiffness=1000 epsilon=0.001
+    }
 }
 
 // Window rules let you adjust behavior for individual windows.
@@ -333,20 +320,33 @@ workspace "steam" {
 }
 
 window-rule {
-  open-maximized true
+    focus-ring { }
+
+    border {}
+    // geometry-corner-radius 6
+    clip-to-geometry true
+}
+
+window-rule {
+    match is-active=false
+    // opacity 0.65
 }
 
 window-rule {
   match at-startup=true app-id=r#"(Brave-browser|zen)"#
   open-on-output "DP-2"
-} 
+}
+
+window-rule {
+  match app-id=r#"(Brave-browser|zen)"#
+  default-column-width { proportion 1.0; }
+  open-on-output "DP-2"
+}
 
 window-rule {
   match at-startup=true app-id=r#"com.mitchellh.ghostty"#
   open-on-output "DP-1"
-  open-maximized true
 }
-
 
 window-rule {
   match app-id=r#"discord"#
@@ -416,12 +416,12 @@ window-rule {
     match is-window-cast-target=true
 
     focus-ring {
-        active-color "#f38ba8"
-        inactive-color "#7d0d2d"
+        active-color "#81A1C1"
+        inactive-color "#4C566A"
     }
 
     border {
-        inactive-color "#7d0d2d"
+        inactive-color "#4C566A"
     }
 
     shadow {
@@ -429,9 +429,14 @@ window-rule {
     }
 
     tab-indicator {
-        active-color "#f38ba8"
-        inactive-color "#7d0d2d"
+        active-color "#81A1C1"
+        inactive-color "#4C566A"
     }
+}
+
+window-rule {
+    match app-id="^gimp"
+    default-column-width { fixed 1200; }
 }
 
 binds {
@@ -468,20 +473,20 @@ binds {
     Mod+J                 { focus-window-down; }
     Mod+K                 { focus-window-up; }
     Mod+L                 { focus-column-right; }
-    Mod+Ctrl+H            { move-column-left; }
-    Mod+Ctrl+J            { move-window-down; }
-    Mod+Ctrl+K            { move-window-up; }
-    Mod+Ctrl+L            { move-column-right; }
+    Mod+Shift+H            { move-column-left; }
+    Mod+Shift+J            { move-window-down; }
+    Mod+Shift+K            { move-window-up; }
+    Mod+Shift+L            { move-column-right; }
 
     Mod+A                 { focus-column-first; }
     Mod+Z                 { focus-column-last; }
-    Mod+Ctrl+A            { move-column-to-first; }
-    Mod+Ctrl+Z            { move-column-to-last; }
+    Mod+Shift+A            { move-column-to-first; }
+    Mod+Shift+Z            { move-column-to-last; }
 
-    Mod+Shift+H           { focus-monitor-left; }
-    Mod+Shift+J           { focus-monitor-down; }
-    Mod+Shift+K           { focus-monitor-up; }
-    Mod+Shift+L           { focus-monitor-right; }
+    Mod+Ctrl+H           { focus-monitor-left; }
+    Mod+Ctrl+J           { focus-monitor-down; }
+    Mod+Ctrl+K           { focus-monitor-up; }
+    Mod+Ctrl+L           { focus-monitor-right; }
 
     Mod+Shift+Ctrl+H      { move-column-to-monitor-left; }
     Mod+Shift+Ctrl+J      { move-column-to-monitor-down; }
@@ -589,6 +594,9 @@ binds {
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
 
+    Mod+Ctrl+Minus { set-column-width "-1"; }
+    Mod+Ctrl+Equal { set-column-width "+1"; }
+
     // Finer height adjustments when in column with other windows.
     Mod+Shift+Minus { set-window-height "-10%"; }
     Mod+Shift+Equal { set-window-height "+10%"; }
@@ -624,7 +632,6 @@ binds {
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+E { quit; }
-    Ctrl+Alt+Delete { quit; }
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.

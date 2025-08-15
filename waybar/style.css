@@ -1,7 +1,8 @@
 
+
 * {
-    font-family: "Fira Sans Semibold", "Font Awesome 6 Free", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;  /* Slightly smaller font size */
+    font-family: "Noto Sans", "Fira Sans Semibold", "Font Awesome 6 Free", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 12px;  /* Slightly smaller font size */
     font-weight: 900;
     margin: 0;
     padding: 0;
@@ -11,8 +12,8 @@
 
 /* Reset all styles */
 * {
-    border: none;
-    font-family :  'JetBrainsMono Nerd Font', 'FiraCode Nerd Font', 'Symbols Nerd Font Mono';
+    border: 1px;
+    font-family :  'CommitMono Nerd Font', 'JetBrainsMono Nerd Font', 'FiraCode Nerd Font', 'Symbols Nerd Font Mono';
     font-size: 14px;
     font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
     min-height: 18px;
@@ -21,7 +22,7 @@
 /* The whole bar */
 #waybar {
     /* background-color: transparent; */
-    background-color: #1F1F28;
+    background-color: #232831;
     color: #ffffff;
     transition-property: background-color;
     transition-duration: 0.5s;
@@ -45,7 +46,7 @@ window#waybar.hidden {
 
 #workspaces button.active {
     color: @foreground;
-    background: #025939;
+    background: #abb1bb;
 }
 
 #workspaces button:hover {
