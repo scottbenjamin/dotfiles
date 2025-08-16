@@ -14,8 +14,8 @@ spawn-at-startup ".local/bin/set-gammastep.sh"
 spawn-at-startup "nm-applet --indicator"
 spawn-at-startup "swaybg" "-i" "/home/scott/.config/hypr/wallpapers/Abstract-Nord.png" "-m" "fit" "-o" "*"
 spawn-at-startup "usm app -- walker --gapplication-service"
-// spawn-at-startup "1password --silent"
-// spawn-at-startup "udiskie --smart-tray"
+spawn-at-startup "uwsm app -- udiskie --smart-tray"
+spawn-at-startup "uwsm app -- 1password --silent"
 
 hotkey-overlay {
     skip-at-startup
@@ -328,8 +328,10 @@ window-rule {
 }
 
 window-rule {
-    match is-active=false
-    // opacity 0.65
+  match app-id=r#"steam_app_\d+$"#
+  open-on-output "DP-1"
+    // open-maximized true
+  open-fullscreen true
 }
 
 window-rule {
@@ -354,14 +356,15 @@ window-rule {
 }
 
 window-rule {
-  match app-id=r#"rimworld*"#
+  match app-id=r#"RimWorld*"#
   open-on-output "DP-1"
+  open-maximized true
 }
 
 window-rule {
   match app-id=r#"steam"# title="Steam"
   open-on-output "DP-1"
-  default-column-width {proportion 0.75;}
+  default-column-width {proportion 0.66666667;}
   default-floating-position x=100 y=100 relative-to="top-left"
 }
 
@@ -369,9 +372,9 @@ window-rule {
   match app-id=r#"steam"# title="Steam Settings"
   open-on-output "DP-1"
 }
+
 window-rule {
   match app-id=r#"steam"# title="Friends List"
-  // open-floating true
   open-on-output "DP-1"
   default-column-width {proportion 0.25;}
   default-floating-position x=100 y=100 relative-to="top-right"
@@ -383,13 +386,7 @@ window-rule {
     default-floating-position x=10 y=10 relative-to="bottom-right"
 }
 
-window-rule {
-  match app-id=r#"steam_app_.*"#
-  open-on-output "DP-1"
-  open-maximized true
-}
-
-
+// Floating apps
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id=r#"blueberry.py$"# 
@@ -574,13 +571,14 @@ binds {
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
+
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
+    Mod+Shift+Ctrl+F {toggle-windowed-fullscreen;}
 
     // Expand the focused column to space not taken up by other fully visible columns.
     // Makes the column "fill the rest of the space".
     Mod+Ctrl+F { expand-column-to-available-width; }
-
     Mod+C { center-column; }
 
     // Finer width adjustments.
@@ -615,8 +613,8 @@ binds {
     // a matching layout switch hotkey configured in xkb options above.
     // Having both at once on the same hotkey will break the switching,
     // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
-    Mod+Space       { switch-layout "next"; }
-    Mod+Shift+Space { switch-layout "prev"; }
+    // Mod+Space       { switch-layout "next"; }
+    // Mod+Shift+Space { switch-layout "prev"; }
 
     Mod+F11 { screenshot; }
 
