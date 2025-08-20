@@ -53,7 +53,7 @@ keybind = alt+shift+ctrl+cmd+l=goto_split:right
 
 
 # Quick Terminal
-quick-terminal-autohide = false
+quick-terminal-autohide = true
 # keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
 # vim: ft=toml
