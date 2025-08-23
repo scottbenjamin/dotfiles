@@ -6,6 +6,7 @@ font-size = 10
 font-thicken = true
 font-thicken-strength = 175
 theme = nordfox
+theme = kanagawabones
 copy-on-select = clipboard
 
 window-decoration = none
@@ -53,6 +54,6 @@ keybind = alt+shift+ctrl+cmd+l=goto_split:right
 
 # Quick Terminal
 quick-terminal-autohide = false
-keybind = global:ctrl+grave_accent=toggle_quick_terminal
+# keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
 # vim: ft=toml

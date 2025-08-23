@@ -100,7 +100,7 @@ output "DP-1" {
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
     mode "2560x1440@144.000"
-    variable-refresh-rate 
+    // variable-refresh-rate 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 1 
 
@@ -117,7 +117,7 @@ output "DP-1" {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    position x=1440 y=600
+    position x=1440 y=430
     focus-at-startup
     background-color "#2E3440"
     backdrop-color "#2E3440"
@@ -334,6 +334,7 @@ window-rule {
   open-fullscreen true
 }
 
+
 window-rule {
   match at-startup=true app-id=r#"(Brave-browser|zen)"#
   open-on-output "DP-2"
@@ -493,11 +494,11 @@ binds {
 
     Mod+U                 { focus-workspace-down; }
     Mod+I                 { focus-workspace-up; }
-    Mod+Shift+Ctrl+U      { move-column-to-workspace-down; }
-    Mod+Shift+Ctrl+I      { move-column-to-workspace-up; }
+    Mod+Shift+U           { move-column-to-workspace-down; }
+    Mod+Shift+I           { move-column-to-workspace-up; }
 
-    Mod+Shift+U           { move-workspace-down; }
-    Mod+Shift+I           { move-workspace-up; }
+    // Mod+Ctrl+U           { move-workspace-down; }
+    // Mod+Ctrl+I           { move-workspace-up; }
 
 
     // You can bind mouse wheel scroll ticks using the following syntax.
