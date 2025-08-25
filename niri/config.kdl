@@ -4,25 +4,43 @@
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
 
 
-// Make X11 apps work
-// https://github.com/YaLTeR/niri/wiki/Xwayland
-spawn-at-startup "xwayland-satellite"
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
 spawn-at-startup "plasma-polkit-agaent"
 spawn-at-startup ".local/bin/set-gammastep.sh"
 spawn-at-startup "nm-applet --indicator"
 spawn-at-startup "swaybg" "-i" "/home/scott/.config/hypr/wallpapers/Abstract-Nord.png" "-m" "fit" "-o" "*"
-spawn-at-startup "usm app -- walker --gapplication-service"
-spawn-at-startup "uwsm app -- udiskie --smart-tray"
-spawn-at-startup "uwsm app -- 1password --silent"
+spawn-at-startup "uwsm" "app" "--" "udiskie"  "--smart-tray"
+spawn-at-startup "uwsm" "app" "--" "1password"  "--silent"
 
 hotkey-overlay {
     skip-at-startup
 }
 
+xwayland-satellite {}
+clipboard {}
+
 environment {
     DISPLAY ":0"
+ 
+     ELECTRON_OZONE_PLATFORM_HINT "wayland"
+ 
+     FSR4_UPGRADE "1" 
+     GDK_BACKEND "wayland,x11,*"
+     GTK_THEME "Nordic:dark"
+     HYPRCURSOR_SIZE "24"
+     MOZ_ENABLE_WAYLAND "1"
+     OZONE_PLATFORM "wayland"
+     PROTON_USE_NTSYNC "1"
+     PROTON_ENABLE_WAYLAND "1"
+     PROTON_FSR4_UPGRADE "1"
+     QT_QPA_PLATFORM "wayland;xcb"
+     QT_STYLE_OVERRIDE "kvantum"
+     SDL_VIDEODRIVER "wayland"
+     WINE_NO_WM_DECORATION "1"
+     XCURSOR_SIZE "24"
+     AMD_VULKAIN_ICD "RADV"
+     MESA_SHADER_CACHE_MAX_SIZE "12G"
 }
 
 // Input device configuration.
