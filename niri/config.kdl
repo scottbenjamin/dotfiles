@@ -3,10 +3,9 @@
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
 
-
+spawn-at-startup "plasma-polkit-agaent"
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
-spawn-at-startup "plasma-polkit-agaent"
 spawn-at-startup ".local/bin/set-gammastep.sh"
 spawn-at-startup "nm-applet --indicator"
 spawn-at-startup "swaybg" "-i" "/home/scott/.config/hypr/wallpapers/Abstract-Nord.png" "-m" "fit" "-o" "*"
