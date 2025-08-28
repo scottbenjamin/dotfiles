@@ -3,14 +3,14 @@
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
 
-spawn-at-startup "plasma-polkit-agaent"
+spawn-at-startup "/usr/lib/hyprpolkitagent/hyprpolkitagent"
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
 spawn-at-startup ".local/bin/set-gammastep.sh"
 spawn-at-startup "nm-applet --indicator"
 spawn-at-startup "swaybg" "-i" "/home/scott/.config/hypr/wallpapers/Abstract-Nord.png" "-m" "fit" "-o" "*"
-spawn-at-startup "uwsm" "app" "--" "udiskie"  "--smart-tray"
-spawn-at-startup "uwsm" "app" "--" "1password"  "--silent"
+spawn-at-startup "udiskie" "--smart-tray"
+spawn-at-startup "1password" "--silent"
 
 hotkey-overlay {
     skip-at-startup
