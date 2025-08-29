@@ -22,24 +22,24 @@ clipboard {}
 environment {
     DISPLAY ":0"
  
-     ELECTRON_OZONE_PLATFORM_HINT "wayland"
- 
-     FSR4_UPGRADE "1" 
-     GDK_BACKEND "wayland,x11,*"
-     GTK_THEME "Nordic:dark"
-     HYPRCURSOR_SIZE "24"
-     MOZ_ENABLE_WAYLAND "1"
-     OZONE_PLATFORM "wayland"
-     PROTON_USE_NTSYNC "1"
-     PROTON_ENABLE_WAYLAND "1"
-     PROTON_FSR4_UPGRADE "1"
-     QT_QPA_PLATFORM "wayland;xcb"
-     QT_STYLE_OVERRIDE "kvantum"
-     SDL_VIDEODRIVER "wayland"
-     WINE_NO_WM_DECORATION "1"
-     XCURSOR_SIZE "24"
-     AMD_VULKAIN_ICD "RADV"
-     MESA_SHADER_CACHE_MAX_SIZE "12G"
+    AMD_VULKAN_ICD "RADV"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    FSR4_UPGRADE "1" 
+    GDK_BACKEND "wayland,x11,*"
+    GTK_THEME "Nordic:dark"
+    HYPRCURSOR_SIZE "24"
+    MESA_SHADER_CACHE_MAX_SIZE "30G"
+    MOZ_ENABLE_WAYLAND "1"
+    OZONE_PLATFORM "wayland"
+    PROTON_ENABLE_WAYLAND "1"
+    PROTON_FSR4_RDNA3_UPGRADE "1" 
+    PROTON_FSR4_UPGRADE "1"
+    PROTON_USE_NTSYNC "1"
+    QT_QPA_PLATFORM "wayland;xcb"
+    QT_STYLE_OVERRIDE "kvantum"
+    SDL_VIDEODRIVER "wayland"
+    WINE_NO_WM_DECORATION "1"
+    XCURSOR_SIZE "24"
 }
 
 // Input device configuration.
@@ -50,12 +50,6 @@ input {
         repeat-delay 300
         repeat-rate 65
         xkb {
-            // You can set rules, model, layout, variant and options.
-            // For more information, see xkeyboard-config(7).
-
-            // For example:
-            // layout "us,ru"
-            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
         }
     }
 
@@ -93,11 +87,12 @@ input {
     }
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
-    warp-mouse-to-focus
+    // warp-mouse-to-focus
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
     // focus-follows-mouse max-scroll-amount="0%"
+    // focus-follows-mouse 
 }
 
 // You can configure outputs by their name, which you can find
@@ -345,14 +340,6 @@ window-rule {
 }
 
 window-rule {
-  match app-id=r#"steam_app_\d+$"#
-  open-on-output "DP-1"
-    // open-maximized true
-  open-fullscreen true
-}
-
-
-window-rule {
   match at-startup=true app-id=r#"(Brave-browser|zen)"#
   open-on-output "DP-2"
 }
@@ -370,6 +357,7 @@ window-rule {
 
 window-rule {
   match app-id=r#"discord"#
+  default-column-width { proportion 1.0; }
   open-on-output "DP-2"
 }
 
@@ -384,6 +372,7 @@ window-rule {
   open-on-output "DP-1"
   default-column-width {proportion 0.66666667;}
   default-floating-position x=100 y=100 relative-to="top-left"
+  open-focused false
 }
 
 window-rule {
@@ -413,8 +402,7 @@ window-rule {
     open-floating true
 }
 
-// Example: block out two password managers from screen capture.
-// (This example rule is commented out with a "/-" in front.)
+// Floating password manager windows but keep them out of screenshare
 window-rule {
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
     match app-id=r#"^.*assword.*$"#
@@ -449,10 +437,32 @@ window-rule {
     }
 }
 
+// Steam games
+window-rule {
+  match app-id=r#"steam_app_\d+$"#
+  open-on-output "DP-1"
+    // open-maximized true
+  default-column-width { proportion 1.0; }
+  open-fullscreen true
+}
+
 window-rule {
     match app-id="^gimp"
     default-column-width { fixed 1200; }
 }
+
+// window-rule {
+//   match app-id="exiled-exchange-2"
+//   open-on-output "DP-1"
+//   open-floating true
+//   open-focused false
+//   focus-ring {
+//     off
+//   }
+//   border {
+//     off
+//   }
+// }
 
 binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
@@ -473,7 +483,8 @@ binds {
     Mod+D                   { spawn "walker"; }
     Super+Alt+L             { spawn "swaylock"; }
     Mod+M                   { spawn "ghostty" "-e" "spotify_player"; }
-    Mod+S                   {spawn "bash" "-c" "grim -g \"$(slurp)\" - | swappy -f -";}
+    // Mod+S                   { spawn-sh "grim -g \"$(slurp)\" - | swappy -f -";}
+    Mod+S                   { screenshot; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
@@ -488,20 +499,20 @@ binds {
     Mod+J                 { focus-window-down; }
     Mod+K                 { focus-window-up; }
     Mod+L                 { focus-column-right; }
-    Mod+Shift+H            { move-column-left; }
-    Mod+Shift+J            { move-window-down; }
-    Mod+Shift+K            { move-window-up; }
-    Mod+Shift+L            { move-column-right; }
+    Mod+Shift+H           { move-column-left; }
+    Mod+Shift+J           { move-window-down; }
+    Mod+Shift+K           { move-window-up; }
+    Mod+Shift+L           { move-column-right; }
 
     Mod+A                 { focus-column-first; }
     Mod+Z                 { focus-column-last; }
-    Mod+Shift+A            { move-column-to-first; }
-    Mod+Shift+Z            { move-column-to-last; }
+    Mod+Shift+A           { move-column-to-first; }
+    Mod+Shift+Z           { move-column-to-last; }
 
-    Mod+Ctrl+H           { focus-monitor-left; }
-    Mod+Ctrl+J           { focus-monitor-down; }
-    Mod+Ctrl+K           { focus-monitor-up; }
-    Mod+Ctrl+L           { focus-monitor-right; }
+    Mod+Ctrl+H            { focus-monitor-left; }
+    Mod+Ctrl+J            { focus-monitor-down; }
+    Mod+Ctrl+K            { focus-monitor-up; }
+    Mod+Ctrl+L            { focus-monitor-right; }
 
     Mod+Shift+Ctrl+H      { move-column-to-monitor-left; }
     Mod+Shift+Ctrl+J      { move-column-to-monitor-down; }
