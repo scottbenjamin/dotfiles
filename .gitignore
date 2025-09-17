@@ -10,3 +10,4 @@ zim/*.old
 
 nushell/history**
 github-copilot/apps.json
+nvim/lazy-lock.json
