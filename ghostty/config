@@ -1,4 +1,3 @@
-#
 # Theme
 # font-family = "JetBrainsMono Nerd Font Mono"
 font-family = "CommitMono Nerd Font Mono"
@@ -42,18 +41,12 @@ keybind = alt+shift+ctrl+cmd+k=goto_split:up
 keybind = alt+shift+ctrl+cmd+h=goto_split:left
 keybind = alt+shift+ctrl+cmd+l=goto_split:right
 
-# Tab movement
-# keybind = alt+shift+ctrl+cmd+n=next_tab
-# keybind = alt+shift+ctrl+cmd+p=previous_tab
-# keybind = alt+shift+ctrl+cmd+1=goto_tab:1
-# keybind = alt+shift+ctrl+cmd+2=goto_tab:2
-# keybind = alt+shift+ctrl+cmd+3=goto_tab:3
-# keybind = alt+shift+ctrl+cmd+4=goto_tab:4
-# keybind = alt+shift+ctrl+cmd+5=goto_tab:5
-
 
 # Quick Terminal
 quick-terminal-autohide = true
 # keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
 # vim: ft=toml
+keybind = shift+enter=text:\x1b\r
+
+custom-shader = shaders/cursor_blase.glsl
