@@ -107,10 +107,10 @@ alt-k = 'focus --boundaries-action wrap-around-the-workspace up'
 alt-l = 'focus --boundaries-action wrap-around-the-workspace right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-alt-shift-cmd-ctrl-h = 'move left'
-alt-shift-cmd-ctrl-j = 'move down'
-alt-shift-cmd-ctrl-k = 'move up'
-alt-shift-cmd-ctrl-l = 'move right'
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
