@@ -15,3 +15,5 @@ export SUDO_EDITOR="${EDITOR}"
 
 export TERM=xterm-256color
 
+
+. "$HOME/.atuin/bin/env"

@@ -49,4 +49,4 @@ quick-terminal-autohide = true
 # vim: ft=toml
 keybind = shift+enter=text:\x1b\r
 
-custom-shader = shaders/cursor_blaze.glsl
+# custom-shader = shaders/cursor_blaze.glsl
