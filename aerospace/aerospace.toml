@@ -101,10 +101,10 @@ alt-period = 'layout v_accordion vertical horizontal'
 alt-shift-f = 'layout floating tiling'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-cmd-h = 'focus --boundaries-action wrap-around-the-workspace left'
-cmd-j = 'focus --boundaries-action wrap-around-the-workspace down'
-cmd-k = 'focus --boundaries-action wrap-around-the-workspace up'
-cmd-l = 'focus --boundaries-action wrap-around-the-workspace right'
+alt-h = 'focus --boundaries-action wrap-around-the-workspace left'
+alt-j = 'focus --boundaries-action wrap-around-the-workspace down'
+alt-k = 'focus --boundaries-action wrap-around-the-workspace up'
+alt-l = 'focus --boundaries-action wrap-around-the-workspace right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 cmd-shift-h = 'move left'
@@ -126,7 +126,7 @@ alt-b = 'workspace B'
 alt-c = 'workspace C'
 alt-d = 'workspace D'
 
-cmd-f = 'fullscreen'
+alt-f = 'fullscreen'
 cmd-o = 'focus-back-and-forth'
 
 
