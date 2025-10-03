@@ -58,14 +58,14 @@ automatically-unhide-macos-hidden-apps = true
 preset = 'qwerty'
 
 [workspace-to-monitor-force-assignment]
-1 = ["LG.*", 'DELL.* \(1\)$', "built-in"]
-2 = ["LG.*", 'DELL.* \(1\)$', "built-in"]
-3 = ["MAG.*", 'DELL.* \(2\)$', "built-in"]
-4 = ["MAG.*", 'DELL.* \(2\)$', "built-in"]
-5 = ["MAG.*", 'DELL.* \(2\)$', "built-in"]
-6 = ["MAG.*", 'DELL.* \(2\)$', "built-in"]
-7 = ["MAG.*", 'DELL.* \(2\)$', "built-in"]
-8 = ["MAG.*", 'DELL.* \(2\)$', "built-in"]
+1 = ["MAG 271QPX E2", 'DELL.* \(1\)$', "built-in"]
+2 = ["MAG 271QPX E2", 'DELL.* \(1\)$', "built-in"]
+3 = ["MAG 271QP X28", 'DELL.* \(2\)$', "built-in"]
+4 = ["MAG 271QP X28", 'DELL.* \(2\)$', "built-in"]
+5 = ["MAG 271QP X28", 'DELL.* \(2\)$', "built-in"]
+6 = ["MAG 271QP X28", 'DELL.* \(2\)$', "built-in"]
+7 = ["MAG 271QP X28", 'DELL.* \(2\)$', "built-in"]
+8 = ["MAG 271QP X28", 'DELL.* \(2\)$', "built-in"]
 A = "built-in"
 B = "built-in"
 C = "built-in"
