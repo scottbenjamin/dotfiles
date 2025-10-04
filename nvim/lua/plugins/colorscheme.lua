@@ -27,9 +27,9 @@ return {
     opts = {
       -- colorscheme = "catppuccin-mocha",
       -- colorscheme = "duskfox",
-      colorscheme = "nordfox",
+      -- colorscheme = "nordfox",
       -- colorscheme = "tokyonight-moon",
-      -- colorscheme = "kanagawa-wave",
+      colorscheme = "kanagawa-wave",
       -- colorscheme = "everforest",
       -- background = "hard",
     },
