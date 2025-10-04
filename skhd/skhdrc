@@ -1,7 +1,0 @@
-# APPS #
-#
-# Slack
-alt - s : open -a /Applications/Slack.app/Contents/MacOS/Slack
-
-# Wezterm
-lalt - t : open -a wezterm
