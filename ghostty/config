@@ -31,6 +31,8 @@ resize-overlay = never
 
 app-notifications = no-clipboard-copy
 
+shell-integration-features = ssh-terminfo,ssh-env
+
 
 # Splits
 keybind = alt+shift+ctrl+cmd+v=new_split:right
