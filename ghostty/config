@@ -3,14 +3,16 @@
 font-family = "CommitMono Nerd Font Mono"
 font-style = Regular
 font-size = 10
-# font-thicken = true
-# font-thicken-strength = 175
+
+font-thicken = true
+font-thicken-strength = 175
 theme = Kanagawabones
 copy-on-select = clipboard
 
 window-decoration = none
 
 shell-integration = detect
+
 scrollback-limit = 100000000
 focus-follows-mouse = true
 auto-update = download
@@ -22,7 +24,7 @@ window-padding-balance = true
 
 cursor-style = block
 cursor-style-blink = true
-shell-integration-features = no-cursor
+shell-integration-features = true
 
 # background-opacity= 0.80
 # background-blur-radius = 20
