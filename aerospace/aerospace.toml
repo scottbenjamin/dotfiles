@@ -95,10 +95,12 @@ outer.top = 8
 [mode.main.binding]
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-alt-slash = 'layout tiles horizontal vertical'
+alt-slash = 'hayout tiles horizontal vertical'
 alt-comma = 'layout h_accordion horizontal vertical'
 alt-period = 'layout v_accordion vertical horizontal'
 alt-shift-f = 'layout floating tiling'
+
+cmd-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus --boundaries-action wrap-around-the-workspace left'

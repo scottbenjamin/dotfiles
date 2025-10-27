@@ -1,6 +1,6 @@
 # Theme
-# font-family = "JetBrainsMono Nerd Font Mono"
-font-family = "CommitMono Nerd Font Mono"
+font-family = "JetBrainsMono Nerd Font Mono"
+# font-family = "CommitMono Nerd Font Mono"
 font-style = Regular
 font-size = 10
 
@@ -35,7 +35,6 @@ app-notifications = no-clipboard-copy
 
 shell-integration-features = ssh-terminfo,ssh-env
 
-
 # Splits
 keybind = alt+shift+ctrl+cmd+v=new_split:right
 keybind = alt+shift+ctrl+cmd+h=new_split:down
@@ -48,12 +47,12 @@ keybind = alt+shift+ctrl+cmd+k=goto_split:up
 keybind = alt+shift+ctrl+cmd+h=goto_split:left
 keybind = alt+shift+ctrl+cmd+l=goto_split:right
 
-
 # Quick Terminal
 quick-terminal-autohide = true
 # keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
-# vim: ft=toml
 keybind = shift+enter=text:\x1b\r
 
 custom-shader = shaders/cursor_blaze.glsl
+
+# vim: ft=toml
