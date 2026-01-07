@@ -81,7 +81,7 @@ D = "built-in"
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 5
+inner.horizontal = 8
 inner.vertical = 5
 outer.bottom = 8
 outer.left = 8

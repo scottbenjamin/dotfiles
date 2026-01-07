@@ -3,6 +3,7 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
+        ["*"] = { "trim_newlines", "trim_whitespace" },
         hcl = { "hcl" },
         tofu = { "tofu_fmt" },
         tf = { "terraform_fmt" },
