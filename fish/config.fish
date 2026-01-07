@@ -1,6 +1,10 @@
+# Disable fish greeting
+function fish_greeting; end
+
 fish_add_path ~/.local/bin
 fish_add_path ~/.npm-packages/bin
 fish_add_path /opt/homebrew/bin
+fish_add_path ~/.local/share/mise/shims
 
 for p in /run/current-system/sw/bin ~/bin
     if not contains $p $fish_user_paths
@@ -9,51 +13,56 @@ for p in /run/current-system/sw/bin ~/bin
 end
 
 if status is-interactive
-    # Commands to run in interactive sessions can go here
-    #
     set -xg EDITOR nvim
     set -xg VISUAL_EDITOR nvim
 
-    if type -q brew
-        if test -d (brew --prefix)"/share/fish/completions"
-            set -p fish_complete_path (brew --prefix)/share/fish/completions
-        end
-
-        if test -d (brew --prefix)"/share/fish/vendor_completions.d"
-            set -p fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
-        end
-
-        if test -d (brew --prefix rustup )"/bin"
-            fish_add_path (brew --prefix rustup )"/bin"
-        end
-
+    if test -d "$HOMEBREW_PREFIX/share/fish/completions"
+        set -p fish_complete_path $HOMEBREW_PREFIX/share/fish/completions
     end
 
-    if type -q pyenv
-        pyenv init - fish | source
+    if test -d "$HOMEBREW_PREFIX/share/fish/vendor_completions.d"
+        set -p fish_complete_path $HOMEBREW_PREFIX/share/fish/vendor_completions.d
     end
 
-    if type -q direnv
-        direnv hook fish | source
+    if test -d "$HOMEBREW_PREFIX/opt/rustup/bin"
+        fish_add_path $HOMEBREW_PREFIX/opt/rustup/bin
     end
 
+    # Lazy load carapace
     if type -q carapace
-        # ~/.config/fish/config.fish
-        set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
-        carapace _carapace | source
+        set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense'
+        function __carapace_lazy --on-event fish_complete
+            functions --erase __carapace_lazy
+            carapace _carapace | source
+        end
     end
 
-    if type -q atuin
-        atuin init fish | source
-    end
-
+    # Lazy load zoxide
     if type -q zoxide
-        zoxide init fish | source
+        function z --wraps=zoxide
+            functions --erase z zi
+            zoxide init fish | source
+            z $argv
+        end
+        function zi --wraps=zoxide
+            functions --erase z zi
+            zoxide init fish | source
+            zi $argv
+        end
     end
 
-    if type -q starship
-        starship init fish | source
+    # Lazy load atuin
+    if type -q atuin
+        function __atuin_lazy_init
+            functions --erase __atuin_lazy_init
+            atuin init fish | source
+            commandline -f repaint
+        end
+        bind \cr __atuin_lazy_init
+        bind up __atuin_lazy_init
     end
+
+    # Using pure prompt (async git, fast)
 
     if test -f ~/.local.fish
         source ~/.local.fish
