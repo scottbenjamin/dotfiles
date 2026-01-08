@@ -62,6 +62,24 @@ if status is-interactive
         bind up __atuin_lazy_init
     end
 
+    # Lazy load direnv - init on first cd, then let direnv handle it
+    if type -q direnv
+        function __direnv_lazy --on-variable PWD
+            # Check if any parent dir has .envrc
+            set -l check_dir $PWD
+            while test "$check_dir" != ""
+                if test -f "$check_dir/.envrc"; or test -f "$check_dir/.env"
+                    # Found envrc, init direnv permanently and remove this lazy loader
+                    functions --erase __direnv_lazy
+                    direnv hook fish | source
+                    __direnv_export_eval
+                    return
+                end
+                set check_dir (string replace -r '/[^/]*$' '' $check_dir)
+            end
+        end
+    end
+
     # Using pure prompt (async git, fast)
 
     if test -f ~/.local.fish
