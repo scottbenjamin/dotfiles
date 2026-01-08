@@ -22,32 +22,32 @@ local colors = {
 
   -- Accent colors
   accent1 = '#42a72e',
-  accent2 = '#6c3ccc',
-  accent3 = '#257196',
+  accent2 = '#8b65d6',
+  accent3 = '#2a80ab',
 
   -- Semantic colors
   danger = '#e54c4c',
   warning = '#e5bf4c',
   success = '#4fcc36',
-  info = '#3094c5',
+  info = '#359bcd',
 
   -- ANSI colors for terminal
   black = '#000000',
   red = '#e54c4c',
   green = '#4fcc36',
   yellow = '#e5bf4c',
-  blue = '#3094c5',
-  magenta = '#ce349b',
-  cyan = '#3094c5',
+  blue = '#2a80ab',
+  magenta = '#d349a5',
+  cyan = '#359bcd',
   white = '#eaf4d6',
   bright_black = '#56656d',
   bright_red = '#e54c4c',
-  bright_green = '#3094c5',
+  bright_green = '#359bcd',
   bright_yellow = '#e5bf4c',
-  bright_blue = '#3094c5',
-  bright_magenta = '#ce349b',
-  bright_cyan = '#3094c5',
-  bright_white = '#ffffff',
+  bright_blue = '#359bcd',
+  bright_magenta = '#8b65d6',
+  bright_cyan = '#359bcd',
+  bright_white = '#eaf4d6',
 }
 
 -- Helper function to set highlight groups

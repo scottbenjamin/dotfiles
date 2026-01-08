@@ -1,4 +1,3 @@
-# Theme
 font-family = "JetBrainsMono Nerd Font Mono"
 # font-family = "CommitMono Nerd Font Mono"
 font-style = Regular
@@ -7,6 +6,8 @@ font-size = 10
 font-thicken = true
 font-thicken-strength = 175
 theme = Kanagawabones
+# theme = tinct.conf
+
 copy-on-select = clipboard
 
 window-decoration = none
@@ -26,7 +27,7 @@ cursor-style = block
 cursor-style-blink = true
 shell-integration-features = true
 
-# background-opacity= 0.80
+# background-opacity= 0.90
 # background-blur-radius = 20
 
 resize-overlay = never
