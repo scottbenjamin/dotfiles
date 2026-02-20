@@ -9,8 +9,8 @@ spawn-at-startup "waybar"
 spawn-at-startup "mako"
 // spawn-at-startup ".local/bin/set-gammastep.sh"
 spawn-at-startup "nm-applet --indicator"
-spawn-at-startup "swaybg" "-o" "DP-1" "-i" "/home/scott/.config/themes/wallpapers/pine-island-under-a-billion-stars-ec-2560x1440.jpg" "-m" "fit" 
-spawn-at-startup "swaybg" "-o" "DP-2" "-i" "/home/scott/.config/themes/wallpapers/pine-island-under-a-billion-stars-ec-1440x2560.jpg" "-m" "fit" 
+spawn-at-startup "swaybg" "-o" "DP-1" "-i" "/home/scott/.config/themes/wallpapers/pine-island-under-a-billion-stars-ec-2560x1440.jpg" "-m" "fit"
+spawn-at-startup "swaybg" "-o" "DP-2" "-i" "/home/scott/.config/themes/wallpapers/pine-island-under-a-billion-stars-ec-1440x2560.jpg" "-m" "fit"
 spawn-sh-at-startup "swayidle -w timeout 600 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors' timeout 300 'loginctl lock-session' before-sleep 'swaylock -f -c 000000'"
 spawn-at-startup "udiskie" "--smart-tray"
 spawn-at-startup "1password" "--silent"
@@ -27,7 +27,7 @@ environment {
     DISPLAY ":0"
     AMD_VULKAN_ICD "RADV"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
-    FSR4_UPGRADE "1" 
+    FSR4_UPGRADE "1"
     GDK_BACKEND "wayland,x11,*"
     GTK_THEME "Nordic:dark"
     HYPRCURSOR_SIZE "24"
@@ -35,13 +35,12 @@ environment {
     MOZ_ENABLE_WAYLAND "1"
     OZONE_PLATFORM "wayland"
     PROTON_ENABLE_WAYLAND "1"
-    PROTON_FSR4_RDNA3_UPGRADE "1" 
+    PROTON_FSR4_RDNA3_UPGRADE "1"
     PROTON_FSR4_UPGRADE "1"
     PROTON_USE_NTSYNC "1"
     QT_CURSOR_SIZE "24"
     QT_QPA_PLATFORM "wayland;xcb"
     QT_STYLE_OVERRIDE "kvantum"
-    // SDL_VIDEODRIVER "wayland"
     WINE_NO_WM_DECORATION "1"
     XCURSOR_SIZE "24"
 }
@@ -96,7 +95,7 @@ input {
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
     // focus-follows-mouse max-scroll-amount="0%"
-    // focus-follows-mouse 
+    // focus-follows-mouse
 }
 
 cursor {
@@ -122,9 +121,9 @@ output "DP-1" {
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
 
     mode "2560x1440@280.001"
-    // variable-refresh-rate 
+    // variable-refresh-rate
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 1 
+    scale 1
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -149,7 +148,7 @@ output "DP-2" {
     mode "2560x1440@239.992"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 1 
+    scale 1
     transform "270"
     position x=0 y=0
     background-color "#2E3440"
@@ -167,7 +166,7 @@ overview {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 8 
+    gaps 8
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -185,7 +184,7 @@ layout {
     }
 
     // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
-    preset-window-heights { 
+    preset-window-heights {
         proportion 0.5
         proportion 0.75
         proportion 1.0
@@ -249,13 +248,13 @@ layout {
         // radius. It has to assume that windows have square corners, leading to
         // shadow artifacts inside the CSD rounded corners. This setting fixes
         // those artifacts.
-        // 
+        //
         // However, instead you may want to set prefer-no-csd and/or
         // geometry-corner-radius. Then, niri will know the corner radius and
         // draw the shadow correctly, without having to draw it behind the
         // window. These will also remove client-side shadows if the window
         // draws any.
-        // 
+        //
         // draw-behind-window true
 
         // You can change how shadows look. The values below are in logical
@@ -316,7 +315,7 @@ animations {
     // off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    // slowdown 3.0    
+    // slowdown 3.0
 
     workspace-switch {
         spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
@@ -366,7 +365,7 @@ window-rule {
 }
 
 window-rule {
-  match app-id=r#"discord"#
+  match app-id=r#"(discord|vesktop)"#
   default-column-width { proportion 1.0; }
   open-on-output "DP-2"
 }
@@ -406,7 +405,7 @@ window-rule {
 // Floating apps
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    match app-id=r#"blueberry.py$"# 
+    match app-id=r#"blueberry.py$"#
     match app-id=r#".*pavucontrol.*$"#
     match app-id=r#"zenity"#
     open-on-output "DP-1"
