@@ -7,6 +7,7 @@ zim/init.sh
 zim/*.old
 
 .DS_Store
+fish/fish_variables
 
 nushell/history**
 github-copilot/apps.json
