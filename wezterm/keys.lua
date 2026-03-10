@@ -2,7 +2,18 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local M = {}
 
-local shell = "/opt/homebrew/bin/nu"
+local function first_existing(paths)
+	for _, path in ipairs(paths) do
+		local f = io.open(path, "r")
+		if f then
+			f:close()
+			return path
+		end
+	end
+	return nil
+end
+
+local shell = first_existing({ "/opt/homebrew/bin/nu", "/usr/bin/nu", "/usr/local/bin/nu" }) or "nu"
 local last_pane = nil
 
 M.keys = {
@@ -61,7 +72,7 @@ M.keys = {
 
 	-- Show items
 	{ key = "w", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
-	{ key = "t", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "FUZZY|TABS" }) },
+	{ key = "T", mods = "LEADER|SHIFT", action = act.ShowLauncherArgs({ flags = "FUZZY|TABS" }) },
 
 	-- Rename tab
 	{

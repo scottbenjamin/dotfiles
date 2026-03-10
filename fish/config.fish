@@ -1,16 +1,21 @@
 # Disable fish greeting
 function fish_greeting; end
 
-fish_add_path ~/.local/bin
-fish_add_path ~/.npm-packages/bin
-fish_add_path /opt/homebrew/bin
-fish_add_path ~/.local/share/mise/shims
-
-for p in /run/current-system/sw/bin ~/bin
-    if not contains $p $fish_user_paths
-        set -g fish_user_paths $p $fish_user_paths
+function __add_paths_if_present
+    for p in $argv
+        if test -d $p
+            fish_add_path $p
+        end
     end
 end
+
+__add_paths_if_present \
+    ~/.local/bin \
+    ~/.npm-packages/bin \
+    /opt/homebrew/bin \
+    ~/.local/share/mise/shims \
+    /run/current-system/sw/bin \
+    ~/bin
 
 if status is-interactive
     set -xg EDITOR nvim
@@ -30,7 +35,7 @@ if status is-interactive
 
     # Lazy load carapace
     if type -q carapace
-        set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense'
+        set -gx CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense'
         function __carapace_lazy --on-event fish_complete
             functions --erase __carapace_lazy
             carapace _carapace | source

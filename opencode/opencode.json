@@ -1,0 +1,121 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  "model": "anthropic/claude-sonnet-4-5-20250929",
+  "small_model": "anthropic/claude-haiku-4-20250514",
+
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 12000
+  },
+
+  "mcp": {
+    "ecs-mcp": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "uvx",
+        "mcp-proxy-for-aws",
+        "https://ecs-mcp.us-east-1.api.aws/mcp",
+        "--service",
+        "ecs-mcp",
+        "--profile",
+        "cprod",
+        "--region",
+        "us-east-1",
+        "--log-level",
+        "ERROR"
+      ],
+      "timeout": 3000
+    },
+    "awslabs.aws-pricing-mcp-server": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "awslabs.aws-pricing-mcp-server@0.3.8"
+      ],
+      "environment": {
+        "FASTMCP_LOG_LEVEL": "ERROR",
+        "AWS_PROFILE": "cprod",
+        "AWS_REGION": "us-east-1"
+      },
+      "enabled": true,
+      "timeout": 3000
+    }
+  },
+
+  "tools": {
+    "ecs-mcp_*": false,
+    "awslabs.aws-pricing-mcp-server_*": false
+  },
+
+  "agent": {
+    "build": {
+      "mode": "primary",
+      "model": "anthropic/claude-sonnet-4-5-20250929"
+    },
+
+    "plan": {
+      "mode": "primary",
+      "model": "anthropic/claude-haiku-4-20250514",
+      "permission": {
+        "edit": "deny",
+        "bash": "ask"
+      }
+    },
+
+    "diff-analyzer": {
+      "description": "Analyze git diffs for risk, regressions, and performance issues.",
+      "mode": "subagent",
+      "model": "anthropic/claude-haiku-4-20250514",
+      "tools": {
+        "ecs-mcp_*": false,
+        "awslabs.aws-pricing-mcp-server_*": false
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "git diff*": "allow",
+          "git log*": "allow",
+          "git status*": "allow"
+        }
+      },
+      "steps": 4
+    },
+
+    "cost-reviewer": {
+      "description": "Evaluate AWS pricing/perf tradeoffs using pricing + ECS MCP.",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-5-20250929",
+      "tools": {
+        "awslabs.aws-pricing-mcp-server_*": true,
+        "ecs-mcp_*": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "task": {
+          "*": "deny"
+        }
+      },
+      "steps": 5
+    }
+  },
+
+  "command": {
+    "diff-review": {
+      "description": "Run read-only diff analysis in subagent context",
+      "agent": "diff-analyzer",
+      "subtask": true,
+      "template": "Review current changes for correctness, performance regressions, and hidden risk. Summarize by severity and include concrete fixes."
+    },
+    "aws-cost-review": {
+      "description": "Run AWS cost/perf review via scoped MCP tools",
+      "agent": "cost-reviewer",
+      "subtask": true,
+      "template": "Given the current infra/code changes, estimate likely AWS cost impact and suggest lower-cost alternatives with tradeoffs."
+    }
+  }
+}

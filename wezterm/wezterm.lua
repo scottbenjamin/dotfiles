@@ -23,9 +23,13 @@ wezterm.on("gui-startup", function(cmd)
 end)
 
 -- Use the gpu
-local gpus = wezterm.gui.enumerate_gpus()
-config.webgpu_preferred_adapter = gpus[1]
-config.front_end = "WebGpu"
+if wezterm.gui then
+	local gpus = wezterm.gui.enumerate_gpus()
+	if gpus and gpus[1] then
+		config.webgpu_preferred_adapter = gpus[1]
+	end
+	config.front_end = "WebGpu"
+end
 config.use_ime = false
 
 -- LEADER KEY

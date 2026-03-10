@@ -7,6 +7,8 @@ zim/init.sh
 zim/*.old
 
 .DS_Store
+__pycache__/
+*.py[cod]
 fish/fish_variables
 
 nushell/history**

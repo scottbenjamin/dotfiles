@@ -1,16 +1,3 @@
-
-
-* {
-    font-family: "Noto Sans", "Fira Sans Semibold", "Font Awesome 6 Free", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 12px;  /* Slightly smaller font size */
-    font-weight: 900;
-    margin: 0;
-    padding: 0;
-    transition-property: background-color;
-    transition-duration: 0.5s;
-}
-
-/* Reset all styles */
 * {
     border: 1px;
     font-family :  'CommitMono Nerd Font', 'JetBrainsMono Nerd Font', 'FiraCode Nerd Font', 'Symbols Nerd Font Mono';

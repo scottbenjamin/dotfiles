@@ -29,7 +29,7 @@ return {
         "<leader>tf",
         function()
           vim.b.autoformat = not vim.b.autoformat
-          Snacks.notify.info(" Buffer Formatting: [ " .. tostring(not vim.b.autoformat) .. " ]")
+          Snacks.notify.info("Buffer Formatting: [ " .. tostring(vim.b.autoformat) .. " ]")
         end,
         mode = "",
         desc = "Toggle Format (buffer)",
@@ -38,7 +38,7 @@ return {
         "<leader>tF",
         function()
           vim.g.autoformat = not vim.g.autoformat
-          Snacks.notify.info(" Global Formatting: [ " .. tostring(not vim.g.autoformat) .. " ]")
+          Snacks.notify.info("Global Formatting: [ " .. tostring(vim.g.autoformat) .. " ]")
         end,
         mode = "",
         desc = "Toggle Format Globally",
