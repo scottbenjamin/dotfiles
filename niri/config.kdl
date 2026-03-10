@@ -4,7 +4,6 @@
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
 
 
-spawn-at-startup "/usr/lib/hyprpolkitagent/hyprpolkitagent"
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
 // spawn-at-startup ".local/bin/set-gammastep.sh"
@@ -22,28 +21,6 @@ hotkey-overlay {
 
 xwayland-satellite {}
 clipboard {}
-
-environment {
-    DISPLAY ":0"
-    AMD_VULKAN_ICD "RADV"
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
-    FSR4_UPGRADE "1"
-    GDK_BACKEND "wayland,x11,*"
-    GTK_THEME "Nordic:dark"
-    HYPRCURSOR_SIZE "24"
-    MESA_SHADER_CACHE_MAX_SIZE "30G"
-    MOZ_ENABLE_WAYLAND "1"
-    OZONE_PLATFORM "wayland"
-    PROTON_ENABLE_WAYLAND "1"
-    PROTON_FSR4_RDNA3_UPGRADE "1"
-    PROTON_FSR4_UPGRADE "1"
-    PROTON_USE_NTSYNC "1"
-    QT_CURSOR_SIZE "24"
-    QT_QPA_PLATFORM "wayland;xcb"
-    QT_STYLE_OVERRIDE "kvantum"
-    WINE_NO_WM_DECORATION "1"
-    XCURSOR_SIZE "24"
-}
 
 // Input device configuration.
 // Find the full list of options on the wiki:
