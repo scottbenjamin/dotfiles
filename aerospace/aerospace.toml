@@ -131,6 +131,12 @@ alt-d = 'workspace D'
 alt-f = 'fullscreen'
 cmd-o = 'focus-back-and-forth'
 
+# Resize in main mode (no service mode needed)
+alt-shift-h = 'resize width -50'
+alt-shift-j = 'resize height +50'
+alt-shift-k = 'resize height -50'
+alt-shift-l = 'resize width +50'
+
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-cmd-ctrl-1 = 'move-node-to-workspace --focus-follows-window 1'

@@ -9,3 +9,12 @@ max-icon-size=48
 default-timeout=10000
 anchor=top-right
 margin=20
+padding=15
+width=400
+format=<b>%s</b>\n%b
+group-by=app-name
+
+[urgency=critical]
+background-color=#bf616add
+border-color=#d08770
+default-timeout=0

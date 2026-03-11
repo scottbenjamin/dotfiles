@@ -38,7 +38,7 @@ shell-integration-features = ssh-terminfo,ssh-env
 
 # Splits
 keybind = alt+shift+ctrl+cmd+v=new_split:right
-keybind = alt+shift+ctrl+cmd+h=new_split:down
+keybind = alt+shift+ctrl+cmd+s=new_split:down
 keybind = alt+shift+ctrl+cmd+z=toggle_split_zoom
 keybind = alt+shift+ctrl+cmd+o=goto_split:previous
 

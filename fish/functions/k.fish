@@ -1,4 +1,4 @@
 # function to wrap kubectl
-function k  
+function k --wraps=kubectl
   command kubectl $argv
 end
