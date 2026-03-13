@@ -10,7 +10,7 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 # after-startup-command = ['exec-and-forget sketchybar']
-after-startup-command = ['exec-and-forget borders']
+after-startup-command = ['exec-and-forget borders', 'exec-and-forget ~/.cargo/bin/whis start --autotype']
 
 # Notify Sketchybar about workspace change
 # exec-on-workspace-change = [
@@ -101,6 +101,9 @@ alt-period = 'layout v_accordion vertical horizontal'
 alt-shift-f = 'layout floating tiling'
 
 cmd-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+
+# Speech-to-text toggle (Fn+Space on Kinesis Adv360 sends F13)
+# f13 = 'exec-and-forget ~/.cargo/bin/whis toggle'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus --boundaries-action wrap-around-the-workspace left'

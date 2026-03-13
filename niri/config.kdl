@@ -483,6 +483,9 @@ binds {
     // Most actions that you can bind here can also be invoked programmatically with
     // `niri msg action do-something`.
 
+    // Speech-to-text toggle (Fn+Space on Kinesis Adv360 sends F13)
+    F13 repeat=false         { spawn "whis" "toggle"; }
+
     Mod+Shift+Slash         { show-hotkey-overlay; }
     Mod+Shift+O             { toggle-overview;}
 

@@ -1,4 +1,4 @@
-function kubectlgetall
+function kubegetall
     set namespace $argv[1]
 
     for i in (kubectl api-resources --verbs=list --namespaced -o name | grep -v "events.events.k8s.io" | grep -v "events" | sort | uniq)

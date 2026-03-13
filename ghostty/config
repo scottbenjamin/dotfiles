@@ -1,7 +1,7 @@
 # font-family = "JetBrainsMono Nerd Font Mono"
 font-family = "CommitMono Nerd Font Mono"
 font-style = Regular
-font-size = 10
+font-size = 13
 
 font-thicken = true
 font-thicken-strength = 175
@@ -14,7 +14,7 @@ window-decoration = none
 
 shell-integration = detect
 
-scrollback-limit = 100000000
+scrollback-limit = 50000
 focus-follows-mouse = true
 auto-update = download
 
@@ -33,6 +33,8 @@ shell-integration-features = true
 resize-overlay = never
 
 app-notifications = no-clipboard-copy
+
+bell-features = border,no-system,no-audio,no-attention,no-title
 
 shell-integration-features = ssh-terminfo,ssh-env
 
