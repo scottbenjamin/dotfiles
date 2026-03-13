@@ -441,6 +441,23 @@ window-rule {
   open-floating true
 }
 
+  window-rule {
+    match app-id=r#"^vibe-typer.*$"#
+    draw-border-with-background false
+    focus-ring { off; }
+    border { off; }
+    shadow { off; }
+  }
+
+  window-rule {
+    match title=r#"^Recording Indicator$"#
+    draw-border-with-background false
+    focus-ring { off; }
+    border { off; }
+    shadow { off; }
+    open-floating true
+  }
+
 // window-rule {
 //   match app-id="exiled-exchange-2"
 //   open-on-output "DP-1"
