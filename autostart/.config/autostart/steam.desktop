@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Steam
+Comment=Start Steam automatically when you log in
+Exec=/usr/bin/steam
+TryExec=/usr/bin/steam
+Icon=steam
+Terminal=false
+StartupNotify=false
+X-GNOME-Autostart-enabled=true

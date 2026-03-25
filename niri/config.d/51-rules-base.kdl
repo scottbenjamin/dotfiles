@@ -1,0 +1,35 @@
+window-rule {
+    focus-ring { }
+
+    border {}
+    // geometry-corner-radius 6
+    clip-to-geometry true
+}
+
+window-rule {
+  match at-startup=true app-id=r#"(brave-browser|zen)"#
+  open-on-output "DP-2"
+}
+
+window-rule {
+  match app-id=r#"(brave-browser|zen)"#
+  default-column-width { proportion 1.0; }
+  open-on-output "DP-2"
+}
+
+window-rule {
+  match at-startup=true app-id=r#"com.mitchellh.ghostty"#
+  open-on-output "DP-1"
+}
+
+window-rule {
+  match app-id=r#"(discord|vesktop)"#
+  default-column-width { proportion 1.0; }
+  open-on-output "DP-2"
+}
+
+window-rule {
+  match app-id=r#"RimWorld*"#
+  open-on-output "DP-1"
+  open-maximized true
+}

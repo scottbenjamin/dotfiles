@@ -1,0 +1,80 @@
+// Floating apps
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r#"blueberry.py$"#
+    match app-id=r#".*pavucontrol.*$"#
+    match app-id=r#"zenity"#
+    open-on-output "DP-1"
+
+    open-floating true
+}
+
+
+
+// Floating password manager windows but keep them out of screenshare
+window-rule {
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+    match app-id=r#"^.*assword.*$"#
+    open-floating true
+
+    block-out-from "screen-capture"
+
+    // Use this instead if you want them visible on third-party screenshot tools.
+    // block-out-from "screencast"
+}
+
+// Indicate screencasted windows with red colors.
+window-rule {
+    match is-window-cast-target=true
+
+    focus-ring {
+        active-color "#81A1C1"
+        inactive-color "#4C566A"
+    }
+
+    border {
+        inactive-color "#4C566A"
+    }
+
+    shadow {
+        color "#7d0d2d70"
+    }
+
+    tab-indicator {
+        active-color "#81A1C1"
+        inactive-color "#4C566A"
+    }
+}
+
+  window-rule {
+    match app-id=r#"^vibe-typer.*$"#
+    draw-border-with-background false
+    focus-ring { off; }
+    border { off; }
+    shadow { off; }
+  }
+
+
+
+
+  window-rule {
+    match title=r#"^Recording Indicator$"#
+    draw-border-with-background false
+    focus-ring { off; }
+    border { off; }
+    shadow { off; }
+    open-floating true
+  }
+
+// window-rule {
+//   match app-id="exiled-exchange-2"
+//   open-on-output "DP-1"
+//   open-floating true
+//   open-focused false
+//   focus-ring {
+//     off
+//   }
+//   border {
+//     off
+//   }
+// }

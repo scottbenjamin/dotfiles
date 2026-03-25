@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Zen Browser
+Comment=Start Zen Browser automatically when you log in
+Exec=/opt/zen-browser-bin/zen-bin
+TryExec=/opt/zen-browser-bin/zen-bin
+Icon=zen-browser
+Terminal=false
+StartupNotify=false
+X-GNOME-Autostart-enabled=false
+Hidden=true

@@ -1,0 +1,10 @@
+// Window rules let you adjust behavior for individual windows.
+// Find more information on the wiki:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+workspace "browser" {
+  open-on-output "DP-2"
+}
+
+workspace "steam" {
+  open-on-output "DP-1"
+}

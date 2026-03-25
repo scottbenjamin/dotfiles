@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=AirPods Max Auto Connect
+Comment=Attempt to reconnect AirPods Max at login
+Exec=/home/scott/.local/bin/connect-airpods-max.sh
+Terminal=false
+StartupNotify=false
+X-GNOME-Autostart-enabled=true

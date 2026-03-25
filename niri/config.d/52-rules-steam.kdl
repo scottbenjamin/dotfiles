@@ -1,0 +1,39 @@
+window-rule {
+  match app-id=r#"steam"# title="Steam"
+  open-on-output "DP-1"
+  default-column-width {proportion 0.66666667;}
+  default-floating-position x=100 y=100 relative-to="top-left"
+  open-focused false
+}
+
+window-rule {
+  match app-id=r#"steam"# title="Steam Settings"
+  open-on-output "DP-1"
+}
+
+window-rule {
+  match app-id=r#"steam"# title="Friends List"
+  open-on-output "DP-1"
+  default-column-width {proportion 0.25;}
+  default-floating-position x=100 y=100 relative-to="top-right"
+  open-focused false
+}
+
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=50 y=50 relative-to="bottom-right"
+}
+
+// Steam games
+window-rule {
+  match app-id=r#"steam_app_\d+$"#
+  open-on-output "DP-1"
+    // open-maximized true
+  default-column-width { proportion 1.0; }
+  open-fullscreen true
+}
+
+window-rule {
+  match app-id=r#"steam_app_\d+$"# title=r#"Battle.net$"#
+  open-floating true
+}

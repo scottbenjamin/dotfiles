@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Brave Browser
+Comment=Start Brave Browser automatically when you log in
+Exec=/usr/bin/brave
+TryExec=/usr/bin/brave
+Icon=brave-browser
+Terminal=false
+StartupNotify=false
+X-GNOME-Autostart-enabled=true
