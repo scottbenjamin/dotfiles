@@ -5,7 +5,7 @@ font-size = 10
 
 font-thicken = true
 font-thicken-strength = 175
-theme = Kanagawabones
+theme = Nordfox
 # theme = tinct.conf
 
 copy-on-select = clipboard
@@ -14,7 +14,7 @@ window-decoration = none
 
 shell-integration = detect
 
-scrollback-limit = 50000
+scrollback-limit = 5000000
 focus-follows-mouse = true
 auto-update = download
 
@@ -36,7 +36,7 @@ app-notifications = no-clipboard-copy
 
 bell-features = border,no-system,no-audio,no-attention,no-title
 
-shell-integration-features = ssh-terminfo,ssh-env
+shell-integration-features = ssh-terminfo,ssh-env,sudo
 
 # Splits
 keybind = alt+shift+ctrl+cmd+v=new_split:right

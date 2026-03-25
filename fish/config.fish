@@ -1,5 +1,6 @@
 # Disable fish greeting
-function fish_greeting; end
+function fish_greeting
+end
 
 function __add_paths_if_present
     for p in $argv
@@ -30,6 +31,7 @@ if status is-interactive
     end
 
     set -xg EDITOR nvim
+    set -xg COLORTERM truecolor
     set -xg VISUAL_EDITOR nvim
 
     if test -d "$HOMEBREW_PREFIX/share/fish/completions"
