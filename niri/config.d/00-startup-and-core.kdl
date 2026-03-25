@@ -1,10 +1,11 @@
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
 // spawn-at-startup ".local/bin/set-gammastep.sh"
-spawn-at-startup "nm-applet --indicator"
-spawn-at-startup "swaybg" "-o" "DP-1" "-i" "/home/scott/Documents/wallpapers/xoazbpym3gkg1.jpeg" "-m" "fit"
-spawn-at-startup "swaybg" "-o" "DP-2" "-i" "/home/scott/Documents/wallpapers/xoazbpym3gkg1.jpeg" "-m" "fit"
-spawn-sh-at-startup "swayidle -w timeout 600 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors' timeout 300 'loginctl lock-session' before-sleep 'swaylock -f -c 000000'"
+// nm-applet is provided by XDG autostart; do not start a duplicate here.
+// spawn-at-startup "nm-applet" "--indicator"
+spawn-at-startup "swaybg" "-o" "DP-1" "-i" "/home/scott/.config/themes/wallpapers/pine-island-under-a-billion-stars-ec-2560x1440.jpg" "-m" "fill"
+spawn-at-startup "swaybg" "-o" "DP-2" "-i" "/home/scott/.config/themes/wallpapers/pine-island-under-a-billion-stars-ec-1440x2560.jpg" "-m" "fill"
+spawn-sh-at-startup "swayidle -w timeout 600 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors' timeout 300 'loginctl lock-session' before-sleep 'swaylock -f'"
 spawn-at-startup "udiskie" "--smart-tray"
 
 

@@ -35,8 +35,8 @@ output "DP-1" {
     // automatically.
     position x=1440 y=484
     focus-at-startup
-    background-color "#2E3440"
-    backdrop-color "#2E3440"
+    background-color "#060d18"
+    backdrop-color "#060d18"
 }
 
 output "DP-2" {
@@ -46,8 +46,8 @@ output "DP-2" {
     scale 1
     transform "270"
     position x=0 y=0
-    background-color "#2E3440"
-    backdrop-color "#2E3440"
+    background-color "#060d18"
+    backdrop-color "#060d18"
 }
 
 overview {

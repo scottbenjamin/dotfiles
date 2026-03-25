@@ -57,9 +57,9 @@ layout {
         // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
         // Color of the ring on the active monitor.
-        active-color "#7fc8ff"
+        active-color "#f9ba68"
         // Color of the ring on inactive monitors.
-        inactive-color "#505050"
+        inactive-color "#404955"
     }
 
     // You can also add a border. It's similar to the focus ring, but always visible.
@@ -69,8 +69,8 @@ layout {
         // off
 
         width 1
-        active-color "#6495ed"
-        inactive-color "#808080"
+        active-color "#88C0D0"
+        inactive-color "#4C566A"
     }
 
     // You can enable drop shadows for windows.

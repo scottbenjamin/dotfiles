@@ -2,11 +2,20 @@
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id=r#"blueberry.py$"#
+    match app-id=r#"nm-connection-editor"#
     match app-id=r#".*pavucontrol.*$"#
+    match app-id=r#"pwvucontrol"#
     match app-id=r#"zenity"#
     open-on-output "DP-1"
 
     open-floating true
+}
+
+// Keep Handy utility windows from stealing focus while dictating.
+window-rule {
+    match app-id=r#"(?i)handy|com\.pais\.handy"#
+    open-floating true
+    open-focused false
 }
 
 
@@ -28,12 +37,12 @@ window-rule {
     match is-window-cast-target=true
 
     focus-ring {
-        active-color "#81A1C1"
-        inactive-color "#4C566A"
+        active-color "#ed723870"
+        inactive-color "#3e4858"
     }
 
     border {
-        inactive-color "#4C566A"
+        inactive-color "#3e4858"
     }
 
     shadow {
@@ -41,8 +50,8 @@ window-rule {
     }
 
     tab-indicator {
-        active-color "#81A1C1"
-        inactive-color "#4C566A"
+        active-color "#e39254"
+        inactive-color "#3e4858"
     }
 }
 
