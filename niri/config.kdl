@@ -8,8 +8,8 @@ spawn-at-startup "waybar"
 spawn-at-startup "mako"
 // spawn-at-startup ".local/bin/set-gammastep.sh"
 spawn-at-startup "nm-applet --indicator"
-spawn-at-startup "swaybg" "-o" "DP-1" "-i" "/home/scott/.config/themes/wallpapers/pine-island-under-a-billion-stars-ec-2560x1440.jpg" "-m" "fit"
-spawn-at-startup "swaybg" "-o" "DP-2" "-i" "/home/scott/.config/themes/wallpapers/pine-island-under-a-billion-stars-ec-1440x2560.jpg" "-m" "fit"
+spawn-at-startup "swaybg" "-o" "DP-1" "-i" "/home/scott/Documents/wallpapers/xoazbpym3gkg1.jpeg" "-m" "fit"
+spawn-at-startup "swaybg" "-o" "DP-2" "-i" "/home/scott/Documents/wallpapers/xoazbpym3gkg1.jpeg" "-m" "fit"
 spawn-sh-at-startup "swayidle -w timeout 600 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors' timeout 300 'loginctl lock-session' before-sleep 'swaylock -f -c 000000'"
 spawn-at-startup "udiskie" "--smart-tray"
 spawn-at-startup "1password" "--silent"
@@ -326,12 +326,12 @@ window-rule {
 }
 
 window-rule {
-  match at-startup=true app-id=r#"(Brave-browser|zen)"#
+  match at-startup=true app-id=r#"(brave-browser|zen)"#
   open-on-output "DP-2"
 }
 
 window-rule {
-  match app-id=r#"(Brave-browser|zen)"#
+  match app-id=r#"(brave-browser|zen)"#
   default-column-width { proportion 1.0; }
   open-on-output "DP-2"
 }
@@ -449,6 +449,9 @@ window-rule {
     shadow { off; }
   }
 
+
+
+
   window-rule {
     match title=r#"^Recording Indicator$"#
     draw-border-with-background false
@@ -483,8 +486,7 @@ binds {
     // Most actions that you can bind here can also be invoked programmatically with
     // `niri msg action do-something`.
 
-    // Speech-to-text toggle (Fn+Space on Kinesis Adv360 sends F13)
-    F13 repeat=false         { spawn "whis" "toggle"; }
+    Ctrl+Period {spawn-sh "handy  --toggle-transcription";}
 
     Mod+Shift+Slash         { show-hotkey-overlay; }
     Mod+Shift+O             { toggle-overview;}
