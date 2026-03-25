@@ -18,6 +18,17 @@ __add_paths_if_present \
     ~/bin
 
 if status is-interactive
+    function c --description 'Run codex, fallback to claude'
+        if type -q codex
+            codex $argv
+        else if type -q claude
+            claude $argv
+        else
+            echo "Neither 'codex' nor 'claude' is available in PATH." >&2
+            return 127
+        end
+    end
+
     set -xg EDITOR nvim
     set -xg VISUAL_EDITOR nvim
 
