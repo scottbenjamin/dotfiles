@@ -1,0 +1,49 @@
+@define-color background #192330;
+@define-color backgroundMuted #1f2d3d;
+@define-color foreground #cdcecf;
+@define-color foregroundMuted #9aa4b2;
+
+@define-color accent1 #78a9ff;
+@define-color accent1Muted #5f8fd6;
+@define-color accent2 #63cdcf;
+@define-color accent2Muted #4ea9aa;
+@define-color accent3 #81b29a;
+@define-color accent3Muted #688f7c;
+@define-color accent4 #dbc074;
+@define-color accent4Muted #b49f62;
+
+@define-color danger #e85d75;
+@define-color warning #f4a261;
+@define-color success #8ccf7e;
+@define-color info #7fc8ff;
+@define-color notification #bb9af7;
+
+@define-color surface #1d2938;
+@define-color onSurface #cdcecf;
+@define-color outline #394b62;
+@define-color border #4a617d;
+@define-color surfaceVariant #223246;
+@define-color onSurfaceVariant #bac6d3;
+@define-color borderMuted #364b62;
+@define-color outlineVariant #2a3b4f;
+
+@define-color onAccent1 #0f1722;
+@define-color onAccent2 #0f1722;
+@define-color onAccent3 #0f1722;
+@define-color onAccent4 #0f1722;
+@define-color onDanger #0f1722;
+@define-color onWarning #0f1722;
+@define-color onSuccess #0f1722;
+@define-color onInfo #0f1722;
+
+@define-color inverseSurface #cfd8e3;
+@define-color inverseOnSurface #192330;
+@define-color inversePrimary #3b6ec2;
+@define-color scrim #000000;
+@define-color shadow #000000;
+
+@define-color surfaceContainerLowest #182432;
+@define-color surfaceContainerLow #1a2736;
+@define-color surfaceContainer #1d2938;
+@define-color surfaceContainerHigh #223145;
+@define-color surfaceContainerHighest #273a50;

@@ -1,32 +1,32 @@
-@import url("themes/tinct.css");
+@import url("themes/nordfox.css");
 
 * {
   border: none;
   min-height: 0;
-  font-family: "JetBrainsMono Nerd Font", "JetBrainsMono Nerd Font Mono", "Symbols Nerd Font";
+  font-family: "Noto Sans", "CommitMono Nerd Font Mono", "Symbols Nerd Font";
   font-size: 14px;
 }
 
 window#waybar {
-  background-color: alpha(@background, 0.84);
+  background-color: alpha(@background, 0.92);
   color: @foreground;
-  border-bottom: 1px solid alpha(@border, 0.45);
+  border-bottom: 1px solid alpha(@border, 0.55);
 }
 
 #workspaces {
-  background-color: alpha(@surface, 0.78);
-  border: none;
-  border-radius: 4px;
+  background-color: alpha(@surfaceContainerLow, 0.88);
+  border-radius: 0;
   margin: 4px 8px;
   padding: 2px 6px;
 }
 
 #workspaces button {
   color: @foregroundMuted;
-  border-radius: 3px;
+  background: transparent;
+  border-radius: 0;
   margin: 3px 2px;
   padding: 1px 9px;
-  transition: all 0.18s ease;
+  transition: all 0.14s ease;
 }
 
 #workspaces button:hover {
@@ -35,7 +35,7 @@ window#waybar {
 }
 
 #workspaces button.active {
-  background-color: @accent1;
+  background-color: alpha(@accent1, 0.92);
   color: @onAccent1;
 }
 
@@ -46,39 +46,40 @@ window#waybar {
 #pulseaudio,
 #bluetooth,
 #tray,
+#gamemode,
 #custom-spotify,
 #custom-updates,
 #custom-power {
-  background-color: alpha(@surface, 0.72);
-  border: none;
-  border-radius: 4px;
+  background-color: alpha(@surfaceContainer, 0.84);
+  color: @foreground;
+  border: 1px solid alpha(@outlineVariant, 0.7);
+  border-radius: 0;
   margin: 4px 4px;
   padding: 1px 11px;
 }
 
 #clock {
-  color: @foreground;
   font-weight: 700;
+  color: @foreground;
 }
 
 #custom-spotify {
-  color: @accent1;
-}
-
-#network {
-  color: @info;
-}
-
-#bluetooth {
   color: @accent2;
 }
 
-#pulseaudio {
-  color: @accent3;
+#network,
+#bluetooth,
+#pulseaudio,
+#gamemode {
+  color: @foreground;
+}
+
+#custom-updates {
+  color: @accent1;
 }
 
 #cpu {
-  color: @warning;
+  color: @accent4;
 }
 
 #custom-power {
@@ -99,9 +100,9 @@ window#waybar {
 }
 
 tooltip {
-  background-color: alpha(@surfaceContainerLow, 0.96);
+  background-color: alpha(@surfaceContainerHigh, 0.98);
   border: 1px solid alpha(@border, 0.7);
-  border-radius: 4px;
+  border-radius: 0;
 }
 
 tooltip label {

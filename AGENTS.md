@@ -47,3 +47,6 @@ PRs should include:
 - Never commit secrets, tokens, or machine-specific credentials.
 - Keep host-specific paths minimal and clearly intentional.
 - Review autostart entries to avoid duplicate launches (XDG autostart vs compositor startup).
+
+## Corrections
+- Before making or changing behavior in app configs, check the relevant official docs first (for example, the Hyprland wiki) and then implement against documented semantics.
