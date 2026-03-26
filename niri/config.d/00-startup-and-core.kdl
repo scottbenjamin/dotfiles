@@ -1,4 +1,4 @@
-spawn-at-startup "waybar"
+spawn-at-startup "/home/scott/.config/waybar/waybar.sh"
 spawn-at-startup "mako"
 // spawn-at-startup ".local/bin/set-gammastep.sh"
 // nm-applet is provided by XDG autostart; do not start a duplicate here.
