@@ -13,12 +13,10 @@
   ],
   "modules-right": [
     "custom/spotify",
-    "custom/updates",
     "custom/voxtype",
     "gamemode",
     "tray",
     "bluetooth",
-    "network",
     "pulseaudio",
     "cpu",
     "custom/power"
