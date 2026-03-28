@@ -37,6 +37,9 @@ output "DP-1" {
     focus-at-startup
     background-color "#060d18"
     backdrop-color "#060d18"
+    hot-corners {
+        off
+    }
 }
 
 output "DP-2" {
@@ -48,6 +51,9 @@ output "DP-2" {
     position x=0 y=0
     background-color "#060d18"
     backdrop-color "#060d18"
+    hot-corners {
+        off
+    }
 }
 
 overview {

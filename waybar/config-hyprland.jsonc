@@ -3,7 +3,7 @@
   "layer": "top",
   "position": "top",
   "spacing": 0,
-  "height": 36,
+  "height": 34,
   "output": ["DP-1"],
   "modules-left": [
     "hyprland/workspaces"
@@ -14,6 +14,7 @@
   "modules-right": [
     "custom/spotify",
     "custom/updates",
+    "custom/voxtype",
     "gamemode",
     "tray",
     "bluetooth",
@@ -24,9 +25,9 @@
   ],
   "hyprland/workspaces": {
     "on-click": "activate",
-    "format": "{icon}",
+    "format": "{name}",
     "format-icons": {
-      "default": "",
+      "default": "{name}",
       "1": "1",
       "2": "2",
       "3": "3",
@@ -36,16 +37,16 @@
       "7": "7",
       "8": "8",
       "9": "9",
-      "active": "󱓻"
+      "active": "{name}"
     }
   },
   "sway/mode": {
-    "format": " {}",
+    "format": " {}",
     "max-length": 40
   },
   "cpu": {
     "interval": 5,
-    "format": "󰍛",
+    "format": "",
     "on-click": "ghostty -e btop"
   },
   "clock": {
@@ -56,7 +57,7 @@
   "gamemode": {
     "format": "{glyph}",
     "format-alt": "{glyph} {count}",
-    "glyph": "",
+    "glyph": "",
     "hide-not-running": true,
     "use-icon": true,
     "icon-name": "input-gaming-symbolic",
@@ -68,7 +69,7 @@
   "network": {
     "format": "NET",
     "format-wifi": "",
-    "format-ethernet": "",
+    "format-ethernet": "",
     "format-disconnected": "OFF",
     "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
@@ -131,6 +132,14 @@
     "exec": "~/.config/waybar/modules/pacman-updates.sh",
     "on-click": "ghostty -e sudo pacman -Syu"
   },
+  "custom/voxtype": {
+    "exec": "voxtype status --format json",
+    "interval": 1,
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "on-click": "systemctl --user restart voxtype"
+  },
   "custom/spotify": {
     "exec": "~/.config/waybar/mediaplayer.py --player spotify_player",
     "format": ": {}  ",
@@ -155,7 +164,7 @@
     }
   },
   "custom/power": {
-    "format": " 󰐥 ",
+    "format": "  ",
     "tooltip": false,
     "on-click": "wlogout"
   },
@@ -171,11 +180,11 @@
     ]
   },
   "custom/expand-icon": {
-    "format": " ",
+    "format": " ",
     "tooltip": false
   },
   "tray": {
     "icon-size": 16,
-    "spacing": 10
+    "spacing": 6
   }
 }

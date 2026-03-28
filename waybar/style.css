@@ -3,40 +3,73 @@
 * {
   border: none;
   min-height: 0;
-  font-family: "Noto Sans", "CommitMono Nerd Font Mono", "Symbols Nerd Font";
+  font-family: "Inter", "Noto Sans", "Symbols Nerd Font", "Font Awesome 7 Free", "Font Awesome 7 Brands";
   font-size: 14px;
+  font-weight: 500;
 }
 
 window#waybar {
-  background-color: alpha(@background, 0.92);
+  background-color: alpha(@backgroundMuted, 0.96);
   color: @foreground;
-  border-bottom: 1px solid alpha(@border, 0.55);
+  border: none;
 }
 
 #workspaces {
-  background-color: alpha(@surfaceContainerLow, 0.88);
+  background: transparent;
+  border: none;
   border-radius: 0;
-  margin: 4px 8px;
-  padding: 2px 6px;
+  margin: 0 8px;
+  padding: 0;
+}
+
+#custom-ws1,
+#custom-ws2 {
+  color: @foregroundMuted;
+  background-color: alpha(@surfaceContainerHigh, 0.28);
+  margin: 0 3px 0 0;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 600;
+}
+
+#custom-ws1.active,
+#custom-ws2.active {
+  color: @foreground;
+  background-color: alpha(@accent1Muted, 0.72);
+  border-color: alpha(@accent1, 0.55);
+}
+
+#custom-ws1.inactive,
+#custom-ws2.inactive {
+  color: @foregroundMuted;
+}
+
+#workspaces button.empty {
+  color: alpha(@foregroundMuted, 0.7);
 }
 
 #workspaces button {
   color: @foregroundMuted;
   background: transparent;
   border-radius: 0;
-  margin: 3px 2px;
-  padding: 1px 9px;
+  margin: 0 1px;
+  padding: 0 5px;
+  min-width: 18px;
+  border-bottom: 2px solid transparent;
   transition: all 0.14s ease;
 }
 
 #workspaces button:hover {
-  background-color: alpha(@surfaceContainerHigh, 0.95);
+  background-color: alpha(@surfaceContainerHigh, 0.56);
   color: @foreground;
 }
 
 #workspaces button.active {
-  background-color: alpha(@accent1, 0.92);
-  color: @onAccent1;
+  background: transparent;
+  color: @accent1;
+  font-weight: 700;
+  border-bottom: 2px solid alpha(@accent1, 0.9);
 }
 
 #clock,
@@ -49,42 +82,95 @@ window#waybar {
 #gamemode,
 #custom-spotify,
 #custom-updates,
+#custom-voxtype,
 #custom-power {
-  background-color: alpha(@surfaceContainer, 0.84);
+  background-color: transparent;
   color: @foreground;
-  border: 1px solid alpha(@outlineVariant, 0.7);
+  border: none;
   border-radius: 0;
-  margin: 4px 4px;
-  padding: 1px 11px;
+  margin: 0 1px;
+  padding: 0 8px;
 }
 
 #clock {
+  background-color: alpha(@surfaceContainerHigh, 0.58);
   font-weight: 700;
   color: @foreground;
+  padding: 0 10px;
 }
 
 #custom-spotify {
   color: @accent2;
-}
-
-#network,
-#bluetooth,
-#pulseaudio,
-#gamemode {
-  color: @foreground;
+  font-family: "Font Awesome 7 Brands";
+  font-size: 16px;
+  font-weight: 400;
 }
 
 #custom-updates {
   color: @accent1;
 }
 
+#battery,
+#network,
+#pulseaudio,
+#bluetooth,
+#cpu,
+#gamemode,
+#tray {
+  color: @foreground;
+}
+
+#battery,
+#network,
+#pulseaudio,
+#bluetooth,
+#gamemode {
+  font-family: "Symbols Nerd Font";
+  font-size: 16px;
+  font-weight: 400;
+}
+
+#custom-voxtype {
+  color: @accent2;
+  padding: 0 8px;
+  font-family: "Font Awesome 7 Free";
+  font-weight: 900;
+  font-size: 16px;
+}
+
+#custom-voxtype.recording {
+  color: @danger;
+  animation: voxtype-pulse 1s ease-in-out infinite;
+}
+
+#custom-voxtype.transcribing {
+  color: @accent3;
+}
+
+#custom-voxtype.stopped {
+  color: @foregroundMuted;
+}
+
 #cpu {
   color: @accent4;
+  font-family: "Symbols Nerd Font";
+  font-size: 16px;
+  font-weight: 400;
 }
 
 #custom-power {
   color: @danger;
-  margin-right: 8px;
+  margin-right: 6px;
+  padding-right: 6px;
+}
+
+#tray {
+  padding: 0 4px;
+  font-size: 16px;
+}
+
+#tray > .item {
+  padding: 0 1px;
 }
 
 #battery.warning,
@@ -95,16 +181,24 @@ window#waybar {
   color: @danger;
 }
 
-#tray > .item {
-  padding: 0 4px;
-}
-
 tooltip {
   background-color: alpha(@surfaceContainerHigh, 0.98);
-  border: 1px solid alpha(@border, 0.7);
+  border: none;
   border-radius: 0;
 }
 
 tooltip label {
   color: @foreground;
+}
+
+@keyframes voxtype-pulse {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
 }

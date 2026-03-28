@@ -1,0 +1,112 @@
+@define-color bg rgba(25, 35, 48, 0.98);
+@define-color bg-alt rgba(29, 41, 56, 0.98);
+@define-color bg-soft rgba(34, 49, 69, 0.92);
+@define-color fg #cdcecf;
+@define-color fg-muted #9aa4b2;
+@define-color border #364b62;
+@define-color accent #78a9ff;
+@define-color accent-soft rgba(95, 143, 214, 0.24);
+@define-color danger #e85d75;
+
+* {
+  font-family: Inter, Noto Sans, sans-serif;
+  font-size: 14px;
+  box-shadow: none;
+}
+
+.notification-row,
+.control-center,
+.blank-window {
+  background: transparent;
+}
+
+.control-center {
+  background: @bg;
+  color: @fg;
+  border: 1px solid @border;
+  border-radius: 0;
+  margin: 12px;
+  padding: 12px;
+}
+
+.control-center .widget-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.control-center .notification-row .notification {
+  margin: 8px 0;
+}
+
+.notification {
+  background: @bg-soft;
+  color: @fg;
+  border: 1px solid @border;
+  border-radius: 10px;
+}
+
+.notification-content {
+  background: transparent;
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+
+.summary {
+  color: @fg;
+  font-weight: 700;
+}
+
+.time {
+  color: @fg-muted;
+  font-weight: 600;
+}
+
+.body {
+  color: @fg;
+}
+
+.notification.critical {
+  border-color: @danger;
+}
+
+.notification.critical .summary {
+  color: @danger;
+}
+
+.widget-title,
+.widget-dnd,
+.widget-label {
+  color: @fg;
+}
+
+.widget-title button,
+.widget-dnd > switch,
+.control-center button {
+  background: @bg-alt;
+  color: @fg;
+  border: 1px solid @border;
+  border-radius: 10px;
+}
+
+.widget-title button:hover,
+.control-center button:hover {
+  background: @accent-soft;
+  border-color: @accent;
+}
+
+.widget-dnd > switch:checked {
+  background: @accent;
+}
+
+.close-button {
+  background: transparent;
+  color: @fg-muted;
+  border: none;
+  border-radius: 999px;
+}
+
+.close-button:hover {
+  color: @fg;
+  background: @accent-soft;
+}

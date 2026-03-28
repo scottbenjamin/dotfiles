@@ -11,7 +11,7 @@ layout {
     // - "always", the focused column will always be centered.
     // - "on-overflow", focusing a column will center it if it doesn't fit
     //   together with the previously focused column.
-    center-focused-column "never"
+    center-focused-column "on-overflow"
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
@@ -45,11 +45,8 @@ layout {
 
     // You can change how the focus ring looks.
     focus-ring {
-        // Uncomment this line to disable the focus ring.
-        off
-
         // How many logical pixels the ring extends out from the windows.
-        width 1
+        width 2
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -57,16 +54,16 @@ layout {
         // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
         // Color of the ring on the active monitor.
-        active-color "#f9ba68"
+        active-color "#78a9ff"
         // Color of the ring on inactive monitors.
-        inactive-color "#404955"
+        inactive-color "#364b62"
     }
 
     // You can also add a border. It's similar to the focus ring, but always visible.
     border {
         // The settings are the same as for the focus ring.
         // If you enable the border, you probably want to disable the focus ring.
-        // off
+        off
 
         width 1
         active-color "#88C0D0"
@@ -98,16 +95,16 @@ layout {
         // pixels and match the CSS box-shadow properties.
 
         // Softness controls the shadow blur radius.
-        softness 30
+        softness 20
 
         // Spread expands the shadow.
-        spread 5
+        spread 1
 
         // Offset moves the shadow relative to the window.
-        offset x=0 y=5
+        offset x=0 y=3
 
         // You can also change the shadow color and opacity.
-        color "#0007"
+        color "#0006"
     }
 
     // Struts shrink the area occupied by windows, similarly to layer-shell panels.
