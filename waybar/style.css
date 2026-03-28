@@ -25,8 +25,8 @@ window#waybar {
 #custom-ws1,
 #custom-ws2 {
   color: @foregroundMuted;
-  background-color: alpha(@surfaceContainerHigh, 0.24);
-  margin: 0 4px 0 0;
+  background-color: alpha(@surfaceContainerHigh, 0.22);
+  margin: 0 5px 0 0;
   padding: 0 10px;
   min-width: 18px;
   border-radius: 999px;
@@ -90,15 +90,15 @@ window#waybar {
   color: @foreground;
   border: none;
   border-radius: 0;
-  margin: 0 2px;
-  padding: 0 7px;
+  margin: 0 3px;
+  padding: 0 8px;
 }
 
 #clock {
-  background-color: alpha(@surfaceContainerHigh, 0.52);
+  background-color: alpha(@surfaceContainerHigh, 0.5);
   font-weight: 700;
   color: @foreground;
-  padding: 0 11px;
+  padding: 0 12px;
 }
 
 #custom-spotify {
@@ -106,7 +106,7 @@ window#waybar {
   font-family: "Font Awesome 7 Brands";
   font-size: 15px;
   font-weight: 400;
-  padding: 0 6px 0 7px;
+  padding: 0 8px;
 }
 
 #custom-updates {
@@ -130,17 +130,19 @@ window#waybar {
   font-family: "Symbols Nerd Font";
   font-size: 15px;
   font-weight: 400;
+  padding: 0 8px;
 }
 
 #pulseaudio {
   font-family: "Inter", "Noto Sans", "Symbols Nerd Font";
   font-size: 15px;
   font-weight: 500;
+  padding: 0 8px;
 }
 
 #custom-voxtype {
   color: @accent2;
-  padding: 0 7px;
+  padding: 0 8px;
   font-family: "Font Awesome 7 Free";
   font-weight: 900;
   font-size: 15px;
@@ -164,21 +166,22 @@ window#waybar {
   font-family: "Symbols Nerd Font";
   font-size: 15px;
   font-weight: 400;
+  padding: 0 8px;
 }
 
 #custom-power {
   color: @danger;
   margin-right: 6px;
-  padding: 0 5px 0 6px;
+  padding: 0 6px;
 }
 
 #tray {
-  padding: 0 5px;
+  padding: 0 6px;
   font-size: 15px;
 }
 
 #tray > .item {
-  padding: 0 2px;
+  padding: 0 3px;
 }
 
 #battery.warning,

@@ -4,7 +4,7 @@
     "layer": "top",
     "position": "top",
     "spacing": 0,
-    "height": 34,
+    "height": 36,
     "output": ["DP-1"],
     "modules-left": [
       "custom/ws1",
@@ -191,7 +191,7 @@
     "layer": "top",
     "position": "top",
     "spacing": 0,
-    "height": 34,
+    "height": 36,
     "output": ["DP-2"],
     "modules-left": [
       "custom/ws1",
