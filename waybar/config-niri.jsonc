@@ -20,7 +20,6 @@
       "tray",
       "bluetooth",
       "pulseaudio",
-      "cpu",
       "custom/power"
     ],
     "custom/ws1": {
@@ -45,7 +44,7 @@
     },
     "cpu": {
       "interval": 5,
-      "format": "",
+      "format": "󰍛",
       "on-click": "ghostty -e btop"
     },
     "clock": {
@@ -54,8 +53,8 @@
       "tooltip": false
     },
     "gamemode": {
-      "format": "{glyph}",
-      "format-alt": "{glyph} {count}",
+      "format": "",
+      "format-alt": " {count}",
       "glyph": "",
       "hide-not-running": true,
       "use-icon": true,
@@ -120,7 +119,7 @@
     "bluetooth": {
       "format": "",
       "format-disabled": "󰂲",
-      "format-connected": "",
+      "format-connected": "󰂱",
       "tooltip-format": "Devices connected: {num_connections}",
       "on-click": "blueberry"
     },
@@ -141,11 +140,12 @@
     },
     "custom/spotify": {
       "exec": "~/.config/waybar/mediaplayer.py --player spotify_player",
-      "format": ": {}  ",
+      "format": "",
       "return-type": "json",
       "on-click": "playerctl play-pause",
       "on-scroll-up": "playerctl next",
-      "on-scroll-down": "playerctl previous"
+      "on-scroll-down": "playerctl previous",
+      "tooltip": true
     },
     "pulseaudio": {
       "format": "{volume}% {icon}",
@@ -163,7 +163,7 @@
       }
     },
     "custom/power": {
-      "format": "  ",
+      "format": "󰐥",
       "tooltip": false,
       "on-click": "~/.config/waybar/modules/power-menu.sh"
     },

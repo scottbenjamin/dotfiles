@@ -1,0 +1,1 @@
+/home/scott/code/codex-hq/configs/fish/codex-hq-agent.fish

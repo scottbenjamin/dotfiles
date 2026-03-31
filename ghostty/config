@@ -54,7 +54,8 @@ keybind = alt+shift+ctrl+cmd+l=goto_split:right
 quick-terminal-autohide = true
 # keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
-keybind = shift+enter=text:\x1b\r
+# Pi / terminal app compatibility
+keybind = alt+backspace=text:\x1b\x7f
 
 custom-shader = shaders/cursor_blaze.glsl
 

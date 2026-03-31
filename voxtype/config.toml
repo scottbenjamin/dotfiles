@@ -1,0 +1,48 @@
+# VoxType Configuration
+# Managed by voxtype-settings GUI
+
+engine = "whisper"
+state_file = "auto"
+
+[hotkey]
+enabled = false
+key = "SCROLLLOCK"
+modifiers = []
+mode = "toggle"
+
+[audio]
+device = "default"
+sample_rate = 16000
+max_duration_secs = 60
+
+[audio.feedback]
+enabled = true
+theme = "default"
+volume = 0.25
+
+[whisper]
+model = "base.en"
+language = "en"
+translate = false
+threads = 8
+on_demand_loading = true
+gpu_isolation = true
+context_window_optimization = true
+
+[output]
+mode = "type"
+fallback_to_clipboard = false
+type_delay_ms = 0
+pre_type_delay_ms = 50
+
+[output.notification]
+on_recording_start = false
+on_recording_stop = false
+on_transcription = false
+
+[text]
+spoken_punctuation = false
+
+[status]
+icon_theme = "nerd-font"
+
