@@ -47,7 +47,7 @@ opt.updatetime = 200               -- Decrease update time
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.wrap = false
 
-vim.lsp.set_log_level("off")
+vim.lsp.log.set_level("OFF")
 
 vim.filetype.add({
   extension = {

@@ -1,4 +1,4 @@
----@tyrfore vim.lsp.Config
+---@type vim.lsp.Config
 return {
   cmd = { "tflint", "--langserver" },
   filetypes = { "terraform" },
