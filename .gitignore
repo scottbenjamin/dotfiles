@@ -10,6 +10,8 @@ zim/*.old
 __pycache__/
 *.py[cod]
 fish/fish_variables
+fish/fish_variables*
+fish/functions/*.pure-backup.fish
 
 nushell/history**
 github-copilot/apps.json

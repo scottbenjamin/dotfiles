@@ -6,13 +6,13 @@ killall -q waybar
 # Wait until the processes have been shut down
 while pgrep -x waybar >/dev/null; do sleep 1; done
 
-style="$HOME/.config/waybar/style.css"
-if [ -n "${NIRI_SOCKET:-}" ] && [ -f "$HOME/.config/waybar/config-niri.jsonc" ]; then
-  config="$HOME/.config/waybar/config-niri.jsonc"
-elif [ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ] && [ -f "$HOME/.config/waybar/config-hyprland.jsonc" ]; then
-  config="$HOME/.config/waybar/config-hyprland.jsonc"
+export WAYBAR_CONFIG_DIR="$HOME/.config/waybar"
+
+style="$WAYBAR_CONFIG_DIR/style.css"
+if [ -n "${NIRI_SOCKET:-}" ] && [ -f "$WAYBAR_CONFIG_DIR/config-niri.jsonc" ]; then
+  config="$WAYBAR_CONFIG_DIR/config-niri.jsonc"
 else
-  config="$HOME/.config/waybar/config.jsonc"
+  config="$WAYBAR_CONFIG_DIR/config.jsonc"
 fi
 
 waybar -c "$config" -s "$style" &

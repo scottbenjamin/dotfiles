@@ -1,10 +1,9 @@
-spawn-at-startup "/home/scott/.config/waybar/waybar.sh"
+spawn-at-startup "sh" "-lc" "$HOME/.config/waybar/waybar.sh"
 spawn-at-startup "swaync"
 // spawn-at-startup ".local/bin/set-gammastep.sh"
 // nm-applet is provided by XDG autostart; do not start a duplicate here.
 // spawn-at-startup "nm-applet" "--indicator"
-spawn-at-startup "swaybg" "-o" "DP-1" "-i" "/home/scott/Documents/wallpapers/xoazbpym3gkg1.jpeg" "-m" "fill"
-spawn-at-startup "swaybg" "-o" "DP-2" "-i" "/home/scott/Documents/wallpapers/xoazbpym3gkg1.jpeg" "-m" "fill"
+spawn-at-startup "sh" "-lc" "$HOME/.config/niri/scripts/start-wallpapers.sh"
 spawn-sh-at-startup "swayidle -w timeout 600 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors' timeout 300 'loginctl lock-session' before-sleep 'swaylock -f'"
 spawn-at-startup "udiskie" "--smart-tray"
 

@@ -10,11 +10,11 @@ binds {
     // `niri msg action do-something`.
 
     // Voxtype compositor toggle.
-    Ctrl+Period allow-inhibiting=false repeat=false { spawn "/home/scott/.config/niri/scripts/voxtype-toggle.sh"; }
+    Ctrl+Period allow-inhibiting=false repeat=false { spawn "sh" "-lc" "$HOME/.config/niri/scripts/voxtype-toggle.sh"; }
 
     // Keep Handy failsafe available while migrating.
-    Mod+X allow-inhibiting=false repeat=false { spawn "/home/scott/.config/niri/scripts/handy-failsafe.sh"; }
-    Mod+Ctrl+X allow-inhibiting=false repeat=false { spawn "/home/scott/.config/niri/scripts/voxtype-failsafe.sh"; }
+    Mod+X allow-inhibiting=false repeat=false { spawn "sh" "-lc" "$HOME/.config/niri/scripts/handy-failsafe.sh"; }
+    Mod+Ctrl+X allow-inhibiting=false repeat=false { spawn "sh" "-lc" "$HOME/.config/niri/scripts/voxtype-failsafe.sh"; }
 
     Mod+Shift+Slash         { show-hotkey-overlay; }
     Mod+Shift+N             { spawn "swaync-client" "-t" "-sw"; }

@@ -23,7 +23,7 @@
       "custom/power"
     ],
     "custom/ws1": {
-      "exec": "~/.config/waybar/modules/niri-workspace-pill.py 1",
+      "exec": "$WAYBAR_CONFIG_DIR/modules/niri-workspace-pill.py 1",
       "interval": 1,
       "return-type": "json",
       "format": "{}",
@@ -31,7 +31,7 @@
       "on-click": "niri msg action focus-workspace \"1\""
     },
     "custom/ws2": {
-      "exec": "~/.config/waybar/modules/niri-workspace-pill.py 2",
+      "exec": "$WAYBAR_CONFIG_DIR/modules/niri-workspace-pill.py 2",
       "interval": 1,
       "return-type": "json",
       "format": "{}",
@@ -127,7 +127,7 @@
       "format": "{}",
       "return-type": "json",
       "interval": 300,
-      "exec": "~/.config/waybar/modules/pacman-updates.sh",
+      "exec": "$WAYBAR_CONFIG_DIR/modules/pacman-updates.sh",
       "on-click": "ghostty -e sudo pacman -Syu"
     },
     "custom/voxtype": {
@@ -139,7 +139,7 @@
       "on-click": "systemctl --user restart voxtype"
     },
     "custom/spotify": {
-      "exec": "~/.config/waybar/mediaplayer.py --player spotify_player",
+      "exec": "$WAYBAR_CONFIG_DIR/mediaplayer.py --player spotify_player",
       "format": "",
       "return-type": "json",
       "on-click": "playerctl play-pause",
@@ -149,8 +149,8 @@
     },
     "pulseaudio": {
       "format": "{volume}% {icon}",
-      "on-click": "~/.config/waybar/modules/open-volume-control.sh",
-      "on-click-right": "~/.config/waybar/modules/toggle-volume-mute.sh",
+      "on-click": "$WAYBAR_CONFIG_DIR/modules/open-volume-control.sh",
+      "on-click-right": "$WAYBAR_CONFIG_DIR/modules/toggle-volume-mute.sh",
       "tooltip-format": "Playing at {volume}%",
       "scroll-step": 5,
       "format-muted": "󰝟",
@@ -165,7 +165,7 @@
     "custom/power": {
       "format": "󰐥",
       "tooltip": false,
-      "on-click": "~/.config/waybar/modules/power-menu.sh"
+      "on-click": "$WAYBAR_CONFIG_DIR/modules/power-menu.sh"
     },
     "group/tray-expander": {
       "orientation": "inherit",
@@ -204,7 +204,7 @@
       "pulseaudio"
     ],
     "custom/ws1": {
-      "exec": "~/.config/waybar/modules/niri-workspace-pill.py 1",
+      "exec": "$WAYBAR_CONFIG_DIR/modules/niri-workspace-pill.py 1",
       "interval": 1,
       "return-type": "json",
       "format": "{}",
@@ -212,7 +212,7 @@
       "on-click": "niri msg action focus-workspace \"1\""
     },
     "custom/ws2": {
-      "exec": "~/.config/waybar/modules/niri-workspace-pill.py 2",
+      "exec": "$WAYBAR_CONFIG_DIR/modules/niri-workspace-pill.py 2",
       "interval": 1,
       "return-type": "json",
       "format": "{}",
@@ -237,8 +237,8 @@
     },
     "pulseaudio": {
       "format": "{volume}% {icon}",
-      "on-click": "~/.config/waybar/modules/open-volume-control.sh",
-      "on-click-right": "~/.config/waybar/modules/toggle-volume-mute.sh",
+      "on-click": "$WAYBAR_CONFIG_DIR/modules/open-volume-control.sh",
+      "on-click-right": "$WAYBAR_CONFIG_DIR/modules/toggle-volume-mute.sh",
       "tooltip-format": "Playing at {volume}%",
       "scroll-step": 5,
       "format-muted": "󰝟",

@@ -127,7 +127,7 @@
     "format": "{}",
     "return-type": "json",
     "interval": 300,
-    "exec": "~/.config/waybar/modules/pacman-updates.sh",
+    "exec": "$WAYBAR_CONFIG_DIR/modules/pacman-updates.sh",
     "on-click": "ghostty -e sudo pacman -Syu"
   },
   "custom/voxtype": {
@@ -139,7 +139,7 @@
     "on-click": "systemctl --user restart voxtype"
   },
   "custom/spotify": {
-    "exec": "~/.config/waybar/mediaplayer.py --player spotify_player",
+    "exec": "$WAYBAR_CONFIG_DIR/mediaplayer.py --player spotify_player",
     "format": ": {}  ",
     "return-type": "json",
     "on-click": "playerctl play-pause",
@@ -148,8 +148,8 @@
   },
   "pulseaudio": {
     "format": "{volume}% {icon}",
-    "on-click": "~/.config/waybar/modules/open-volume-control.sh",
-    "on-click-right": "~/.config/waybar/modules/toggle-volume-mute.sh",
+    "on-click": "$WAYBAR_CONFIG_DIR/modules/open-volume-control.sh",
+    "on-click-right": "$WAYBAR_CONFIG_DIR/modules/toggle-volume-mute.sh",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
     "format-muted": "󰝟",

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-out_dir="/tmp/voxtype-failsafe-$(date +%Y%m%d-%H%M%S)"
+state_root="${XDG_STATE_HOME:-$HOME/.local/state}/niri"
+out_dir="$state_root/voxtype-failsafe-$(date +%Y%m%d-%H%M%S)"
 mkdir -p "$out_dir"
 
 niri msg -j focused-window >"${out_dir}/focused-window.json" 2>"${out_dir}/focused-window.err" || true

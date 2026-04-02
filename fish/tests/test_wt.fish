@@ -16,6 +16,11 @@ function fail
     echo (set_color red)"  FAIL: $argv"(set_color normal)
 end
 
+if not command -q wt
+    echo (set_color yellow)"Skipping wt tests: 'wt' is not installed"(set_color normal)
+    exit 0
+end
+
 # Source the function under test
 source (status dirname)/../functions/wt.fish
 

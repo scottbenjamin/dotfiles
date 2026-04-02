@@ -4,9 +4,12 @@ set -euo pipefail
 # Give the key combo time to fully release before Handy toggles/pastes.
 sleep 0.08
 
+state_dir="${XDG_STATE_HOME:-$HOME/.local/state}/niri"
+mkdir -p "$state_dir"
+
 # Ensure a background Handy instance exists.
 if ! pgrep -x handy >/dev/null 2>&1; then
-    nohup /home/scott/.local/bin/handy-launch-tuned.sh >/tmp/handy-tuned.log 2>&1 &
+    nohup "$HOME/.local/bin/handy-launch-tuned.sh" >"$state_dir/handy-tuned.log" 2>&1 &
     sleep 0.45
 fi
 
