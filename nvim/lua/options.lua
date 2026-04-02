@@ -1,7 +1,6 @@
 local opt = vim.opt
 
 ---- Options ------------------------------------
--- disable snacks thingies
 vim.g.snacks_animate = false
 
 opt.breakindent = true -- Enable break indent
@@ -51,7 +50,6 @@ vim.lsp.log.set_level("OFF")
 
 vim.filetype.add({
   extension = {
-    -- hcl = "hcl",
     tofu = "terraform",
     sls = "sls.yaml",
     packer = "pkr.hcl",
@@ -64,7 +62,6 @@ vim.diagnostic.config({
   signs = true,
   underline = true,
   update_in_insert = true,
-  -- virtual_lines = true,
   virtual_text = {
     spacing = 4,
   },

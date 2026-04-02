@@ -22,8 +22,6 @@ kms("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window w
 
 kms("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 kms("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-kms("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-kms("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 kms("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 kms("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 kms("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
