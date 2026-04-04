@@ -2,11 +2,43 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+
 ---- Plugin management (vim.pack) ----------------------------------------
 
 local gh = function(x)
   return "https://github.com/" .. x
 end
+
+-- Build hooks for plugins that need compilation after install/update
+local build_hooks = {
+  ["blink.cmp"] = { "cargo", "build", "--release" },
+}
+
+vim.api.nvim_create_autocmd("PackChanged", {
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    local cmd = build_hooks[name]
+    if cmd and (kind == "install" or kind == "update") then
+      Snacks.notify.info("Building " .. name .. "...", { title = "Pack Build" })
+      vim.system(cmd, { cwd = ev.data.path }, function(result)
+        vim.schedule(function()
+          if result.code == 0 then
+            Snacks.notify.info(name .. " built successfully.", { title = "Pack Build" })
+          else
+            Snacks.notify.error(name .. " build failed:\n" .. (result.stderr or ""), { title = "Pack Build" })
+          end
+        end)
+      end)
+    end
+
+    -- Recompile treesitter parsers after update
+    if name == "nvim-treesitter" and (kind == "install" or kind == "update") then
+      if ev.data.active then
+        vim.cmd("TSUpdate")
+      end
+    end
+  end,
+})
 
 vim.pack.add({
   -- colorscheme
@@ -29,6 +61,7 @@ vim.pack.add({
   gh("RubixDev/mason-update-all"),
 
   -- deferred
+  gh("nvim-treesitter/nvim-treesitter"),
   gh("echasnovski/mini.nvim"),
   gh("folke/which-key.nvim"),
   gh("folke/lazydev.nvim"),
@@ -110,21 +143,17 @@ end, { desc = "Show plugin status summary" })
 
 ---- Tier 1: Immediate ---------------------------------------------------
 
--- Colorscheme
+-- Colorscheme (compile = true caches highlights for faster loads)
 vim.cmd.packadd("catppuccin")
-require("catppuccin").setup({ flavour = "mocha" })
+require("catppuccin").setup({ flavour = "mocha", compile_path = vim.fn.stdpath("cache") .. "/catppuccin", compile = true })
 vim.cmd.colorscheme("catppuccin-mocha")
 
 -- Snacks (core UI framework)
 vim.cmd.packadd("snacks.nvim")
 require("plugins.snacks").setup()
 
--- Oil (file browser)
-vim.cmd.packadd("nvim-web-devicons")
-vim.cmd.packadd("oil.nvim")
-require("oil").setup({})
-
 -- Lualine (statusline)
+vim.cmd.packadd("nvim-web-devicons")
 vim.cmd.packadd("lualine.nvim")
 require("lualine").setup({
   options = {
@@ -143,63 +172,68 @@ require("lualine").setup({
   },
 })
 
--- Mason (LSP installer)
-vim.cmd.packadd("mason.nvim")
-vim.cmd.packadd("mason-tool-installer.nvim")
-vim.cmd.packadd("mason-update-all")
-require("mason").setup()
-require("mason-tool-installer").setup({
-  ensure_installed = {
-    "basedpyright",
-    "lua-language-server",
-    "terraform-ls",
-    "tflint",
-  },
-})
-vim.keymap.set("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
-
--- Blink.cmp (completion)
-vim.cmd.packadd("friendly-snippets")
-vim.cmd.packadd("colorful-menu.nvim")
-vim.cmd.packadd("blink.cmp")
-require("colorful-menu").setup()
-require("blink.cmp").setup({
-  keymap = { preset = "default" },
-  appearance = { nerd_font_variant = "mono" },
-  completion = {
-    documentation = { auto_show = false },
-    menu = {
-      draw = {
-        columns = { { "kind_icon" }, { "label", gap = 1 } },
-        components = {
-          label = {
-            text = function(ctx)
-              return require("colorful-menu").blink_components_text(ctx)
-            end,
-            highlight = function(ctx)
-              return require("colorful-menu").blink_components_highlight(ctx)
-            end,
-          },
-        },
-      },
-    },
-  },
-  sources = { default = { "lsp", "path", "snippets", "buffer" } },
-  fuzzy = { implementation = "prefer_rust_with_warning" },
-})
-
 ---- Core config ----------------------------------------------------------
 
 require("options")
-require("lsp")
 require("keymaps")
 require("neovide")
+
+---- Tier 1.5: First file (BufReadPre) ------------------------------------
+
+vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
+  once = true,
+  group = vim.api.nvim_create_augroup("load_completion_lsp", { clear = true }),
+  callback = function()
+    -- Blink.cmp (completion)
+    vim.cmd.packadd("friendly-snippets")
+    vim.cmd.packadd("colorful-menu.nvim")
+    vim.cmd.packadd("blink.cmp")
+    require("plugins.blink").setup()
+
+    -- LSP (depends on blink.cmp for capabilities)
+    require("lsp")
+  end,
+})
 
 ---- Tier 2: Deferred (UIEnter) ------------------------------------------
 
 vim.api.nvim_create_autocmd("UIEnter", {
   once = true,
   callback = function()
+    -- Oil (file browser, deferred — loads on keymap or :Oil)
+    vim.cmd.packadd("oil.nvim")
+    require("oil").setup({})
+
+    -- Mason (LSP installer)
+    vim.cmd.packadd("mason.nvim")
+    vim.cmd.packadd("mason-tool-installer.nvim")
+    vim.cmd.packadd("mason-update-all")
+    require("mason").setup()
+    require("mason-tool-installer").setup({
+      ensure_installed = {
+        "basedpyright",
+        "lua-language-server",
+        "terraform-ls",
+        "tflint",
+      },
+    })
+
+    -- treesitter (extra parsers beyond nvim builtins, install async)
+    vim.cmd.packadd("nvim-treesitter")
+    require("nvim-treesitter").setup()
+    vim.defer_fn(function()
+      local ts_ensure = { "fish", "go", "graphql", "ini", "jq", "just", "make", "rust", "sql", "tmux", "zig" }
+      local missing = {}
+      for _, lang in ipairs(ts_ensure) do
+        if not pcall(vim.treesitter.language.inspect, lang) then
+          missing[#missing + 1] = lang
+        end
+      end
+      if #missing > 0 then
+        vim.cmd("TSInstall " .. table.concat(missing, " "))
+      end
+    end, 0)
+
     -- mini.nvim
     vim.cmd.packadd("mini.nvim")
     require("mini.ai").setup()
@@ -298,3 +332,49 @@ vim.keymap.set("n", "<leader>ta", function()
   vim.cmd.packadd("nvim-ansible")
   require("ansible").run()
 end, { desc = "Ansible Run Playbook/Role", silent = true })
+
+---- Daily plugin update check ---------------------------------------------
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  once = true,
+  callback = function()
+    vim.defer_fn(function()
+      local state_file = vim.fn.stdpath("state") .. "/pack_update_check"
+      local now = os.time()
+      local ok, lines = pcall(vim.fn.readfile, state_file)
+      if ok and (now - (tonumber(lines[1]) or 0)) < 86400 then
+        return
+      end
+      vim.fn.writefile({ tostring(now) }, state_file)
+
+      local pack_dir = vim.fn.stdpath("data") .. "/site/pack"
+      local cmd = 'for dir in ' .. pack_dir .. '/*/*; do '
+        .. '[ -d "$dir/.git" ] || continue; '
+        .. 'git -C "$dir" fetch --quiet 2>/dev/null; '
+        .. 'count=$(git -C "$dir" rev-list --count HEAD..@{u} 2>/dev/null); '
+        .. '[ "${count:-0}" -gt 0 ] && echo "$(basename "$dir"):$count"; '
+        .. 'done'
+
+      vim.system({ "bash", "-c", cmd }, { text = true }, function(result)
+        vim.schedule(function()
+          if result.code ~= 0 or result.stdout == "" then return end
+          local updates = {}
+          for line in result.stdout:gmatch("[^\n]+") do
+            local name, count = line:match("^(.+):(%d+)$")
+            if name then
+              updates[#updates + 1] = string.format("  %s (%s new)", name, count)
+            end
+          end
+          if #updates > 0 then
+            table.sort(updates)
+            Snacks.notify.info(
+              #updates .. " plugin(s) have updates:\n\n" .. table.concat(updates, "\n")
+                .. "\n\nRun :PackUpdate to apply.",
+              { title = "󰒲 Plugin Updates", timeout = 10000 }
+            )
+          end
+        end)
+      end)
+    end, 5000)
+  end,
+})

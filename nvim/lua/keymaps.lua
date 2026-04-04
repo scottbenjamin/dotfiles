@@ -76,9 +76,10 @@ kms("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 kms("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 kms("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 
----- File Browser ---------------------------------------------------------
+---- Tools ----------------------------------------------------------------
 
 kms("n", "-", "<cmd>Oil<cr>", { desc = "Oil" })
+kms("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
 
 ---- Glab CLI -------------------------------------------------------------
 

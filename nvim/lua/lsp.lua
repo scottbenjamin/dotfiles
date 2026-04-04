@@ -1,3 +1,5 @@
+vim.lsp.log.set_level("OFF")
+
 -- Global LSP capabilities (blink.cmp integration)
 vim.lsp.config("*", {
   capabilities = require("blink.cmp").get_lsp_capabilities(),
