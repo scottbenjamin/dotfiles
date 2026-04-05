@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=VoxType Tray
+Comment=System tray for VoxType voice dictation
+Exec=voxtype-tray
+Icon=audio-input-microphone
+Terminal=false
+Type=Application
+Categories=Settings;AudioVideo;
+Keywords=voice;dictation;speech;voxtype;tray;
+X-KDE-autostart-phase=2
+X-KDE-autostart-after=panel
+Hidden=true
