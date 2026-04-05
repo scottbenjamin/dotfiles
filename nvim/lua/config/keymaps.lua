@@ -79,6 +79,7 @@ kms("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 ---- Tools ----------------------------------------------------------------
 
 kms("n", "-", "<cmd>Oil<cr>", { desc = "Oil" })
+kms("n", "<leader>e", "<cmd>Oil<cr>", { desc = "Oil" })
 kms("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
 
 ---- Glab CLI -------------------------------------------------------------

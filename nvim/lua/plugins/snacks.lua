@@ -20,7 +20,7 @@ M.opts = {
       { section = "recent_files", limit = 5, padding = 1 },
     },
   },
-  explorer = { enabled = true },
+  explorer = { enabled = false },
   git = { enabled = true },
   gitbrowse = { enabled = true },
   indent = { enabled = true },
@@ -106,7 +106,6 @@ function M.setup()
 
   -- Non-picker Snacks keymaps (different APIs, kept explicit)
   -- stylua: ignore start
-  kms("n", "<leader>e",  function() Snacks.explorer() end,           { desc = "File Explorer" })
   kms("n", "<leader>cR", function() Snacks.rename.rename_file() end, { desc = "Rename File" })
   kms("n", "<leader>gg", function() Snacks.lazygit.open() end,       { desc = "Lazygit" })
   kms("n", "<leader>gb", function() Snacks.git.blame_line() end,     { desc = "Git Blame" })
