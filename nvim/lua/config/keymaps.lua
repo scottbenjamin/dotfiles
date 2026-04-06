@@ -1,5 +1,20 @@
 local kms = vim.keymap.set
 
+local oil_loaded = false
+local function open_oil()
+  vim.cmd.packadd("oil.nvim")
+  if not oil_loaded then
+    require("oil").setup({})
+    oil_loaded = true
+  end
+  vim.cmd("Oil")
+end
+
+local function open_mason()
+  require("plugins.editor").ensure_mason()
+  vim.cmd("Mason")
+end
+
 ---- Navigation -----------------------------------------------------------
 
 -- Half page with centered cursor
@@ -78,9 +93,9 @@ kms("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 
 ---- Tools ----------------------------------------------------------------
 
-kms("n", "-", "<cmd>Oil<cr>", { desc = "Oil" })
-kms("n", "<leader>e", "<cmd>Oil<cr>", { desc = "Oil" })
-kms("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
+kms("n", "-", open_oil, { desc = "Oil" })
+kms("n", "<leader>e", open_oil, { desc = "Oil" })
+kms("n", "<leader>cm", open_mason, { desc = "Mason" })
 
 ---- Glab CLI -------------------------------------------------------------
 

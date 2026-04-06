@@ -2,6 +2,30 @@ local M = {}
 
 local ts_ensure = { "fish", "go", "graphql", "ini", "jq", "just", "make", "rust", "sql", "tmux", "zig" }
 
+local mason_loaded = false
+
+function M.ensure_mason()
+  vim.cmd.packadd("mason.nvim")
+  vim.cmd.packadd("mason-tool-installer.nvim")
+  vim.cmd.packadd("mason-update-all")
+
+  if mason_loaded then
+    return
+  end
+
+  require("mason").setup()
+  require("mason-tool-installer").setup({
+    ensure_installed = {
+      "basedpyright",
+      "lua-language-server",
+      "terraform-ls",
+      "tflint",
+    },
+  })
+
+  mason_loaded = true
+end
+
 local function setup_treesitter()
   vim.cmd.packadd("nvim-treesitter")
   require("nvim-treesitter").setup()
@@ -30,21 +54,7 @@ local function setup_mini()
 end
 
 function M.setup_deferred()
-  vim.cmd.packadd("oil.nvim")
-  require("oil").setup({})
-
-  vim.cmd.packadd("mason.nvim")
-  vim.cmd.packadd("mason-tool-installer.nvim")
-  vim.cmd.packadd("mason-update-all")
-  require("mason").setup()
-  require("mason-tool-installer").setup({
-    ensure_installed = {
-      "basedpyright",
-      "lua-language-server",
-      "terraform-ls",
-      "tflint",
-    },
-  })
+  vim.defer_fn(M.ensure_mason, 100)
 
   setup_treesitter()
   setup_mini()
