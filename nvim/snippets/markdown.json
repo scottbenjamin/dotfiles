@@ -1,0 +1,34 @@
+{
+  "Claude Code Subagent": {
+    "prefix": "subagent",
+    "body": [
+      "---",
+      "name: ${1:agent-name}",
+      "description: ${2:When Claude should delegate to this subagent}",
+      "tools: ${3|Read\\, Glob\\, Grep,Read\\, Glob\\, Grep\\, Bash,Read\\, Glob\\, Grep\\, Bash\\, Edit\\, Write|}",
+      "model: ${4|sonnet,opus,haiku,inherit|}",
+      "---",
+      "",
+      "${0:You are a specialized agent. Describe your role and behavior here.}"
+    ],
+    "description": "Claude Code subagent file with frontmatter"
+  },
+  "Claude Code Subagent (Full)": {
+    "prefix": "subagent-full",
+    "body": [
+      "---",
+      "name: ${1:agent-name}",
+      "description: ${2:When Claude should delegate to this subagent}",
+      "tools: ${3:Read, Glob, Grep, Bash}",
+      "model: ${4|sonnet,opus,haiku,inherit|}",
+      "permissionMode: ${5|default,acceptEdits,auto,dontAsk,bypassPermissions,plan|}",
+      "maxTurns: ${6:25}",
+      "memory: ${7|user,project,local|}",
+      "color: ${8|blue,green,red,yellow,purple,orange,pink,cyan|}",
+      "---",
+      "",
+      "${0:You are a specialized agent. Describe your role and behavior here.}"
+    ],
+    "description": "Claude Code subagent file with all frontmatter options"
+  }
+}
