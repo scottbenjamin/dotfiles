@@ -6,3 +6,4 @@
 --ignore=.gitconfig
 --ignore=.gitignore
 --ignore=.jj
+--ignore=^pi-agent$

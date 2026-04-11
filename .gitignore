@@ -16,3 +16,7 @@ fish/functions/*.pure-backup.fish
 nushell/history**
 github-copilot/apps.json
 nvim/lazy-lock.json
+
+# Pi agent runtime/secrets (keep out of git)
+pi-agent/.pi/agent/auth.json
+pi-agent/.pi/agent/sessions/**

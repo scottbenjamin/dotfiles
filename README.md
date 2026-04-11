@@ -30,3 +30,15 @@ stow -R .
 ## Notes
 
 - `tmux` is intentionally excluded from `.stowrc`; link or copy `tmux/tmux.conf` manually if you use tmux.
+
+## Pi agent config
+
+Tracked Pi config lives in `pi-agent/.pi/agent/` and is intended to be linked to `$HOME/.pi/agent`.
+
+Because `.stowrc` targets `~/.config`, stow this package separately:
+
+```shell
+stow -Rv --target="$HOME" pi-agent
+```
+
+Only non-secret files are tracked here (`settings.json`, `AGENTS.md`, themes). Runtime/session/auth files are intentionally excluded.
