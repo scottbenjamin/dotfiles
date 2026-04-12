@@ -30,7 +30,7 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "lualine.nvim": {
-      "rev": "f5d2a8570f8b736ddb9bb4be504355bcd6e15ec8",
+      "rev": "a905eeebc4e63fdc48b5135d3bf8aea5618fb21c",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mason-tool-installer.nvim": {
@@ -46,7 +46,7 @@
       "src": "https://github.com/williamboman/mason.nvim"
     },
     "mini.nvim": {
-      "rev": "2431902e78b76f435542d1e606f08475360068ca",
+      "rev": "4182d64727fb4876407af65c181b85428a4a70d1",
       "src": "https://github.com/echasnovski/mini.nvim"
     },
     "nvim-ansible": {
