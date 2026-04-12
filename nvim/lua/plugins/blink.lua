@@ -1,6 +1,13 @@
-local M = {}
+local M = {
+  name = "blink.cmp",
+  spec = { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.10.x") },
+}
 
-function M.setup()
+local function init_blink()
+  pcall(vim.cmd.packadd, "friendly-snippets")
+  pcall(vim.cmd.packadd, "colorful-menu.nvim")
+  vim.cmd.packadd("blink.cmp")
+
   require("colorful-menu").setup()
   require("blink.cmp").setup({
     keymap = { preset = "default" },
@@ -25,6 +32,16 @@ function M.setup()
     },
     sources = { default = { "lsp", "path", "snippets", "buffer" } },
     fuzzy = { implementation = "prefer_rust_with_warning" },
+  })
+
+  require("lsp")
+end
+
+function M.setup()
+  vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
+    once = true,
+    group = vim.api.nvim_create_augroup("plugin_blink_setup", { clear = true }),
+    callback = init_blink,
   })
 end
 

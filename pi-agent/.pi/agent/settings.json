@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.66.1",
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.3-codex",
+  "defaultModel": "gpt-5.4",
   "defaultThinkingLevel": "medium",
   "theme": "nord",
   "compaction": {
@@ -9,5 +9,8 @@
     "reserveTokens": 16384,
     "keepRecentTokens": 20000
   },
-  "hideThinkingBlock": true
+  "hideThinkingBlock": true,
+  "packages": [
+    "git:github.com/JuliusBrussee/caveman"
+  ]
 }

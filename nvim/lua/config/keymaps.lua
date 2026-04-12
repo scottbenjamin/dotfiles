@@ -1,20 +1,5 @@
 local kms = vim.keymap.set
 
-local oil_loaded = false
-local function open_oil()
-  vim.cmd.packadd("oil.nvim")
-  if not oil_loaded then
-    require("oil").setup({})
-    oil_loaded = true
-  end
-  vim.cmd("Oil")
-end
-
-local function open_mason()
-  require("plugins.editor").ensure_mason()
-  vim.cmd("Mason")
-end
-
 ---- Navigation -----------------------------------------------------------
 
 -- Half page with centered cursor
@@ -37,6 +22,8 @@ kms("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window w
 
 kms("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 kms("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+kms("n", "<leader>bp", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+kms("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 kms("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 kms("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 kms("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
@@ -90,12 +77,6 @@ kms("n", "<leader>ur", "<cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><cr>", {
 kms("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 kms("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 kms("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
-
----- Tools ----------------------------------------------------------------
-
-kms("n", "-", open_oil, { desc = "Oil" })
-kms("n", "<leader>e", open_oil, { desc = "Oil" })
-kms("n", "<leader>cm", open_mason, { desc = "Mason" })
 
 ---- Glab CLI -------------------------------------------------------------
 

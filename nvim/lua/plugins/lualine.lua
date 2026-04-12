@@ -1,18 +1,10 @@
-local M = {}
+local M = {
+  name = "lualine.nvim",
+  spec = "https://github.com/nvim-lualine/lualine.nvim",
+}
 
 function M.setup()
-  vim.cmd.packadd("catppuccin")
-  require("catppuccin").setup({
-    flavour = "mocha",
-    compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
-    compile = true,
-  })
-  vim.cmd.colorscheme("catppuccin-mocha")
-
-  vim.cmd.packadd("snacks.nvim")
-  require("plugins.snacks").setup()
-
-  vim.cmd.packadd("nvim-web-devicons")
+  pcall(vim.cmd.packadd, "nvim-web-devicons")
   vim.cmd.packadd("lualine.nvim")
   require("lualine").setup({
     options = {

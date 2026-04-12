@@ -1,5 +1,71 @@
 local M = {}
 
+local discovered = nil
+
+local function plugin_modules()
+  if discovered then
+    return discovered
+  end
+
+  local mods = {}
+  local dir = vim.fn.stdpath("config") .. "/lua/plugins"
+
+  for name, t in vim.fs.dir(dir) do
+    if t == "file" and name:match("%.lua$") and name ~= "pack.lua" then
+      local mod_name = "plugins." .. name:gsub("%.lua$", "")
+      local ok, mod = pcall(require, mod_name)
+      if ok and type(mod) == "table" and mod.spec then
+        mods[#mods + 1] = mod
+      end
+    end
+  end
+
+  table.sort(mods, function(a, b)
+    return (a.name or a.spec) < (b.name or b.spec)
+  end)
+
+  discovered = mods
+  return mods
+end
+
+local function notify_info(msg, opts)
+  if _G.Snacks and Snacks.notify and Snacks.notify.info then
+    Snacks.notify.info(msg, opts)
+  else
+    vim.notify(msg, vim.log.levels.INFO)
+  end
+end
+
+local function notify_error(msg, opts)
+  if _G.Snacks and Snacks.notify and Snacks.notify.error then
+    Snacks.notify.error(msg, opts)
+  else
+    vim.notify(msg, vim.log.levels.ERROR)
+  end
+end
+
+function M.add_specs()
+  local specs = {}
+  for _, mod in ipairs(plugin_modules()) do
+    if vim.islist(mod.spec) then
+      for _, spec in ipairs(mod.spec) do
+        specs[#specs + 1] = spec
+      end
+    else
+      specs[#specs + 1] = mod.spec
+    end
+  end
+  vim.pack.add(specs)
+end
+
+function M.setup_plugins()
+  for _, mod in ipairs(plugin_modules()) do
+    if type(mod.setup) == "function" then
+      mod.setup()
+    end
+  end
+end
+
 function M.setup_build_hooks()
   local build_hooks = {
     ["blink.cmp"] = { "cargo", "build", "--release" },
@@ -10,13 +76,13 @@ function M.setup_build_hooks()
       local name, kind = ev.data.spec.name, ev.data.kind
       local cmd = build_hooks[name]
       if cmd and (kind == "install" or kind == "update") then
-        Snacks.notify.info("Building " .. name .. "...", { title = "Pack Build" })
+        notify_info("Building " .. name .. "...", { title = "Pack Build" })
         vim.system(cmd, { cwd = ev.data.path }, function(result)
           vim.schedule(function()
             if result.code == 0 then
-              Snacks.notify.info(name .. " built successfully.", { title = "Pack Build" })
+              notify_info(name .. " built successfully.", { title = "Pack Build" })
             else
-              Snacks.notify.error(name .. " build failed:\n" .. (result.stderr or ""), { title = "Pack Build" })
+              notify_error(name .. " build failed:\n" .. (result.stderr or ""), { title = "Pack Build" })
             end
           end)
         end)
@@ -32,7 +98,7 @@ end
 function M.setup_commands()
   vim.api.nvim_create_user_command("PackUpdate", function(opts)
     if opts.bang then
-      Snacks.notify.info("Fetching plugin updates...")
+      notify_info("Fetching plugin updates...")
       vim.schedule(function()
         vim.pack.update()
       end)
@@ -44,7 +110,7 @@ function M.setup_commands()
       before[p.spec.name] = p.rev
     end
 
-    Snacks.notify.info("Fetching plugin updates...")
+    notify_info("Fetching plugin updates...")
     vim.schedule(function()
       vim.pack.update(nil, { force = true })
 
@@ -62,10 +128,10 @@ function M.setup_commands()
         end
 
         if #updated == 0 then
-          Snacks.notify.info("All " .. up_to_date .. " plugins up to date.", { title = "Pack Update" })
+          notify_info("All " .. up_to_date .. " plugins up to date.", { title = "Pack Update" })
         else
           local msg = #updated .. " updated, " .. up_to_date .. " unchanged:\n\n" .. table.concat(updated, "\n")
-          Snacks.notify.info(msg, { title = "Pack Update", timeout = 15000 })
+          notify_info(msg, { title = "Pack Update", timeout = 15000 })
         end
       end)
     end)
@@ -87,7 +153,7 @@ function M.setup_commands()
     end
     table.sort(lines)
     local header = string.format("Plugins: %d total\n", #plugins)
-    Snacks.notify.info(header .. table.concat(lines, "\n"), { title = "Pack Status", timeout = 10000 })
+    notify_info(header .. table.concat(lines, "\n"), { title = "Pack Status", timeout = 10000 })
   end, { desc = "Show plugin status summary" })
 end
 
@@ -126,7 +192,7 @@ function M.setup_daily_check()
             end
             if #updates > 0 then
               table.sort(updates)
-              Snacks.notify.info(
+              notify_info(
                 #updates .. " plugin(s) have updates:\n\n" .. table.concat(updates, "\n")
                   .. "\n\nRun :PackUpdate to apply.",
                 { title = "󰒲 Plugin Updates", timeout = 10000 }
