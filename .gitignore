@@ -17,6 +17,16 @@ nushell/history**
 github-copilot/apps.json
 nvim/lazy-lock.json
 
-# Pi agent runtime/secrets (keep out of git)
-pi-agent/.pi/agent/auth.json
-pi-agent/.pi/agent/sessions/**
+# Pi local auth/runtime state
+pi-home/.pi/agent/auth.json
+pi-home/.pi/agent/sessions/
+pi-home/.pi/agent/cache/
+pi-home/.pi/agent/logs/
+pi-home/.pi/agent/history/
+pi-home/.pi/agent/*.db
+pi-home/.pi/agent/*.sqlite
+pi-home/.pi/agent/*.sqlite-*
+pi-home/.pi/agent/*.log
+
+# QMD local indexes/state
+pi-home/.local/share/qmd/

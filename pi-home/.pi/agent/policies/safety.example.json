@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "defaults": {
+    "filesystem": "confirm",
+    "network": "confirm",
+    "process": "confirm",
+    "secrets": "block"
+  },
+  "blockedCommands": [
+    "rm -rf /",
+    "sudo rm -rf",
+    "git reset --hard",
+    "git clean -fdx",
+    "terraform destroy",
+    "terragrunt destroy"
+  ],
+  "protectedPaths": [
+    "/",
+    "~/.ssh",
+    "~/.aws",
+    "~/.kube",
+    "~/.config/op",
+    "~/.config/1Password"
+  ],
+  "allowedTmuxTargets": []
+}
