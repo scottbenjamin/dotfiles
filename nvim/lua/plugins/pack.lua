@@ -14,7 +14,10 @@ local function plugin_modules()
     if t == "file" and name:match("%.lua$") and name ~= "pack.lua" then
       local mod_name = "plugins." .. name:gsub("%.lua$", "")
       local ok, mod = pcall(require, mod_name)
-      if ok and type(mod) == "table" and mod.spec then
+      if not ok then
+        error("Failed loading " .. mod_name .. ":\n" .. mod)
+      end
+      if type(mod) == "table" and mod.spec then
         mods[#mods + 1] = mod
       end
     end
@@ -168,19 +171,25 @@ function M.setup_daily_check()
         if ok and (now - (tonumber(lines[1]) or 0)) < 86400 then
           return
         end
-        vim.fn.writefile({ tostring(now) }, state_file)
-
         local pack_dir = vim.fn.stdpath("data") .. "/site/pack"
-        local cmd = 'for dir in ' .. pack_dir .. '/*/*; do '
+        local cmd = "for dir in "
+          .. pack_dir
+          .. "/*/*; do "
           .. '[ -d "$dir/.git" ] || continue; '
           .. 'git -C "$dir" fetch --quiet 2>/dev/null; '
           .. 'count=$(git -C "$dir" rev-list --count HEAD..@{u} 2>/dev/null); '
           .. '[ "${count:-0}" -gt 0 ] && echo "$(basename "$dir"):$count"; '
-          .. 'done'
+          .. "done"
 
         vim.system({ "bash", "-c", cmd }, { text = true }, function(result)
           vim.schedule(function()
-            if result.code ~= 0 or result.stdout == "" then
+            if result.code ~= 0 then
+              return
+            end
+
+            vim.fn.writefile({ tostring(now) }, state_file)
+
+            if result.stdout == "" then
               return
             end
             local updates = {}
@@ -193,7 +202,9 @@ function M.setup_daily_check()
             if #updates > 0 then
               table.sort(updates)
               notify_info(
-                #updates .. " plugin(s) have updates:\n\n" .. table.concat(updates, "\n")
+                #updates
+                  .. " plugin(s) have updates:\n\n"
+                  .. table.concat(updates, "\n")
                   .. "\n\nRun :PackUpdate to apply.",
                 { title = "󰒲 Plugin Updates", timeout = 10000 }
               )

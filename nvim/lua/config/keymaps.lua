@@ -68,8 +68,8 @@ kms("v", ">", ">gv")
 kms({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to clipboard" })
 
 -- Commenting
-kms("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
-kms("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
+kms("n", "gco", "o<esc>gcc", { remap = true, desc = "Add Comment Below" })
+kms("n", "gcO", "O<esc>gcc", { remap = true, desc = "Add Comment Above" })
 
 ---- UI / Utility ---------------------------------------------------------
 

@@ -11,14 +11,14 @@ local function setup_keymaps()
   end, { desc = "Format buffer" })
 
   kms("", "<leader>tf", function()
-    vim.b.autoformat = not vim.b.autoformat
-    Snacks.notify.info("Buffer Formatting: [ " .. tostring(vim.b.autoformat) .. " ]")
-  end, { desc = "Toggle Format (buffer)" })
+    vim.b.disable_autoformat = not vim.b.disable_autoformat
+    Snacks.notify.info("Buffer Autoformat: [ " .. tostring(not vim.b.disable_autoformat) .. " ]")
+  end, { desc = "Toggle Autoformat (buffer)" })
 
   kms("", "<leader>tF", function()
-    vim.g.autoformat = not vim.g.autoformat
-    Snacks.notify.info("Global Formatting: [ " .. tostring(vim.g.autoformat) .. " ]")
-  end, { desc = "Toggle Format Globally" })
+    vim.g.disable_autoformat = not vim.g.disable_autoformat
+    Snacks.notify.info("Global Autoformat: [ " .. tostring(not vim.g.disable_autoformat) .. " ]")
+  end, { desc = "Toggle Autoformat Globally" })
 end
 
 local function init_conform()
@@ -41,7 +41,7 @@ local function init_conform()
       lsp_format = "fallback",
     },
     format_on_save = function(bufnr)
-      if vim.g.autoformat or vim.b[bufnr].autoformat then
+      if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
         return
       end
       return { timeout_ms = 500, lsp_format = "fallback" }
