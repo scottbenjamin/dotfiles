@@ -62,10 +62,71 @@ function M.add_specs()
 end
 
 function M.setup_plugins()
-  for _, mod in ipairs(plugin_modules()) do
+  local function run_module(mod)
     if type(mod.setup) == "function" then
       mod.setup()
+      return
     end
+
+    local configured = false
+    local function configure()
+      if configured then
+        return
+      end
+      configured = true
+
+      if mod.name then
+        vim.cmd.packadd(mod.name)
+      end
+
+      local opts = mod.opts
+      if type(opts) == "function" then
+        opts = opts()
+      end
+
+      if type(mod.config) == "function" then
+        mod.config(mod, opts)
+      end
+    end
+
+    if vim.islist(mod.keys) then
+      for _, key in ipairs(mod.keys) do
+        local lhs = key[1]
+        local rhs = key[2]
+        if lhs and rhs then
+          local map_opts = {}
+          for k, v in pairs(key) do
+            if type(k) == "string" and k ~= "mode" then
+              map_opts[k] = v
+            end
+          end
+          vim.keymap.set(key.mode or "n", lhs, rhs, map_opts)
+        end
+      end
+    end
+
+    if mod.event then
+      local events = vim.islist(mod.event) and mod.event or { mod.event }
+      vim.api.nvim_create_autocmd(events, {
+        once = mod.once ~= false,
+        group = vim.api.nvim_create_augroup("plugin_" .. (mod.name or "unknown") .. "_setup", { clear = true }),
+        callback = function()
+          local defer_ms = mod.defer_ms or 0
+          if defer_ms > 0 then
+            vim.defer_fn(configure, defer_ms)
+          else
+            configure()
+          end
+        end,
+      })
+      return
+    end
+
+    configure()
+  end
+
+  for _, mod in ipairs(plugin_modules()) do
+    run_module(mod)
   end
 end
 

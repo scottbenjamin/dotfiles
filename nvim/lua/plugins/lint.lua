@@ -1,11 +1,10 @@
 local M = {
   name = "nvim-lint",
   spec = "https://github.com/mfussenegger/nvim-lint",
+  event = { "BufReadPre", "BufNewFile" },
 }
 
-local function init_lint()
-  vim.cmd.packadd("nvim-lint")
-
+function M.config()
   local lint = require("lint")
   lint.linters_by_ft = {
     hcl = { "tflint" },
@@ -20,14 +19,6 @@ local function init_lint()
         lint.try_lint()
       end
     end,
-  })
-end
-
-function M.setup()
-  vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
-    once = true,
-    group = vim.api.nvim_create_augroup("plugin_lint_setup", { clear = true }),
-    callback = init_lint,
   })
 end
 

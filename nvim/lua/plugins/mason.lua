@@ -5,6 +5,17 @@ local M = {
     "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
     "https://github.com/RubixDev/mason-update-all",
   },
+  event = "UIEnter",
+  defer_ms = 100,
+  keys = {
+    {
+      "<leader>cm",
+      function()
+        M.open()
+      end,
+      desc = "Mason",
+    },
+  },
 }
 
 local mason_loaded = false
@@ -38,15 +49,8 @@ function M.open()
   vim.cmd("Mason")
 end
 
-function M.setup()
-  vim.keymap.set("n", "<leader>cm", M.open, { desc = "Mason" })
-  vim.api.nvim_create_autocmd("UIEnter", {
-    once = true,
-    group = vim.api.nvim_create_augroup("plugin_mason_setup", { clear = true }),
-    callback = function()
-      vim.defer_fn(ensure_mason, 100)
-    end,
-  })
+function M.config()
+  ensure_mason()
 end
 
 return M

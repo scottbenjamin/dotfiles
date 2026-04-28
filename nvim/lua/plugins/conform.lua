@@ -1,35 +1,41 @@
 local M = {
   name = "conform.nvim",
   spec = "https://github.com/stevearc/conform.nvim",
-}
-
-local function setup_keymaps()
-  local kms = vim.keymap.set
-
-  kms("", "<leader>cf", function()
-    require("conform").format({ async = true })
-  end, { desc = "Format buffer" })
-
-  kms("", "<leader>tf", function()
-    vim.b.disable_autoformat = not vim.b.disable_autoformat
-    Snacks.notify.info("Buffer Autoformat: [ " .. tostring(not vim.b.disable_autoformat) .. " ]")
-  end, { desc = "Toggle Autoformat (buffer)" })
-
-  kms("", "<leader>tF", function()
-    vim.g.disable_autoformat = not vim.g.disable_autoformat
-    Snacks.notify.info("Global Autoformat: [ " .. tostring(not vim.g.disable_autoformat) .. " ]")
-  end, { desc = "Toggle Autoformat Globally" })
-end
-
-local function init_conform()
-  vim.cmd.packadd("conform.nvim")
-
-  require("conform").setup({
+  event = "UIEnter",
+  keys = {
+    {
+      "<leader>cf",
+      function()
+        require("conform").format({ async = true })
+      end,
+      mode = "",
+      desc = "Format buffer",
+    },
+    {
+      "<leader>tf",
+      function()
+        vim.b.disable_autoformat = not vim.b.disable_autoformat
+        Snacks.notify.info("Buffer Autoformat: [ " .. tostring(not vim.b.disable_autoformat) .. " ]")
+      end,
+      mode = "",
+      desc = "Toggle Autoformat (buffer)",
+    },
+    {
+      "<leader>tF",
+      function()
+        vim.g.disable_autoformat = not vim.g.disable_autoformat
+        Snacks.notify.info("Global Autoformat: [ " .. tostring(not vim.g.disable_autoformat) .. " ]")
+      end,
+      mode = "",
+      desc = "Toggle Autoformat Globally",
+    },
+  },
+  opts = {
     formatters_by_ft = {
       hcl = { "hcl" },
       javascript = { "prettierd", "prettier", stop_after_first = true },
       lua = { "stylua" },
-      markdown = { "markdownlint-cli2", "markdownfmt" },
+      markdown = { "prettier", "markdownlint-cli2" },
       nix = { "alejandra" },
       python = { "ruff", "isort" },
       terraform = { "terraform_fmt" },
@@ -51,18 +57,12 @@ local function init_conform()
         prepend_args = { "-i", "2" },
       },
     },
-  })
+  },
+}
 
+function M.config(_, opts)
+  require("conform").setup(opts)
   vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-  setup_keymaps()
-end
-
-function M.setup()
-  vim.api.nvim_create_autocmd("UIEnter", {
-    once = true,
-    group = vim.api.nvim_create_augroup("plugin_conform_setup", { clear = true }),
-    callback = init_conform,
-  })
 end
 
 return M
