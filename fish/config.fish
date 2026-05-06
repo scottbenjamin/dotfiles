@@ -80,12 +80,15 @@ if status is-interactive
         bind up __atuin_lazy_init
     end
 
-    # direnv — standard hook (lazy loading conflicts with tide's async prompt)
+    # direnv
     if type -q direnv
         direnv hook fish | source
     end
 
-    # Using pure prompt (async git, fast)
+    # Starship prompt
+    if type -q starship
+        starship init fish | source
+    end
 
     if test -f ~/.local.fish
         source ~/.local.fish
