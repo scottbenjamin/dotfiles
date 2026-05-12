@@ -11,6 +11,12 @@ window-rule {
     open-floating true
 }
 
+// Float opentrack utility windows.
+window-rule {
+    match app-id=r#"^opentrack$"#
+    open-floating true
+}
+
 // Keep Handy utility windows from stealing focus while dictating.
 window-rule {
     match app-id=r#"(?i)handy|com\.pais\.handy"#

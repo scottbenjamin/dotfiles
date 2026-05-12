@@ -27,6 +27,7 @@ window-rule {
 // Steam games
 window-rule {
   match app-id=r#"steam_app_\d+$"#
+  exclude app-id=r#"^steam_app_2330980018$"#
   open-on-output "DP-1"
     // open-maximized true
   default-column-width { proportion 1.0; }
@@ -36,4 +37,11 @@ window-rule {
 window-rule {
   match app-id=r#"steam_app_\d+$"# title=r#"Battle.net$"#
   open-floating true
+}
+
+window-rule {
+  match app-id=r#"^steam_app_2330980018$"#
+  open-on-output "DP-1"
+  open-floating true
+  open-fullscreen false
 }

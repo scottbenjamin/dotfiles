@@ -13,6 +13,8 @@ end
 __add_paths_if_present \
     ~/.local/bin \
     ~/.npm-packages/bin \
+    ~/node_modules \
+    ~/node_modules/.bin \
     /opt/homebrew/bin \
     ~/.local/share/mise/shims \
     /run/current-system/sw/bin \

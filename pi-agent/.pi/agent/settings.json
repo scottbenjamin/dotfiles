@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.70.2",
+  "lastChangelogVersion": "0.74.0",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.5",
   "defaultThinkingLevel": "medium",
@@ -9,8 +9,13 @@
     "reserveTokens": 16384,
     "keepRecentTokens": 20000
   },
-  "hideThinkingBlock": false,
+  "hideThinkingBlock": true,
   "packages": [
-    "git:github.com/JuliusBrussee/caveman"
+    {
+      "source": "git:github.com/JuliusBrussee/caveman",
+      "skills": [
+        "skills/cavecrew/**"
+      ]
+    }
   ]
 }
