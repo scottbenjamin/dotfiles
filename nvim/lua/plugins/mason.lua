@@ -34,7 +34,9 @@ local function ensure_mason()
     require("mason-tool-installer").setup({
       ensure_installed = {
         "basedpyright",
+        "hclfmt",
         "lua-language-server",
+        "terraform",
         "terraform-ls",
         "tflint",
       },
