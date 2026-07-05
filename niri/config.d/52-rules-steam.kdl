@@ -28,10 +28,19 @@ window-rule {
 window-rule {
   match app-id=r#"steam_app_\d+$"#
   exclude app-id=r#"^steam_app_2330980018$"#
+  exclude app-id=r#"^steam_app_\d+$"# title="EQEmu Patcher"
   open-on-output "DP-1"
-    // open-maximized true
+  // open-maximized true
   default-column-width { proportion 1.0; }
   open-fullscreen true
+  variable-refresh-rate true
+}
+
+window-rule {
+  match app-id=r#"^steam_app_\d+$"# title="EQEmu Patcher"
+  open-on-output "DP-1"
+  open-floating true
+  open-fullscreen false
 }
 
 window-rule {

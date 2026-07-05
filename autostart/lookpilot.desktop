@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=LookPilot
+Exec="/home/scott/.local/share/Steam/steamapps/common/LookPilot/main.dist/LookPilotLauncher"
+Icon=/home/scott/.local/share/Steam/steamapps/common/LookPilot/main.dist/data/static/graphics/logos/logo_128x128.png
+Comment=Head and eye tracking
+Categories=Utility;
+Terminal=false
+StartupNotify=false
+X-GNOME-Autostart-enabled=true
