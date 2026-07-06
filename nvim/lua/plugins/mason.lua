@@ -1,20 +1,20 @@
-local M = {
-  name = "mason.nvim",
-  spec = {
-    "https://github.com/williamboman/mason.nvim",
-    "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
-    "https://github.com/RubixDev/mason-update-all",
-  },
-  event = "UIEnter",
-  defer_ms = 100,
-  keys = {
-    {
-      "<leader>cm",
-      function()
-        M.open()
-      end,
-      desc = "Mason",
-    },
+local M = {}
+
+M.name = "mason.nvim"
+M.spec = {
+  "https://github.com/williamboman/mason.nvim",
+  "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
+  "https://github.com/RubixDev/mason-update-all",
+}
+M.event = "UIEnter"
+M.defer_ms = 100
+M.keys = {
+  {
+    "<leader>cm",
+    function()
+      M.open()
+    end,
+    desc = "Mason",
   },
 }
 
@@ -36,7 +36,9 @@ local function ensure_mason()
         "basedpyright",
         "lua-language-server",
         "terraform-ls",
+        "terraform",
         "tflint",
+        "hclfmt"
       },
     })
   end

@@ -39,6 +39,7 @@ local M = {
       nix = { "alejandra" },
       python = { "ruff", "isort" },
       terraform = { "terraform_fmt" },
+      ["terraform-vars"] = { "terraform_fmt" },
       tf = { "terraform_fmt" },
       tofu = { "tofu_fmt" },
       yaml = { "prettier" },
