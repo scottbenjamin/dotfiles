@@ -30,3 +30,6 @@ pi-home/.pi/agent/*.log
 
 # QMD local indexes/state
 pi-home/.local/share/qmd/
+
+herdr/*.json
+herdr/*.log
