@@ -1,0 +1,124 @@
+[
+  {
+    "plugin_id": "jt.command-palette",
+    "name": "Command Palette (fzf)",
+    "version": "0.1.0",
+    "min_herdr_version": "0.7.0",
+    "description": "An fzf command palette for herdr: pops up a fuzzy-searchable list of every action exposed by every installed plugin (via `herdr plugin action list`) and invokes the one you pick. The picker runs in an overlay pane so fzf gets a real TTY; the origin workspace's cwd is forwarded so context-aware actions resolve the right repo.",
+    "manifest_path": "/Users/sbenjamin/code/dotfiles/herdr/plugins/github/jt.command-palette-24905dca5f16/herdr-plugin.toml",
+    "plugin_root": "/Users/sbenjamin/code/dotfiles/herdr/plugins/github/jt.command-palette-24905dca5f16",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "actions": [
+      {
+        "id": "open",
+        "title": "Command palette (all plugin actions)",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "open.sh"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "palette",
+        "title": "Command palette",
+        "placement": "overlay",
+        "command": [
+          "bash",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/palette.sh\""
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "JanTvrdik",
+      "repo": "herdr-command-palette",
+      "resolved_commit": "eab940018c2135ac23718efa11e23e9dddcd2a75",
+      "managed_path": "/Users/sbenjamin/.config/herdr/plugins/github/jt.command-palette-24905dca5f16",
+      "installed_unix_ms": 1783353043613
+    }
+  },
+  {
+    "plugin_id": "absci.gitlab-review",
+    "name": "GitLab MR Review",
+    "version": "0.1.0",
+    "min_herdr_version": "0.7.0",
+    "description": "Highlight GitLab MRs awaiting your review and spawn a claude agent on the MR diff in a herdr worktree.",
+    "manifest_path": "/Users/sbenjamin/code/dotfiles/herdr-plugins/gitlab-review/herdr-plugin.toml",
+    "plugin_root": "/Users/sbenjamin/code/dotfiles/herdr-plugins/gitlab-review",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "actions": [
+      {
+        "id": "diff",
+        "title": "GitLab: open MR diff",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "gitlab-review.sh",
+          "diff"
+        ]
+      },
+      {
+        "id": "list",
+        "title": "GitLab: MRs awaiting my review",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "gitlab-review.sh",
+          "list"
+        ]
+      },
+      {
+        "id": "review",
+        "title": "GitLab: review MR (worktree + claude)",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "gitlab-review.sh",
+          "review"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "picker",
+        "title": "MRs awaiting review",
+        "placement": "overlay",
+        "command": [
+          "bash",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/gitlab-review.sh\" picker"
+        ]
+      }
+    ],
+    "link_handlers": [
+      {
+        "id": "mr",
+        "title": "Review GitLab MR",
+        "pattern": "/-/merge_requests/[0-9]+",
+        "action": "review"
+      }
+    ],
+    "source": {
+      "kind": "local"
+    }
+  }
+]

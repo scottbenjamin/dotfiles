@@ -104,6 +104,12 @@ local function setup_keymaps()
     Snacks.picker.grep_word()
   end, { desc = "Visual selection or word" })
 
+  kms("n", "<leader>sg", function()
+    local file = vim.api.nvim_buf_get_name(0)
+    local root = Snacks.git.get_root(file ~= "" and file or nil)
+    Snacks.picker.grep({ cwd = root, hidden = true })
+  end, { desc = "Grep (buffer's repo root)" })
+
   -- stylua: ignore start
   kms("n", "<leader>cR", function() Snacks.rename.rename_file() end, { desc = "Rename File" })
   kms("n", "<leader>gg", function() Snacks.lazygit.open() end,       { desc = "Lazygit" })
