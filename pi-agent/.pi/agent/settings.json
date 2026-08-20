@@ -1,21 +1,36 @@
 {
-  "lastChangelogVersion": "0.80.3",
+  "lastChangelogVersion": "0.83.0",
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.5",
+  "defaultModel": "gpt-5.6-sol",
   "defaultThinkingLevel": "medium",
   "theme": "nord",
+  "quietStartup": true,
+  "collapseChangelog": true,
+  "enableInstallTelemetry": false,
   "compaction": {
     "enabled": true,
-    "reserveTokens": 16384,
-    "keepRecentTokens": 20000
+    "reserveTokens": 32768,
+    "keepRecentTokens": 12000
   },
   "hideThinkingBlock": true,
+  "enabledModels": [
+    "openai-codex/gpt-5.6-luna:low",
+    "openai-codex/gpt-5.6-terra:medium",
+    "openai-codex/gpt-5.6-sol:medium"
+  ],
+  "skills": [
+    "~/code/codex-hq/skills"
+  ],
+  "extensions": [
+    "~/code/codex-hq/extensions/compact-tools.ts"
+  ],
   "packages": [
     {
       "source": "git:github.com/JuliusBrussee/caveman",
       "skills": [
         "skills/cavecrew/**"
       ]
-    }
+    },
+    "npm:context-mode"
   ]
 }
