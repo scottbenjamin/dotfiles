@@ -280,5 +280,21 @@ key = "prefix+g"
 type = "popup"
 command = "lazygit"
 description = "Run Lazygit"
-width = "90%"
-height = "90%"
+width = "95%"
+height = "95%"
+
+[[keys.command]]
+key = "prefix+u"
+type = "popup"
+command = '''bash -lc 'shopt -s nullglob; files=("$HOME"/.kube/admin-*); config=$(printf "%s\n" "${files[@]}" | fzf --prompt="kubeconfig ▸ " --header="enter: launch k9s · esc: cancel" --reverse); [[ -n $config ]] && exec k9s --kubeconfig "$config"' '''
+description = "Pick kubeconfig and run k9s"
+width = "95%"
+height = "95%"
+
+[[keys.command]]
+key = "prefix+shift+e"
+type = "popup"
+command = "nvim"
+description = "Run Neovim"
+width = "95%"
+height = "95%"
