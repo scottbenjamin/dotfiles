@@ -1,0 +1,62 @@
+# font-family = "JetBrainsMono Nerd Font Mono"
+font-family = "CommitMono Nerd Font Mono"
+font-style = Regular
+font-size = 10
+
+font-thicken = true
+font-thicken-strength = 175
+theme = Nordfox
+# theme = tinct.conf
+
+copy-on-select = clipboard
+
+window-decoration = none
+
+shell-integration = detect
+
+scrollback-limit = 5000000
+focus-follows-mouse = true
+auto-update = download
+
+# Window configuration
+window-height = 75
+window-width = 200
+window-padding-balance = true
+
+cursor-style = block
+cursor-style-blink = true
+shell-integration-features = true
+
+# background-opacity= 0.90
+# background-blur-radius = 20
+
+resize-overlay = never
+
+app-notifications = no-clipboard-copy
+
+bell-features = border,no-system,no-audio,no-attention,no-title
+
+shell-integration-features = ssh-terminfo,ssh-env,sudo
+
+# Splits
+keybind = alt+shift+ctrl+cmd+v=new_split:right
+keybind = alt+shift+ctrl+cmd+s=new_split:down
+keybind = alt+shift+ctrl+cmd+z=toggle_split_zoom
+keybind = alt+shift+ctrl+cmd+o=goto_split:previous
+
+# Split movement
+keybind = alt+shift+ctrl+cmd+j=goto_split:down
+keybind = alt+shift+ctrl+cmd+k=goto_split:up
+keybind = alt+shift+ctrl+cmd+h=goto_split:left
+keybind = alt+shift+ctrl+cmd+l=goto_split:right
+
+# Quick Terminal
+quick-terminal-autohide = true
+# keybind = global:ctrl+grave_accent=toggle_quick_terminal
+
+# Pi / terminal app compatibility
+keybind = alt+backspace=text:\x1b\x7f
+
+custom-shader = shaders/cursor_blaze.glsl
+
+# vim: ft=toml

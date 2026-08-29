@@ -12,4 +12,9 @@ include "config.d/50-workspaces.kdl"
 include "config.d/51-rules-base.kdl"
 include "config.d/52-rules-steam.kdl"
 include "config.d/53-rules-floating-and-privacy.kdl"
+include "config.d/54-rules-dms.kdl"
 include "config.d/60-binds.kdl"
+
+// DMS owns these generated files. Keep custom layout and bindings above.
+include optional=true "dms/colors.kdl"
+include optional=true "dms/alttab.kdl"

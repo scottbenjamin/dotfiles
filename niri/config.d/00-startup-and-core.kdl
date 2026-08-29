@@ -1,5 +1,6 @@
-spawn-at-startup "sh" "-lc" "$HOME/.config/waybar/waybar.sh"
-spawn-at-startup "swaync"
+// DMS replaces Waybar and SwayNC.
+// XDG autostart normally launches this; provide a delayed fallback without duplicating it.
+spawn-sh-at-startup "sleep 5; pgrep -x arch-update-tray >/dev/null || exec cachy-update --tray"
 // spawn-at-startup ".local/bin/set-gammastep.sh"
 // nm-applet is provided by XDG autostart; do not start a duplicate here.
 // spawn-at-startup "nm-applet" "--indicator"

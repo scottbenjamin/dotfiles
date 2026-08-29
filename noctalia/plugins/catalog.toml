@@ -1,0 +1,14 @@
+# Local Noctalia plugin catalog.
+
+[[plugin]]
+id = "scott/mango_layouts"
+name = "Mango Layouts (event driven)"
+version = "1.0.0"
+updated_at = 1787774400
+added_at = 1787774400
+author = "scott"
+license = "MIT"
+icon = "layout-filled"
+description = "Event-driven layout switcher for MangoWC"
+plugin_api = 14
+tags = ["bar", "panel", "mangowc", "utility"]

@@ -25,6 +25,13 @@ binds {
     Mod+D                   { spawn "fuzzel"; }
     Mod+Alt+L               { spawn "swaylock" "-f"; }
     Mod+M                   { spawn "ghostty" "-e" "spotify_player"; }
+
+    // DMS integrations on otherwise unused keys. Keep custom bindings authoritative.
+    Mod+Space               { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+    Alt+Space               { spawn "dms" "ipc" "call" "spotlight-bar" "toggle"; }
+    Mod+N                   { spawn "dms" "ipc" "call" "notifications" "toggle"; }
+    Mod+Alt+Y               { spawn "dms" "ipc" "call" "dash" "toggle" "wallpaper"; }
+    Ctrl+Alt+Delete         { spawn "dms" "ipc" "call" "processlist" "focusOrToggle"; }
     // Mod+S                   { spawn-sh "grim -g \"$(slurp)\" - | swappy -f -";}
     Mod+S                   { screenshot; }
 

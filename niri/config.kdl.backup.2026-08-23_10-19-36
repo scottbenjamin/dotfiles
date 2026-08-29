@@ -1,0 +1,15 @@
+// This config is in the KDL format: https://kdl.dev
+// "/-" comments out the following node.
+// Check the wiki for a full description of the configuration:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
+
+include "config.d/00-startup-and-core.kdl"
+include "config.d/10-input-cursor.kdl"
+include "config.d/20-outputs-overview.kdl"
+include "config.d/30-layout.kdl"
+include "config.d/40-misc-and-animations.kdl"
+include "config.d/50-workspaces.kdl"
+include "config.d/51-rules-base.kdl"
+include "config.d/52-rules-steam.kdl"
+include "config.d/53-rules-floating-and-privacy.kdl"
+include "config.d/60-binds.kdl"

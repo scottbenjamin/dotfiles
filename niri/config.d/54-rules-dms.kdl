@@ -1,0 +1,5 @@
+// Keep DMS shell surfaces visible within the overview backdrop.
+layer-rule {
+    match namespace="^quickshell$"
+    place-within-backdrop true
+}

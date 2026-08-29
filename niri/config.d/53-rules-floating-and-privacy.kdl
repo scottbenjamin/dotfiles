@@ -17,6 +17,12 @@ window-rule {
     open-floating true
 }
 
+// Float GNOME Calculator.
+window-rule {
+    match app-id=r#"^org\.gnome\.Calculator$"#
+    open-floating true
+}
+
 // Keep Handy utility windows from stealing focus while dictating.
 window-rule {
     match app-id=r#"(?i)handy|com\.pais\.handy"#

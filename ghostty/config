@@ -2,61 +2,54 @@
 font-family = "CommitMono Nerd Font Mono"
 font-style = Regular
 font-size = 10
-
 font-thicken = true
 font-thicken-strength = 175
-theme = Nordfox
-# theme = tinct.conf
 
-copy-on-select = clipboard
+# Window Configuration
+window-decoration = false
+window-padding-x = 12
+window-padding-y = 12
+background-opacity = 1.0
+background-blur-radius = 32
 
-window-decoration = none
-
-shell-integration = detect
-
-scrollback-limit = 5000000
-focus-follows-mouse = true
-auto-update = download
-
-# Window configuration
-window-height = 75
-window-width = 200
-window-padding-balance = true
-
+# Cursor Configuration
 cursor-style = block
 cursor-style-blink = true
-shell-integration-features = true
 
-# background-opacity= 0.90
-# background-blur-radius = 20
+# Scrollback
+scrollback-limit = 3023
 
-resize-overlay = never
+# Terminal features
+mouse-hide-while-typing = true
+copy-on-select = true
+confirm-close-surface = false
 
-app-notifications = no-clipboard-copy
+# Disable in-app Ghostty toast notifications
+app-notifications = false
 
-bell-features = border,no-system,no-audio,no-attention,no-title
+# Key bindings for common actions
+#keybind = ctrl+c=copy_to_clipboard
+#keybind = ctrl+v=paste_from_clipboard
+keybind = ctrl+shift+n=new_window
+keybind = ctrl+t=new_tab
+keybind = ctrl+plus=increase_font_size:1
+keybind = ctrl+minus=decrease_font_size:1
+keybind = ctrl+zero=reset_font_size
 
-shell-integration-features = ssh-terminfo,ssh-env,sudo
+# Material 3 UI elements
+unfocused-split-opacity = 0.7
+unfocused-split-fill = #44464f
 
-# Splits
-keybind = alt+shift+ctrl+cmd+v=new_split:right
-keybind = alt+shift+ctrl+cmd+s=new_split:down
-keybind = alt+shift+ctrl+cmd+z=toggle_split_zoom
-keybind = alt+shift+ctrl+cmd+o=goto_split:previous
+# Tab configuration
+gtk-titlebar = false
 
-# Split movement
-keybind = alt+shift+ctrl+cmd+j=goto_split:down
-keybind = alt+shift+ctrl+cmd+k=goto_split:up
-keybind = alt+shift+ctrl+cmd+h=goto_split:left
-keybind = alt+shift+ctrl+cmd+l=goto_split:right
+# Shell integration
+shell-integration = detect
+shell-integration-features = cursor,sudo,title,no-cursor
+keybind = shift+enter=text:\n
 
-# Quick Terminal
-quick-terminal-autohide = true
-# keybind = global:ctrl+grave_accent=toggle_quick_terminal
+# Rando stuff
+gtk-single-instance = true
 
-# Pi / terminal app compatibility
-keybind = alt+backspace=text:\x1b\x7f
-
-custom-shader = shaders/cursor_blaze.glsl
-
-# vim: ft=toml
+# Dank color generation
+theme = dankcolors
