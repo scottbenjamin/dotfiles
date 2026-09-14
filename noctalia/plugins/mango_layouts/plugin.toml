@@ -39,8 +39,9 @@ id = "panel"
 entry = "panel.luau"
 width = 240
 height = 250
-placement = "floating"
-position = "bottom_right"
+placement = "attached"
+position = "auto"
+open_near_click = true
 
 # -- GLOBAL SETTINGS --
 [[setting]]

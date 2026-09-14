@@ -1,0 +1,6 @@
+[Unit]
+Description=Refresh mango env.conf from environment.d
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/sync-mango-env-from-environment-d

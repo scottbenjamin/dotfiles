@@ -43,15 +43,24 @@ behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
     enabled = true
     timeout = 300.0
 
+    # Native screen_off uses mango disable_monitor/enable_monitor, which
+    # remounts outputs and auto-places them backwards until reload_config.
+    # sleep_monitor keeps geometry; restore-monitors.sh is a safety net.
     [idle.behavior.screen-off]
-    action = "screen_off"
+    action = "command"
     enabled = true
     timeout = 600.0
+    command = "bash /home/scott/.config/mango/scripts/monitors-sleep.sh"
+    resume_command = "bash /home/scott/.config/mango/scripts/monitors-wake.sh"
 
     [idle.behavior.lock-and-suspend]
     action = "lock_and_suspend"
     enabled = true
     timeout = 1800.0
+    resume_command = "bash /home/scott/.config/mango/scripts/restore-monitors.sh"
+
+[notification]
+monitors = [ "DP-1" ]
 
 [lockscreen_widgets]
 enabled = false
@@ -125,6 +134,10 @@ enabled = [ "noctalia/screen_recorder", "dotnetrob/cat", "noctalia/wallhaven", "
 [shell]
 polkit_agent = true
 settings_show_advanced = true
+font_family = "Adwaita Sans"
+
+[shell.greeter_sync]
+auto_sync = true
 
 [theme]
 builtin = "Noctalia"

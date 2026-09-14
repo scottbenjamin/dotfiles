@@ -1,0 +1,10 @@
+[Unit]
+Description=Watch environment.d and refresh mango env.conf
+
+[Path]
+PathChanged=%h/.config/environment.d
+PathModified=%h/.config/environment.d
+Unit=environment-d-mango-sync.service
+
+[Install]
+WantedBy=default.target

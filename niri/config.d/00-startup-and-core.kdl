@@ -8,31 +8,9 @@ spawn-at-startup "sh" "-lc" "$HOME/.config/niri/scripts/start-wallpapers.sh"
 spawn-sh-at-startup "swayidle -w timeout 600 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors' timeout 300 'loginctl lock-session' before-sleep 'swaylock -f'"
 spawn-at-startup "udiskie" "--smart-tray"
 
-environment {
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
-    GDK_BACKEND "wayland,x11,*"
-    MOZ_ENABLE_WAYLAND "1"
-    OZONE_PLATFORM "wayland"
-    QT_QPA_PLATFORM "wayland;xcb"
-    QT_STYLE_OVERRIDE "kvantum"
+// Session-wide env lives in ~/.config/environment.d/ and is loaded for
+// every compositor via ~/.local/bin/with-environment-d (and UWSM).
 
-    GTK_THEME "Nordic:dark"
-    QT_CURSOR_SIZE "24"
-    XCURSOR_THEME "Bibata-Original-Classic"
-    XCURSOR_SIZE "24"
-
-    AMD_VULKAN_ICD "RADV"
-    FSR4_UPGRADE "1"
-    MESA_SHADER_CACHE_MAX_SIZE "30G"
-    PROTON_ENABLE_WAYLAND "1"
-    PROTON_FSR4_RDNA3_UPGRADE "1"
-    PROTON_FSR4_UPGRADE "1"
-    PROTON_LOCAL_SHADER_CACHE "1"
-    PROTON_NO_WM_DECORATION "1"
-    PROTON_PREFER_SDL "1"
-    PROTON_USE_NTSYNC "1"
-    WINE_NO_WM_DECORATION "1"
-}
 
 
 hotkey-overlay {

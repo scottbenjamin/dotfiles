@@ -10,9 +10,8 @@ previous_layout=""
 while :; do
     while IFS= read -r event; do
         layout_symbol=$(jq -r '
-            .monitors[]
-            | select(.active == true)
-            | .layout_symbol
+            [.monitors[] | select(.active == true) | .layout_symbol]
+            | first // empty
         ' <<<"$event" 2>/dev/null) || continue
 
         [ -n "$layout_symbol" ] || continue

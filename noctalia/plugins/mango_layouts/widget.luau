@@ -4,14 +4,14 @@ local layouts = {
     M  = { name = "monocle",           glyph = "square" },
     G  = { name = "grid",              glyph = "layout-grid" },
     F  = { name = "fair",              glyph = "layout-board-split" },
-    D  = { name = "deck",              glyph = "layers-difference" },
+    K  = { name = "deck",              glyph = "layers-difference" },
     DW = { name = "dwindle",           glyph = "layout-2" },
     CT = { name = "center_tile",       glyph = "layout-distribute-vertical" },
     VT = { name = "vertical_tile",     glyph = "layout-rows" },
     RT = { name = "right_tile",        glyph = "layout-sidebar-right" },
     VS = { name = "vertical_scroller", glyph = "carousel-vertical" },
     VG = { name = "vertical_grid",     glyph = "grid-dots" },
-    VD = { name = "vertical_deck",     glyph = "chart-funnel" },
+    VK = { name = "vertical_deck",     glyph = "chart-funnel" },
     VF = { name = "vertical_fair",     glyph = "layout-board" },
 }
 
@@ -61,8 +61,10 @@ end
 
 local function setLayout(symbol)
     if symbol == nil then return end
-    local clean = symbol:gsub("%s+", "")
-    if clean == "" then return end
+    -- jq can emit one symbol per active monitor; collapsing whitespace
+    -- turned "T\nDW" into "TDW" and the tile glyph never matched.
+    local clean = symbol:match("^%s*(%S+)")
+    if clean == nil or clean == "" then return end
     currentSymbol = clean
     render(currentSymbol)
 end

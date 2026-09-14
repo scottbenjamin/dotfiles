@@ -14,6 +14,7 @@ mode = "toggle"
 device = "default"
 sample_rate = 16000
 max_duration_secs = 60
+pause_media = false
 
 [audio.feedback]
 enabled = true
@@ -28,12 +29,17 @@ threads = 8
 on_demand_loading = true
 gpu_isolation = true
 context_window_optimization = true
+eager_processing = false
+eager_chunk_secs = 5.0
+eager_overlap_secs = 0.5
 
 [output]
 mode = "type"
 fallback_to_clipboard = false
 type_delay_ms = 0
 pre_type_delay_ms = 50
+wait_for_modifier_release = true
+modifier_release_timeout_ms = 750
 
 [output.notification]
 on_recording_start = false
@@ -42,7 +48,14 @@ on_transcription = false
 
 [text]
 spoken_punctuation = false
+smart_auto_submit = false
 
 [status]
 icon_theme = "nerd-font"
 
+[parakeet]
+model = "parakeet-tdt-0.6b-v3"
+streaming = false
+streaming_chunk_secs = 0.32
+streaming_left_context_secs = 5.6
+streaming_right_context_secs = 0.32
