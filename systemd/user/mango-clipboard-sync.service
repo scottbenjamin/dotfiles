@@ -1,0 +1,14 @@
+[Unit]
+Description=Wayland to X11 clipboard bridge for Wine/Proton
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.config/mango/scripts/clipboard-sync.sh
+Restart=always
+RestartSec=1
+Environment=DISPLAY=:0
+Environment=WAYLAND_DISPLAY=wayland-0
+
+[Install]
+WantedBy=default.target
