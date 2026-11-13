@@ -31,5 +31,17 @@ pi-home/.pi/agent/*.log
 # QMD local indexes/state
 pi-home/.local/share/qmd/
 
-herdr/*.json
+# herdr: keep config.toml + plugins/config/; ignore runtime/install junk
 herdr/*.log
+herdr/*.sock
+herdr/herdr.sock.*
+herdr/.plugins.lock
+herdr/session.json
+herdr/session-snapshots/
+herdr/sessions/
+herdr/plugins.json
+herdr/release-notes.json
+herdr/plugins/.locks/
+herdr/plugins/.tmp-install-*/
+herdr/plugins/github-installations/
+herdr/plugins/github/
